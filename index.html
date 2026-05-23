@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Catálogo iPhones"/>
-<link rel="manifest" href="./manifest.json"/>
+<link rel="manifest" href="manifest.json"/>
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%230a0a0a'/><text x='90' y='125' font-size='90' text-anchor='middle' fill='white'>📱</text></svg>"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
 <title>Catálogo iPhones</title>
@@ -327,6 +327,17 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
 .resource-lock i{font-size:22px;color:var(--text3)}
 .resource-lock span{font-size:12px;color:var(--text3);font-weight:800}
 
+
+/* ── MOBILE: CARDS EM DUAS COLUNAS ── */
+@media(max-width:640px){
+  .prod-grid,.prod-grid-extra{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .prod-thumb{height:104px!important}
+  .prod-body{padding:9px!important}
+  .prod-name{font-size:12px!important;line-height:1.25!important}
+  .prod-desc{font-size:10px!important;line-height:1.35!important;margin-bottom:8px!important}
+  .btn-prod{font-size:11px!important;padding:9px 6px!important}
+}
+
 </style>
 </head>
 <body>
@@ -403,7 +414,7 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
   <!-- POPUP: Contrato de Garantia -->
   <div class="pop" id="pop-contrato">
     <div class="pop-box pop-prod-box">
-      <div class="pop-prod-cover"><img src="./assets/images/contrato-garantia.png" alt="Contrato de Garantia"></div>
+      <div class="pop-prod-cover"><img src="contrato-garantia.png" alt="Contrato de Garantia"></div>
       <div class="pop-prod-content">
         <div class="pop-prod-tag"><i class="ti ti-file-text"></i> Produto</div>
         <div class="pop-prod-title">Contrato de Garantia</div>
@@ -420,7 +431,7 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
   <!-- POPUP: Pack Artes Canva -->
   <div class="pop" id="pop-artes-canva">
     <div class="pop-box pop-prod-box">
-      <div class="pop-prod-cover"><img src="./assets/images/pack-artes-canva.png" alt="Pack Artes Canva"></div>
+      <div class="pop-prod-cover"><img src="pack-artes-canva.png" alt="Pack Artes Canva"></div>
       <div class="pop-prod-content">
         <div class="pop-prod-tag"><i class="ti ti-brush"></i> Canva</div>
         <div class="pop-prod-title">Pack Artes Canva</div>
@@ -440,7 +451,7 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
   <!-- POPUP: Pack Vídeos Virais iPhone -->
   <div class="pop" id="pop-videos-iphone">
     <div class="pop-box pop-prod-box">
-      <div class="pop-prod-cover"><img src="./assets/images/pack-videos-virais.png" alt="Pack Vídeos Virais iPhone"></div>
+      <div class="pop-prod-cover"><img src="pack-videos-virais.png" alt="Pack Vídeos Virais iPhone"></div>
       <div class="pop-prod-content">
         <div class="pop-prod-tag"><i class="ti ti-brand-tiktok"></i> Vídeos</div>
         <div class="pop-prod-title">Pack Vídeos Virais</div>
@@ -457,7 +468,7 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
   <!-- POPUP: Pack Documentos Assistência -->
   <div class="pop" id="pop-documentos">
     <div class="pop-box pop-prod-box">
-      <div class="pop-prod-cover"><img src="./assets/images/pack-documentos-assistencia.png" alt="Pack Documentos Assistência"></div>
+      <div class="pop-prod-cover"><img src="pack-documentos-assistencia.png" alt="Pack Documentos Assistência"></div>
       <div class="pop-prod-content">
         <div class="pop-prod-tag"><i class="ti ti-clipboard-list"></i> Assistência</div>
         <div class="pop-prod-title">Pack Documentos Assistência</div>
@@ -474,7 +485,7 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
   <!-- POPUP: Pack Vídeos Virais Assistência -->
   <div class="pop" id="pop-videos-assistencia">
     <div class="pop-box pop-prod-box">
-      <div class="pop-prod-cover"><img src="./assets/images/pack-videos-virais.png" alt="Pack Vídeos Virais Assistência"></div>
+      <div class="pop-prod-cover"><img src="pack-videos-virais.png" alt="Pack Vídeos Virais Assistência"></div>
       <div class="pop-prod-content">
         <div class="pop-prod-tag"><i class="ti ti-tools"></i> Assistência</div>
         <div class="pop-prod-title">Pack Vídeos Virais Assistência</div>
@@ -491,13 +502,13 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
   <!-- POPUP: Planilha de Precificação -->
   <div class="pop" id="pop-precificacao">
     <div class="pop-box pop-prod-box">
-      <div class="pop-prod-cover"><img src="./assets/images/planilha-precificacao.png" alt="Planilha de Precificação"></div>
+      <div class="pop-prod-cover"><img src="planilha-precificacao.png" alt="Planilha de Precificação"></div>
       <div class="pop-prod-content">
         <div class="pop-prod-tag"><i class="ti ti-table"></i> Planilha</div>
         <div class="pop-prod-title">Planilha de Precificação</div>
         <div class="pop-prod-desc">Planilha para organizar os valores dos aparelhos, custo, margem e preço final de venda de forma simples.</div>
         <div class="pop-actions">
-          <a class="pop-link" href="./downloads/tabela-de-precificacao.xlsx" download>Baixar planilha <i class="ti ti-download"></i></a>
+          <a class="pop-link" href="tabela-de-precificacao.xlsx" download>Baixar planilha <i class="ti ti-download"></i></a>
         </div>
         <button class="btn-pop-skip" onclick="fecharPop('pop-precificacao')">Fechar</button>
       </div>
@@ -507,13 +518,13 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
   <!-- POPUP: Lista de Fornecedores -->
   <div class="pop" id="pop-fornecedores">
     <div class="pop-box pop-prod-box">
-      <div class="pop-prod-cover"><img src="./assets/images/lista-fornecedores.png" alt="Lista de Fornecedores"></div>
+      <div class="pop-prod-cover"><img src="lista-fornecedores.png" alt="Lista de Fornecedores"></div>
       <div class="pop-prod-content">
         <div class="pop-prod-tag"><i class="ti ti-building-store"></i> Fornecedores</div>
         <div class="pop-prod-title">Lista de Fornecedores</div>
         <div class="pop-prod-desc">Lista de fornecedores do Shopping Oriental para facilitar sua busca por produtos e contatos para revenda.</div>
         <div class="pop-actions">
-          <a class="pop-link" href="./downloads/lista-de-fornecedores.pdf" download>Baixar lista <i class="ti ti-download"></i></a>
+          <a class="pop-link" href="lista-de-fornecedores.pdf" download>Baixar lista <i class="ti ti-download"></i></a>
         </div>
         <button class="btn-pop-skip" onclick="fecharPop('pop-fornecedores')">Fechar</button>
       </div>
@@ -637,22 +648,22 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
         <div class="sec-title">Conteúdos principais</div>
         <div class="prod-grid">
           <div class="prod-card" onclick="abrirConteudo('pop-contrato')">
-            <div class="prod-thumb"><img src="./assets/images/contrato-garantia.png" alt="Contrato de Garantia"></div>
+            <div class="prod-thumb"><img src="contrato-garantia.png" alt="Contrato de Garantia"></div>
             <div class="prod-body"><div class="prod-name">Contrato de Garantia</div><div class="prod-desc">Venda iPhones com segurança e evite dor de cabeça.</div><button class="btn-prod"><i class="ti ti-eye"></i> Ver detalhes</button></div><div class="resource-lock" data-resource-lock onclick="event.stopPropagation();mostrarLock()"><i class="ti ti-lock"></i><span>Disponível para clientes</span></div>
           </div>
 
           <div class="prod-card" onclick="abrirConteudo('pop-artes-canva')">
-            <div class="prod-thumb"><img src="./assets/images/pack-artes-canva.png" alt="Pack Artes Canva"></div>
+            <div class="prod-thumb"><img src="pack-artes-canva.png" alt="Pack Artes Canva"></div>
             <div class="prod-body"><div class="prod-name">Pack Artes Canva</div><div class="prod-desc">Mais de 100 artes editáveis para redes sociais.</div><button class="btn-prod"><i class="ti ti-eye"></i> Ver detalhes</button></div><div class="resource-lock" data-resource-lock onclick="event.stopPropagation();mostrarLock()"><i class="ti ti-lock"></i><span>Disponível para clientes</span></div>
           </div>
 
           <div class="prod-card" onclick="abrirConteudo('pop-videos-iphone')">
-            <div class="prod-thumb"><img src="./assets/images/pack-videos-virais.png" alt="Pack Vídeos Virais"></div>
+            <div class="prod-thumb"><img src="pack-videos-virais.png" alt="Pack Vídeos Virais"></div>
             <div class="prod-body"><div class="prod-name">Pack Vídeos Virais</div><div class="prod-desc">Vídeos para vender iPhones, Xiaomi e celulares.</div><button class="btn-prod"><i class="ti ti-eye"></i> Ver detalhes</button></div><div class="resource-lock" data-resource-lock onclick="event.stopPropagation();mostrarLock()"><i class="ti ti-lock"></i><span>Disponível para clientes</span></div>
           </div>
 
           <div class="prod-card" onclick="abrirConteudo('pop-documentos')">
-            <div class="prod-thumb"><img src="./assets/images/pack-documentos-assistencia.png" alt="Pack Documentos Assistência"></div>
+            <div class="prod-thumb"><img src="pack-documentos-assistencia.png" alt="Pack Documentos Assistência"></div>
             <div class="prod-body"><div class="prod-name">Pack Documentos Assistência</div><div class="prod-desc">Documentos prontos para assistência técnica.</div><button class="btn-prod"><i class="ti ti-eye"></i> Ver detalhes</button></div><div class="resource-lock" data-resource-lock onclick="event.stopPropagation();mostrarLock()"><i class="ti ti-lock"></i><span>Disponível para clientes</span></div>
           </div>
         </div>
@@ -805,17 +816,17 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
         <div class="sec-title">Extras</div>
         <div class="prod-grid-extra">
           <div class="prod-card" onclick="abrirConteudo('pop-videos-assistencia')">
-            <div class="prod-thumb"><img src="./assets/images/pack-videos-virais.png" alt="Pack Vídeos Virais Assistência"></div>
+            <div class="prod-thumb"><img src="pack-videos-virais.png" alt="Pack Vídeos Virais Assistência"></div>
             <div class="prod-body"><div class="prod-name">Pack Vídeos Virais Assistência</div><div class="prod-desc">Vídeos virais para reparos e assistência técnica.</div><button class="btn-prod"><i class="ti ti-eye"></i> Ver detalhes</button></div><div class="resource-lock" data-resource-lock onclick="event.stopPropagation();mostrarLock()"><i class="ti ti-lock"></i><span>Disponível para clientes</span></div>
           </div>
 
           <div class="prod-card" onclick="abrirConteudo('pop-precificacao')">
-            <div class="prod-thumb"><img src="./assets/images/planilha-precificacao.png" alt="Planilha de Precificação"></div>
+            <div class="prod-thumb"><img src="planilha-precificacao.png" alt="Planilha de Precificação"></div>
             <div class="prod-body"><div class="prod-name">Planilha de Precificação</div><div class="prod-desc">Organize custo, margem e preço de venda.</div><button class="btn-prod"><i class="ti ti-eye"></i> Ver detalhes</button></div><div class="resource-lock" data-resource-lock onclick="event.stopPropagation();mostrarLock()"><i class="ti ti-lock"></i><span>Disponível para clientes</span></div>
           </div>
 
           <div class="prod-card" onclick="abrirConteudo('pop-fornecedores')">
-            <div class="prod-thumb"><img src="./assets/images/lista-fornecedores.png" alt="Lista de Fornecedores"></div>
+            <div class="prod-thumb"><img src="lista-fornecedores.png" alt="Lista de Fornecedores"></div>
             <div class="prod-body"><div class="prod-name">Lista de Fornecedores</div><div class="prod-desc">Fornecedores do Shopping Oriental.</div><button class="btn-prod"><i class="ti ti-eye"></i> Ver detalhes</button></div><div class="resource-lock" data-resource-lock onclick="event.stopPropagation();mostrarLock()"><i class="ti ti-lock"></i><span>Disponível para clientes</span></div>
           </div>
         </div>
