@@ -1,0 +1,10 @@
+{
+  "name": "Catálogo iPhones - Área de Membros",
+  "short_name": "Catálogo iPhones",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#0a0a0a",
+  "lang": "pt-BR",
+  "icons": []
+}
