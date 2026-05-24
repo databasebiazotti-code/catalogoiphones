@@ -316,6 +316,13 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
 .btn-zap-create i{font-size:17px}
 
 
+/* ── ATIVAÇÃO DE ACESSO ── */
+.btn-code{width:100%;padding:13px;background:var(--orange);border:none;border-radius:var(--r);font-size:14px;font-weight:800;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:9px}
+.btn-code:disabled{opacity:.6}
+.activation-note{font-size:12px;color:var(--text4);line-height:1.55;margin:0 0 14px}
+.pop-link.disabled,.pop-liberar.disabled{opacity:.45;cursor:pointer;filter:grayscale(1)}
+.pop-link.disabled i,.pop-liberar.disabled i{color:inherit}
+
 /* ── CONTROLE DE ACESSO ── */
 .prod-card,.aula-row,.aula-tools{position:relative}
 .resource-lock{
@@ -349,21 +356,21 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
   <div class="login-card">
     <div class="login-logo">
       <div class="brand">Catálogo iPhones</div>
-      <small>Acesse sua área exclusiva</small>
+      <small>Crie sua conta gratuita para visualizar</small>
     </div>
-    <div id="form-login">
+    <div id="form-cad">
+      <div id="err-cad" class="err"></div>
+      <div class="field"><label>E-mail</label><input type="email" id="c-email" inputmode="email" autocomplete="email" placeholder="seu@email.com"/></div>
+      <div class="field"><label>Senha</label><input type="password" id="c-senha" autocomplete="new-password" placeholder="Mínimo 6 caracteres"/></div>
+      <button class="btn-primary" id="btn-cad" onclick="cadastrar()">Criar conta gratuita</button>
+      <div class="login-toggle">Já tem cadastro? <a onclick="toggleForm()">Fazer login</a></div>
+    </div>
+    <div id="form-login" style="display:none">
       <div id="err-login" class="err"></div>
       <div class="field"><label>E-mail</label><input type="email" id="l-email" inputmode="email" autocomplete="email" placeholder="seu@email.com"/></div>
       <div class="field"><label>Senha</label><input type="password" id="l-senha" autocomplete="current-password" placeholder="••••••••"/></div>
       <button class="btn-primary" id="btn-entrar" onclick="entrar()">Entrar</button>
-      <div class="login-toggle">Não tem conta? <a onclick="toggleForm()">Cadastre-se</a></div>
-    </div>
-    <div id="form-cad" style="display:none">
-      <div id="err-cad" class="err"></div>
-      <div class="field"><label>E-mail</label><input type="email" id="c-email" inputmode="email" autocomplete="email" placeholder="seu@email.com"/></div>
-      <div class="field"><label>Senha</label><input type="password" id="c-senha" autocomplete="new-password" placeholder="Mínimo 6 caracteres"/></div>
-      <button class="btn-primary" id="btn-cad" onclick="cadastrar()">Criar conta e entrar</button>
-      <div class="login-toggle">Já tem conta? <a onclick="toggleForm()">Entrar</a></div>
+      <div class="login-toggle">Ainda não tem conta? <a onclick="toggleForm()">Criar conta gratuita</a></div>
     </div>
   </div>
 </div>
@@ -391,8 +398,9 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
         <div class="pop-icon pop-icon-orange"><i class="ti ti-lock"></i></div>
         <div><div class="pop-title">Acesso bloqueado</div><div class="pop-sub">Conteúdo exclusivo para clientes</div></div>
       </div>
-      <div class="pop-body">Entre em contato pelo WhatsApp para <strong style="color:var(--orange)">desbloquear seu acesso</strong> e ter tudo disponível.</div>
-      <button class="btn-pop-main btn-pop-main-orange" onclick="window.open('https://wa.link/bnbs2c','_blank');fecharPop('pop-lock')"><i class="ti ti-brand-whatsapp" style="font-size:16px"></i> Falar no WhatsApp</button>
+      <div class="pop-body">Você pode visualizar as prévias gratuitamente. Para editar ou baixar, digite a <strong style="color:var(--orange)">senha de acesso</strong> recebida após a compra.</div>
+      <button class="btn-code" onclick="abrirAtivacao('pop-lock')"><i class="ti ti-key" style="font-size:16px"></i> Ativar senha de acesso</button>
+      <button class="btn-pop-main btn-pop-main-orange" onclick="window.open('https://wa.link/bnbs2c','_blank');fecharPop('pop-lock')"><i class="ti ti-brand-whatsapp" style="font-size:16px"></i> Comprar pelo WhatsApp</button>
       <button class="btn-pop-skip" onclick="fecharPop('pop-lock')">Fechar</button>
     </div>
   </div>
@@ -404,9 +412,26 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
         <div class="pop-icon pop-icon-orange"><i class="ti ti-device-mobile"></i></div>
         <div><div class="pop-title">Upgrade necessário</div><div class="pop-sub">Catálogos Xiaomi, Realme e Apple</div></div>
       </div>
-      <div class="pop-body">Libere os 3 catálogos completos por apenas <strong style="color:var(--orange)">R$49</strong>. Entre em contato pelo WhatsApp.</div>
-      <button class="btn-pop-main btn-pop-main-orange" onclick="window.open('https://wa.link/bnbs2c','_blank');fecharPop('pop-upg')"><i class="ti ti-brand-whatsapp" style="font-size:16px"></i> Liberar por R$49</button>
+      <div class="pop-body">Libere os 3 catálogos completos por apenas <strong style="color:var(--orange)">R$49</strong>. Se já comprou, ative sua senha abaixo.</div>
+      <button class="btn-code" onclick="abrirAtivacao('pop-upg')"><i class="ti ti-key" style="font-size:16px"></i> Ativar senha de acesso</button>
+      <button class="btn-pop-main btn-pop-main-orange" onclick="window.open('https://wa.link/bnbs2c','_blank');fecharPop('pop-upg')"><i class="ti ti-brand-whatsapp" style="font-size:16px"></i> Comprar pelo WhatsApp</button>
       <button class="btn-pop-skip" onclick="fecharPop('pop-upg')">Fechar</button>
+    </div>
+  </div>
+
+
+  <!-- POPUP: ativar senha de acesso -->
+  <div class="pop" id="pop-ativar">
+    <div class="pop-box">
+      <div class="pop-head">
+        <div class="pop-icon pop-icon-orange"><i class="ti ti-key"></i></div>
+        <div><div class="pop-title">Ativar acesso</div><div class="pop-sub">Digite a senha recebida após a compra</div></div>
+      </div>
+      <div id="err-ativar" class="err"></div>
+      <div class="field"><label>Senha de acesso</label><input type="password" id="senha-acesso" inputmode="numeric" autocomplete="one-time-code" placeholder="Digite sua senha"/></div>
+      <p class="activation-note">A ativação fica vinculada à sua conta. O plano atual nunca será reduzido.</p>
+      <button class="btn-code" id="btn-ativar" onclick="ativarAcesso()"><i class="ti ti-lock-open" style="font-size:16px"></i> Desbloquear agora</button>
+      <button class="btn-pop-skip" onclick="fecharPop('pop-ativar')">Cancelar</button>
     </div>
   </div>
 
@@ -508,7 +533,7 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
         <div class="pop-prod-title">Planilha de Precificação</div>
         <div class="pop-prod-desc">Planilha para organizar os valores dos aparelhos, custo, margem e preço final de venda de forma simples.</div>
         <div class="pop-actions">
-          <a class="pop-link" href="tabela-de-precificacao.xlsx" download>Baixar planilha <i class="ti ti-download"></i></a>
+          <a class="pop-link" data-premium-link href="tabela-de-precificacao.xlsx" download>Baixar planilha <i class="ti ti-download"></i></a>
         </div>
         <button class="btn-pop-skip" onclick="fecharPop('pop-precificacao')">Fechar</button>
       </div>
@@ -524,7 +549,7 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
         <div class="pop-prod-title">Lista de Fornecedores</div>
         <div class="pop-prod-desc">Lista de fornecedores do Shopping Oriental para facilitar sua busca por produtos e contatos para revenda.</div>
         <div class="pop-actions">
-          <a class="pop-link" href="lista-de-fornecedores.pdf" download>Baixar lista <i class="ti ti-download"></i></a>
+          <a class="pop-link" data-premium-link href="lista-de-fornecedores.pdf" download>Baixar lista <i class="ti ti-download"></i></a>
         </div>
         <button class="btn-pop-skip" onclick="fecharPop('pop-fornecedores')">Fechar</button>
       </div>
@@ -626,7 +651,7 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
         <div id="banner-lock" class="banner-lock">
           <div class="banner-lock-icon"><i class="ti ti-lock"></i></div>
           <div class="banner-lock-text"><strong>Acesso pendente</strong><span>Conclua o pagamento para liberar catálogos, aulas e materiais.</span></div>
-          <a href="https://wa.link/bnbs2c" target="_blank" class="btn-banner">Liberar agora</a>
+          <button class="btn-banner" onclick="abrirAtivacao()">Ativar senha</button>
         </div>
 
         <div class="sec-title">Seu catálogo</div>
@@ -854,7 +879,7 @@ const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 const sb = supabase.createClient(SB_URL, SB_KEY);
 
 var UP = 0; // 0 = gratuito, 1 = cliente, 2 = acesso completo
-var isLogin = true;
+var isLogin = false; // cadastro gratuito aparece primeiro
 var deferredPrompt = null;
 var SECS = ['inicio','catalogos','aulas','extras'];
 var TITLES = {inicio:'Início',catalogos:'Catálogos',aulas:'Videoaulas',extras:'Extras'};
@@ -896,13 +921,18 @@ function aplicarPlano(p) {
   var banner = document.getElementById('banner-lock');
   if (banner) banner.classList.toggle('show', UP === 0);
 
-  // Visualização de catálogo é pública para qualquer plano.
+  // Todos os planos podem visualizar catálogos e abrir detalhes/previews.
   setLock('lock-iphone', false);
   setLock('lock-iphone-cat', false);
   ['lock-xiaomi','lock-realme','lock-apple'].forEach(function(id) { setLock(id, false); });
 
-  // Cards extras, aulas e ferramentas ficam visíveis, porém bloqueados no plano gratuito.
-  document.querySelectorAll('[data-resource-lock]').forEach(function(el) {
+  // No gratuito, os cards continuam abertos para visualização.
+  document.querySelectorAll('.prod-card [data-resource-lock]').forEach(function(el) {
+    el.style.display = 'none';
+  });
+
+  // Aulas e ferramentas são liberadas a partir do nível 1.
+  document.querySelectorAll('.aula-row [data-resource-lock], .aula-tools [data-resource-lock]').forEach(function(el) {
     el.style.display = UP === 0 ? 'flex' : 'none';
   });
 
@@ -918,8 +948,9 @@ function aplicarPlano(p) {
       ? '<i class="ti ti-download"></i> Editar no Canva'
       : '<i class="ti ti-lock"></i> Liberar edição';
   });
-}
 
+  protegerLinksPremium();
+}
 function setLock(id, travado) {
   var el = document.getElementById(id);
   if (el) el.style.display = travado ? 'flex' : 'none';
@@ -949,8 +980,57 @@ function acao(tipo, url) {
 }
 
 function abrirConteudo(popId) {
-  if (UP < 1) { mostrarLock(); return; }
+  // Os detalhes e links identificados como visualização são gratuitos.
   showPop(popId);
+}
+
+function protegerLinksPremium() {
+  document.querySelectorAll('.pop-liberar, [data-premium-link]').forEach(function(link) {
+    if (!link.dataset.hrefOriginal) link.dataset.hrefOriginal = link.getAttribute('href') || '';
+    var bloqueado = UP === 0;
+    link.classList.toggle('disabled', bloqueado);
+    link.setAttribute('aria-disabled', bloqueado ? 'true' : 'false');
+    link.onclick = bloqueado ? function(event) {
+      event.preventDefault();
+      abrirAtivacao();
+    } : null;
+    if (bloqueado) link.removeAttribute('href');
+    else if (link.dataset.hrefOriginal) link.setAttribute('href', link.dataset.hrefOriginal);
+  });
+}
+
+function abrirAtivacao(popOrigem) {
+  if (popOrigem) fecharPop(popOrigem);
+  var campo = document.getElementById('senha-acesso');
+  var err = document.getElementById('err-ativar');
+  if (campo) campo.value = '';
+  if (err) err.classList.remove('show');
+  showPop('pop-ativar');
+  if (campo) campo.focus();
+}
+
+async function ativarAcesso() {
+  var senha = document.getElementById('senha-acesso').value.trim();
+  var err = document.getElementById('err-ativar');
+  var btn = document.getElementById('btn-ativar');
+  if (!senha) { showErr(err, 'Digite a senha de acesso.'); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="ti ti-loader-2"></i> Ativando...';
+
+  const { data, error } = await sb.rpc('ativar_plano_por_senha', { p_senha: senha });
+
+  btn.disabled = false;
+  btn.innerHTML = '<i class="ti ti-lock-open" style="font-size:16px"></i> Desbloquear agora';
+
+  if (error) {
+    showErr(err, 'Senha inválida. Confira e tente novamente.');
+    return;
+  }
+
+  aplicarPlano(Number(data) || 0);
+  fecharPop('pop-ativar');
+  alert(UP >= 2 ? 'Acesso completo ativado com sucesso!' : 'Acesso nível 1 ativado com sucesso!');
 }
 
 function abrirFerramentaWhatsApp() {
@@ -1019,7 +1099,7 @@ async function cadastrar() {
   if (senha.length < 6) { showErr(err,'Senha precisa ter pelo menos 6 caracteres.'); return; }
   btn.disabled = true; btn.textContent = 'Criando conta...';
   const { error } = await sb.auth.signUp({ email, password: senha });
-  if (error) { showErr(err,'Erro ao criar conta. Tente novamente.'); btn.disabled=false; btn.textContent='Criar conta e entrar'; }
+  if (error) { showErr(err,'Erro ao criar conta. Tente novamente.'); btn.disabled=false; btn.textContent='Criar conta gratuita'; }
 }
 
 async function sair() { await sb.auth.signOut(); }
