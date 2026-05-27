@@ -296,6 +296,16 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
   .topbar{padding:12px 14px;padding-top:calc(12px + var(--st))}
   .btn-top span{display:none}
   .btn-top{padding:7px 10px}
+  .btn-top-zap{
+    background:var(--green);
+    border-color:var(--green);
+    color:#061108;
+    padding:9px 13px;
+    font-weight:800;
+    box-shadow:0 0 0 1px rgba(34,197,94,.2),0 6px 18px rgba(34,197,94,.22)
+  }
+  .btn-top-zap span{display:inline}
+  .btn-top-zap i{font-size:16px}
   .upg-head{flex-direction:column;align-items:flex-start;gap:8px}
   .upg-price .lbl{text-align:left}
 }
@@ -634,7 +644,7 @@ html,body{height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSys
       <span class="topbar-title" id="topbar-title">Início</span>
       <div class="topbar-actions">
         <a class="btn-top btn-top-zap" onclick="abrirGrupo()"><i class="ti ti-brand-whatsapp"></i><span>Grupo</span></a>
-        <a class="btn-top btn-top-ig" href="https://www.instagram.com/catalogoiphones" target="_blank"><i class="ti ti-brand-instagram"></i><span>@catalogoiphones</span></a>
+        <a class="btn-top btn-top-ig" href="https://www.instagram.com/oluccasiphone" target="_blank"><i class="ti ti-brand-instagram"></i><span>@catalogoiphones</span></a>
       </div>
     </div>
 
@@ -897,10 +907,26 @@ window.addEventListener('DOMContentLoaded', async function() {
   });
 });
 
+async function consultarPlanoAtual(userId) {
+  const { data, error } = await sb
+    .from('user_plans')
+    .select('plano')
+    .eq('id', userId)
+    .single();
+
+  if (error) throw error;
+
+  var plano = data && Number(data.plano);
+  return Number.isFinite(plano) ? plano : 0;
+}
+
 async function abrirApp(user) {
-  const { data } = await sb.from('user_plans').select('plano').eq('id', user.id).single();
-  UP = data && Number.isFinite(Number(data.plano)) ? Number(data.plano) : 0;
-  aplicarPlano(UP);
+  try {
+    aplicarPlano(await consultarPlanoAtual(user.id));
+  } catch (error) {
+    console.error('Erro ao consultar plano do usuário:', error);
+    aplicarPlano(0);
+  }
 
   var email = document.getElementById('sb-email');
   if (email) email.textContent = user.email;
@@ -1013,24 +1039,55 @@ async function ativarAcesso() {
   var senha = document.getElementById('senha-acesso').value.trim();
   var err = document.getElementById('err-ativar');
   var btn = document.getElementById('btn-ativar');
-  if (!senha) { showErr(err, 'Digite a senha de acesso.'); return; }
 
-  btn.disabled = true;
-  btn.innerHTML = '<i class="ti ti-loader-2"></i> Ativando...';
-
-  const { data, error } = await sb.rpc('ativar_plano_por_senha', { p_senha: senha });
-
-  btn.disabled = false;
-  btn.innerHTML = '<i class="ti ti-lock-open" style="font-size:16px"></i> Desbloquear agora';
-
-  if (error) {
-    showErr(err, 'Senha inválida. Confira e tente novamente.');
+  if (!senha) {
+    showErr(err, 'Digite a senha de acesso.');
     return;
   }
 
-  aplicarPlano(Number(data) || 0);
-  fecharPop('pop-ativar');
-  alert(UP >= 2 ? 'Acesso completo ativado com sucesso!' : 'Acesso nível 1 ativado com sucesso!');
+  if (err) err.classList.remove('show');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="ti ti-loader-2"></i> Ativando...';
+
+  try {
+    const { error: rpcError } = await sb.rpc('ativar_plano_por_senha', {
+      p_senha: senha
+    });
+
+    if (rpcError) {
+      showErr(err, 'Senha inválida. Confira e tente novamente.');
+      return;
+    }
+
+    const { data: authData, error: authError } = await sb.auth.getUser();
+
+    if (authError || !authData || !authData.user) {
+      showErr(err, 'Sua sessão expirou. Entre novamente para ativar o acesso.');
+      return;
+    }
+
+    var planoAtual = await consultarPlanoAtual(authData.user.id);
+
+    if (planoAtual < 1) {
+      showErr(err, 'A ativação não foi confirmada. Tente novamente.');
+      return;
+    }
+
+    aplicarPlano(planoAtual);
+    fecharPop('pop-ativar');
+
+    alert(
+      UP >= 2
+        ? 'Acesso completo ativado com sucesso!'
+        : 'Acesso nível 1 ativado com sucesso!'
+    );
+  } catch (error) {
+    console.error('Erro ao ativar acesso:', error);
+    showErr(err, 'Não foi possível ativar agora. Verifique sua conexão e tente novamente.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="ti ti-lock-open" style="font-size:16px"></i> Desbloquear agora';
+  }
 }
 
 function abrirFerramentaWhatsApp() {
