@@ -1838,7 +1838,7 @@
           <div class="mini-card quick-mini-card">
             <strong>Já fez a compra?</strong>
             <p>Insira o código recebido para liberar seus produtos na sua conta.</p>
-            <input id="quickCodeInputSidebar" placeholder="DIGITE SEU CÓDIGO" autocomplete="off" />
+            <input id="quickCodeInputSidebar" inputmode="numeric" maxlength="4" placeholder="DIGITE SEU PIN" autocomplete="off" />
             <button onclick="redeemCodeFromQuickUnlock('quickCodeInputSidebar')">Inserir código</button>
           </div>
         </div>
@@ -1868,7 +1868,7 @@
                 <strong>Já fez a compra?</strong>
                 <span>Insira seu código aqui para liberar seus produtos em Meus Produtos.</span>
                 <div class="quick-code-row">
-                  <input id="quickCodeInput" placeholder="DIGITE SEU CÓDIGO" autocomplete="off" />
+                  <input id="quickCodeInput" inputmode="numeric" maxlength="4" placeholder="DIGITE SEU PIN" autocomplete="off" />
                   <button onclick="redeemCodeFromQuickUnlock()"><i class="ti ti-lock-open"></i> Inserir código</button>
                 </div>
               </div>
@@ -1979,7 +1979,7 @@
             <strong>Já tenho um código</strong>
             <span>Comprou via Pix ou recebeu um PIN? Digite o código abaixo para liberar o produto.</span>
             <div class="code-row">
-              <input id="modalCodeInput" placeholder="Digite seu código de acesso" autocomplete="off" />
+              <input id="modalCodeInput" inputmode="numeric" maxlength="4" placeholder="Digite seu PIN de 4 dígitos" autocomplete="off" />
               <button class="btn gold" onclick="redeemCodeFromModal()">Liberar</button>
             </div>
             <div class="code-help">Digite o PIN recebido após a liberação.</div>
@@ -2022,7 +2022,8 @@
       },
       completo: {
         id:'completo',
-        previewUrl:'https://wa.me/5585992343780?text=Ol%C3%A1%2C%20quero%20liberar%20meu%20cat%C3%A1logo%20na%20Central%20do%20Lojista.',
+        unlockMode:'code',
+        previewUrl:'http://decolesolucoes.my.canva.site/catalogoapple',
         whatsappUrl:'https://wa.me/5585992343780?text=Ol%C3%A1%2C%20quero%20liberar%20meu%20cat%C3%A1logo%20na%20Central%20do%20Lojista.',
         checkoutUrl:'https://wa.link/bnbs2c',
         previewLinks:[{ label:'Catálogo Xiaomi', url:'https://decolesolucoes.my.canva.site/catalogoxiaomi' }, { label:'Catálogo Realme', url:'https://decolesolucoes.my.canva.site/catalogorealme' }, { label:'Catálogo Apple', url:'https://decolesolucoes.my.canva.site/catalogoapple' }],
@@ -2071,6 +2072,7 @@
         id:'artes',
         previewDescription:'Este pack possui 4 prévias disponíveis. Escolha uma opção para visualizar as artes editáveis no Canva.',
         previewUrl:'https://pay.cakto.com.br/ofq9oum_466554',
+        unlockMode:'code',
         canvaUrl:'https://canva.link/25m3bychfs9mlk5',
         checkoutUrl:'https://pay.cakto.com.br/ofq9oum_466554',
         previewLinks:['https://canva.link/25m3bychfs9mlk5','https://canva.link/1oxo3bfs06d43dr','https://canva.link/9ikdt8r4jyz2sv4','https://canva.link/gw40neul4uvje8c'],
@@ -2087,6 +2089,7 @@
         id:'videos',
         previewDescription:'Vídeos virais para vender mais nas redes sociais sobre iPhones, Xiaomi e celulares. Inclui mais de 100 vídeos.',
         previewUrl:'https://drive.google.com/drive/folders/1mIgJX9WLOiSfn1kI8luT9NobBp4nKVve',
+        unlockMode:'code',
         checkoutUrl:'https://pay.cakto.com.br/36pwf3r_466556',
         previewLinks:[{ label:'Visualizar', url:'https://drive.google.com/drive/folders/1mIgJX9WLOiSfn1kI8luT9NobBp4nKVve' }],
         image:'pack-videos-virais.png',
@@ -2102,6 +2105,7 @@
         id:'videosAssistencia',
         previewDescription:'Vídeos virais para vender mais nas redes sociais com conteúdo de reparos e assistência técnica. Inclui mais de 100 vídeos.',
         previewUrl:'https://drive.google.com/drive/folders/1lrldKTLhzc68wHMPzRQcQ4NNMru4g5tR',
+        unlockMode:'code',
         checkoutUrl:'https://pay.cakto.com.br/36pwf3r_466556',
         previewLinks:[{ label:'Visualizar', url:'https://drive.google.com/drive/folders/1lrldKTLhzc68wHMPzRQcQ4NNMru4g5tR' }],
         image:'pack-videos-virais.png',
@@ -2526,9 +2530,9 @@
         previewButtons.push(`<button class="btn ghost" onclick="openExternal('${product.downloadUrl}','Download')"><i class="ti ti-download"></i> ${product.downloadLabel || 'Baixar'}</button>`);
       }
 
-      const checkoutButton = product.checkoutUrl
-        ? `<button class="btn gold" onclick="openExternal('${product.checkoutUrl}','Liberar')"><i class="ti ti-lock"></i> Liberar</button>`
-        : '';
+      const checkoutButton = product.unlockMode === 'code'
+        ? `<button class="btn gold" onclick="closeModal(); openUnlock('${product.id}')"><i class="ti ti-lock"></i> Liberar com código</button>`
+        : (product.checkoutUrl ? `<button class="btn gold" onclick="openExternal('${product.checkoutUrl}','Liberar')"><i class="ti ti-lock"></i> Liberar</button>` : '');
 
       setModal(
         product.icon || 'ti-eye',
@@ -2668,21 +2672,21 @@
       const unlockedProducts = getUnlockedProducts();
       document.getElementById('accessCount').textContent = unlockedProducts.length;
 
-      let recommendedIds = ['iphone','garantia','documentos','artes','videos','videosAssistencia'];
+      // Todos estes produtos ficam visíveis para o cliente na área de membros.
+      // O cliente pode visualizar a prévia de tudo, mas só consegue editar/acessar após inserir o PIN correto.
+      const catalogProductIds = ['iphone','completo','xiaomi','realme','apple'];
+      const documentProductIds = ['documentos'];
+      const extraProductIds = ['garantia','artes','videos','videosAssistencia'];
+      const sellableProductIds = [...catalogProductIds, ...documentProductIds, ...extraProductIds];
+      const unlockedBonusIds = ['precificacao','fornecedores'].filter(id => hasAccess(id));
 
-      // O Catálogo Completo só entra como oferta quando a pessoa já tem o Catálogo iPhone.
-      // Se a pessoa comprou somente o Pack de Docs, essa oferta não aparece.
-      if(shouldShowCompleteUpgrade()){
-        recommendedIds = ['completo','documentos','artes','videos','videosAssistencia'];
-      }
+      const allSellableCards = sellableProductIds
+        .map(id => products[id])
+        .filter(Boolean)
+        .map(product => productCard(product))
+        .join('');
 
-      recommendedIds = recommendedIds
-        .filter(id => !hasAccess(id))
-        .slice(0,3);
-
-      document.getElementById('recommendedGrid').innerHTML = recommendedIds.length
-        ? recommendedIds.map(id => productCard(products[id])).join('')
-        : `<div class="empty"><i class="ti ti-confetti"></i><h3>Todos os principais produtos foram liberados</h3><p>Quando novos packs forem adicionados, eles aparecerão aqui como recomendação.</p></div>`;
+      document.getElementById('recommendedGrid').innerHTML = allSellableCards;
 
       const firstModules = unlockedProducts.filter(p => p.lessons && p.lessons.length).slice(0,3);
       const upgradeHtml = shouldShowCompleteUpgrade() ? completeUpgradeOffer() : '';
@@ -2691,18 +2695,23 @@
         ? upgradeHtml + firstModules.map(productModule).join('')
         : upgradeHtml;
 
-      const meusCodeBox = `<div class="quick-unlock-box quick-unlock-inline"><strong>Já fez a compra?</strong><span>Insira o código recebido para liberar seus produtos nesta área.</span><div class="quick-code-row"><input id="quickCodeInputMeus" placeholder="DIGITE SEU CÓDIGO" autocomplete="off" /><button onclick="redeemCodeFromQuickUnlock('quickCodeInputMeus')"><i class="ti ti-lock-open"></i> Inserir código</button></div></div>`;
+      const meusCodeBox = `<div class="quick-unlock-box quick-unlock-inline"><strong>Já fez a compra?</strong><span>Insira o PIN de 4 dígitos recebido após a compra para liberar a edição.</span><div class="quick-code-row"><input id="quickCodeInputMeus" inputmode="numeric" maxlength="4" placeholder="DIGITE SEU PIN" autocomplete="off" /><button onclick="redeemCodeFromQuickUnlock('quickCodeInputMeus')"><i class="ti ti-lock-open"></i> Inserir código</button></div></div>`;
 
-      document.getElementById('myProducts').innerHTML = meusCodeBox + (unlockedProducts.length
-        ? `<div class="grid preview-section-grid">${unlockedProducts.map(product => productCard(product)).join('')}</div>
-           ${shouldShowCompleteUpgrade() ? completeUpgradeOffer() : ''}
-           <div class="row-head"><div><div class="sec-title">Aulas dos seus produtos</div><div class="sec-sub">Cada produto liberado mostra arquivos e aulas no mesmo módulo.</div></div></div>
-           ${unlockedProducts.filter(p => p.lessons && p.lessons.length).map(productModule).join('')}`
-        : '');
+      const memberProducts = [...sellableProductIds, ...unlockedBonusIds]
+        .map(id => products[id])
+        .filter(Boolean);
+      const moduleProducts = unlockedProducts.filter(p => p.lessons && p.lessons.length);
 
-      document.getElementById('catalogGrid').innerHTML = ['iphone','xiaomi','realme','apple'].map(id => productCard(products[id])).join('');
-      document.getElementById('documentsGrid').innerHTML = ['documentos'].filter(id => products[id]).map(id => productCard(products[id])).join('');
-      document.getElementById('extrasGrid').innerHTML = ['garantia','artes','videos','videosAssistencia'].filter(id => products[id]).map(id => productCard(products[id])).join('');
+      document.getElementById('myProducts').innerHTML = meusCodeBox + `
+        <div class="row-head"><div><div class="sec-title">Todos os produtos</div><div class="sec-sub">Todos ficam visíveis para prévia. Para editar no Canva ou acessar o material, insira o PIN de 4 dígitos.</div></div></div>
+        <div class="grid preview-section-grid">${memberProducts.map(product => productCard(product)).join('')}</div>
+        ${shouldShowCompleteUpgrade() ? completeUpgradeOffer() : ''}
+        ${moduleProducts.length ? `<div class="row-head"><div><div class="sec-title">Aulas dos seus produtos</div><div class="sec-sub">As aulas aparecem somente depois que o produto é liberado por código.</div></div></div>${moduleProducts.map(productModule).join('')}` : ''}
+      `;
+
+      document.getElementById('catalogGrid').innerHTML = catalogProductIds.map(id => productCard(products[id])).join('');
+      document.getElementById('documentsGrid').innerHTML = documentProductIds.map(id => productCard(products[id])).join('');
+      document.getElementById('extrasGrid').innerHTML = extraProductIds.map(id => productCard(products[id])).join('');
     }
 
     function setModal(icon, title, text, showCode=false){
@@ -2723,7 +2732,11 @@
       const product = products[productId];
       const includes = (product.includes || []).join(', ');
       const links = (product.previewLinks || [])
-        .map(link => `<a class="btn ghost" style="margin-top:8px;display:flex" href="${link.url}" target="_blank" rel="noopener"><i class="ti ti-external-link"></i> ${link.label}</a>`)
+        .map((link, index) => {
+          const url = typeof link === 'string' ? link : link.url;
+          const label = typeof link === 'string' ? `Visualizar ${index + 1}` : (link.label || `Visualizar ${index + 1}`);
+          return `<a class="btn ghost" style="margin-top:8px;display:flex" href="${url}" target="_blank" rel="noopener"><i class="ti ti-external-link"></i> ${label}</a>`;
+        })
         .join('');
       setModal(
         product.icon,
@@ -2828,11 +2841,11 @@
       }
 
       try {
-        const { error } = await sb.rpc('redeem_product_pin', { p_pin: code });
+        const { data, error } = await sb.rpc('redeem_product_pin', { p_pin: code });
 
-        if(error){
-          console.error(error);
-          showToast('Código inválido ou indisponível.');
+        if(error || (data && data.success === false)){
+          console.error(error || data);
+          showToast((data && data.message) || 'Código inválido ou indisponível.');
           return;
         }
 
@@ -2857,11 +2870,11 @@
       }
 
       try {
-        const { error } = await sb.rpc('redeem_product_pin', { p_pin: code });
+        const { data, error } = await sb.rpc('redeem_product_pin', { p_pin: code });
 
-        if(error){
-          console.error(error);
-          showToast('Código inválido ou indisponível.');
+        if(error || (data && data.success === false)){
+          console.error(error || data);
+          showToast((data && data.message) || 'Código inválido ou indisponível.');
           return;
         }
 
