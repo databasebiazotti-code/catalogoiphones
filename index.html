@@ -1839,6 +1839,7 @@
       },
       completo: {
         id:'completo',
+        previewUrl:'https://wa.me/5585992343780?text=Ol%C3%A1%2C%20quero%20liberar%20meu%20cat%C3%A1logo%20na%20Central%20do%20Lojista.',
         whatsappUrl:'https://wa.me/5585992343780?text=Ol%C3%A1%2C%20quero%20liberar%20meu%20cat%C3%A1logo%20na%20Central%20do%20Lojista.',
         checkoutUrl:'https://wa.link/bnbs2c',
         previewLinks:[{ label:'Catálogo Xiaomi', url:'https://decolesolucoes.my.canva.site/catalogoxiaomi' }, { label:'Catálogo Realme', url:'https://decolesolucoes.my.canva.site/catalogorealme' }, { label:'Catálogo Apple', url:'https://decolesolucoes.my.canva.site/catalogoapple' }],
@@ -1853,6 +1854,7 @@
       },
       documentos: {
         id:'documentos',
+        previewUrl:'https://pay.cakto.com.br/7hnxsot_466448',
         checkoutUrl:'https://pay.cakto.com.br/7hnxsot_466448',
         previewLinks:[{ label:'Visualizar', url:'https://canva.link/myi26sxb1arffjj' }],
         image:'pack-documentos-assistencia.png',
@@ -1867,6 +1869,7 @@
       },
       artes: {
         id:'artes',
+        previewUrl:'https://pay.cakto.com.br/ofq9oum_466554',
         checkoutUrl:'https://pay.cakto.com.br/ofq9oum_466554',
         previewLinks:[{ label:'Pack 1 - Visualizar', url:'https://canva.link/25m3bychfs9mlk5' }, { label:'Pack 2 - Visualizar', url:'https://canva.link/1oxo3bfs06d43dr' }, { label:'Pack 3 - Visualizar', url:'https://canva.link/9ikdt8r4jyz2sv4' }, { label:'Pack 4 - Visualizar', url:'https://canva.link/gw40neul4uvje8c' }],
         image:'pack-artes-canva.png',
@@ -1880,6 +1883,7 @@
       },
       videos: {
         id:'videos',
+        previewUrl:'https://pay.cakto.com.br/36pwf3r_466556',
         checkoutUrl:'https://pay.cakto.com.br/36pwf3r_466556',
         previewLinks:[{ label:'Visualizar', url:'https://drive.google.com/drive/folders/1mIgJX9WLOiSfn1kI8luT9NobBp4nKVve' }],
         image:'pack-videos-virais.png',
@@ -1893,6 +1897,7 @@
       },
       videosAssistencia: {
         id:'videosAssistencia',
+        previewUrl:'https://pay.cakto.com.br/36pwf3r_466556',
         checkoutUrl:'https://pay.cakto.com.br/36pwf3r_466556',
         previewLinks:[{ label:'Visualizar', url:'https://drive.google.com/drive/folders/1lrldKTLhzc68wHMPzRQcQ4NNMru4g5tR' }],
         image:'pack-videos-virais.png',
@@ -2260,6 +2265,17 @@
       return ['iphone','completo','xiaomi','realme','apple'].includes(product.id);
     }
 
+    function openPreviewLink(product){
+      const url = product.previewUrl || product.preview_url || product.viewUrl || product.view_url || '#';
+
+      if(!url || url === '#'){
+        showToast('Link de visualização ainda não configurado.');
+        return;
+      }
+
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
     function openExternal(url, label){
       if(!url || url === '#'){
         showToast(`${label || 'Link'} ainda não configurado.`);
@@ -2288,7 +2304,7 @@
       let secondaryAction = '';
 
       // Button 1 is always Visualizar
-      secondaryAction = `<button class="btn ghost" onclick="openPreview('${product.id}')"><i class="ti ti-eye"></i> Visualizar</button>`;
+      secondaryAction = `<button class="btn ghost" onclick="openPreviewLink(products['${product.id}'])"><i class="ti ti-eye"></i> Visualizar</button>`;
 
       // Button 2 changes
       if(unlockedProduct){
