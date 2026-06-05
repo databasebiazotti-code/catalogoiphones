@@ -897,22 +897,38 @@ var LINK_GRUPO = 'https://chat.whatsapp.com/FROgxjKeafKAtGrSJpykXv?mode=gi_t';
 
 // ── INIT ──
 window.addEventListener('DOMContentLoaded', async function() {
-  const { data:{ session } } = await sb.auth.getSession();
-  if (session) await abrirApp(session.user);
-  else { hide('loading'); show('login-page'); }
+  try {
+    const { data:{ session } } = await sb.auth.getSession();
 
-  sb.auth.onAuthStateChange(async function(event, sessionAtual) {
-    if (event === 'SIGNED_IN' && sessionAtual) await abrirApp(sessionAtual.user);
-    else if (event === 'SIGNED_OUT') location.reload();
-  });
+    if (session && session.user) {
+      await abrirApp(session.user);
+    } else {
+      hide('loading');
+      show('login-page');
+    }
+
+    sb.auth.onAuthStateChange(async function(event, sessionAtual) {
+      if (event === 'SIGNED_IN' && sessionAtual && sessionAtual.user) {
+        await abrirApp(sessionAtual.user);
+      } else if (event === 'SIGNED_OUT') {
+        location.reload();
+      }
+    });
+  } catch (error) {
+    console.error('Erro ao iniciar o app:', error);
+    hide('loading');
+    show('login-page');
+  }
 });
 
 async function consultarPlanoAtual(userId) {
+  if (!userId) return 0;
+
   const { data, error } = await sb
     .from('user_plans')
     .select('plano')
     .eq('id', userId)
-    .single();
+    .maybeSingle();
 
   if (error) throw error;
 
@@ -922,18 +938,20 @@ async function consultarPlanoAtual(userId) {
 
 async function abrirApp(user) {
   try {
-    aplicarPlano(await consultarPlanoAtual(user.id));
+    aplicarPlano(await consultarPlanoAtual(user && user.id));
   } catch (error) {
     console.error('Erro ao consultar plano do usuário:', error);
     aplicarPlano(0);
   }
 
   var email = document.getElementById('sb-email');
-  if (email) email.textContent = user.email;
+  if (email) email.textContent = user && user.email ? user.email : '—';
 
   hide('loading');
-  document.getElementById('login-page').classList.remove('active');
-  document.getElementById('app-page').classList.add('active');
+  var loginPage = document.getElementById('login-page');
+  var appPage = document.getElementById('app-page');
+  if (loginPage) loginPage.classList.remove('active');
+  if (appPage) appPage.classList.add('active');
   showPop('pop-zap');
 }
 
@@ -948,7 +966,6 @@ function aplicarPlano(p) {
   if (banner) banner.classList.toggle('show', UP === 0);
 
   // Todos os planos podem visualizar catálogos e abrir detalhes/previews.
-  setLock('lock-iphone', false);
   setLock('lock-iphone-cat', false);
   ['lock-xiaomi','lock-realme','lock-apple'].forEach(function(id) { setLock(id, false); });
 
@@ -1011,17 +1028,25 @@ function abrirConteudo(popId) {
 }
 
 function protegerLinksPremium() {
-  document.querySelectorAll('.pop-liberar, [data-premium-link]').forEach(function(link) {
+  // Protege somente links marcados como premium/download.
+  // Os botões .pop-liberar continuam funcionando para compra/liberação.
+  document.querySelectorAll('[data-premium-link]').forEach(function(link) {
     if (!link.dataset.hrefOriginal) link.dataset.hrefOriginal = link.getAttribute('href') || '';
+
     var bloqueado = UP === 0;
     link.classList.toggle('disabled', bloqueado);
     link.setAttribute('aria-disabled', bloqueado ? 'true' : 'false');
+
     link.onclick = bloqueado ? function(event) {
       event.preventDefault();
       abrirAtivacao();
     } : null;
-    if (bloqueado) link.removeAttribute('href');
-    else if (link.dataset.hrefOriginal) link.setAttribute('href', link.dataset.hrefOriginal);
+
+    if (bloqueado) {
+      link.removeAttribute('href');
+    } else if (link.dataset.hrefOriginal) {
+      link.setAttribute('href', link.dataset.hrefOriginal);
+    }
   });
 }
 
@@ -1104,8 +1129,14 @@ function abrirGrupo() {
 }
 
 // ── POPUPS ──
-function showPop(id) { document.getElementById(id).classList.add('show'); }
-function fecharPop(id) { document.getElementById(id).classList.remove('show'); }
+function showPop(id) {
+  var el = document.getElementById(id);
+  if (el) el.classList.add('show');
+}
+function fecharPop(id) {
+  var el = document.getElementById(id);
+  if (el) el.classList.remove('show');
+}
 function fecharZap() {
   if (UP > 0) window.open(LINK_GRUPO,'_blank');
   else window.open('https://wa.link/bnbs2c','_blank');
@@ -1132,48 +1163,127 @@ function fecharVideo(popId, frameId) {
 // ── AUTH ──
 function toggleForm() {
   isLogin = !isLogin;
-  document.getElementById('form-login').style.display = isLogin ? 'block' : 'none';
-  document.getElementById('form-cad').style.display   = isLogin ? 'none'  : 'block';
+
+  var formLogin = document.getElementById('form-login');
+  var formCad = document.getElementById('form-cad');
+
+  if (formLogin) formLogin.style.display = isLogin ? 'block' : 'none';
+  if (formCad) formCad.style.display = isLogin ? 'none' : 'block';
 }
 
 async function entrar() {
-  var email = document.getElementById('l-email').value.trim();
-  var senha = document.getElementById('l-senha').value;
+  var emailInput = document.getElementById('l-email');
+  var senhaInput = document.getElementById('l-senha');
   var err = document.getElementById('err-login');
   var btn = document.getElementById('btn-entrar');
+
+  var email = emailInput ? emailInput.value.trim() : '';
+  var senha = senhaInput ? senhaInput.value : '';
+
   if (!email || !senha) { showErr(err,'Preencha e-mail e senha.'); return; }
-  btn.disabled = true; btn.textContent = 'Entrando...';
-  const { error } = await sb.auth.signInWithPassword({ email, password: senha });
-  if (error) { showErr(err,'E-mail ou senha incorretos.'); btn.disabled=false; btn.textContent='Entrar'; }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Entrando...';
+  }
+
+  try {
+    const { error } = await sb.auth.signInWithPassword({ email, password: senha });
+
+    if (error) {
+      showErr(err,'E-mail ou senha incorretos.');
+      return;
+    }
+  } catch (error) {
+    console.error('Erro ao entrar:', error);
+    showErr(err,'Não foi possível entrar agora. Verifique sua conexão e tente novamente.');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Entrar';
+    }
+  }
 }
 
 async function cadastrar() {
-  var email = document.getElementById('c-email').value.trim();
-  var senha = document.getElementById('c-senha').value;
+  var emailInput = document.getElementById('c-email');
+  var senhaInput = document.getElementById('c-senha');
   var err = document.getElementById('err-cad');
   var btn = document.getElementById('btn-cad');
+
+  var email = emailInput ? emailInput.value.trim() : '';
+  var senha = senhaInput ? senhaInput.value : '';
+
   if (!email || !senha) { showErr(err,'Preencha e-mail e senha.'); return; }
   if (senha.length < 6) { showErr(err,'Senha precisa ter pelo menos 6 caracteres.'); return; }
-  btn.disabled = true; btn.textContent = 'Criando conta...';
-  const { error } = await sb.auth.signUp({ email, password: senha });
-  if (error) { showErr(err,'Erro ao criar conta. Tente novamente.'); btn.disabled=false; btn.textContent='Criar conta gratuita'; }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Criando conta...';
+  }
+
+  try {
+    const { data, error } = await sb.auth.signUp({ email, password: senha });
+
+    if (error) {
+      showErr(err,'Erro ao criar conta. Tente novamente.');
+      return;
+    }
+
+    if (data && !data.session) {
+      showErr(err,'Conta criada. Verifique seu e-mail para confirmar o acesso.');
+      return;
+    }
+  } catch (error) {
+    console.error('Erro ao cadastrar:', error);
+    showErr(err,'Não foi possível criar a conta agora. Verifique sua conexão e tente novamente.');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Criar conta gratuita';
+    }
+  }
 }
 
-async function sair() { await sb.auth.signOut(); }
+async function sair() {
+  try {
+    await sb.auth.signOut();
+  } catch (error) {
+    console.error('Erro ao sair:', error);
+    location.reload();
+  }
+}
 
 function showErr(el, msg) {
-  el.textContent = msg; el.classList.add('show');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('show');
   setTimeout(function(){ el.classList.remove('show'); }, 4000);
 }
 
 // ── NAV ──
 function goTo(sec, el) {
-  SECS.forEach(function(s){ document.getElementById('sec-'+s).classList.toggle('active', s===sec); });
-  document.getElementById('topbar-title').textContent = TITLES[sec];
-  if (el) { document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); }); el.classList.add('active'); }
+  if (SECS.indexOf(sec) === -1) sec = 'inicio';
+
+  SECS.forEach(function(s){
+    var section = document.getElementById('sec-' + s);
+    if (section) section.classList.toggle('active', s === sec);
+  });
+
+  var title = document.getElementById('topbar-title');
+  if (title) title.textContent = TITLES[sec] || 'Início';
+
+  if (el) {
+    document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+    el.classList.add('active');
+  }
+
   document.querySelectorAll('.bn').forEach(function(n){ n.classList.remove('active'); });
-  var bn = document.getElementById('bn-'+sec); if (bn) bn.classList.add('active');
-  document.querySelector('.content').scrollTop = 0;
+  var bn = document.getElementById('bn-' + sec);
+  if (bn) bn.classList.add('active');
+
+  var content = document.querySelector('.content');
+  if (content) content.scrollTop = 0;
 }
 
 // ── HELPERS ──
