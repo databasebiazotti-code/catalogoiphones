@@ -2246,8 +2246,31 @@
       showLogin();
     }
 
+    function getEffectiveUnlockedIds(){
+      const acessos = new Set(unlocked);
+
+      // Bônus automáticos dos catálogos.
+      // Quem compra qualquer catálogo recebe fornecedores + tabela de precificação.
+      // Quem compra o Catálogo Completo também visualiza todos os catálogos individuais.
+      const catalogosIndividuais = ['iphone','xiaomi','realme','apple'];
+      const temCatalogoIndividual = catalogosIndividuais.some(id => acessos.has(id));
+
+      if(acessos.has('completo')){
+        catalogosIndividuais.forEach(id => acessos.add(id));
+        acessos.add('precificacao');
+        acessos.add('fornecedores');
+      }
+
+      if(temCatalogoIndividual){
+        acessos.add('precificacao');
+        acessos.add('fornecedores');
+      }
+
+      return Array.from(acessos);
+    }
+
     function hasAccess(id){
-      return unlocked.includes(id);
+      return getEffectiveUnlockedIds().includes(id);
     }
 
     function showToast(message){
@@ -2466,7 +2489,7 @@
     }
 
     function getUnlockedProducts(){
-      return unlocked.map(id => products[id]).filter(Boolean);
+      return getEffectiveUnlockedIds().map(id => products[id]).filter(Boolean);
     }
 
     function render(){
@@ -2505,7 +2528,7 @@
 
       document.getElementById('catalogGrid').innerHTML = ['iphone','xiaomi','realme','apple'].map(id => productCard(products[id])).join('');
       document.getElementById('documentsGrid').innerHTML = ['documentos'].filter(id => products[id]).map(id => productCard(products[id])).join('');
-      document.getElementById('extrasGrid').innerHTML = ['garantia','artes','videos','videosAssistencia','precificacao','fornecedores'].filter(id => products[id]).map(id => productCard(products[id])).join('');
+      document.getElementById('extrasGrid').innerHTML = ['garantia','artes','videos','videosAssistencia'].filter(id => products[id]).map(id => productCard(products[id])).join('');
     }
 
     function setModal(icon, title, text, showCode=false){
