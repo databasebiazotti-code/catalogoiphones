@@ -1726,30 +1726,9 @@
     }
     .quick-mini-card input:focus{border-color:rgba(0,122,255,.55)}
 
-    .floating-code-btn{
-      display:none;
-      position:fixed;
-      left:14px;
-      right:14px;
-      bottom:calc(76px + var(--safe-bottom));
-      z-index:75;
-      border:0;
-      border-radius:16px;
-      background:var(--accent);
-      color:#fff;
-      min-height:48px;
-      font-size:14px;
-      font-weight:800;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      box-shadow:0 16px 44px rgba(0,122,255,.28);
-    }
-
     @media(max-width:720px){
       .topbar .top-btn.highlight span{display:inline !important}
       .topbar .top-btn.highlight{padding:9px 12px !important}
-      .floating-code-btn{display:flex}
     }
 
     @media(max-width:720px){
@@ -2015,7 +1994,6 @@
   </div>
 
   <div class="toast" id="toast"><i class="ti ti-check"></i><span id="toastText">Acesso liberado.</span></div>
-  <button class="floating-code-btn" onclick="focusQuickCode()"><i class="ti ti-key"></i> Já fez a compra? Inserir código</button>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script>
@@ -2603,7 +2581,7 @@
     function productCard(product){
       const unlockedProduct = hasAccess(product.id);
       const statusClass = unlockedProduct ? 'open' : 'preview';
-      const statusText = unlockedProduct ? 'Produto liberado' : 'Prévia disponível';
+      const statusText = unlockedProduct ? 'Produto liberado' : 'Prévia';
       const cardClass = product.featured ? 'card featured preview-list-card' : 'card preview-list-card';
 
       // Decide second button label/action based on product type and access.
