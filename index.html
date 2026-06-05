@@ -786,6 +786,122 @@
       }
     }
 
+  
+    /* ── MOBILE: CARDS EM DUAS COLUNAS, ESTILO ORIGINAL ── */
+    @media(max-width:720px){
+      .grid,
+      .grid.two,
+      #recommendedGrid,
+      #catalogGrid,
+      #documentsGrid,
+      #extrasGrid{
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+        gap:10px !important;
+      }
+
+      #myProducts .grid{
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+        gap:10px !important;
+      }
+
+      .card{
+        min-height:0 !important;
+        border-radius:16px !important;
+        overflow:hidden;
+      }
+
+      .thumb{
+        height:102px !important;
+      }
+
+      .card-body{
+        padding:11px !important;
+      }
+
+      .card h3{
+        font-size:13px !important;
+        line-height:1.22 !important;
+        margin-bottom:5px !important;
+      }
+
+      .card p{
+        font-size:11px !important;
+        line-height:1.38 !important;
+        margin-bottom:10px !important;
+      }
+
+      .chips{
+        display:none !important;
+      }
+
+      .status{
+        top:9px !important;
+        left:9px !important;
+        font-size:9px !important;
+        padding:4px 7px !important;
+      }
+
+      .card-actions{
+        display:grid !important;
+        grid-template-columns:1fr !important;
+        gap:7px !important;
+      }
+
+      .card-actions .btn{
+        width:100% !important;
+        min-height:39px !important;
+        padding:10px 8px !important;
+        font-size:11px !important;
+        border-radius:10px !important;
+      }
+
+      .card-actions .btn.ghost{
+        display:none !important;
+      }
+
+      .card-actions .btn.gold::before{
+        content:"";
+      }
+
+      .row-head{
+        margin-top:20px !important;
+      }
+
+      .sec-title{
+        font-size:11px !important;
+        letter-spacing:1.4px !important;
+      }
+
+      .sec-sub{
+        font-size:12px !important;
+      }
+
+      .module,
+      .upgrade-offer,
+      .empty,
+      .panel{
+        grid-column:1 / -1;
+      }
+
+      .lesson-list{
+        grid-template-columns:1fr !important;
+      }
+    }
+
+    @media(max-width:390px){
+      .thumb{
+        height:92px !important;
+      }
+
+      .card h3{
+        font-size:12px !important;
+      }
+
+      .card p{
+        font-size:10.5px !important;
+      }
+    }
+
   </style>
 </head>
 
