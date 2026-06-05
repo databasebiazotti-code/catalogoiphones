@@ -2043,6 +2043,7 @@
         desc:'Venda iPhones com segurança.',
         previewDescription:'Contrato de garantia para vender iPhones com mais segurança e evitar dor de cabeça.',
         previewUrl:'https://canva.link/vr004ry60pgxf6j',
+        canvaUrl:'https://canva.link/vr004ry60pgxf6j',
         unlockMode:'code',
         checkoutUrl:'https://pay.cakto.com.br/37hx97u_466558',
         includes:['Contrato','Garantia','iPhones'],
@@ -2052,6 +2053,7 @@
         id:'documentos',
         previewDescription:'Pack com ordem de serviço, termo de garantia, contrato troca vidro, contrato tampa iPhone e contrato de compra/venda de celular usado.',
         previewUrl:'https://canva.link/d6fje1saffsrb9k',
+        canvaUrl:'https://canva.link/d6fje1saffsrb9k',
         unlockMode:'code',
         checkoutUrl:'https://pay.cakto.com.br/7hnxsot_466448',
         previewLinks:[{ label:'Visualizar', url:'https://canva.link/d6fje1saffsrb9k' }],
@@ -2069,6 +2071,7 @@
         id:'artes',
         previewDescription:'Este pack possui 4 prévias disponíveis. Escolha uma opção para visualizar as artes editáveis no Canva.',
         previewUrl:'https://pay.cakto.com.br/ofq9oum_466554',
+        canvaUrl:'https://canva.link/25m3bychfs9mlk5',
         checkoutUrl:'https://pay.cakto.com.br/ofq9oum_466554',
         previewLinks:['https://canva.link/25m3bychfs9mlk5','https://canva.link/1oxo3bfs06d43dr','https://canva.link/9ikdt8r4jyz2sv4','https://canva.link/gw40neul4uvje8c'],
         image:'pack-artes-canva.png',
@@ -2414,19 +2417,19 @@
     function getEffectiveUnlockedIds(){
       const acessos = new Set(unlocked);
 
-      // Bônus automáticos dos catálogos.
-      // Quem compra qualquer catálogo recebe fornecedores + tabela de precificação.
-      // Quem compra o Catálogo Completo também visualiza todos os catálogos individuais.
-      const catalogosIndividuais = ['iphone','xiaomi','realme','apple'];
-      const temCatalogoIndividual = catalogosIndividuais.some(id => acessos.has(id));
+      // Regras de permissão:
+      // Catálogo iPhone libera iPhone + planilha de precificação + lista de fornecedores + aulas do módulo.
+      // Catálogo Completo libera todos os catálogos + planilha de precificação + lista de fornecedores + aulas dos módulos.
+      // Os demais produtos são liberações avulsas.
+      const catalogosDoCompleto = ['iphone','xiaomi','realme','apple'];
 
       if(acessos.has('completo')){
-        catalogosIndividuais.forEach(id => acessos.add(id));
+        catalogosDoCompleto.forEach(id => acessos.add(id));
         acessos.add('precificacao');
         acessos.add('fornecedores');
       }
 
-      if(temCatalogoIndividual){
+      if(acessos.has('iphone')){
         acessos.add('precificacao');
         acessos.add('fornecedores');
       }
@@ -2595,8 +2598,12 @@
 
       // Button 2 changes
       if(unlockedProduct){
-        if(['iphone','xiaomi','realme','apple','completo'].includes(product.id)){
-          primaryAction = `<button class="btn green" onclick="openExternal('${product.canvaUrl || '#'}','Canva')"><i class="ti ti-download"></i> Editar no Canva</button>`;
+        if(product.canvaUrl){
+          primaryAction = `<button class="btn green" onclick="openExternal('${product.canvaUrl}','Canva')"><i class="ti ti-edit"></i> Editar no Canva</button>`;
+        } else if(product.previewLinks && product.previewLinks.length){
+          primaryAction = shouldOpenPreviewPopup(product)
+            ? `<button class="btn green" onclick="openProductPreviewPopup('${product.id}')"><i class="ti ti-lock-open"></i> Acessar</button>`
+            : `<button class="btn green" onclick="openPreviewLink(products['${product.id}'])"><i class="ti ti-lock-open"></i> Acessar</button>`;
         } else {
           primaryAction = `<button class="btn green" onclick="openAccess('${product.id}')"><i class="ti ti-lock-open"></i> Acessar</button>`;
         }
@@ -2645,7 +2652,7 @@
         <div class="module">
           <div class="module-top">
             <div class="module-title"><i class="ti ${product.icon}"></i><span>${product.title}</span></div>
-            <button class="btn green" style="flex:0 0 auto" onclick="openAccess('${product.id}')">Acessar</button>
+            ${product.canvaUrl ? `<button class="btn green" style="flex:0 0 auto" onclick="openExternal('${product.canvaUrl}','Canva')">Editar no Canva</button>` : `<button class="btn green" style="flex:0 0 auto" onclick="openAccess('${product.id}')">Acessar</button>`}
           </div>
           <div class="lesson-list">${lessons}</div>
           ${groupBlock}
