@@ -1300,6 +1300,286 @@
       }
     }
 
+  
+    /* ── TODOS OS MENUS (exceto Início) NO PADRÃO PREVIEW DO CATÁLOGO ── */
+    .preview-list-card{
+      display:grid;
+      grid-template-columns:118px 1fr;
+      min-height:150px;
+      border-radius:24px;
+      overflow:hidden;
+      background:linear-gradient(180deg,rgba(255,255,255,.04),transparent),var(--card);
+    }
+
+    .preview-list-card .preview-thumb{
+      position:relative;
+      height:100%;
+      min-height:150px;
+      background:#0d0d0f;
+      border-right:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    }
+
+    .preview-list-card .card-body{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:18px 22px;
+    }
+
+    .preview-list-card .card-body h3{
+      font-size:22px;
+      letter-spacing:-.5px;
+      margin-bottom:6px;
+    }
+
+    .preview-list-card .card-body p{
+      font-size:14px;
+      color:#8e8e93;
+      margin-bottom:16px;
+      line-height:1.35;
+    }
+
+    .preview-list-card .card-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .preview-list-card .card-actions .btn{
+      min-height:48px;
+      border-radius:16px;
+      font-size:14px;
+    }
+
+    .preview-list-card .status{
+      left:12px;
+      top:12px;
+      font-size:11px;
+      padding:7px 10px;
+      border-radius:999px;
+      z-index:2;
+    }
+
+    .preview-list-card .brand-logo-box{
+      width:76px;
+      height:76px;
+      border-radius:18px;
+    }
+
+    .preview-section-grid{
+      display:grid;
+      gap:14px;
+    }
+
+    /* Pages other than Início use list style */
+    #catalogGrid,
+    #documentsGrid,
+    #extrasGrid,
+    #myProducts > .grid{
+      display:grid;
+      grid-template-columns:1fr !important;
+      gap:14px !important;
+    }
+
+    @media(max-width:720px){
+      #catalogGrid,
+      #documentsGrid,
+      #extrasGrid,
+      #myProducts > .grid{
+        grid-template-columns:1fr !important;
+        gap:14px !important;
+      }
+
+      .preview-list-card{
+        grid-template-columns:108px 1fr !important;
+        min-height:142px !important;
+        border-radius:22px !important;
+      }
+
+      .preview-list-card .preview-thumb{
+        min-height:142px !important;
+        padding:14px !important;
+      }
+
+      .preview-list-card .card-body{
+        padding:16px !important;
+      }
+
+      .preview-list-card .card-body h3{
+        font-size:17px !important;
+        line-height:1.12 !important;
+      }
+
+      .preview-list-card .card-body p{
+        font-size:12px !important;
+        margin-bottom:12px !important;
+        white-space:normal !important;
+      }
+
+      .preview-list-card .card-actions{
+        grid-template-columns:1fr 1fr !important;
+        gap:8px !important;
+      }
+
+      .preview-list-card .card-actions .btn{
+        min-height:42px !important;
+        font-size:12px !important;
+        border-radius:13px !important;
+        padding:10px 8px !important;
+      }
+
+      .preview-list-card .status{
+        left:10px !important;
+        top:10px !important;
+        font-size:10px !important;
+        padding:6px 9px !important;
+      }
+
+      .preview-list-card .brand-logo-box{
+        width:72px !important;
+        height:72px !important;
+        border-radius:17px !important;
+      }
+    }
+
+  
+    /* ── LAYOUT ÚNICO EM TODOS OS MENUS ── */
+    #recommendedGrid,
+    #catalogGrid,
+    #documentsGrid,
+    #extrasGrid,
+    #myProducts > .grid{
+      display:grid !important;
+      grid-template-columns:1fr !important;
+      gap:14px !important;
+    }
+
+    #recommendedGrid .preview-list-card,
+    #catalogGrid .preview-list-card,
+    #documentsGrid .preview-list-card,
+    #extrasGrid .preview-list-card,
+    #myProducts > .grid .preview-list-card{
+      display:grid !important;
+      grid-template-columns:118px 1fr !important;
+      min-height:150px !important;
+      border-radius:24px !important;
+      overflow:hidden !important;
+    }
+
+    #recommendedGrid .preview-list-card .preview-thumb,
+    #catalogGrid .preview-list-card .preview-thumb,
+    #documentsGrid .preview-list-card .preview-thumb,
+    #extrasGrid .preview-list-card .preview-thumb,
+    #myProducts > .grid .preview-list-card .preview-thumb{
+      height:100% !important;
+      min-height:150px !important;
+      border-right:1px solid var(--line) !important;
+      border-bottom:0 !important;
+    }
+
+    #recommendedGrid .preview-list-card .card-body,
+    #catalogGrid .preview-list-card .card-body,
+    #documentsGrid .preview-list-card .card-body,
+    #extrasGrid .preview-list-card .card-body,
+    #myProducts > .grid .preview-list-card .card-body{
+      display:flex !important;
+      flex-direction:column !important;
+      justify-content:center !important;
+      padding:18px 22px !important;
+    }
+
+    #recommendedGrid .preview-list-card .card-actions,
+    #catalogGrid .preview-list-card .card-actions,
+    #documentsGrid .preview-list-card .card-actions,
+    #extrasGrid .preview-list-card .card-actions,
+    #myProducts > .grid .preview-list-card .card-actions{
+      display:grid !important;
+      grid-template-columns:1fr 1fr !important;
+      gap:12px !important;
+    }
+
+    @media(max-width:720px){
+      #recommendedGrid,
+      #catalogGrid,
+      #documentsGrid,
+      #extrasGrid,
+      #myProducts > .grid{
+        grid-template-columns:1fr !important;
+        gap:14px !important;
+      }
+
+      #recommendedGrid .preview-list-card,
+      #catalogGrid .preview-list-card,
+      #documentsGrid .preview-list-card,
+      #extrasGrid .preview-list-card,
+      #myProducts > .grid .preview-list-card{
+        grid-template-columns:108px 1fr !important;
+        min-height:142px !important;
+        border-radius:22px !important;
+      }
+
+      #recommendedGrid .preview-list-card .preview-thumb,
+      #catalogGrid .preview-list-card .preview-thumb,
+      #documentsGrid .preview-list-card .preview-thumb,
+      #extrasGrid .preview-list-card .preview-thumb,
+      #myProducts > .grid .preview-list-card .preview-thumb{
+        min-height:142px !important;
+        padding:14px !important;
+      }
+
+      #recommendedGrid .preview-list-card .card-body,
+      #catalogGrid .preview-list-card .card-body,
+      #documentsGrid .preview-list-card .card-body,
+      #extrasGrid .preview-list-card .card-body,
+      #myProducts > .grid .preview-list-card .card-body{
+        padding:16px !important;
+      }
+
+      #recommendedGrid .preview-list-card h3,
+      #catalogGrid .preview-list-card h3,
+      #documentsGrid .preview-list-card h3,
+      #extrasGrid .preview-list-card h3,
+      #myProducts > .grid .preview-list-card h3{
+        font-size:17px !important;
+        line-height:1.12 !important;
+      }
+
+      #recommendedGrid .preview-list-card p,
+      #catalogGrid .preview-list-card p,
+      #documentsGrid .preview-list-card p,
+      #extrasGrid .preview-list-card p,
+      #myProducts > .grid .preview-list-card p{
+        font-size:12px !important;
+        margin-bottom:12px !important;
+        color:#8e8e93 !important;
+      }
+
+      #recommendedGrid .preview-list-card .btn,
+      #catalogGrid .preview-list-card .btn,
+      #documentsGrid .preview-list-card .btn,
+      #extrasGrid .preview-list-card .btn,
+      #myProducts > .grid .preview-list-card .btn{
+        min-height:42px !important;
+        font-size:12px !important;
+        border-radius:13px !important;
+        padding:10px 8px !important;
+      }
+    }
+
+    @media(max-width:390px){
+      #recommendedGrid .preview-list-card,
+      #catalogGrid .preview-list-card,
+      #documentsGrid .preview-list-card,
+      #extrasGrid .preview-list-card,
+      #myProducts > .grid .preview-list-card{
+        grid-template-columns:98px 1fr !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -1376,7 +1656,7 @@
           <button class="nav-item active" data-section="inicio"><i class="ti ti-layout-dashboard"></i> Início</button>
           <button class="nav-item" data-section="meus"><i class="ti ti-shopping-bag-check"></i> Meus Produtos <span class="nav-count" id="accessCount">0</span></button>
           <button class="nav-item" data-section="catalogos"><i class="ti ti-device-mobile"></i> Catálogos</button>
-          <button class="nav-item" data-section="documentos"><i class="ti ti-files"></i> Documentos</button>
+          <button class="nav-item" data-section="documentos"><i class="ti ti-files"></i> Docs</button>
           <button class="nav-item" data-section="extras"><i class="ti ti-sparkles"></i> Extras</button>
           <button class="nav-item" data-section="suporte"><i class="ti ti-headset"></i> Suporte</button>
         </div>
@@ -1414,8 +1694,8 @@
 
             <div class="row-head">
               <div>
-                <div class="sec-title">Escolhidos para você</div>
-                <div class="sec-sub">Materiais disponíveis.</div>
+                <div class="sec-title">Produtos disponíveis</div>
+                <div class="sec-sub">Visualize e libere o acesso.</div>
               </div>
             </div>
             <div class="grid" id="recommendedGrid"></div>
@@ -1423,7 +1703,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Seus próximos passos</div>
-                <div class="sec-sub">Acesse seus materiais liberados.</div>
+                <div class="sec-sub">Produtos liberados na sua conta.</div>
               </div>
             </div>
             <div id="homeModules"></div>
@@ -1455,8 +1735,8 @@
           <section class="section" id="documentos">
             <div class="row-head">
               <div>
-                <div class="sec-title">Documentos</div>
-                <div class="sec-sub">Documentos prontos para assistência.</div>
+                <div class="sec-title">Docs</div>
+                <div class="sec-sub">Visualize e libere o acesso.</div>
               </div>
             </div>
             <div class="grid two" id="documentsGrid"></div>
@@ -1467,7 +1747,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Extras</div>
-                <div class="sec-sub">Materiais extras para sua loja.</div>
+                <div class="sec-sub">Visualize e libere o acesso.</div>
               </div>
             </div>
             <div class="grid" id="extrasGrid"></div>
@@ -1510,7 +1790,7 @@
           <div class="checkout-card">
             <strong>Quero liberar agora</strong>
             <span>Use esta opção para acessar a página de pagamento e receber seu código de acesso.</span>
-            <a id="checkoutLink" href="#" target="_blank" rel="noopener"><i class="ti ti-lock-open"></i> Liberar agora</a>
+            <a id="checkoutLink" href="#" target="_blank" rel="noopener"><i class="ti ti-lock"></i> Liberar agora</a>
           </div>
 
           <div class="pin-card">
@@ -1576,12 +1856,12 @@
         checkoutUrl:'https://pay.cakto.com.br/7hnxsot_466448',
         previewLinks:[{ label:'Visualizar', url:'https://canva.link/myi26sxb1arffjj' }],
         image:'pack-documentos-assistencia.png',
-        alt:'Pack Documentos Assistência',
-        title:'Pack Documentos Assistência',
+        alt:'Pack Docs Assistência',
+        title:'Pack Docs Assistência',
         category:'documentos',
         icon:'ti-files',
         featured:true,
-        desc:'Documentos prontos.',
+        desc:'Docs prontos.',
         includes:['Ordem de Serviço','Termo de Garantia','Contrato Troca Vidro','Contrato Tampa iPhone','Contrato compra celular','Garantia venda celular'],
         lessons:[]
       },
@@ -1934,7 +2214,7 @@
         inicio:'Início',
         meus:'Meus Produtos',
         catalogos:'Catálogos',
-        documentos:'Documentos',
+        documentos:'Docs',
         extras:'Extras',
         suporte:'Suporte'
       };
@@ -1952,7 +2232,7 @@
     function shouldShowCompleteUpgrade(){
       // A oferta de upgrade aparece somente para quem tem Catálogo iPhone
       // e ainda não tem Catálogo Completo.
-      // Quem liberou apenas Pack de Documentos não recebe essa oferta.
+      // Quem liberou apenas Pack de Docs não recebe essa oferta.
       return hasAccess('iphone') && !hasAccess('completo');
     }
 
@@ -1966,10 +2246,14 @@
           </div>
           <div class="upgrade-price">
             <strong>R$49</strong>
-            <button class="btn gold" onclick="openUnlock('completo')"><i class="ti ti-lock-open"></i> Liberar</button>
+            <button class="btn gold" onclick="openUnlock('completo')"><i class="ti ti-lock"></i> Liberar</button>
           </div>
         </div>
       `;
+    }
+
+    function isPreviewMenuSection(section){
+      return ['meus','catalogos','documentos','extras'].includes(section);
     }
 
     function isCatalogProduct(product){
@@ -1984,52 +2268,53 @@
       window.open(url, '_blank', 'noopener');
     }
 
+    function renderPreviewThumb(product, statusClass, statusText){
+      return `
+        <div class="thumb preview-thumb">
+          <span class="status ${statusClass}">${statusText}</span>
+          ${product.brandLogo ? `<div class="brand-logo-box"><img src="${product.brandLogo}" alt="${product.title}"></div>` : product.brandSymbol ? `<div class="brand-logo-box"><span class="brand-logo-symbol ${product.brandClass || ''}">${product.brandSymbol}</span></div>` : `<i class="ti ${product.icon}"></i>`}
+        </div>
+      `;
+    }
+
     function productCard(product){
       const unlockedProduct = hasAccess(product.id);
       const statusClass = unlockedProduct ? 'open' : 'preview';
-      const statusText = unlockedProduct ? 'Liberado' : 'Prévia disponível';
-      const cardClass = product.featured ? 'card featured' : 'card';
-      const chips = (product.includes || []).slice(0,3).map(item => `<span class="chip">${item}</span>`).join('');
+      const statusText = unlockedProduct ? 'Produto liberado' : 'Prévia disponível';
+      const cardClass = product.featured ? 'card featured preview-list-card' : 'card preview-list-card';
 
-      if(isCatalogProduct(product)){
-        const editButton = unlockedProduct
-          ? `<button class="btn green" onclick="openExternal('${product.canvaUrl || '#'}','Canva')"><i class="ti ti-download"></i> Editar no Canva</button>`
-          : `<button class="btn gold" onclick="openExternal('${product.whatsappUrl || '#'}','WhatsApp')"><i class="ti ti-brand-whatsapp"></i> Liberar</button>`;
+      // Decide second button label/action based on product type and access.
+      let primaryAction = '';
+      let secondaryAction = '';
 
-        return `
-          <article class="${cardClass} catalog-style-card">
-            <div class="thumb">
-              <span class="status ${statusClass}">${statusText}</span>
-              ${product.brandLogo ? `<div class="brand-logo-box"><img src="${product.brandLogo}" alt="${product.title}"></div>` : product.brandSymbol ? `<div class="brand-logo-box"><span class="brand-logo-symbol ${product.brandClass || ''}">${product.brandSymbol}</span></div>` : `<i class="ti ${product.icon}"></i>`}
-            </div>
-            <div class="card-body">
-              <h3>${product.title}</h3>
-              <p>${product.desc}</p>
-              <div class="card-actions">
-                <button class="btn ghost" onclick="openExternal('${product.previewUrl || '#'}','Prévia')"><i class="ti ti-eye"></i> Visualizar</button>
-                ${editButton}
-              </div>
-            </div>
-          </article>
-        `;
+      // Button 1 is always Visualizar
+      secondaryAction = `<button class="btn ghost" onclick="openPreview('${product.id}')"><i class="ti ti-eye"></i> Visualizar</button>`;
+
+      // Button 2 changes
+      if(unlockedProduct){
+        if(['iphone','xiaomi','realme','apple','completo'].includes(product.id)){
+          primaryAction = `<button class="btn green" onclick="openExternal('${product.canvaUrl || '#'}','Canva')"><i class="ti ti-download"></i> Editar no Canva</button>`;
+        } else {
+          primaryAction = `<button class="btn green" onclick="openAccess('${product.id}')"><i class="ti ti-lock-open"></i> Acessar</button>`;
+        }
+      } else {
+        if(['iphone','xiaomi','realme','apple','completo'].includes(product.id)){
+          primaryAction = `<button class="btn gold" onclick="openExternal('${product.whatsappUrl || '#'}','WhatsApp')"><i class="ti ti-lock"></i> Liberar</button>`;
+        } else {
+          primaryAction = `<button class="btn gold" onclick="openUnlock('${product.id}')"><i class="ti ti-lock"></i> Liberar</button>`;
+        }
       }
-
-      const actions = unlockedProduct
-        ? `<button class="btn green" onclick="openAccess('${product.id}')"><i class="ti ti-lock-open"></i> Acessar</button>`
-        : `<button class="btn ghost" onclick="openPreview('${product.id}')"><i class="ti ti-eye"></i> Visualizar</button>
-           <button class="btn gold" onclick="openUnlock('${product.id}')"><i class="ti ti-lock-open"></i> Liberar</button>`;
 
       return `
         <article class="${cardClass}">
-          <div class="thumb">
-            <span class="status ${statusClass}">${statusText}</span>
-            <i class="ti ${product.icon}"></i>
-          </div>
+          ${renderPreviewThumb(product, statusClass, statusText)}
           <div class="card-body">
             <h3>${product.title}</h3>
             <p>${product.desc}</p>
-            <div class="chips">${chips}</div>
-            <div class="card-actions">${actions}</div>
+            <div class="card-actions">
+              ${secondaryAction}
+              ${primaryAction}
+            </div>
           </div>
         </article>
       `;
@@ -2074,7 +2359,7 @@
       let recommendedIds = ['iphone','documentos','artes','videos','videosAssistencia'];
 
       // O Catálogo Completo só entra como oferta quando a pessoa já tem o Catálogo iPhone.
-      // Se a pessoa comprou somente o Pack de Documentos, essa oferta não aparece.
+      // Se a pessoa comprou somente o Pack de Docs, essa oferta não aparece.
       if(shouldShowCompleteUpgrade()){
         recommendedIds = ['completo','documentos','artes','videos','videosAssistencia'];
       }
@@ -2095,11 +2380,11 @@
         : upgradeHtml || `<div class="empty"><i class="ti ti-lock-open"></i><h3>Nenhum produto liberado ainda</h3><p>Visualize e clique em Liberar para inserir seu código de acesso.</p><div class="card-actions" style="justify-content:center"><button class="btn gold" style="max-width:220px" onclick="goTo('catalogos')"><i class="ti ti-eye"></i> Visualizar</button></div></div>`;
 
       document.getElementById('myProducts').innerHTML = unlockedProducts.length
-        ? `<div class="grid">${unlockedProducts.map(product => productCard(product)).join('')}</div>
+        ? `<div class="grid preview-section-grid">${unlockedProducts.map(product => productCard(product)).join('')}</div>
            ${shouldShowCompleteUpgrade() ? completeUpgradeOffer() : ''}
            <div class="row-head"><div><div class="sec-title">Aulas dos seus produtos</div><div class="sec-sub">Cada produto liberado mostra arquivos e aulas no mesmo módulo.</div></div></div>
            ${unlockedProducts.filter(p => p.lessons && p.lessons.length).map(productModule).join('')}`
-        : `<div class="empty"><i class="ti ti-shopping-bag"></i><h3>Você ainda não liberou nenhum produto</h3><p>Entre em uma categoria, veja as prévias e clique em Liberar para usar seu código.</p><div class="card-actions" style="justify-content:center"><button class="btn gold" style="max-width:220px" onclick="goTo('catalogos')">Ver catálogos</button><button class="btn ghost" style="max-width:220px" onclick="goTo('documentos')">Ver documentos</button></div></div>`;
+        : `<div class="empty"><i class="ti ti-shopping-bag"></i><h3>Você ainda não liberou nenhum produto</h3><p>Entre em uma categoria, visualize o material e clique em Liberar.</p><div class="card-actions" style="justify-content:center"><button class="btn gold" style="max-width:220px" onclick="goTo('catalogos')">Ver catálogos</button><button class="btn ghost" style="max-width:220px" onclick="goTo('documentos')">Ver documentos</button></div></div>`;
 
       document.getElementById('catalogGrid').innerHTML = ['iphone','xiaomi','realme','apple'].map(id => productCard(products[id])).join('');
       document.getElementById('documentsGrid').innerHTML = productCard(products.documentos);
