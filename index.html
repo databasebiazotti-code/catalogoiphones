@@ -1544,7 +1544,7 @@
     }
 
   
-    /* Ajuste solicitado: suporte no topo e início mais enxuto */
+    /* Ajuste solicitado: Meus Produtos limpo, suporte no topo e início mais enxuto */
     .support-top{
       background:linear-gradient(135deg,#25d366,#19b957) !important;
       border-color:rgba(37,211,102,.55) !important;
@@ -1635,14 +1635,6 @@
       .home-shortcut p{font-size:10.8px}
     }
 
-  
-    /* Ajuste final: navegação simplificada */
-    .mobile-nav .mnav,
-    .bnav .bn{
-      flex:1 1 0;
-    }
-
-
   </style>
 </head>
 
@@ -1698,6 +1690,7 @@
           <button class="nav-item" data-section="lojaiPhone"><i class="ti ti-brand-apple"></i> Lojas de iPhones</button>
           <button class="nav-item" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button>
           <button class="nav-item" data-section="bonus"><i class="ti ti-gift"></i> Bônus</button>
+          <button class="nav-item" data-section="meus"><i class="ti ti-shopping-bag-check"></i> Meus Produtos <span class="nav-count" id="accessCount">0</span></button>
           <button class="nav-item" data-section="suporte"><i class="ti ti-headset"></i> Suporte</button>
         </div>
 
@@ -1787,6 +1780,16 @@
             <div class="grid" id="bonusGrid"></div>
           </section>
 
+          <section class="section" id="meus">
+            <div class="row-head">
+              <div>
+                <div class="sec-title">Meus Produtos</div>
+                <div class="sec-sub">Produtos liberados na sua conta.</div>
+              </div>
+            </div>
+            <div id="myProducts"></div>
+          </section>
+
           <section class="section" id="suporte">
             <div class="row-head">
               <div>
@@ -1810,6 +1813,7 @@
       <button class="mnav" data-section="lojaiPhone"><i class="ti ti-brand-apple"></i> iPhones</button>
       <button class="mnav" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button>
       <button class="mnav" data-section="bonus"><i class="ti ti-gift"></i> Bônus</button>
+      <button class="mnav" data-section="meus"><i class="ti ti-shopping-bag-check"></i> Meus</button>
     </nav>
   </section>
 
@@ -2188,7 +2192,7 @@
 
     function goTo(sectionId){
       document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === sectionId));
-      const titles = {inicio:'Início',catalogos:'Catálogos',lojaiPhone:'Lojas de iPhones',assistencia:'Assistência Técnica',bonus:'Bônus',suporte:'Suporte'};
+      const titles = {inicio:'Início',catalogos:'Catálogos',lojaiPhone:'Lojas de iPhones',assistencia:'Assistência Técnica',bonus:'Bônus',meus:'Meus Produtos',suporte:'Suporte'};
       document.getElementById('pageTitle').textContent = titles[sectionId] || 'Central do Lojista';
       document.querySelectorAll('[data-section]').forEach(b => b.classList.toggle('active', b.dataset.section === sectionId));
     }
@@ -2313,7 +2317,7 @@
 
       if(ok){
         closeModal();
-        goTo(getActiveSectionId());
+        goTo('meus');
       }
     }
 
@@ -2324,7 +2328,7 @@
 
       if(ok){
         input.value = '';
-        goTo(getActiveSectionId());
+        goTo('meus');
       }
     }
 
@@ -2350,7 +2354,7 @@
 
       if(unlockedProduct){
         if(isCatalogProduct(product)){
-          actionButton = `<button class="btn green" onclick="openExternal('${product.canvaUrl || '#'}','Canva')"><i class="ti ti-download"></i> Editar</button>`;
+          actionButton = `<button class="btn green" onclick="openExternal('${product.canvaUrl || '#'}','Canva')"><i class="ti ti-download"></i> Editar no Canva</button>`;
         } else {
           actionButton = `<button class="btn green" onclick="openAccess('${product.id}')"><i class="ti ti-lock-open"></i> Acessar</button>`;
         }
@@ -2479,7 +2483,7 @@
       const lessons = catalogLessonsModule();
       const extraBlocks = `${upgrade}${lessons ? `<div class="row-head"><div><div class="sec-title">Aulas dos seus produtos</div><div class="sec-sub">Aulas aparecem somente para catálogos.</div></div></div>${lessons}` : ''}`;
 
-      if(document.getElementById('myProducts')) document.getElementById('myProducts').innerHTML = visibleUnlockedProducts.length
+      document.getElementById('myProducts').innerHTML = visibleUnlockedProducts.length
         ? `<div class="grid">${visibleUnlockedProducts.map(product => productCard(product)).join('')}</div>${extraBlocks}`
         : (extraBlocks || `<div class="empty"><i class="ti ti-shopping-bag"></i><h3>Você ainda não liberou nenhum produto</h3><p>Entre em uma categoria, visualize o material e clique em Liberar.</p></div>`);
     }
