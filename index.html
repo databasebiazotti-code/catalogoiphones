@@ -1928,7 +1928,7 @@
         desc:'Vídeos para divulgar seus reparos.',
         previewDescription:'Vídeos virais para vender mais nas redes sociais com conteúdo de reparos e assistência técnica.',
         previewUrl:'https://drive.google.com/drive/folders/1lrldKTLhzc68wHMPzRQcQ4NNMru4g5tR',
-        checkoutUrl:'https://pay.cakto.com.br/36pwf3r_466556',
+        checkoutUrl:'https://pay.cakto.com.br/33vqdye_466429',
         lessons:[]
       },
       artesAssistencia: {
@@ -1940,7 +1940,7 @@
         desc:'Artes prontas para sua assistência.',
         previewDescription:'Artes editáveis no Canva para divulgar serviços de assistência técnica.',
         previewLinks:['https://canva.link/25m3bychfs9mlk5','https://canva.link/1oxo3bfs06d43dr','https://canva.link/9ikdt8r4jyz2sv4','https://canva.link/gw40neul4uvje8c'],
-        checkoutUrl:'https://pay.cakto.com.br/ofq9oum_466554',
+        checkoutUrl:'https://pay.cakto.com.br/djoincj_466428',
         lessons:[]
       },
       precificacao: {
@@ -2250,6 +2250,90 @@
       );
     }
 
+    
+    function productNamesFromIds(ids){
+      return (ids || [])
+        .map(id => products[id]?.title || id)
+        .filter(Boolean);
+    }
+
+    function friendlyRedeemError(error){
+      const msg = String(error?.message || '').toLowerCase();
+
+      if(msg.includes('invalid_pin') || msg.includes('invalid pin')){
+        return 'Código inválido. Confira o PIN recebido e tente novamente.';
+      }
+
+      if(msg.includes('not_authenticated')){
+        return 'Faça login antes de liberar um produto.';
+      }
+
+      if(msg.includes('pin_usage_limit_reached')){
+        return 'Esse código atingiu o limite de uso.';
+      }
+
+      if(msg.includes('function public.redeem_product_pin') || msg.includes('does not exist')){
+        return 'A função de PIN ainda não foi criada no Supabase. Rode o SQL do banco primeiro.';
+      }
+
+      return 'Não foi possível liberar esse código agora.';
+    }
+
+    async function redeemAccessCode(code){
+      code = String(code || '').trim();
+
+      if(!code){
+        showToast('Digite o código de acesso.');
+        return false;
+      }
+
+      if(!currentUser?.id){
+        showToast('Faça login antes de liberar um produto.');
+        return false;
+      }
+
+      try{
+        const { data, error } = await sb.rpc('redeem_product_pin', {
+          p_pin: code
+        });
+
+        if(error){
+          console.error('Erro ao liberar PIN:', error);
+          showToast(friendlyRedeemError(error));
+          return false;
+        }
+
+        const unlockedByPin = Array.isArray(data?.unlocks) ? data.unlocks : [];
+
+        // Consulta novamente o banco para atualizar Meus Produtos.
+        await consultarAcessosAtuais();
+
+        // Garante atualização imediata na tela mesmo se o select demorar alguns ms.
+        unlockedByPin.forEach(productId => {
+          if(productId && !unlocked.includes(productId)){
+            unlocked.push(productId);
+          }
+        });
+
+        render();
+
+        const names = productNamesFromIds(unlockedByPin);
+        if(names.length){
+          const preview = names.slice(0, 3).join(', ');
+          const more = names.length > 3 ? ` +${names.length - 3}` : '';
+          showToast(`Liberado: ${preview}${more}`);
+        } else {
+          showToast('Produto liberado em Meus Produtos.');
+        }
+
+        return true;
+      }catch(err){
+        console.error('Falha inesperada ao liberar PIN:', err);
+        showToast(friendlyRedeemError(err));
+        return false;
+      }
+    }
+
     async function redeemCodeFromModal(){
       const input = document.getElementById('modalCodeInput');
       const code = (input.value || '').trim();
@@ -2257,6 +2341,7 @@
 
       if(ok){
         closeModal();
+        render();
         goTo('meus');
       }
     }
@@ -2268,6 +2353,7 @@
 
       if(ok){
         input.value = '';
+        render();
         goTo('meus');
       }
     }
