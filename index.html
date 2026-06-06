@@ -1576,6 +1576,308 @@
     @media(max-width:760px){.topbar{height:60px!important;padding-left:14px!important;padding-right:14px!important}.instagram-top span{display:inline!important}.content{padding:12px!important;padding-bottom:calc(104px + var(--safe-bottom))!important}.welcome-box,.home-hero{padding:20px!important;border-radius:24px!important;margin-top:12px!important}.welcome-box h1,.home-hero h1{font-size:25px!important}.welcome-box p,.home-hero p{font-size:13px!important}.home-code-box,.quick-code{padding:15px!important;border-radius:22px!important}.home-code-row,.quick-code-row{grid-template-columns:1fr!important}.card{grid-template-columns:84px minmax(0,1fr)!important;min-height:126px!important;border-radius:22px!important}.thumb{min-height:126px!important;padding:12px!important}.product-icon-img{width:56px!important;height:56px!important;border-radius:16px!important}.card-body{padding:14px!important}.card h3{font-size:16.5px!important}.card p{font-size:12px!important;margin-bottom:12px!important}.btn{min-height:40px!important;font-size:11.7px!important;padding:8px 7px!important}.modal{align-items:flex-end!important;padding:0!important}.modal-box{width:100%!important;max-width:none!important;border-radius:26px 26px 0 0!important;border-left:0!important;border-right:0!important;border-bottom:0!important;max-height:92vh!important;overflow:auto!important}.modal-content{padding:18px!important;padding-bottom:calc(20px + var(--safe-bottom))!important}.mobile-nav{padding-top:8px!important}.mnav{font-size:9px!important}}
     @media(max-width:390px){.content{padding-left:10px!important;padding-right:10px!important}.card{grid-template-columns:76px minmax(0,1fr)!important}.product-icon-img{width:50px!important;height:50px!important}.card h3{font-size:15.5px!important}.card p{font-size:11.4px!important}.btn{font-size:11px!important}}
 
+  
+    /* Menu Catálogos: aulas e grupo liberados somente com catálogo */
+    .catalog-tools-head{
+      margin-top:22px !important;
+    }
+
+    .catalog-tools{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .catalog-tool{
+      position:relative;
+      display:grid;
+      grid-template-columns:72px minmax(0,1fr);
+      gap:14px;
+      align-items:center;
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),
+        var(--card);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:14px;
+      overflow:hidden;
+    }
+
+    .catalog-tool.open{
+      border-color:rgba(48,209,88,.22);
+    }
+
+    .catalog-tool.locked{
+      opacity:.92;
+    }
+
+    .catalog-tool-icon{
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+    }
+
+    .catalog-tool-icon i{
+      font-size:30px;
+    }
+
+    .catalog-tool-body{
+      min-width:0;
+      padding-top:18px;
+    }
+
+    .catalog-tool-body .status{
+      top:12px !important;
+      right:12px !important;
+      left:auto !important;
+    }
+
+    .catalog-tool h3{
+      font-size:17px;
+      letter-spacing:-.35px;
+      margin-bottom:5px;
+    }
+
+    .catalog-tool p{
+      color:var(--muted2);
+      font-size:12px;
+      line-height:1.42;
+      margin-bottom:12px;
+    }
+
+    .catalog-tool .btn{
+      width:100%;
+      min-height:40px !important;
+      font-size:12px !important;
+    }
+
+    .catalog-lessons-module .lesson span{
+      line-height:1.35;
+    }
+
+    @media(max-width:760px){
+      .catalog-tools{
+        grid-template-columns:1fr;
+        gap:10px;
+      }
+
+      .catalog-tool{
+        grid-template-columns:58px minmax(0,1fr);
+        gap:12px;
+        padding:12px;
+        border-radius:20px;
+      }
+
+      .catalog-tool-icon{
+        width:52px;
+        height:52px;
+        border-radius:16px;
+      }
+
+      .catalog-tool-icon i{
+        font-size:26px;
+      }
+
+      .catalog-tool h3{
+        font-size:16px;
+      }
+
+      .catalog-tool p{
+        font-size:11.7px;
+      }
+    }
+
+  
+    /* Destaque do upgrade e botão WhatsApp */
+    .catalog-upgrade-highlight{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(249,115,22,.42) !important;
+      background:
+        radial-gradient(circle at 92% 0%,rgba(249,115,22,.26),transparent 36%),
+        radial-gradient(circle at 0% 100%,rgba(0,122,255,.12),transparent 30%),
+        linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02)),
+        var(--panel) !important;
+      box-shadow:0 22px 70px rgba(249,115,22,.13),0 16px 50px rgba(0,0,0,.28);
+      padding:20px !important;
+    }
+
+    .catalog-upgrade-highlight:before{
+      content:"";
+      position:absolute;
+      inset:auto -60px -80px auto;
+      width:190px;
+      height:190px;
+      border-radius:50%;
+      background:rgba(249,115,22,.12);
+      pointer-events:none;
+    }
+
+    .upgrade-main{
+      position:relative;
+      z-index:1;
+    }
+
+    .upgrade-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(249,115,22,.14);
+      border:1px solid rgba(249,115,22,.28);
+      color:#ffb16a;
+      font-size:11px;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+
+    .catalog-upgrade-highlight h3{
+      font-size:24px !important;
+      line-height:1.08;
+      letter-spacing:-.75px;
+      margin-bottom:8px;
+    }
+
+    .catalog-upgrade-highlight p{
+      color:#d0d0d4 !important;
+      font-size:13.5px !important;
+      line-height:1.5;
+      max-width:680px;
+    }
+
+    .upgrade-benefits{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+      margin-top:13px;
+    }
+
+    .upgrade-benefits span{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .upgrade-benefits i{
+      color:#30d158;
+      font-size:14px;
+    }
+
+    .catalog-upgrade-highlight .upgrade-price{
+      position:relative;
+      z-index:1;
+      min-width:154px;
+      text-align:right;
+    }
+
+    .catalog-upgrade-highlight .upgrade-price small{
+      display:block;
+      color:#a1a1a6;
+      font-size:11px;
+      font-weight:700;
+      margin-bottom:2px;
+    }
+
+    .catalog-upgrade-highlight .upgrade-price strong{
+      color:#fff;
+      font-size:34px !important;
+      letter-spacing:-1px;
+      margin-bottom:10px;
+    }
+
+    .upgrade-btn{
+      background:linear-gradient(135deg,#ff9f0a,#ff6a00) !important;
+      color:#090909 !important;
+      border:0 !important;
+      box-shadow:0 14px 34px rgba(255,159,10,.22);
+      width:100%;
+    }
+
+    .whatsapp-btn{
+      background:linear-gradient(135deg,#25d366,#19b957) !important;
+      color:#061108 !important;
+      border:0 !important;
+      box-shadow:0 14px 34px rgba(37,211,102,.22);
+      font-weight:900 !important;
+    }
+
+    .whatsapp-btn i{
+      color:#061108 !important;
+    }
+
+    .catalog-tool.open .catalog-tool-icon{
+      background:rgba(37,211,102,.12);
+      border-color:rgba(37,211,102,.30);
+    }
+
+    .catalog-tool.open .catalog-tool-icon i{
+      color:#25d366;
+    }
+
+    @media(max-width:760px){
+      .catalog-upgrade-highlight{
+        grid-template-columns:1fr !important;
+        padding:17px !important;
+        border-radius:22px !important;
+      }
+
+      .catalog-upgrade-highlight h3{
+        font-size:21px !important;
+      }
+
+      .catalog-upgrade-highlight .upgrade-price{
+        text-align:left;
+        min-width:0;
+      }
+
+      .catalog-upgrade-highlight .upgrade-price strong{
+        font-size:31px !important;
+      }
+
+      .upgrade-btn{
+        width:100%;
+      }
+    }
+
+  
+    /* Evita piscar/voltar para login no refresh mobile enquanto restaura sessão */
+    .login-page.auth-checking .login-card{
+      opacity:0;
+      pointer-events:none;
+      transform:scale(.98);
+    }
+
+    .login-page.auth-checking::after{
+      content:"Restaurando seu acesso...";
+      position:fixed;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      color:#f5f5f7;
+      background:rgba(17,17,20,.92);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:13px;
+      font-weight:800;
+      box-shadow:0 18px 60px rgba(0,0,0,.45);
+    }
+
   </style>
 </head>
 
@@ -1688,6 +1990,15 @@
               </div>
             </div>
             <div class="grid" id="catalogGrid"></div>
+
+            <div class="row-head catalog-tools-head">
+              <div>
+                <div class="sec-title">Acesso do catálogo</div>
+                <div class="sec-sub">Aulas e grupo aparecem somente depois que um catálogo estiver liberado.</div>
+              </div>
+            </div>
+            <div class="catalog-tools" id="catalogToolsGrid"></div>
+            <div id="catalogUpgradeOffer"></div>
           </section>
 
           <section class="section" id="lojaiPhone">
@@ -1785,7 +2096,15 @@
   <script>
     const SB_URL = "https://lvumvnybggqudgccscvm.supabase.co";
     const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx2dW12bnliZ2dxdWRnY2NzY3ZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0ODIzMTAsImV4cCI6MjA5NTA1ODMxMH0.q7hnXLG5NpWC_k0LjZBVPtH63eC-95Ug8lCvV9RmVHo";
-    const sb = supabase.createClient(SB_URL, SB_KEY);
+    const sb = supabase.createClient(SB_URL, SB_KEY, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+        storage: window.localStorage,
+        storageKey: 'central-lojista-auth'
+      }
+    });
 
     const GRUPO_CATALOGOS_URL = "https://chat.whatsapp.com/FROgxjKeafKAtGrSJpykXv?mode=gi_t";
     const GRUPO_DOCUMENTOS_URL = "https://chat.whatsapp.com/FyDDMFtZ4hmCCh5HZodLo7?mode=gi_t";
@@ -1987,7 +2306,9 @@
       const t = document.getElementById('toast');
       document.getElementById('toastText').textContent = message;
       t.classList.add('show');
-      setTimeout(()=>t.classList.remove('show'),2400);
+      const duration = String(message || '').toLowerCase().includes('sucesso') ? 4200 : 3000;
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(()=>t.classList.remove('show'), duration);
     }
 
     async function consultarAcessosAtuais(options = {}){
@@ -2049,9 +2370,10 @@
         if(loginError) throw loginError;
 
         currentUser = loginData.user;
+        markSessionActive(true);
         unlocked = [];
-        await consultarAcessosAtuais({ skipLegacy:true });
-        showApp();
+        await consultarAcessosAtuaisSeguro({ skipLegacy:true });
+        safeShowApp(localStorage.getItem('centralCurrentSection') || 'inicio');
         showToast('Login criado com sucesso.');
       }catch(err){
         console.error(err);
@@ -2073,8 +2395,9 @@
         const { data, error: loginError } = await sb.auth.signInWithPassword({ email, password });
         if(loginError) throw loginError;
         currentUser = data.user;
-        await consultarAcessosAtuais();
-        showApp();
+        markSessionActive(true);
+        await consultarAcessosAtuaisSeguro();
+        safeShowApp(localStorage.getItem('centralCurrentSection') || 'inicio');
       }catch(err){
         console.error(err);
         error.textContent = traduzirErroAuth(err);
@@ -2099,10 +2422,64 @@
       login.style.display = showingSignup ? 'block' : 'none';
     }
 
+    
+    function markSessionActive(active){
+      if(active){
+        localStorage.setItem('centralSessionActive', '1');
+      } else {
+        localStorage.removeItem('centralSessionActive');
+      }
+    }
+
+    async function consultarAcessosAtuaisSeguro(options = {}){
+      try{
+        await consultarAcessosAtuais(options);
+      }catch(err){
+        console.warn('Não foi possível consultar acessos agora. Mantendo sessão ativa.', err);
+        unlocked = Array.isArray(unlocked) ? unlocked : [];
+      }
+    }
+
+    async function getSessionWithRetry(){
+      let session = null;
+
+      try{
+        const { data } = await sb.auth.getSession();
+        session = data?.session || null;
+      }catch(err){
+        console.warn('Primeira tentativa de sessão falhou:', err);
+      }
+
+      if(session?.user) return session;
+
+      // Em alguns celulares/in-app browsers, o storage demora alguns instantes para restaurar.
+      if(localStorage.getItem('centralSessionActive') === '1'){
+        await new Promise(resolve => setTimeout(resolve, 850));
+
+        try{
+          const { data } = await sb.auth.getSession();
+          session = data?.session || null;
+        }catch(err){
+          console.warn('Segunda tentativa de sessão falhou:', err);
+        }
+      }
+
+      return session;
+    }
+
+    function showAuthChecking(){
+      document.getElementById('loginPage')?.classList.add('auth-checking');
+    }
+
+    function hideAuthChecking(){
+      document.getElementById('loginPage')?.classList.remove('auth-checking');
+    }
+
     async function logout(){
       await sb.auth.signOut();
       currentUser = null;
       unlocked = [];
+      markSessionActive(false);
       showLogin();
     }
 
@@ -2118,23 +2495,65 @@
       }
     }
 
-    function showApp(){
+    
+    function getActiveSectionId(){
+      const active = document.querySelector('.section.active');
+      return active?.id || localStorage.getItem('centralCurrentSection') || 'inicio';
+    }
+
+    function saveActiveSection(sectionId){
+      if(sectionId){
+        localStorage.setItem('centralCurrentSection', sectionId);
+      }
+    }
+
+    function safeShowApp(preferredSection){
+      markSessionActive(true);
+      hideAuthChecking();
       document.getElementById('loginPage').classList.remove('active');
       document.getElementById('appPage').classList.add('active');
       updateCustomerUI();
       render();
+
+      const sectionToOpen = preferredSection || localStorage.getItem('centralCurrentSection') || getActiveSectionId() || 'inicio';
+      goTo(sectionToOpen);
+    }
+
+    function buildSuccessMessage(){
+      const names = window.lastUnlockedNames || [];
+      if(names.length){
+        const list = names.slice(0, 3).join(', ');
+        const more = names.length > 3 ? ` +${names.length - 3}` : '';
+        return `Acesso liberado com sucesso! ${list}${more} já está em Meus Produtos.`;
+      }
+      return 'Acesso liberado com sucesso! O produto já está em Meus Produtos.';
+    }
+
+    function showApp(){
+      safeShowApp();
     }
 
     function showLogin(){
+      hideAuthChecking();
       document.getElementById('appPage').classList.remove('active');
       document.getElementById('loginPage').classList.add('active');
     }
 
     function goTo(sectionId){
+      if(!sectionId) sectionId = 'inicio';
+
+      const target = document.getElementById(sectionId);
+      if(!target) sectionId = 'inicio';
+
       document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === sectionId));
+
       const titles = {inicio:'Início',catalogos:'Catálogos',lojaiPhone:'Lojas de iPhones',assistencia:'Assistência Técnica',bonus:'Bônus',meus:'Meus Produtos',suporte:'Suporte'};
-      document.getElementById('pageTitle').textContent = titles[sectionId] || 'Central do Lojista';
+      const pageTitle = document.getElementById('pageTitle');
+      if(pageTitle) pageTitle.textContent = titles[sectionId] || 'Central do Lojista';
+
       document.querySelectorAll('[data-section]').forEach(b => b.classList.toggle('active', b.dataset.section === sectionId));
+
+      saveActiveSection(sectionId);
     }
     document.querySelectorAll('[data-section]').forEach(b => b.addEventListener('click', () => goTo(b.dataset.section)));
 
@@ -2236,7 +2655,7 @@
 
       let description = 'Seu produto está liberado. Acesse os materiais disponíveis na sua conta.';
       if(product.groupType === 'catalogos'){
-        description = 'Seu catálogo está liberado. Você também pode acessar o grupo de alunos dos catálogos.';
+        description = 'Seu catálogo está liberado. As aulas e o grupo do WhatsApp estão disponíveis no menu Catálogos.';
       }
       if(product.groupType === 'documentos'){
         description = 'Seu pack de documentos está liberado. Você também pode acessar o grupo exclusivo dos documentos.';
@@ -2258,25 +2677,40 @@
     }
 
     function friendlyRedeemError(error){
-      const msg = String(error?.message || '').toLowerCase();
+      const raw = String(error?.message || error?.details || error?.hint || '').trim();
+      const msg = raw.toLowerCase();
+
+      console.error('Detalhe erro PIN:', error);
 
       if(msg.includes('invalid_pin') || msg.includes('invalid pin')){
         return 'Código inválido. Confira o PIN recebido e tente novamente.';
       }
 
-      if(msg.includes('not_authenticated')){
-        return 'Faça login antes de liberar um produto.';
+      if(msg.includes('not_authenticated') || msg.includes('jwt') || msg.includes('auth')){
+        return 'Faça login novamente antes de liberar o produto.';
       }
 
       if(msg.includes('pin_usage_limit_reached')){
         return 'Esse código atingiu o limite de uso.';
       }
 
-      if(msg.includes('function public.redeem_product_pin') || msg.includes('does not exist')){
-        return 'A função de PIN ainda não foi criada no Supabase. Rode o SQL do banco primeiro.';
+      if(msg.includes('redeem_product_pin') || msg.includes('function') || msg.includes('does not exist') || msg.includes('schema cache')){
+        return 'A função de PIN ainda não está ativa no Supabase. Rode o SQL atualizado no Supabase.';
       }
 
-      return 'Não foi possível liberar esse código agora.';
+      if(msg.includes('access_pins') || msg.includes('relation') || msg.includes('does not exist')){
+        return 'As tabelas de PIN ainda não estão criadas. Rode o SQL atualizado no Supabase.';
+      }
+
+      if(msg.includes('permission denied') || msg.includes('row-level security')){
+        return 'Permissão do banco bloqueando a liberação. Rode o SQL atualizado para corrigir as políticas.';
+      }
+
+      if(raw){
+        return `Erro do banco: ${raw}`;
+      }
+
+      return 'Não foi possível liberar esse código agora. Verifique se o SQL foi rodado no Supabase.';
     }
 
     async function redeemAccessCode(code){
@@ -2292,23 +2726,30 @@
         return false;
       }
 
+      if(!sb){
+        showToast('Supabase não carregou. Recarregue a página.');
+        return false;
+      }
+
       try{
-        const { data, error } = await sb.rpc('redeem_product_pin', {
+        const result = await sb.rpc('redeem_product_pin', {
           p_pin: code
         });
 
+        const data = result?.data;
+        const error = result?.error;
+
+        console.log('Resultado redeem_product_pin:', { data, error });
+
         if(error){
-          console.error('Erro ao liberar PIN:', error);
           showToast(friendlyRedeemError(error));
           return false;
         }
 
         const unlockedByPin = Array.isArray(data?.unlocks) ? data.unlocks : [];
 
-        // Consulta novamente o banco para atualizar Meus Produtos.
         await consultarAcessosAtuais();
 
-        // Garante atualização imediata na tela mesmo se o select demorar alguns ms.
         unlockedByPin.forEach(productId => {
           if(productId && !unlocked.includes(productId)){
             unlocked.push(productId);
@@ -2318,12 +2759,13 @@
         render();
 
         const names = productNamesFromIds(unlockedByPin);
+        window.lastUnlockedNames = names;
         if(names.length){
           const preview = names.slice(0, 3).join(', ');
           const more = names.length > 3 ? ` +${names.length - 3}` : '';
-          showToast(`Liberado: ${preview}${more}`);
+          showToast(`Sucesso! ${preview}${more} liberado em Meus Produtos.`);
         } else {
-          showToast('Produto liberado em Meus Produtos.');
+          showToast('Sucesso! Produto liberado em Meus Produtos.');
         }
 
         return true;
@@ -2343,6 +2785,7 @@
         closeModal();
         render();
         goTo('meus');
+        showToast(buildSuccessMessage());
       }
     }
 
@@ -2355,6 +2798,7 @@
         input.value = '';
         render();
         goTo('meus');
+        showToast(buildSuccessMessage());
       }
     }
 
@@ -2418,21 +2862,125 @@
       return unlocked.map(id => products[id]).filter(Boolean);
     }
 
+    
+    function hasAnyCatalogAccess(){
+      return ['iphone','completo','apple','xiaomi','realme'].some(id => hasAccess(id));
+    }
+
+    function openCatalogLessons(){
+      if(!hasAnyCatalogAccess()){
+        showToast('Libere um catálogo para acessar as aulas.');
+        return;
+      }
+
+      const lessons = catalogLessons.map((lesson, index) => `
+        <div class="lesson">
+          <span>${index + 1}. ${lesson}</span>
+        </div>
+      `).join('');
+
+      setModal(
+        'ti-player-play',
+        'Aulas dos Catálogos',
+        `<p>Assista aos tutoriais para editar, configurar e publicar seu catálogo.</p><div class="lesson-list">${lessons}</div>`,
+        false
+      );
+    }
+
+    function openCatalogGroup(){
+      if(!hasAnyCatalogAccess()){
+        showToast('Libere um catálogo para acessar o grupo.');
+        return;
+      }
+
+      openExternal(GRUPO_CATALOGOS_URL, 'Grupo dos Catálogos');
+    }
+
+    function catalogToolCard(type){
+      const unlockedCatalog = hasAnyCatalogAccess();
+
+      if(type === 'lessons'){
+        return `
+          <article class="catalog-tool ${unlockedCatalog ? 'open' : 'locked'}">
+            <div class="catalog-tool-icon"><i class="ti ti-player-play"></i></div>
+            <div class="catalog-tool-body">
+              <span class="status ${unlockedCatalog ? 'open' : 'preview'}">${unlockedCatalog ? 'Liberado' : 'Bloqueado'}</span>
+              <h3>Aulas dos Catálogos</h3>
+              <p>${unlockedCatalog ? 'Tutoriais para editar, configurar WhatsApp e publicar.' : 'Libere um catálogo para acessar os tutoriais.'}</p>
+              <button class="btn ${unlockedCatalog ? 'green' : 'gold'}" onclick="${unlockedCatalog ? 'openCatalogLessons()' : "openUnlock('iphone')"}">
+                <i class="ti ${unlockedCatalog ? 'ti-player-play' : 'ti-lock'}"></i> ${unlockedCatalog ? 'Ver aulas' : 'Liberar catálogo'}
+              </button>
+            </div>
+          </article>
+        `;
+      }
+
+      return `
+        <article class="catalog-tool ${unlockedCatalog ? 'open' : 'locked'}">
+          <div class="catalog-tool-icon"><i class="ti ti-brand-whatsapp"></i></div>
+          <div class="catalog-tool-body">
+            <span class="status ${unlockedCatalog ? 'open' : 'preview'}">${unlockedCatalog ? 'Liberado' : 'Bloqueado'}</span>
+            <h3>Grupo WhatsApp</h3>
+            <p>${unlockedCatalog ? 'Entre no grupo exclusivo dos alunos do catálogo.' : 'O grupo é liberado somente após desbloquear um catálogo.'}</p>
+            <button class="btn ${unlockedCatalog ? 'whatsapp-btn' : 'gold'}" onclick="${unlockedCatalog ? 'openCatalogGroup()' : "openUnlock('iphone')"}">
+              <i class="ti ${unlockedCatalog ? 'ti-brand-whatsapp' : 'ti-lock'}"></i> ${unlockedCatalog ? 'Entrar no grupo' : 'Liberar catálogo'}
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderCatalogTools(){
+      const grid = document.getElementById('catalogToolsGrid');
+      if(!grid) return;
+
+      grid.innerHTML = [
+        catalogToolCard('lessons'),
+        catalogToolCard('group')
+      ].join('');
+    }
+
+    function catalogLessonsModule(){
+      if(!hasAnyCatalogAccess()) return '';
+
+      const lessons = catalogLessons.map((lesson, index) => `
+        <div class="lesson">
+          <span>${index + 1}. ${lesson}</span>
+        </div>
+      `).join('');
+
+      return `
+        <div class="module catalog-lessons-module">
+          <div class="module-top">
+            <div class="module-title"><i class="ti ti-player-play"></i><span>Aulas dos Catálogos</span></div>
+            <button class="btn whatsapp-btn" style="flex:0 0 auto" onclick="openCatalogGroup()"><i class="ti ti-brand-whatsapp"></i> Entrar no grupo</button>
+          </div>
+          <div class="lesson-list">${lessons}</div>
+        </div>
+      `;
+    }
+
     function shouldShowCompleteUpgrade(){
       return hasAccess('iphone') && !hasAccess('completo');
     }
 
     function completeUpgradeOffer(){
       return `
-        <div class="upgrade-offer">
-          <div>
-            <div class="tag"><i class="ti ti-crown"></i> Upgrade disponível</div>
-            <h3>Adicione o Catálogo Completo por R$49</h3>
-            <p>Libere também Apple, Xiaomi e Realme.</p>
+        <div class="upgrade-offer catalog-upgrade catalog-upgrade-highlight">
+          <div class="upgrade-main">
+            <div class="upgrade-badge"><i class="ti ti-sparkles"></i> Oferta exclusiva para você</div>
+            <h3>Complete seus catálogos por apenas R$49,00</h3>
+            <p>Você já liberou o Catálogo de iPhones. Agora adicione também Apple, Xiaomi e Realme para vender com uma vitrine mais completa.</p>
+            <div class="upgrade-benefits">
+              <span><i class="ti ti-check"></i> Apple</span>
+              <span><i class="ti ti-check"></i> Xiaomi</span>
+              <span><i class="ti ti-check"></i> Realme</span>
+            </div>
           </div>
           <div class="upgrade-price">
-            <strong>R$49</strong>
-            <button class="btn gold" onclick="openUnlock('completo')"><i class="ti ti-lock"></i> Liberar</button>
+            <small>Upgrade por</small>
+            <strong>R$49,00</strong>
+            <button class="btn upgrade-btn" onclick="openUnlock('completo')"><i class="ti ti-lock-open"></i> Liberar upgrade</button>
           </div>
         </div>
       `;
@@ -2469,6 +3017,12 @@
       ].join('');
 
       document.getElementById('catalogGrid').innerHTML = ['iphone','apple','xiaomi','realme'].map(id => productCard(products[id])).join('');
+      renderCatalogTools();
+
+      const catalogUpgrade = document.getElementById('catalogUpgradeOffer');
+      if(catalogUpgrade){
+        catalogUpgrade.innerHTML = shouldShowCompleteUpgrade() ? completeUpgradeOffer() : '';
+      }
       document.getElementById('lojaIphoneGrid').innerHTML = ['termoGarantia','videosIphone','artesIphone'].map(id => productCard(products[id])).join('');
       document.getElementById('assistenciaGrid').innerHTML = ['documentos','videosAssistencia','artesAssistencia'].map(id => productCard(products[id])).join('');
       document.getElementById('bonusGrid').innerHTML = ['precificacao','fornecedores'].map(id => productCard(products[id])).join('');
@@ -2493,31 +3047,58 @@
 
     window.addEventListener('DOMContentLoaded', async function(){
       try{
-        const { data:{ session } } = await sb.auth.getSession();
+        if(localStorage.getItem('centralSessionActive') === '1'){
+          showAuthChecking();
+        }
+
+        const session = await getSessionWithRetry();
 
         if(session?.user){
           currentUser = session.user;
-          await consultarAcessosAtuais();
-          showApp();
+          markSessionActive(true);
+          await consultarAcessosAtuaisSeguro();
+          safeShowApp(localStorage.getItem('centralCurrentSection') || 'inicio');
         } else {
+          markSessionActive(false);
           showLogin();
         }
 
         sb.auth.onAuthStateChange(async function(event, sessionAtual){
-          if(event === 'SIGNED_IN' && sessionAtual?.user){
+          if((event === 'SIGNED_IN' || event === 'INITIAL_SESSION' || event === 'TOKEN_REFRESHED') && sessionAtual?.user){
             currentUser = sessionAtual.user;
-            await consultarAcessosAtuais();
-            showApp();
+            markSessionActive(true);
+            await consultarAcessosAtuaisSeguro();
+
+            const appVisible = document.getElementById('appPage')?.classList.contains('active');
+            const currentSection = getActiveSectionId();
+
+            if(!appVisible){
+              safeShowApp(currentSection || localStorage.getItem('centralCurrentSection') || 'inicio');
+            } else {
+              updateCustomerUI();
+              render();
+              goTo(currentSection || localStorage.getItem('centralCurrentSection') || 'inicio');
+            }
           }
+
           if(event === 'SIGNED_OUT'){
             currentUser = null;
             unlocked = [];
+            markSessionActive(false);
+            localStorage.removeItem('centralCurrentSection');
             showLogin();
           }
         });
       }catch(err){
-        console.error(err);
-        showLogin();
+        console.error('Erro ao restaurar sessão:', err);
+
+        if(localStorage.getItem('centralSessionActive') === '1'){
+          // Não derruba o cliente para login por falha momentânea.
+          hideAuthChecking();
+          showToast('Atualize novamente se a sessão não carregar.');
+        } else {
+          showLogin();
+        }
       }
     });
   </script>
