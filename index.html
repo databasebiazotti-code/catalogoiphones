@@ -1,1 +1,1327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>Central do Lojista</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
+  <style>
+    :root{
+      --bg:#000;
+      --panel:#111113;
+      --card:#161618;
+      --line:#2c2c2e;
+      --line2:#3a3a3c;
+      --text:#f5f5f7;
+      --muted:#a1a1a6;
+      --muted2:#86868b;
+      --blue:#007aff;
+      --green:#30d158;
+      --danger:#ff453a;
+      --safe-bottom:env(safe-area-inset-bottom);
+      --safe-top:env(safe-area-inset-top);
+      --sidebar:252px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+    html,body{
+      min-height:100%;
+      background:var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
+    }
+    button,input,a{font-family:inherit}
+    button{cursor:pointer}
+    a{text-decoration:none;color:inherit}
+
+    .page{display:none;min-height:100vh}
+    .page.active{display:flex}
+
+    /* Login */
+    .login-page{
+      align-items:center;
+      justify-content:center;
+      padding:22px;
+      padding-top:calc(22px + var(--safe-top));
+      background:
+        radial-gradient(circle at 80% 8%,rgba(0,122,255,.18),transparent 32%),
+        radial-gradient(circle at 18% 86%,rgba(255,255,255,.06),transparent 34%),
+        #000;
+    }
+    .login-card{
+      width:100%;
+      max-width:420px;
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)),var(--panel);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:0 30px 90px rgba(0,0,0,.42);
+    }
+    .login-brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+    .brand-mark{
+      width:46px;height:46px;border-radius:17px;
+      display:grid;place-items:center;
+      background:#f5f5f7;color:#050505;
+      flex:0 0 auto;
+    }
+    .brand-mark i{font-size:24px}
+    .login-title{font-size:21px;font-weight:700;letter-spacing:-.5px}
+    .login-sub{display:block;color:var(--muted2);font-size:12px;margin-top:4px;line-height:1.4}
+    .form-title{font-size:15px;font-weight:700;margin:4px 0 14px}
+    .field{margin-bottom:12px}
+    .field label{display:block;color:var(--muted);font-size:12px;font-weight:600;margin-bottom:7px}
+    .field input{
+      width:100%;height:48px;
+      background:#0b0b0c;color:#fff;
+      border:1px solid var(--line2);
+      border-radius:14px;
+      padding:0 14px;
+      font-size:16px;
+      outline:none;
+    }
+    .field input:focus{border-color:rgba(0,122,255,.75)}
+    .login-btn{
+      width:100%;height:48px;border:0;border-radius:14px;
+      background:var(--blue);color:#fff;
+      font-size:14px;font-weight:700;
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      margin-top:6px;
+    }
+    .login-toggle{text-align:center;color:var(--muted2);font-size:13px;margin-top:15px}
+    .login-toggle button{border:0;background:transparent;color:#fff;font-weight:700;text-decoration:underline}
+    .login-error{
+      display:none;background:rgba(255,69,58,.10);
+      border:1px solid rgba(255,69,58,.25);
+      color:#ffd6d2;border-radius:14px;
+      padding:11px 12px;margin-bottom:12px;
+      font-size:12px;line-height:1.4;
+    }
+    .login-error.show{display:block}
+
+    /* App */
+    .app-page{background:#000}
+    .app{width:100%;min-height:100vh;display:flex}
+    .sidebar{
+      width:var(--sidebar);flex:0 0 var(--sidebar);
+      height:100vh;position:sticky;top:0;
+      background:rgba(17,17,19,.94);
+      border-right:1px solid var(--line);
+      display:flex;flex-direction:column;
+      backdrop-filter:blur(20px);
+    }
+    .brand{padding:22px 18px 18px;border-bottom:1px solid var(--line)}
+    .brand-row{display:flex;align-items:center;gap:11px}
+    .brand-name{font-size:15px;font-weight:700;letter-spacing:-.25px}
+    .brand-sub{display:block;font-size:11px;color:var(--muted2);margin-top:3px}
+
+    .nav-wrap{padding:14px 10px}
+    .nav-label{margin:0 10px 8px;font-size:10px;color:var(--muted2);text-transform:uppercase;letter-spacing:1px;font-weight:700}
+    .nav-item{
+      width:100%;border:0;background:transparent;color:var(--muted);
+      display:flex;align-items:center;gap:10px;
+      padding:12px;border-radius:14px;
+      font-size:13px;font-weight:600;text-align:left;
+    }
+    .nav-item i{font-size:19px}
+    .nav-item.active,.nav-item:hover{background:rgba(255,255,255,.07);color:#fff}
+    .nav-count{
+      margin-left:auto;background:rgba(255,255,255,.08);
+      border:1px solid var(--line2);color:#fff;
+      border-radius:999px;padding:2px 7px;font-size:10px;font-weight:700;
+    }
+
+    .side-footer{margin-top:auto;padding:14px;border-top:1px solid var(--line)}
+    .customer-mini{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .customer-avatar{
+      width:34px;height:34px;border-radius:50%;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--line2);
+      font-size:12px;font-weight:700;
+    }
+    .customer-name{font-size:12px;font-weight:700;max-width:154px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .customer-email{font-size:10px;color:var(--muted2);max-width:154px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+    .logout-btn{border:0;background:transparent;color:var(--muted2);font-size:11px;font-weight:600}
+
+    .main{flex:1;min-width:0;display:flex;flex-direction:column}
+    .topbar{
+      height:64px;position:sticky;top:0;z-index:40;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 22px;padding-top:var(--safe-top);
+      background:rgba(0,0,0,.80);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(22px);
+    }
+    .page-title{font-size:18px;font-weight:700;letter-spacing:-.35px}
+    .top-actions{display:flex;gap:8px}
+    .top-btn{
+      min-height:38px;display:flex;align-items:center;gap:7px;
+      border:1px solid var(--line2);background:rgba(255,255,255,.06);
+      color:#fff;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:600;
+    }
+    .content{padding:18px 22px 40px}
+    .section{display:none}
+    .section.active{display:block}
+
+    .row-head{margin:18px 0 12px}
+    .sec-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted2)}
+    .sec-sub{margin-top:4px;font-size:12px;color:var(--muted2);line-height:1.45}
+
+    .grid{display:grid;grid-template-columns:1fr;gap:14px}
+
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015)),var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:118px 1fr;
+      min-height:150px;
+    }
+    .thumb{
+      min-height:150px;background:#0d0d0f;
+      border-right:1px solid var(--line);
+      display:flex;align-items:center;justify-content:center;
+      position:relative;padding:16px;
+    }
+    .status{
+      position:absolute;top:12px;left:12px;z-index:2;
+      border-radius:999px;padding:6px 9px;
+      font-size:10px;font-weight:700;
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.14);
+      color:#d1d1d6;
+      backdrop-filter:blur(10px);
+    }
+    .status.open{color:#c8ffd8;border-color:rgba(48,209,88,.28);background:rgba(48,209,88,.10)}
+    .brand-logo-box{
+      width:76px;height:76px;border-radius:18px;
+      background:#1c1c1e;border:1px solid var(--line);
+      display:flex;align-items:center;justify-content:center;overflow:hidden;
+    }
+    .brand-logo-box img{width:100%;height:100%;object-fit:cover;display:block}
+    .brand-logo-symbol{
+      color:#fff;font-size:40px;font-weight:700;line-height:1;
+    }
+    .brand-logo-symbol.xiaomi-logo{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#ff6900;color:#fff;font-size:24px;text-transform:none}
+    .brand-logo-symbol.realme-logo{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#ffc915;color:#111;font-size:32px}
+
+    .thumb > i{font-size:38px;color:rgba(255,255,255,.36)}
+    .card-body{display:flex;flex-direction:column;justify-content:center;padding:18px 22px}
+    .card h3{font-size:22px;font-weight:700;letter-spacing:-.5px;margin-bottom:6px}
+    .card p{font-size:14px;color:var(--muted2);line-height:1.35;margin-bottom:16px}
+    .card-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn{
+      min-height:46px;border-radius:15px;
+      border:1px solid transparent;
+      display:flex;align-items:center;justify-content:center;gap:7px;
+      padding:10px 12px;
+      font-size:13px;font-weight:700;
+    }
+    .btn.ghost{background:rgba(255,255,255,.06);border-color:var(--line2);color:#fff}
+    .btn.gold{background:var(--blue);color:#fff}
+    .btn.green{background:#f5f5f7;color:#111}
+    .btn.dark{background:#0b0b0c;border-color:var(--line2);color:#fff}
+
+    .empty{
+      background:var(--panel);border:1px dashed var(--line2);
+      border-radius:22px;padding:26px;text-align:center;color:var(--muted);
+    }
+    .empty i{font-size:34px;color:var(--muted2);margin-bottom:8px}
+    .empty h3{font-size:18px;color:#fff;margin-bottom:7px}
+    .empty p{font-size:13px;line-height:1.5;margin-bottom:14px}
+
+    .module,.upgrade-offer,.panel{
+      background:var(--panel);border:1px solid var(--line);
+      border-radius:22px;padding:16px;margin-bottom:12px;
+    }
+    .module-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .module-title{display:flex;align-items:center;gap:10px;font-weight:700}
+    .module-title i{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;background:rgba(0,122,255,.10);color:#8ec5ff}
+    .lesson-list{display:grid;grid-template-columns:1fr;gap:8px}
+    .lesson{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:13px;padding:10px;color:#d1d1d6;font-size:12px;font-weight:600}
+
+    .upgrade-offer{
+      display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;
+      background:linear-gradient(135deg,rgba(0,122,255,.14),rgba(255,255,255,.03));
+      border-color:rgba(0,122,255,.22);
+    }
+    .upgrade-offer .tag{display:inline-flex;gap:6px;align-items:center;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);border-radius:999px;padding:6px 9px;font-size:11px;margin-bottom:10px}
+    .upgrade-offer h3{font-size:20px;margin-bottom:6px;letter-spacing:-.4px}
+    .upgrade-offer p{font-size:13px;color:var(--muted);line-height:1.45}
+    .upgrade-price{text-align:right}.upgrade-price strong{display:block;font-size:26px;margin-bottom:8px}
+
+    .modal{
+      display:none;position:fixed;inset:0;z-index:90;
+      align-items:center;justify-content:center;
+      background:rgba(0,0,0,.74);
+      backdrop-filter:blur(10px);
+      padding:20px;
+    }
+    .modal.show{display:flex}
+    .modal-box{
+      width:min(500px,100%);background:var(--panel);
+      border:1px solid var(--line2);border-radius:26px;overflow:hidden;
+      box-shadow:0 28px 90px rgba(0,0,0,.55);
+    }
+    .modal-cover{height:106px;background:linear-gradient(135deg,rgba(0,122,255,.24),rgba(255,255,255,.04));display:grid;place-items:center;border-bottom:1px solid var(--line)}
+    .modal-cover i{font-size:42px}
+    .modal-content{padding:18px}
+    .modal-content h3{font-size:20px;margin-bottom:8px;letter-spacing:-.35px}
+    .modal-content p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+    .modal-actions{display:flex;gap:8px}
+    .modal-product-actions{margin-top:14px;display:grid!important;grid-template-columns:1fr 1fr;gap:8px}
+    .modal-code{display:none;margin-top:12px}
+    .modal-code.show{display:block}
+    .code-row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:8px}
+    .code-row input{min-width:0;height:44px;background:#0b0b0c;color:#fff;border:1px solid var(--line2);border-radius:12px;padding:0 12px;font-size:16px;outline:none}
+    .code-help{font-size:11px;color:var(--muted2);line-height:1.4;margin-bottom:12px}
+
+    .toast{display:none;position:fixed;right:18px;bottom:18px;z-index:120;background:#111114;border:1px solid rgba(0,122,255,.35);border-radius:16px;padding:13px 14px;box-shadow:0 18px 60px rgba(0,0,0,.55);font-size:13px;font-weight:700;gap:8px;align-items:center}
+    .toast.show{display:flex}
+
+    .mobile-nav{display:none}
+
+    @media(max-width:760px){
+      html,body{overflow:auto}
+      .app{display:block}
+      .sidebar{display:none}
+      .main{min-height:100vh}
+      .topbar{height:58px;padding:0 14px;padding-top:var(--safe-top)}
+      .top-btn span{display:none}
+      .content{padding:14px;padding-bottom:calc(96px + var(--safe-bottom))}
+      .row-head{margin:18px 0 10px}
+      .card{grid-template-columns:108px 1fr;min-height:142px;border-radius:22px}
+      .thumb{min-height:142px;padding:14px}
+      .brand-logo-box{width:72px;height:72px;border-radius:17px}
+      .card-body{padding:16px}
+      .card h3{font-size:17px;line-height:1.12}
+      .card p{font-size:12px;margin-bottom:12px}
+      .card-actions{gap:8px}
+      .btn{min-height:42px;border-radius:13px;font-size:12px;padding:10px 8px}
+      .upgrade-offer{grid-template-columns:1fr}.upgrade-price{text-align:left}
+      .modal{align-items:flex-end;padding:0}
+      .modal-box{width:100%;max-width:none;border-radius:24px 24px 0 0;border-left:0;border-right:0;border-bottom:0;max-height:92vh;overflow:auto}
+      .modal-cover{height:90px}
+      .modal-content{padding:16px;padding-bottom:calc(18px + var(--safe-bottom))}
+      .modal-product-actions{grid-template-columns:1fr!important}
+      .code-row{grid-template-columns:1fr}
+      .mobile-nav{
+        display:flex;position:fixed;left:0;right:0;bottom:0;z-index:70;
+        background:rgba(18,18,20,.94);border-top:1px solid var(--line);
+        backdrop-filter:blur(24px);
+        padding:7px 4px;padding-bottom:calc(7px + var(--safe-bottom));
+      }
+      .mnav{
+        flex:1;border:0;background:transparent;color:var(--muted2);
+        display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+        padding:7px 2px;border-radius:12px;font-size:9px;font-weight:700;text-transform:uppercase;
+      }
+      .mnav i{font-size:21px}.mnav.active{color:#fff;background:rgba(255,255,255,.065)}
+    }
+    @media(max-width:390px){
+      .card{grid-template-columns:98px 1fr}
+      .brand-logo-box{width:64px;height:64px}
+      .card h3{font-size:16px}
+      .card p{font-size:12px}
+    }
+  
+    /* Tela inicial / boas-vindas */
+    .welcome-box{
+      background:
+        radial-gradient(circle at 85% 0%,rgba(0,122,255,.20),transparent 34%),
+        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02)),
+        var(--panel);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:22px;
+      margin:18px 0 16px;
+    }
+    .welcome-box h1{
+      font-size:26px;
+      line-height:1.08;
+      letter-spacing:-.8px;
+      margin-bottom:8px;
+    }
+    .welcome-box p{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+    .quick-code{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:16px;
+      margin-bottom:18px;
+    }
+    .quick-code h3{
+      font-size:17px;
+      letter-spacing:-.3px;
+      margin-bottom:6px;
+    }
+    .quick-code p{
+      color:var(--muted2);
+      font-size:12px;
+      line-height:1.45;
+      margin-bottom:12px;
+    }
+    .quick-code-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+    }
+    .quick-code-row input{
+      min-width:0;
+      height:46px;
+      background:#0b0b0c;
+      color:#fff;
+      border:1px solid var(--line2);
+      border-radius:13px;
+      padding:0 12px;
+      font-size:16px;
+      outline:none;
+    }
+    .quick-code-row input:focus{border-color:rgba(0,122,255,.75)}
+    @media(max-width:760px){
+      .welcome-box{
+        margin:14px 0 14px;
+        padding:18px;
+        border-radius:22px;
+      }
+      .welcome-box h1{
+        font-size:24px;
+      }
+      .welcome-box p{
+        font-size:13px;
+      }
+      .quick-code{
+        padding:14px;
+        border-radius:20px;
+      }
+      .quick-code-row{
+        grid-template-columns:1fr;
+      }
+    }
+
+  
+    /* Tela inicial */
+    .home-hero{
+      background:
+        radial-gradient(circle at 86% 0%,rgba(0,122,255,.20),transparent 35%),
+        linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)),
+        var(--panel);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:24px;
+      margin:18px 0 16px;
+    }
+    .home-hero h1{
+      font-size:28px;
+      line-height:1.08;
+      letter-spacing:-.8px;
+      margin-bottom:9px;
+    }
+    .home-hero p{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+      max-width:720px;
+    }
+    .home-code-box{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:18px;
+      margin-bottom:18px;
+    }
+    .home-code-box h3{
+      font-size:18px;
+      letter-spacing:-.35px;
+      margin-bottom:6px;
+    }
+    .home-code-box p{
+      color:var(--muted2);
+      font-size:12px;
+      line-height:1.45;
+      margin-bottom:12px;
+    }
+    .home-code-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+    }
+    .home-code-row input{
+      min-width:0;
+      height:46px;
+      background:#0b0b0c;
+      color:#fff;
+      border:1px solid var(--line2);
+      border-radius:13px;
+      padding:0 12px;
+      font-size:16px;
+      outline:none;
+    }
+    .home-code-row input:focus{border-color:rgba(0,122,255,.75)}
+    @media(max-width:760px){
+      .home-hero{
+        margin:14px 0 14px;
+        padding:18px;
+        border-radius:22px;
+      }
+      .home-hero h1{font-size:24px}
+      .home-hero p{font-size:13px}
+      .home-code-box{
+        padding:14px;
+        border-radius:20px;
+      }
+      .home-code-row{
+        grid-template-columns:1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <section class="page login-page active" id="loginPage">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="brand-mark"><i class="ti ti-building-store"></i></div>
+        <div>
+          <div class="login-title">Central do Lojista</div>
+          <span class="login-sub">Crie seu login gratuitamente.</span>
+        </div>
+      </div>
+
+      <div id="signupForm">
+        <div class="form-title">Criar login gratuito</div>
+        <div class="login-error" id="signupError"></div>
+        <div class="field"><label>Nome</label><input id="signupName" type="text" placeholder="Seu nome" autocomplete="name" /></div>
+        <div class="field"><label>E-mail</label><input id="signupEmail" type="email" placeholder="seu@email.com" autocomplete="email" /></div>
+        <div class="field"><label>Criar senha</label><input id="signupPassword" type="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password" /></div>
+        <button class="login-btn" onclick="createAccount()"><i class="ti ti-arrow-right"></i> Criar login gratuito</button>
+        <div class="login-toggle">Já tem conta? <button onclick="toggleLogin()">Fazer login</button></div>
+      </div>
+
+      <div id="loginForm" style="display:none">
+        <div class="form-title">Entrar na minha conta</div>
+        <div class="login-error" id="loginError"></div>
+        <div class="field"><label>E-mail</label><input id="loginEmail" type="email" placeholder="seu@email.com" autocomplete="email" /></div>
+        <div class="field"><label>Senha</label><input id="loginPassword" type="password" placeholder="Sua senha" autocomplete="current-password" /></div>
+        <button class="login-btn" onclick="loginAccount()"><i class="ti ti-login-2"></i> Entrar</button>
+        <div class="login-toggle">Ainda não tem conta? <button onclick="toggleLogin()">Criar login gratuito</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page app-page" id="appPage">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-row">
+            <div class="brand-mark"><i class="ti ti-building-store"></i></div>
+            <div>
+              <div class="brand-name">Central do Lojista</div>
+              <span class="brand-sub">Catálogos, documentos e materiais</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-wrap">
+          <div class="nav-label">Menu</div>
+          <button class="nav-item active" data-section="inicio"><i class="ti ti-home"></i> Início</button>
+          <button class="nav-item" data-section="catalogos"><i class="ti ti-device-mobile"></i> Catálogos</button>
+          <button class="nav-item" data-section="lojaiPhone"><i class="ti ti-brand-apple"></i> Loja iPhone</button>
+          <button class="nav-item" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button>
+          <button class="nav-item" data-section="bonus"><i class="ti ti-gift"></i> Bônus</button>
+          <button class="nav-item" data-section="meus"><i class="ti ti-shopping-bag-check"></i> Meus Produtos <span class="nav-count" id="accessCount">0</span></button>
+          <button class="nav-item" data-section="suporte"><i class="ti ti-headset"></i> Suporte</button>
+        </div>
+
+        <div class="side-footer">
+          <div class="customer-mini">
+            <div class="customer-avatar" id="customerAvatar">L</div>
+            <div>
+              <div class="customer-name" id="sidebarName">Lojista</div>
+              <div class="customer-email" id="sidebarEmail">—</div>
+            </div>
+          </div>
+          <button class="logout-btn" onclick="logout()">Sair da conta</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="page-title" id="pageTitle">Início</div>
+          <div class="top-actions">
+            <a class="top-btn" href="https://www.instagram.com/oluccasiphone" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i><span>Instagram</span></a>
+            <button class="top-btn" onclick="goTo('meus')"><i class="ti ti-shopping-bag-check"></i><span>Meus Produtos</span></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <section class="section active" id="inicio">
+            <div class="welcome-box">
+              <h1 id="welcomeMessage">Olá, seja bem-vindo à sua Central do Lojista.</h1>
+              <p>Visualize os materiais disponíveis e libere seus produtos com o código recebido após a compra.</p>
+            </div>
+
+            <div class="quick-code">
+              <h3>Já fez a compra?</h3>
+              <p>Insira o código de acesso abaixo para liberar automaticamente seu produto em Meus Produtos.</p>
+              <div class="quick-code-row">
+                <input id="quickCodeInput" placeholder="Digite seu código de acesso" autocomplete="off" />
+                <button class="btn gold" onclick="redeemQuickCode()"><i class="ti ti-lock"></i> Liberar</button>
+              </div>
+            </div>
+
+            <div class="row-head">
+              <div>
+                <div class="sec-title">Comece por aqui</div>
+                <div class="sec-sub">Escolha uma categoria para visualizar os produtos.</div>
+              </div>
+            </div>
+            <div class="grid" id="homeGrid"></div>
+          </section>
+
+          <section class="section" id="catalogos">
+            <div class="row-head">
+              <div>
+                <div class="sec-title">Catálogos</div>
+                <div class="sec-sub">Visualize e libere o acesso.</div>
+              </div>
+            </div>
+            <div class="grid" id="catalogGrid"></div>
+          </section>
+
+          <section class="section" id="lojaiPhone">
+            <div class="row-head">
+              <div>
+                <div class="sec-title">Loja iPhone</div>
+                <div class="sec-sub">Materiais para lojistas de iPhone.</div>
+              </div>
+            </div>
+            <div class="grid" id="lojaIphoneGrid"></div>
+          </section>
+
+          <section class="section" id="assistencia">
+            <div class="row-head">
+              <div>
+                <div class="sec-title">Assistência</div>
+                <div class="sec-sub">Materiais para assistência técnica.</div>
+              </div>
+            </div>
+            <div class="grid" id="assistenciaGrid"></div>
+          </section>
+
+          <section class="section" id="bonus">
+            <div class="row-head">
+              <div>
+                <div class="sec-title">Bônus</div>
+                <div class="sec-sub">Arquivos de apoio para sua loja.</div>
+              </div>
+            </div>
+            <div class="grid" id="bonusGrid"></div>
+          </section>
+
+          <section class="section" id="meus">
+            <div class="row-head">
+              <div>
+                <div class="sec-title">Meus Produtos</div>
+                <div class="sec-sub">Produtos liberados na sua conta.</div>
+              </div>
+            </div>
+            <div id="myProducts"></div>
+          </section>
+
+          <section class="section" id="suporte">
+            <div class="row-head">
+              <div>
+                <div class="sec-title">Suporte</div>
+                <div class="sec-sub">Como liberar um produto?</div>
+              </div>
+            </div>
+            <div class="panel">
+              <h3>Como liberar um produto?</h3>
+              <p>Entre em uma categoria, clique em <strong>Liberar</strong> no produto desejado e informe o código recebido. Você também pode usar o botão do checkout quando ele estiver disponível.</p>
+              <div class="card-actions"><button class="btn gold" onclick="goTo('catalogos')"><i class="ti ti-lock"></i> Ver produtos</button></div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <nav class="mobile-nav">
+      <button class="mnav active" data-section="inicio"><i class="ti ti-home"></i> Início</button>
+      <button class="mnav" data-section="catalogos"><i class="ti ti-device-mobile"></i> Catálogos</button>
+      <button class="mnav" data-section="lojaiPhone"><i class="ti ti-brand-apple"></i> iPhone</button>
+      <button class="mnav" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button>
+      <button class="mnav" data-section="bonus"><i class="ti ti-gift"></i> Bônus</button>
+      <button class="mnav" data-section="meus"><i class="ti ti-shopping-bag-check"></i> Meus</button>
+    </nav>
+  </section>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="modal-cover"><i id="modalIcon" class="ti ti-lock"></i></div>
+      <div class="modal-content">
+        <h3 id="modalTitle">Produto</h3>
+        <p id="modalText">Descrição</p>
+
+        <div class="modal-code" id="modalCodeArea">
+          <div class="code-row">
+            <input id="modalCodeInput" placeholder="Digite seu código de acesso" autocomplete="off" />
+            <button class="btn gold" onclick="redeemCodeFromModal()"><i class="ti ti-lock"></i> Liberar</button>
+          </div>
+          <div class="code-help">Digite o código recebido após a compra.</div>
+          <div id="checkoutArea" style="display:none;margin-top:10px"></div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn dark" onclick="closeModal()">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><i class="ti ti-check"></i><span id="toastText">Pronto.</span></div>
+
+  <script>
+    const SB_URL = "https://lvumvnybggqudgccscvm.supabase.co";
+    const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx2dW12bnliZ2dxdWRnY2NzY3ZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0ODIzMTAsImV4cCI6MjA5NTA1ODMxMH0.q7hnXLG5NpWC_k0LjZBVPtH63eC-95Ug8lCvV9RmVHo";
+    const sb = supabase.createClient(SB_URL, SB_KEY);
+
+    const catalogLessons = [
+      'Editar o catálogo no Canva',
+      'Editar o Catálogo no Canva',
+      'Criar botões do WhatsApp',
+      'Publicar o catálogo'
+    ];
+
+    const products = {
+      iphone: {
+        id:'iphone',
+        title:'Catálogo iPhone',
+        category:'catalogos',
+        brandSymbol:'',
+        icon:'ti-brand-apple',
+        desc:'iPhone X ao 17 Pro Max.',
+        previewUrl:'https://decolesolucoes.my.canva.site/catalogoiphone',
+        canvaUrl:'https://canva.link/4f61h8i9pzacfek',
+        checkoutUrl:'#checkout-catalogo-iphone',
+        lessons:catalogLessons,
+        groupType:'catalogos'
+      },
+      apple: {
+        id:'apple',
+        title:'Catálogo Apple',
+        category:'catalogos',
+        brandSymbol:'',
+        icon:'ti-brand-apple',
+        desc:'Linha Apple completa.',
+        previewUrl:'https://decolesolucoes.my.canva.site/catalogoapple',
+        canvaUrl:'https://canva.link/4mdi3usxohzvcng',
+        checkoutUrl:'#checkout-catalogo-apple',
+        lessons:catalogLessons,
+        groupType:'catalogos'
+      },
+      xiaomi: {
+        id:'xiaomi',
+        title:'Catálogo Xiaomi',
+        category:'catalogos',
+        brandSymbol:'mi',
+        brandClass:'xiaomi-logo',
+        icon:'ti-device-mobile',
+        desc:'Redmi, Mi e Poco.',
+        previewUrl:'https://decolesolucoes.my.canva.site/catalogoxiaomi',
+        canvaUrl:'https://canva.link/a680ptv67sau3nc',
+        checkoutUrl:'#checkout-catalogo-xiaomi',
+        lessons:catalogLessons,
+        groupType:'catalogos'
+      },
+      realme: {
+        id:'realme',
+        title:'Catálogo Realme',
+        category:'catalogos',
+        brandSymbol:'R',
+        brandClass:'realme-logo',
+        icon:'ti-device-mobile',
+        desc:'Todos os modelos.',
+        previewUrl:'https://decolesolucoes.my.canva.site/catalogorealme',
+        canvaUrl:'https://canva.link/6b1thxnwvzwsk17',
+        checkoutUrl:'#checkout-catalogo-realme',
+        lessons:catalogLessons,
+        groupType:'catalogos'
+      },
+      completo: {
+        id:'completo',
+        title:'Catálogo Completo',
+        category:'catalogos',
+        brandSymbol:'',
+        icon:'ti-crown',
+        desc:'iPhone, Apple, Xiaomi e Realme.',
+        previewUrl:'https://decolesolucoes.my.canva.site/catalogoiphone',
+        canvaUrl:'https://canva.link/4f61h8i9pzacfek',
+        checkoutUrl:'#checkout-catalogo-completo',
+        lessons:catalogLessons,
+        groupType:'catalogos'
+      },
+      termoGarantia: {
+        id:'termoGarantia',
+        title:'Termo de Garantia',
+        category:'lojaiPhone',
+        icon:'ti-shield-check',
+        desc:'Venda com mais segurança.',
+        previewDescription:'Termo de garantia para vender iPhones com mais segurança e evitar dor de cabeça.',
+        previewUrl:'https://canva.link/vr004ry60pgxf6j',
+        checkoutUrl:'https://pay.cakto.com.br/37hx97u_466558',
+        lessons:[]
+      },
+      videosIphone: {
+        id:'videosIphone',
+        title:'Pack Vídeos Virais iPhone',
+        category:'lojaiPhone',
+        icon:'ti-brand-tiktok',
+        desc:'+100 vídeos para celulares.',
+        previewDescription:'Vídeos virais para vender mais nas redes sociais sobre iPhones, Xiaomi e celulares. Inclui mais de 100 vídeos.',
+        previewUrl:'https://drive.google.com/drive/folders/1mIgJX9WLOiSfn1kI8luT9NobBp4nKVve',
+        checkoutUrl:'https://pay.cakto.com.br/36pwf3r_466556',
+        lessons:[]
+      },
+      artesIphone: {
+        id:'artesIphone',
+        title:'Pack Artes Canva iPhone',
+        category:'lojaiPhone',
+        icon:'ti-brush',
+        desc:'Artes para lojistas iPhone.',
+        previewDescription:'Artes editáveis no Canva para divulgar iPhones e movimentar suas redes sociais.',
+        previewLinks:['https://canva.link/25m3bychfs9mlk5','https://canva.link/1oxo3bfs06d43dr','https://canva.link/9ikdt8r4jyz2sv4','https://canva.link/gw40neul4uvje8c'],
+        checkoutUrl:'https://pay.cakto.com.br/ofq9oum_466554',
+        lessons:[]
+      },
+      documentos: {
+        id:'documentos',
+        title:'Pack de Documentos',
+        category:'assistencia',
+        icon:'ti-files',
+        desc:'Documentos para assistência.',
+        previewDescription:'Pack com ordem de serviço, termo de garantia, contrato troca vidro, contrato tampa iPhone e contrato de compra/venda de celular usado.',
+        previewUrl:'https://canva.link/myi26sxb1arffjj',
+        checkoutUrl:'https://pay.cakto.com.br/7hnxsot_466448',
+        lessons:[]
+      },
+      videosAssistencia: {
+        id:'videosAssistencia',
+        title:'Pack Vídeos Virais Assistência',
+        category:'assistencia',
+        icon:'ti-tools',
+        desc:'+100 vídeos para assistência.',
+        previewDescription:'Vídeos virais para vender mais nas redes sociais com conteúdo de reparos e assistência técnica.',
+        previewUrl:'https://canva.link/d6fje1saffsrb9k',
+        checkoutUrl:'https://pay.cakto.com.br/36pwf3r_466556',
+        lessons:[]
+      },
+      artesAssistencia: {
+        id:'artesAssistencia',
+        title:'Pack Artes Canva Assistência',
+        category:'assistencia',
+        icon:'ti-brush',
+        desc:'Artes para assistência.',
+        previewDescription:'Artes editáveis no Canva para divulgar serviços de assistência técnica.',
+        previewLinks:['https://canva.link/25m3bychfs9mlk5','https://canva.link/1oxo3bfs06d43dr','https://canva.link/9ikdt8r4jyz2sv4','https://canva.link/gw40neul4uvje8c'],
+        checkoutUrl:'https://pay.cakto.com.br/ofq9oum_466554',
+        lessons:[]
+      },
+      precificacao: {
+        id:'precificacao',
+        title:'Planilha de Precificação',
+        category:'bonus',
+        icon:'ti-table',
+        desc:'Custos, margem e venda.',
+        previewDescription:'Planilha para organizar valores dos aparelhos, custo, margem e preço de venda.',
+        downloadUrl:'#arquivo-precificacao',
+        downloadLabel:'Baixar',
+        lessons:[]
+      },
+      fornecedores: {
+        id:'fornecedores',
+        title:'Lista de Fornecedores',
+        category:'bonus',
+        icon:'ti-building-store',
+        desc:'Shopping Oriental.',
+        previewDescription:'Lista de fornecedores do Shopping Oriental para ajudar na organização dos seus contatos.',
+        downloadUrl:'#arquivo-fornecedores',
+        downloadLabel:'Baixar',
+        lessons:[]
+      }
+    };
+
+    const LEGACY_PLAN_ACCESS = {
+      1: ['iphone','precificacao','fornecedores'],
+      2: ['completo','iphone','apple','xiaomi','realme','precificacao','fornecedores']
+    };
+
+    let unlocked = [];
+    let currentUser = null;
+    let selectedUnlockProduct = null;
+
+    function validateEmail(email){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+    function displayName(){ return currentUser?.user_metadata?.name || currentUser?.email?.split('@')[0] || 'Lojista'; }
+    function initials(){ return displayName().trim().split(/\s+/).slice(0,2).map(p=>p[0]).join('').toUpperCase() || 'L'; }
+    function hasAccess(id){ return unlocked.includes(id); }
+
+    function showToast(message){
+      const t = document.getElementById('toast');
+      document.getElementById('toastText').textContent = message;
+      t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'),2400);
+    }
+
+    async function consultarAcessosAtuais(options = {}){
+      if(!currentUser?.id){ unlocked = []; return; }
+
+      const acessos = new Set();
+
+      const { data: productAccess, error: accessError } = await sb
+        .from('user_product_access')
+        .select('product_id')
+        .eq('user_id', currentUser.id);
+
+      if(accessError && accessError.code !== '42P01'){
+        console.warn('Erro user_product_access:', accessError);
+      }
+
+      (productAccess || []).forEach(row => row?.product_id && acessos.add(row.product_id));
+
+      if(!options.skipLegacy){
+        const { data: legacyPlan, error: legacyError } = await sb
+          .from('user_plans')
+          .select('plano')
+          .eq('id', currentUser.id)
+          .maybeSingle();
+
+        if(legacyError && legacyError.code !== 'PGRST116'){
+          console.warn('Erro user_plans:', legacyError);
+        }
+
+        const plano = legacyPlan && Number(legacyPlan.plano);
+        if(Number.isFinite(plano)){
+          Object.keys(LEGACY_PLAN_ACCESS).forEach(level => {
+            if(plano >= Number(level)){
+              LEGACY_PLAN_ACCESS[level].forEach(productId => acessos.add(productId));
+            }
+          });
+        }
+      }
+
+      unlocked = Array.from(acessos);
+    }
+
+    async function createAccount(){
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value;
+      const error = document.getElementById('signupError');
+      error.classList.remove('show'); error.textContent = '';
+
+      if(!name){ error.textContent='Informe seu nome para criar o login.'; error.classList.add('show'); return; }
+      if(!validateEmail(email)){ error.textContent='Informe um e-mail válido.'; error.classList.add('show'); return; }
+      if(password.length < 6){ error.textContent='Crie uma senha com pelo menos 6 caracteres.'; error.classList.add('show'); return; }
+
+      try{
+        const { error: signUpError } = await sb.auth.signUp({ email, password, options:{ data:{ name } } });
+        if(signUpError) throw signUpError;
+
+        const { data: loginData, error: loginError } = await sb.auth.signInWithPassword({ email, password });
+        if(loginError) throw loginError;
+
+        currentUser = loginData.user;
+        unlocked = [];
+        await consultarAcessosAtuais({ skipLegacy:true });
+        showApp();
+        showToast('Login criado com sucesso.');
+      }catch(err){
+        console.error(err);
+        error.textContent = traduzirErroAuth(err);
+        error.classList.add('show');
+      }
+    }
+
+    async function loginAccount(){
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const error = document.getElementById('loginError');
+      error.classList.remove('show'); error.textContent = '';
+
+      if(!validateEmail(email)){ error.textContent='Informe um e-mail válido.'; error.classList.add('show'); return; }
+      if(password.length < 6){ error.textContent='Informe sua senha.'; error.classList.add('show'); return; }
+
+      try{
+        const { data, error: loginError } = await sb.auth.signInWithPassword({ email, password });
+        if(loginError) throw loginError;
+        currentUser = data.user;
+        await consultarAcessosAtuais();
+        showApp();
+      }catch(err){
+        console.error(err);
+        error.textContent = traduzirErroAuth(err);
+        error.classList.add('show');
+      }
+    }
+
+    function traduzirErroAuth(err){
+      const msg = (err?.message || '').toLowerCase();
+      if(msg.includes('invalid login credentials')) return 'E-mail ou senha inválidos.';
+      if(msg.includes('already registered')) return 'Esse e-mail já possui cadastro. Faça login.';
+      if(msg.includes('password')) return 'Verifique a senha informada.';
+      if(msg.includes('email')) return 'Verifique o e-mail informado.';
+      return 'Não foi possível continuar agora. Tente novamente.';
+    }
+
+    function toggleLogin(){
+      const signup = document.getElementById('signupForm');
+      const login = document.getElementById('loginForm');
+      const showingSignup = signup.style.display !== 'none';
+      signup.style.display = showingSignup ? 'none' : 'block';
+      login.style.display = showingSignup ? 'block' : 'none';
+    }
+
+    async function logout(){
+      await sb.auth.signOut();
+      currentUser = null;
+      unlocked = [];
+      showLogin();
+    }
+
+    function updateCustomerUI(){
+      document.getElementById('sidebarName').textContent = displayName();
+      document.getElementById('sidebarEmail').textContent = currentUser?.email || '—';
+      document.getElementById('customerAvatar').textContent = initials();
+
+      const welcome = document.getElementById('welcomeMessage');
+      if(welcome){
+        const first = displayName().trim().split(' ')[0] || 'Lojista';
+        welcome.textContent = `Olá, ${first}. Seja bem-vindo à sua Central do Lojista.`;
+      }
+    }
+
+    function showApp(){
+      document.getElementById('loginPage').classList.remove('active');
+      document.getElementById('appPage').classList.add('active');
+      updateCustomerUI();
+      render();
+    }
+
+    function showLogin(){
+      document.getElementById('appPage').classList.remove('active');
+      document.getElementById('loginPage').classList.add('active');
+    }
+
+    function goTo(sectionId){
+      document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === sectionId));
+      const titles = {inicio:'Início',catalogos:'Catálogos',lojaiPhone:'Loja iPhone',assistencia:'Assistência',bonus:'Bônus',meus:'Meus Produtos',suporte:'Suporte'};
+      document.getElementById('pageTitle').textContent = titles[sectionId] || 'Central do Lojista';
+      document.querySelectorAll('[data-section]').forEach(b => b.classList.toggle('active', b.dataset.section === sectionId));
+    }
+    document.querySelectorAll('[data-section]').forEach(b => b.addEventListener('click', () => goTo(b.dataset.section)));
+
+    function isCatalogProduct(product){
+      return ['iphone','apple','xiaomi','realme','completo'].includes(product.id);
+    }
+
+    function openExternal(url, label){
+      if(!url || url === '#'){
+        showToast(`${label || 'Link'} ainda não configurado.`);
+        return;
+      }
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    function shouldOpenPreviewPopup(product){
+      return !!(product?.previewLinks && product.previewLinks.length > 1);
+    }
+
+    function openPreviewLink(product){
+      let url = '#';
+
+      if(product?.previewLinks?.length === 1) url = product.previewLinks[0];
+      else if(product?.previewUrl) url = product.previewUrl;
+      else if(product?.downloadUrl) url = product.downloadUrl;
+
+      openExternal(url, product?.downloadUrl ? 'Download' : 'Prévia');
+    }
+
+    function openProductPreviewPopup(productId){
+      const product = products[productId];
+      if(!product) return;
+
+      const previewButtons = [];
+      if(product.previewLinks?.length){
+        product.previewLinks.forEach((url, index) => {
+          previewButtons.push(`<button class="btn ghost" onclick="openExternal('${url}','Prévia ${index+1}')"><i class="ti ti-eye"></i> Visualizar ${index+1}</button>`);
+        });
+      }
+
+      setModal(
+        product.icon || 'ti-eye',
+        product.title,
+        `${product.previewDescription || product.desc}<div class="modal-actions modal-product-actions">${previewButtons.join('')}</div>`,
+        false
+      );
+    }
+
+    function setModal(icon, title, text, showCode=false, checkoutUrl=''){
+      document.getElementById('modalIcon').className = `ti ${icon}`;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalText').innerHTML = text;
+      document.getElementById('modalCodeArea').classList.toggle('show', showCode);
+
+      const checkoutArea = document.getElementById('checkoutArea');
+      if(showCode && checkoutUrl && checkoutUrl !== '#'){
+        checkoutArea.style.display = 'block';
+        checkoutArea.innerHTML = `<button class="btn ghost" style="width:100%" onclick="openExternal('${checkoutUrl}','Checkout')"><i class="ti ti-shopping-cart"></i> Liberar pelo checkout</button>`;
+      } else {
+        checkoutArea.style.display = 'none';
+        checkoutArea.innerHTML = '';
+      }
+
+      document.getElementById('modal').classList.add('show');
+
+      if(showCode){
+        const input = document.getElementById('modalCodeInput');
+        input.value = '';
+        setTimeout(()=>input.focus(),80);
+      }
+    }
+
+    function closeModal(){
+      document.getElementById('modal').classList.remove('show');
+      document.getElementById('modalCodeArea').classList.remove('show');
+      selectedUnlockProduct = null;
+    }
+
+    function openUnlock(productId){
+      const product = products[productId];
+      selectedUnlockProduct = productId;
+      setModal('ti-lock', `Liberar ${product.title}`, 'Digite o código de acesso recebido para liberar este produto.', true, product.checkoutUrl || '');
+    }
+
+    function openAccess(productId){
+      const product = products[productId];
+      const extra = product.groupType === 'catalogos' ? '<br><br><strong>Grupo:</strong> Grupo de alunos — Catálogos.' : '';
+      setModal(product.icon || 'ti-lock', `${product.title} liberado`, `Aqui ficam os botões reais do produto: visualizar, baixar, editar ou acessar o material.${extra}`, false);
+    }
+
+    async function redeemAccessCode(code){
+      if(!code){
+        showToast('Digite o código de acesso.');
+        return false;
+      }
+
+      try{
+        const { error } = await sb.rpc('redeem_product_pin', { p_pin: code });
+        if(error){
+          console.error(error);
+          showToast('Código inválido ou indisponível.');
+          return false;
+        }
+
+        await consultarAcessosAtuais();
+        render();
+        showToast('Acesso liberado em Meus Produtos.');
+        return true;
+      }catch(err){
+        console.error(err);
+        showToast('Não foi possível liberar agora.');
+        return false;
+      }
+    }
+
+    async function redeemCodeFromModal(){
+      const input = document.getElementById('modalCodeInput');
+      const code = (input.value || '').trim();
+      const ok = await redeemAccessCode(code);
+
+      if(ok){
+        closeModal();
+        goTo('meus');
+      }
+    }
+
+    async function redeemQuickCode(){
+      const input = document.getElementById('quickCodeInput');
+      const code = (input.value || '').trim();
+      const ok = await redeemAccessCode(code);
+
+      if(ok){
+        input.value = '';
+        goTo('meus');
+      }
+    }
+
+    function renderThumb(product, statusClass, statusText){
+      return `
+        <div class="thumb">
+          <span class="status ${statusClass}">${statusText}</span>
+          ${product.brandLogo ? `<div class="brand-logo-box"><img src="${product.brandLogo}" alt="${product.title}"></div>` : product.brandSymbol ? `<div class="brand-logo-box"><span class="brand-logo-symbol ${product.brandClass || ''}">${product.brandSymbol}</span></div>` : `<i class="ti ${product.icon}"></i>`}
+        </div>
+      `;
+    }
+
+    function productCard(product){
+      const unlockedProduct = hasAccess(product.id);
+      const statusClass = unlockedProduct ? 'open' : 'preview';
+      const statusText = unlockedProduct ? 'Liberado' : 'Prévia disponível';
+
+      const previewButton = shouldOpenPreviewPopup(product)
+        ? `<button class="btn ghost" onclick="openProductPreviewPopup('${product.id}')"><i class="ti ti-eye"></i> Visualizar</button>`
+        : `<button class="btn ghost" onclick="openPreviewLink(products['${product.id}'])"><i class="ti ti-eye"></i> Visualizar</button>`;
+
+      let actionButton = '';
+
+      if(unlockedProduct){
+        if(isCatalogProduct(product)){
+          actionButton = `<button class="btn green" onclick="openExternal('${product.canvaUrl || '#'}','Canva')"><i class="ti ti-download"></i> Editar no Canva</button>`;
+        } else {
+          actionButton = `<button class="btn green" onclick="openAccess('${product.id}')"><i class="ti ti-lock-open"></i> Acessar</button>`;
+        }
+      } else {
+        actionButton = `<button class="btn gold" onclick="openUnlock('${product.id}')"><i class="ti ti-lock"></i> Liberar</button>`;
+      }
+
+      return `
+        <article class="card">
+          ${renderThumb(product, statusClass, statusText)}
+          <div class="card-body">
+            <h3>${product.title}</h3>
+            <p>${product.desc}</p>
+            <div class="card-actions">${previewButton}${actionButton}</div>
+          </div>
+        </article>
+      `;
+    }
+
+    function productModule(product){
+      if(!product.lessons || !product.lessons.length) return '';
+      const lessons = product.lessons.map(lesson => `<div class="lesson"><i class="ti ti-player-play-filled"></i>${lesson}</div>`).join('');
+      return `
+        <div class="module">
+          <div class="module-top">
+            <div class="module-title"><i class="ti ${product.icon}"></i><span>${product.title}</span></div>
+            <button class="btn green" style="flex:0 0 auto" onclick="openAccess('${product.id}')">Acessar</button>
+          </div>
+          <div class="lesson-list">${lessons}</div>
+        </div>
+      `;
+    }
+
+    function getUnlockedProducts(){
+      return unlocked.map(id => products[id]).filter(Boolean);
+    }
+
+    function shouldShowCompleteUpgrade(){
+      return hasAccess('iphone') && !hasAccess('completo');
+    }
+
+    function completeUpgradeOffer(){
+      return `
+        <div class="upgrade-offer">
+          <div>
+            <div class="tag"><i class="ti ti-crown"></i> Upgrade disponível</div>
+            <h3>Adicione o Catálogo Completo por R$49</h3>
+            <p>Libere também Apple, Xiaomi e Realme.</p>
+          </div>
+          <div class="upgrade-price">
+            <strong>R$49</strong>
+            <button class="btn gold" onclick="openUnlock('completo')"><i class="ti ti-lock"></i> Liberar</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function homeCategoryCard(title, subtitle, icon, sectionId){
+      return `
+        <article class="card">
+          <div class="thumb"><i class="ti ${icon}"></i></div>
+          <div class="card-body">
+            <h3>${title}</h3>
+            <p>${subtitle}</p>
+            <div class="card-actions">
+              <button class="btn ghost" onclick="goTo('${sectionId}')"><i class="ti ti-eye"></i> Visualizar</button>
+              <button class="btn gold" onclick="goTo('${sectionId}')"><i class="ti ti-lock"></i> Liberar</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function render(){
+      const unlockedProducts = getUnlockedProducts();
+      document.getElementById('accessCount').textContent = unlockedProducts.length;
+
+      document.getElementById('homeGrid').innerHTML = [
+        homeCategoryCard('Catálogos','iPhone, Apple, Xiaomi e Realme.','ti-device-mobile','catalogos'),
+        homeCategoryCard('Loja iPhone','Materiais para vender iPhone.','ti-brand-apple','lojaiPhone'),
+        homeCategoryCard('Assistência','Materiais para assistência técnica.','ti-tools','assistencia'),
+        homeCategoryCard('Bônus','Arquivos de apoio para sua loja.','ti-gift','bonus')
+      ].join('');
+
+      document.getElementById('catalogGrid').innerHTML = ['iphone','apple','xiaomi','realme'].map(id => productCard(products[id])).join('');
+      document.getElementById('lojaIphoneGrid').innerHTML = ['termoGarantia','videosIphone','artesIphone'].map(id => productCard(products[id])).join('');
+      document.getElementById('assistenciaGrid').innerHTML = ['documentos','videosAssistencia','artesAssistencia'].map(id => productCard(products[id])).join('');
+      document.getElementById('bonusGrid').innerHTML = ['precificacao','fornecedores'].map(id => productCard(products[id])).join('');
+
+      document.getElementById('myProducts').innerHTML = unlockedProducts.length
+        ? `<div class="grid">${unlockedProducts.map(product => productCard(product)).join('')}</div>
+           ${shouldShowCompleteUpgrade() ? completeUpgradeOffer() : ''}
+           <div class="row-head"><div><div class="sec-title">Aulas dos seus produtos</div><div class="sec-sub">Aulas aparecem somente para catálogos.</div></div></div>
+           ${unlockedProducts.map(productModule).join('')}`
+        : `<div class="empty"><i class="ti ti-shopping-bag"></i><h3>Você ainda não liberou nenhum produto</h3><p>Entre em uma categoria, visualize o material e clique em Liberar.</p></div>`;
+    }
+
+    document.getElementById('modal').addEventListener('click', event => {
+      if(event.target.id === 'modal') closeModal();
+    });
+    document.addEventListener('keydown', event => {
+      if(event.key === 'Escape') closeModal();
+      if(event.key === 'Enter' && document.getElementById('modalCodeArea').classList.contains('show')){
+        redeemCodeFromModal();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', async function(){
+      try{
+        const { data:{ session } } = await sb.auth.getSession();
+
+        if(session?.user){
+          currentUser = session.user;
+          await consultarAcessosAtuais();
+          showApp();
+        } else {
+          showLogin();
+        }
+
+        sb.auth.onAuthStateChange(async function(event, sessionAtual){
+          if(event === 'SIGNED_IN' && sessionAtual?.user){
+            currentUser = sessionAtual.user;
+            await consultarAcessosAtuais();
+            showApp();
+          }
+          if(event === 'SIGNED_OUT'){
+            currentUser = null;
+            unlocked = [];
+            showLogin();
+          }
+        });
+      }catch(err){
+        console.error(err);
+        showLogin();
+      }
+    });
+  </script>
+</body>
+</html>
