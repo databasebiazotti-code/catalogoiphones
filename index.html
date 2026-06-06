@@ -1693,6 +1693,110 @@
       image-rendering:auto;
     }
 
+  
+    /* Suporte WhatsApp no topo + oferta de upgrade do Catálogo Completo */
+    .support-top{
+      background:linear-gradient(135deg,#25d366,#19b957) !important;
+      border-color:rgba(37,211,102,.55) !important;
+      color:#061108 !important;
+      font-weight:900 !important;
+      box-shadow:0 10px 26px rgba(37,211,102,.22);
+    }
+    .support-top i{color:#061108 !important}
+
+    .upgrade-iphone-completo{
+      position:relative;
+      overflow:hidden;
+      margin-top:16px;
+      border:1px solid rgba(255,159,10,.46) !important;
+      background:
+        radial-gradient(circle at 92% 0%,rgba(255,159,10,.28),transparent 36%),
+        radial-gradient(circle at 0% 100%,rgba(0,122,255,.12),transparent 30%),
+        linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02)),
+        var(--panel) !important;
+      box-shadow:0 18px 58px rgba(255,159,10,.13),0 16px 42px rgba(0,0,0,.25);
+    }
+    .upgrade-iphone-completo:before{
+      content:"";
+      position:absolute;
+      right:-70px;
+      bottom:-90px;
+      width:210px;
+      height:210px;
+      border-radius:999px;
+      background:rgba(255,159,10,.13);
+      pointer-events:none;
+    }
+    .upgrade-copy,.upgrade-iphone-completo .upgrade-price{position:relative;z-index:1}
+    .upgrade-tag{
+      color:#ffb45e !important;
+      border-color:rgba(255,159,10,.32) !important;
+      background:rgba(255,159,10,.13) !important;
+      font-weight:900 !important;
+    }
+    .upgrade-iphone-completo h3{
+      font-size:23px !important;
+      line-height:1.08;
+      margin-bottom:8px;
+      letter-spacing:-.75px;
+    }
+    .upgrade-iphone-completo p{
+      color:#d8d8dd !important;
+      max-width:690px;
+    }
+    .upgrade-pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+      margin-top:12px;
+    }
+    .upgrade-pills span{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      background:rgba(255,255,255,.075);
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:999px;
+      padding:7px 10px;
+      color:#fff;
+      font-size:11px;
+      font-weight:850;
+    }
+    .upgrade-pills i{color:#30d158;font-size:14px}
+    .upgrade-iphone-completo .upgrade-price small{
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:800;
+      margin-bottom:2px;
+    }
+    .upgrade-iphone-completo .upgrade-price strong{
+      font-size:34px !important;
+      letter-spacing:-1px;
+      margin-bottom:10px;
+    }
+    .upgrade-cta{
+      width:100%;
+      background:linear-gradient(135deg,#ff9f0a,#ff6a00) !important;
+      color:#090909 !important;
+      border:0 !important;
+      box-shadow:0 14px 34px rgba(255,159,10,.24);
+      font-weight:950 !important;
+    }
+
+    @media(max-width:760px){
+      .support-top span{display:inline !important}
+      .instagram-top span{display:none !important}
+      .top-actions{gap:7px}
+      .upgrade-iphone-completo{
+        grid-template-columns:1fr !important;
+        margin-top:14px;
+      }
+      .upgrade-iphone-completo h3{font-size:20px !important}
+      .upgrade-iphone-completo .upgrade-price{text-align:left}
+      .upgrade-iphone-completo .upgrade-price strong{font-size:31px !important}
+    }
+
   </style>
 </head>
 
@@ -1767,6 +1871,7 @@
         <header class="topbar">
           <div class="page-title" id="pageTitle">Início</div>
           <div class="top-actions">
+            <a class="top-btn support-top" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20eu%20vim%20da%20%C3%A1rea%20de%20membros%20e%20tenho%20d%C3%BAvidas." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i><span>Suporte</span></a>
             <a class="top-btn instagram-top" href="https://www.instagram.com/oluccasiphone" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i><span>Instagram</span></a>
           </div>
         </header>
@@ -1812,6 +1917,7 @@
               </div>
             </div>
             <div class="catalog-access-grid" id="catalogAccessGrid"></div>
+            <div id="catalogUpgradeOffer"></div>
           </section>
 
           <section class="section" id="lojaiPhone">
@@ -2622,15 +2728,21 @@
 
     function completeUpgradeOffer(){
       return `
-        <div class="upgrade-offer">
-          <div>
-            <div class="tag"><i class="ti ti-crown"></i> Upgrade disponível</div>
-            <h3>Adicione o Catálogo Completo por R$49</h3>
-            <p>Libere também Apple, Xiaomi e Realme.</p>
+        <div class="upgrade-offer upgrade-iphone-completo">
+          <div class="upgrade-copy">
+            <div class="tag upgrade-tag"><i class="ti ti-sparkles"></i> Oferta exclusiva</div>
+            <h3>Complete seu catálogo por apenas R$49,00</h3>
+            <p>Você já liberou o Catálogo de iPhones. Adicione também Xiaomi, Realme e Apple para ter uma vitrine mais completa.</p>
+            <div class="upgrade-pills">
+              <span><i class="ti ti-check"></i> Xiaomi</span>
+              <span><i class="ti ti-check"></i> Realme</span>
+              <span><i class="ti ti-check"></i> Apple</span>
+            </div>
           </div>
           <div class="upgrade-price">
-            <strong>R$49</strong>
-            <button class="btn gold" onclick="openUnlock('completo')"><i class="ti ti-lock"></i> Liberar</button>
+            <small>Upgrade por</small>
+            <strong>R$49,00</strong>
+            <button class="btn upgrade-cta" onclick="openUnlock('completo')"><i class="ti ti-lock-open"></i> Fazer upgrade</button>
           </div>
         </div>
       `;
@@ -2665,6 +2777,10 @@
 
       document.getElementById('catalogGrid').innerHTML = ['iphone','apple','xiaomi','realme'].map(id => productCard(products[id])).join('');
       renderCatalogAccess();
+      const catalogUpgrade = document.getElementById('catalogUpgradeOffer');
+      if(catalogUpgrade){
+        catalogUpgrade.innerHTML = shouldShowCompleteUpgrade() ? completeUpgradeOffer() : '';
+      }
       document.getElementById('lojaIphoneGrid').innerHTML = ['termoGarantia','videosIphone','artesIphone'].map(id => productCard(products[id])).join('');
       document.getElementById('assistenciaGrid').innerHTML = ['documentos','videosAssistencia','artesAssistencia'].map(id => productCard(products[id])).join('');
       document.getElementById('bonusGrid').innerHTML = ['precificacao','fornecedores'].map(id => productCard(products[id])).join('');
