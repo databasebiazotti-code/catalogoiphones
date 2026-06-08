@@ -4879,6 +4879,147 @@
       }
     }
 
+
+
+    /* Popup teste gratuito: responsivo desktop + mobile */
+    .free-trial-modal .modal-cover{
+      height:76px !important;
+      background:
+        radial-gradient(circle at 50% -20%, rgba(37,211,102,.34), transparent 58%),
+        rgba(255,255,255,.025) !important;
+    }
+
+    .free-trial-modal .modal-cover::after{
+      content:"";
+      width:46px;
+      height:4px;
+      border-radius:999px;
+      background:rgba(255,255,255,.24);
+    }
+
+    .free-trial-popup{
+      display:grid;
+      gap:14px;
+    }
+
+    .free-trial-badge{
+      width:max-content;
+      display:inline-flex;
+      align-items:center;
+      border-radius:999px;
+      padding:7px 11px;
+      background:rgba(37,211,102,.12);
+      border:1px solid rgba(37,211,102,.34);
+      color:#25d366;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.45px;
+    }
+
+    .free-trial-popup p{
+      margin:0 !important;
+      color:#b0b0b7 !important;
+      font-size:13.5px !important;
+      line-height:1.6 !important;
+    }
+
+    .free-trial-list{
+      display:grid;
+      gap:9px;
+      margin:2px 0 4px;
+    }
+
+    .free-trial-list span{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#f5f5f7;
+      font-size:12.5px;
+      font-weight:750;
+    }
+
+    .free-trial-list span::before{
+      content:"";
+      width:9px;
+      height:9px;
+      border-radius:999px;
+      background:#25d366;
+      box-shadow:0 0 0 4px rgba(37,211,102,.12);
+      flex:0 0 auto;
+    }
+
+    .free-trial-whatsapp-btn{
+      width:100%;
+      min-height:50px !important;
+      background:linear-gradient(135deg,#25d366,#19b957) !important;
+      color:#061108 !important;
+      border:0 !important;
+      box-shadow:0 12px 30px rgba(37,211,102,.22);
+      font-weight:950 !important;
+    }
+
+    .free-trial-whatsapp-btn i{
+      color:#061108 !important;
+    }
+
+    .free-trial-later{
+      width:100%;
+      background:transparent !important;
+      border-color:rgba(255,255,255,.10) !important;
+      color:#a1a1a6 !important;
+    }
+
+    @media(min-width:761px){
+      .free-trial-modal .modal-box{
+        width:min(460px, calc(100vw - 40px)) !important;
+        border-radius:30px !important;
+      }
+
+      .free-trial-modal .modal-content{
+        padding:22px !important;
+      }
+
+      .free-trial-modal .modal-content h3{
+        font-size:23px !important;
+        line-height:1.12 !important;
+      }
+    }
+
+    @media(max-width:760px){
+      .free-trial-modal{
+        align-items:flex-end !important;
+        padding:0 !important;
+      }
+
+      .free-trial-modal .modal-box{
+        width:100% !important;
+        max-width:none !important;
+        border-left:0 !important;
+        border-right:0 !important;
+        border-bottom:0 !important;
+        border-radius:26px 26px 0 0 !important;
+        max-height:92vh !important;
+        overflow:auto !important;
+      }
+
+      .free-trial-modal .modal-content{
+        padding:18px !important;
+        padding-bottom:calc(20px + var(--safe-bottom)) !important;
+      }
+
+      .free-trial-modal .modal-content h3{
+        font-size:21px !important;
+        line-height:1.15 !important;
+      }
+
+      .free-trial-popup p{
+        font-size:13px !important;
+      }
+
+      .free-trial-whatsapp-btn{
+        min-height:48px !important;
+      }
+    }
   </style>
 </head>
 
@@ -5345,6 +5486,117 @@
     let currentUser = null;
     let selectedUnlockProduct = null;
 
+
+    const FREE_TRIAL_POPUP_DELAY = 3 * 60 * 1000; // 3 minutos após o cadastro
+    const FREE_TRIAL_WHATSAPP_URL =
+      'https://wa.me/5511949185861?text=' +
+      encodeURIComponent('Estou no teste gratuito e quero desbloquear, pode me ajudar');
+
+    let freeTrialPopupTimer = null;
+
+    function getFreeTrialCadastroKey(){
+      return currentUser?.id ? `freeTrialCadastroAt:${currentUser.id}` : '';
+    }
+
+    function getFreeTrialPopupKey(){
+      return currentUser?.id ? `freeTrialPopupShown:${currentUser.id}` : '';
+    }
+
+    function rememberCadastroTimeIfNeeded(){
+      const key = getFreeTrialCadastroKey();
+      if(!key) return;
+      if(!localStorage.getItem(key)){
+        localStorage.setItem(key, new Date().toISOString());
+      }
+    }
+
+    function getUserCreatedAtTime(){
+      const fallbackCadastroAt = getFreeTrialCadastroKey()
+        ? localStorage.getItem(getFreeTrialCadastroKey())
+        : '';
+
+      const createdAt =
+        currentUser?.created_at ||
+        currentUser?.createdAt ||
+        currentUser?.user_metadata?.created_at ||
+        fallbackCadastroAt;
+
+      const createdTime = createdAt ? new Date(createdAt).getTime() : Date.now();
+      return Number.isFinite(createdTime) ? createdTime : Date.now();
+    }
+
+    function isFreeTrialWithoutPin(){
+      if(!currentUser?.id) return false;
+
+      // Regra principal: se já existe qualquer PIN/acesso liberado, o popup nunca aparece.
+      if(Array.isArray(unlocked) && unlocked.length > 0) return false;
+
+      return true;
+    }
+
+    function shouldShowFreeTrialPopup(){
+      if(!isFreeTrialWithoutPin()) return false;
+
+      const storageKey = getFreeTrialPopupKey();
+      if(storageKey && localStorage.getItem(storageKey) === '1') return false;
+
+      return true;
+    }
+
+    function cancelFreeTrialPopup(){
+      clearTimeout(freeTrialPopupTimer);
+      freeTrialPopupTimer = null;
+    }
+
+    function scheduleFreeTrialPopup(){
+      cancelFreeTrialPopup();
+
+      if(!shouldShowFreeTrialPopup()) return;
+
+      const createdTime = getUserCreatedAtTime();
+      const targetTime = createdTime + FREE_TRIAL_POPUP_DELAY;
+      const remainingTime = Math.max(targetTime - Date.now(), 0);
+
+      freeTrialPopupTimer = setTimeout(() => {
+        openFreeTrialPopup();
+      }, remainingTime);
+    }
+
+    function openFreeTrialPopup(){
+      if(!shouldShowFreeTrialPopup()) return;
+
+      const storageKey = getFreeTrialPopupKey();
+      if(storageKey) localStorage.setItem(storageKey, '1');
+
+      setModal(
+        'ti-brand-whatsapp',
+        'Desbloqueie todos os recursos',
+        `
+          <div class="free-trial-popup">
+            <span class="free-trial-badge">TESTE GRATUITO</span>
+
+            <p>
+              Você está no teste gratuito. Para liberar todos os recursos da Central do Lojista,
+              fale comigo no WhatsApp e garanta uma condição especial.
+            </p>
+
+            <div class="free-trial-list">
+              <span>Atendimento direto pelo WhatsApp</span>
+              <span>Condição especial para quem está testando</span>
+            </div>
+
+            <button class="btn free-trial-whatsapp-btn" onclick="openExternal('${FREE_TRIAL_WHATSAPP_URL}', 'WhatsApp teste gratuito')">
+              <i class="ti ti-brand-whatsapp"></i>
+              Chamar no WhatsApp
+            </button>
+          </div>
+        `,
+        false
+      );
+
+      document.getElementById('modal')?.classList.add('free-trial-modal');
+    }
+
     function validateEmail(email){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
     function displayName(){ return currentUser?.user_metadata?.name || currentUser?.email?.split('@')[0] || 'Lojista'; }
     function initials(){ return displayName().trim().split(/\s+/).slice(0,2).map(p=>p[0]).join('').toUpperCase() || 'L'; }
@@ -5416,6 +5668,7 @@
         if(loginError) throw loginError;
 
         currentUser = loginData.user;
+        rememberCadastroTimeIfNeeded();
         unlocked = [];
         await consultarAcessosAtuais({ skipLegacy:true });
         showApp();
@@ -5467,6 +5720,7 @@
 
     async function logout(){
       await sb.auth.signOut();
+      cancelFreeTrialPopup();
       currentUser = null;
       unlocked = [];
       showLogin();
@@ -5489,9 +5743,11 @@
       document.getElementById('appPage').classList.add('active');
       updateCustomerUI();
       render();
+      scheduleFreeTrialPopup();
     }
 
     function showLogin(){
+      cancelFreeTrialPopup();
       document.getElementById('appPage').classList.remove('active');
       document.getElementById('loginPage').classList.add('active');
     }
@@ -5555,6 +5811,7 @@
     }
 
     function setModal(icon, title, text, showCode=false, checkoutUrl=''){
+      document.getElementById('modal')?.classList.remove('free-trial-modal');
       document.getElementById('modalIcon').className = `ti ${icon}`;
       document.getElementById('modalTitle').textContent = title;
       document.getElementById('modalText').innerHTML = text;
@@ -5580,6 +5837,7 @@
 
     function closeModal(){
       document.getElementById('modal').classList.remove('show');
+      document.getElementById('modal').classList.remove('free-trial-modal');
       closeVideoModalState();
       closeSuccessModalState();
       document.getElementById('modalCodeArea').classList.remove('show');
@@ -5717,12 +5975,20 @@
 
         await consultarAcessosAtuais();
 
+        if(Array.isArray(unlocked) && unlocked.length > 0){
+          cancelFreeTrialPopup();
+        }
+
         unlockedByPin.forEach(productId => {
           if(productId && !unlocked.includes(productId)) unlocked.push(productId);
         });
 
+        if(Array.isArray(unlocked) && unlocked.length > 0){
+          cancelFreeTrialPopup();
+        }
+
         render();
-return { ok:true, unlocks:unlockedByPin };
+        return { ok:true, unlocks:unlockedByPin };
       }catch(err){
         console.error('Falha inesperada ao liberar PIN:', err);
         showToast(friendlyRedeemError(err));
@@ -6098,6 +6364,7 @@ return { ok:true, unlocks:unlockedByPin };
             showApp();
           }
           if(event === 'SIGNED_OUT'){
+            cancelFreeTrialPopup();
             currentUser = null;
             unlocked = [];
             showLogin();
