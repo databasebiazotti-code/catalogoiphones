@@ -5420,9 +5420,12 @@
         productIcon:'data:image/webp;base64,UklGRlgDAABXRUJQVlA4IEwDAABwFACdASpkAGQAPmEsk0YkIqGhLRWY0IAMCUAanv/WM/bfHl2YA3/3j1EcaB7n/MB+yHrMaZ96AHlw+zfgID6dWURjqspwUWTCraFoE1Ynzx1Ekf/M/qg61wmNAvvIdB9cR69O6a1TybDQX357N3n5TN4AkPs0yAOPD9tbb7mFNijm1Muw9WmLCRiIuYyNL+NgpynktSNaU5XlluxO1iOO69ZXS31IZenPTnkgAP74mVv/7sn/+8Z//3Gf4if/7F5y9ftYVTHUHLQOax1PcmfwAH7UR+bQqbxsXLJRvovwRfV/ManEvlcPgd9giqMIXaAKGFznwLGayIzf1wU8a9Uokn7txaWRi1f5T/Mo+L2oprHjDniYKE0h9TZBzqPBrkvYwn8eMEyN1VB2+GcAipDa45UTAgr5wEt/OkxRrt2mUdn7obW173OXa6XDn8j0CZhoyph3CVOcSYoJh3gOZC2NXwI2Qp8RvsSot20q95/Vtself+iN1m6cfyIP8D/rIyFh3g3j344ZRuQ+DNYI0JjG7OEOIiBXsqqfu7q0FcAeiDy7U3myrmABvoKXs34K05Gq3UuJ/Kgu6EtaiNhlDfxJmAVlmf/1lLFF41CzIm5KCrMyHXm+6m/gk3MVGQTo9mz//f/Jm6SqAG+K9j8f8GPeq9sEXjWsqVqUMR8/lGH6dOcPMYDTPC0jwGoCjQ02Bb+B4OK/wy9Ij46BLjgHHK6yiz3xHTbxYjF0m8JJ9kdtcdTc+maReRrMch/GF+WonC4sUZxLCzs/GwGyOEBx8OMEDvWUV32ZG0rDGgeQ/9ngzdB3iJF6OILmLPZVmCIrMCF4K7T8worre13neVZaIzwdiwr5ImMwyRob1U1EuqkT6dxse/Yg5c9+bLnu28BtQqRlJHHAchQU/x6n7k7QFTcFmGu6z2jOZDaHM5czyecwSSdl78AsZGYz1c/whH4MZH5CKzEx1/kIrJZu4nVHk1KYUu/zUAPrvlf9HkLjCiUfo813t1kX4F7wq5+a/Tovu4dN3dnA1y/2dIliEm4mroHvxYzajC5AP+aHgLd8G+swDItauiMeY6mhrFKboZCPo5x/pZshLwDwiN7v7QwJDYhlgCzBB/k5BwAAAAAA',
         icon:'ti-file-text',
         title:'Ordem de Serviço',
-        desc:'Modelo profissional para registrar serviços, dados do cliente e detalhes do atendimento.',
+        desc:'Modelo gratuito em destaque para registrar serviços, dados do cliente e detalhes do atendimento.',
+        isFree:true,
+        highlight:true,
         previewUrl:'https://canva.link/ycs3se3cw8tu6tw',
-        checkoutUrl:'https://pay.cakto.com.br/h447vsd_466424'
+        canvaUrl:'https://canva.link/ycs3se3cw8tu6tw',
+        checkoutUrl:'https://canva.link/ycs3se3cw8tu6tw'
       },
 
       videosAssistencia: {
@@ -5487,7 +5490,8 @@
     let selectedUnlockProduct = null;
 
 
-    const FREE_TRIAL_POPUP_DELAY = 3 * 60 * 1000; // 3 minutos após o cadastro
+    const FREE_TRIAL_POPUP_INITIAL_DELAY = 5 * 60 * 1000; // 5 minutos após o cadastro
+    const FREE_TRIAL_POPUP_REPEAT_INTERVAL = 60 * 60 * 1000; // reaparece a cada 1 hora
     const FREE_TRIAL_WHATSAPP_URL =
       'https://wa.me/5511949185861?text=' +
       encodeURIComponent('Estou no teste gratuito e quero desbloquear, pode me ajudar');
@@ -5498,8 +5502,8 @@
       return currentUser?.id ? `freeTrialCadastroAt:${currentUser.id}` : '';
     }
 
-    function getFreeTrialPopupKey(){
-      return currentUser?.id ? `freeTrialPopupShown:${currentUser.id}` : '';
+    function getFreeTrialPopupLastShownKey(){
+      return currentUser?.id ? `freeTrialPopupLastShown:${currentUser.id}` : '';
     }
 
     function rememberCadastroTimeIfNeeded(){
@@ -5525,6 +5529,13 @@
       return Number.isFinite(createdTime) ? createdTime : Date.now();
     }
 
+    function getFreeTrialPopupLastShownTime(){
+      const key = getFreeTrialPopupLastShownKey();
+      if(!key) return 0;
+      const value = Number(localStorage.getItem(key) || 0);
+      return Number.isFinite(value) ? value : 0;
+    }
+
     function isFreeTrialWithoutPin(){
       if(!currentUser?.id) return false;
 
@@ -5534,13 +5545,8 @@
       return true;
     }
 
-    function shouldShowFreeTrialPopup(){
-      if(!isFreeTrialWithoutPin()) return false;
-
-      const storageKey = getFreeTrialPopupKey();
-      if(storageKey && localStorage.getItem(storageKey) === '1') return false;
-
-      return true;
+    function shouldScheduleFreeTrialPopup(){
+      return isFreeTrialWithoutPin();
     }
 
     function cancelFreeTrialPopup(){
@@ -5551,10 +5557,14 @@
     function scheduleFreeTrialPopup(){
       cancelFreeTrialPopup();
 
-      if(!shouldShowFreeTrialPopup()) return;
+      if(!shouldScheduleFreeTrialPopup()) return;
 
       const createdTime = getUserCreatedAtTime();
-      const targetTime = createdTime + FREE_TRIAL_POPUP_DELAY;
+      const lastShownTime = getFreeTrialPopupLastShownTime();
+      const targetTime = lastShownTime > 0
+        ? lastShownTime + FREE_TRIAL_POPUP_REPEAT_INTERVAL
+        : createdTime + FREE_TRIAL_POPUP_INITIAL_DELAY;
+
       const remainingTime = Math.max(targetTime - Date.now(), 0);
 
       freeTrialPopupTimer = setTimeout(() => {
@@ -5563,10 +5573,10 @@
     }
 
     function openFreeTrialPopup(){
-      if(!shouldShowFreeTrialPopup()) return;
+      if(!shouldScheduleFreeTrialPopup()) return;
 
-      const storageKey = getFreeTrialPopupKey();
-      if(storageKey) localStorage.setItem(storageKey, '1');
+      const storageKey = getFreeTrialPopupLastShownKey();
+      if(storageKey) localStorage.setItem(storageKey, String(Date.now()));
 
       setModal(
         'ti-brand-whatsapp',
@@ -5601,6 +5611,8 @@
     function displayName(){ return currentUser?.user_metadata?.name || currentUser?.email?.split('@')[0] || 'Lojista'; }
     function initials(){ return displayName().trim().split(/\s+/).slice(0,2).map(p=>p[0]).join('').toUpperCase() || 'L'; }
     function hasAccess(id){ return unlocked.includes(id); }
+    function isFreeProduct(productId){ return !!products?.[productId]?.isFree; }
+    function canOpenProduct(productId){ return isFreeProduct(productId) || hasAccess(productId); }
 
     function showToast(message){
       const t = document.getElementById('toast');
@@ -5836,12 +5848,19 @@
     }
 
     function closeModal(){
-      document.getElementById('modal').classList.remove('show');
-      document.getElementById('modal').classList.remove('free-trial-modal');
+      const modal = document.getElementById('modal');
+      const wasFreeTrialModal = modal.classList.contains('free-trial-modal');
+
+      modal.classList.remove('show');
+      modal.classList.remove('free-trial-modal');
       closeVideoModalState();
       closeSuccessModalState();
       document.getElementById('modalCodeArea').classList.remove('show');
       selectedUnlockProduct = null;
+
+      if(wasFreeTrialModal){
+        scheduleFreeTrialPopup();
+      }
     }
 
     function openUnlock(productId){
@@ -5887,7 +5906,7 @@
     }
 
     function mainProductFromUnlocks(ids){
-      const priority = ['iphone','completo','apple','xiaomi','realme','termoGarantia','videosIphone','artesIphone','documentos','videosAssistencia','artesAssistencia','precificacao','fornecedores'];
+      const priority = ['iphone','completo','apple','xiaomi','realme','termoGarantia','videosIphone','artesIphone','ordemServico','documentos','videosAssistencia','artesAssistencia','precificacao','fornecedores'];
       return priority.find(id => (ids || []).includes(id)) || (ids || [])[0] || selectedUnlockProduct;
     }
 
@@ -6061,19 +6080,25 @@
     }
 
     function productCard(product){
-      const unlockedProduct = hasAccess(product.id);
+      const freeProduct = isFreeProduct(product.id);
+      const unlockedProduct = freeProduct || hasAccess(product.id);
       const statusClass = unlockedProduct ? 'open' : 'preview';
-      const statusText = unlockedProduct ? 'Liberado' : 'Prévia';
+      const statusText = freeProduct ? 'Gratuito' : (unlockedProduct ? 'Liberado' : 'Prévia');
+      const cardClass = product.highlight ? 'card featured-free-card' : 'card';
 
-      const previewButton = isBonusProduct(product.id) && !hasAccess(product.id)
-        ? `<button class="btn ghost" onclick="openUnlock('${product.id}')"><i class="ti ti-lock"></i> Visualizar</button>`
-        : shouldOpenPreviewPopup(product)
-          ? `<button class="btn ghost" onclick="openProductPreviewPopup('${product.id}')"><i class="ti ti-eye"></i> Visualizar</button>`
-          : `<button class="btn ghost" onclick="openPreviewLink(products['${product.id}'])"><i class="ti ti-eye"></i> Visualizar</button>`;
+      const previewButton = freeProduct
+        ? `<button class="btn ghost" onclick="openPreviewLink(products['${product.id}'])"><i class="ti ti-eye"></i> Visualizar</button>`
+        : isBonusProduct(product.id) && !hasAccess(product.id)
+          ? `<button class="btn ghost" onclick="openUnlock('${product.id}')"><i class="ti ti-lock"></i> Visualizar</button>`
+          : shouldOpenPreviewPopup(product)
+            ? `<button class="btn ghost" onclick="openProductPreviewPopup('${product.id}')"><i class="ti ti-eye"></i> Visualizar</button>`
+            : `<button class="btn ghost" onclick="openPreviewLink(products['${product.id}'])"><i class="ti ti-eye"></i> Visualizar</button>`;
 
       let actionButton = '';
 
-      if(unlockedProduct){
+      if(freeProduct){
+        actionButton = `<button class="btn green" onclick="openExternal('${product.canvaUrl || product.previewUrl || '#'}','Editar Ordem de Serviço')"><i class="ti ti-edit"></i> Editar no Canva</button>`;
+      } else if(unlockedProduct){
         if(isCatalogProduct(product)){
           actionButton = `<button class="btn green" onclick="openExternal('${product.canvaUrl || '#'}','Canva')"><i class="ti ti-download"></i> Editar no Canva</button>`;
         } else if(['precificacao','fornecedores'].includes(product.id)){
@@ -6086,7 +6111,7 @@
       }
 
       return `
-        <article class="card">
+        <article class="${cardClass}">
           ${renderThumb(product, statusClass, statusText)}
           <div class="card-body">
             <h3>${product.title}</h3>
@@ -6331,7 +6356,7 @@
       const catalogUpgrade = document.getElementById('catalogUpgradeOffer');
       if(catalogUpgrade){ catalogUpgrade.innerHTML = ''; }
       document.getElementById('lojaIphoneGrid').innerHTML = ['termoGarantia','videosIphone','artesIphone'].map(id => productCard(products[id])).join('');
-      document.getElementById('assistenciaGrid').innerHTML = ['documentos','ordemServico','videosAssistencia','artesAssistencia'].map(id => productCard(products[id])).join('');
+      document.getElementById('assistenciaGrid').innerHTML = ['ordemServico','documentos','videosAssistencia','artesAssistencia'].map(id => productCard(products[id])).join('');
       document.getElementById('bonusGrid').innerHTML = ['precificacao','fornecedores'].map(id => productCard(products[id])).join('');
     }
 
