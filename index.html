@@ -5020,7 +5020,25 @@
         min-height:48px !important;
       }
     }
-  </style>
+  
+
+    /* Destaque das aulas e liberação do suporte apenas após PIN */
+    .catalog-access-product-card.open{
+      border-color:rgba(10,132,255,.34) !important;
+      box-shadow:0 16px 48px rgba(10,132,255,.12),0 14px 42px rgba(0,0,0,.22) !important;
+    }
+
+    .catalog-access-product-card.open:first-child{
+      background:
+        radial-gradient(circle at 92% 0%,rgba(10,132,255,.22),transparent 36%),
+        linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.022)),
+        var(--panel) !important;
+    }
+
+    .catalog-access-product-card.open:first-child .status::after{
+      content:" • Assista agora";
+    }
+</style>
 </head>
 
 <body>
@@ -5175,7 +5193,7 @@
             <div class="row-head catalog-access-head">
               <div>
                 <div class="sec-title">Acesso do catálogo</div>
-                <div class="sec-sub">Libere um catálogo para assistir às aulas e entrar no grupo VIP.</div>
+                <div class="sec-sub">Desbloqueie seu catálogo com o PIN para assistir às aulas, editar corretamente e entrar no grupo VIP do WhatsApp.</div>
               </div>
             </div>
             <div class="catalog-access-grid" id="catalogAccessGrid"></div>
@@ -6233,10 +6251,10 @@
       const isLessons = type === 'lessons';
 
       const icon = isLessons ? 'ti-player-play' : 'ti-brand-whatsapp';
-      const title = isLessons ? 'Vídeo aulas' : 'Grupo VIP WhatsApp';
+      const title = isLessons ? 'Vídeo aulas: como editar' : 'Entrar no grupo VIP WhatsApp';
       const desc = isLessons
-        ? (unlockedCatalog ? 'Assista às aulas dentro da plataforma.' : 'Liberado depois que o catálogo estiver ativo.')
-        : (unlockedCatalog ? 'Acesse o grupo exclusivo dos alunos.' : 'Disponível após desbloquear um catálogo.');
+        ? (unlockedCatalog ? 'Assista aos tutoriais e aprenda a editar seu catálogo passo a passo.' : 'Desbloqueie um catálogo com PIN para assistir aos tutoriais de edição.')
+        : (unlockedCatalog ? 'Entre no grupo VIP para receber avisos, suporte e novidades.' : 'Desbloqueie um catálogo com PIN para entrar no grupo VIP.');
       const action = isLessons ? 'openCatalogLessons()' : 'openCatalogVipGroup()';
 
       return `
@@ -6250,7 +6268,7 @@
             <p>${desc}</p>
             <div class="card-actions">
               <button class="btn ${unlockedCatalog ? (isLessons ? 'green' : 'whatsapp-btn') : 'gold'}" onclick="${unlockedCatalog ? action : "openUnlock('iphone')"}">
-                <i class="ti ${unlockedCatalog ? icon : 'ti-lock'}"></i> ${unlockedCatalog ? (isLessons ? 'Assistir aulas' : 'Entrar no grupo') : 'Liberar'}
+                <i class="ti ${unlockedCatalog ? icon : 'ti-lock'}"></i> ${unlockedCatalog ? (isLessons ? 'Assistir tutoriais' : 'Entrar no grupo VIP') : 'Liberar com PIN'}
               </button>
             </div>
           </div>
@@ -6323,10 +6341,10 @@
           <div class="catalog-setup-icon"><i class="ti ti-brand-whatsapp"></i></div>
           <div class="catalog-setup-content">
             <span>Precisa de ajuda?</span>
-            <h3>Dificuldades para configurar?</h3>
-            <p>Criamos o catálogo para você. Fale comigo no WhatsApp e receba ajuda para deixar tudo pronto.</p>
+            <h3>Dificuldade para configurar?</h3>
+            <p>Oferecemos o serviço de configuração e entregamos o catálogo pronto para você. Fale comigo no WhatsApp e receba ajuda para deixar tudo pronto.</p>
           </div>
-          <button class="btn catalog-setup-btn" onclick="openExternal('https://wa.me/5511949185861?text=Ol%C3%A1%2C%20eu%20vim%20da%20%C3%A1rea%20de%20membros%20e%20tenho%20dificuldades%20para%20configurar%20o%20cat%C3%A1logo.%20Quero%20que%20voc%C3%AAs%20criem%20o%20cat%C3%A1logo%20para%20mim.','Ajuda para configurar catálogo')">
+          <button class="btn catalog-setup-btn" onclick="openExternal('https://wa.me/5511949185861?text=Ol%C3%A1%2C%20eu%20vim%20da%20%C3%A1rea%20de%20membros%20e%20tenho%20dificuldade%20para%20configurar%20o%20cat%C3%A1logo.%20Quero%20contratar%20o%20servi%C3%A7o%20para%20receber%20o%20cat%C3%A1logo%20pronto.','Ajuda para configurar catálogo')">
             <i class="ti ti-brand-whatsapp"></i> Falar no WhatsApp
           </button>
         </div>
@@ -6348,7 +6366,7 @@
 
       const catalogSetupHelp = document.getElementById('catalogSetupHelp');
       if(catalogSetupHelp){
-        catalogSetupHelp.innerHTML = catalogSetupHelpCard();
+        catalogSetupHelp.innerHTML = hasAnyCatalogAccess() ? catalogSetupHelpCard() : '';
       }
 
       document.getElementById('catalogGrid').innerHTML = ['iphone','apple','xiaomi','realme'].map(id => productCard(products[id])).join('');
