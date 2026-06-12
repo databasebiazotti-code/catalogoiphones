@@ -6390,6 +6390,88 @@
   .login-landing-intro p{font-size:14px !important;}
 }
 
+
+
+/* Revisão final solicitada: textos curtos, bônus com 1 botão e home mobile sem sobreposição */
+.card-actions.one-action{
+  grid-template-columns:1fr !important;
+}
+.btn.locked-visualize,
+.btn:disabled{
+  opacity:.52 !important;
+  cursor:not-allowed !important;
+  transform:none !important;
+  box-shadow:none !important;
+}
+.btn.locked-visualize:hover,
+.btn:disabled:hover{
+  transform:none !important;
+  filter:none !important;
+}
+@media(max-width:760px){
+  .home-mobile-clean{
+    gap:10px !important;
+    padding-bottom:calc(108px + var(--safe-bottom)) !important;
+  }
+  .home-community-hero{
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+  }
+  .home-community-art{
+    display:none !important;
+  }
+  .home-whatsapp-cta,
+  .home-update-btn,
+  .home-code-action .btn,
+  .home-material-card{
+    width:100% !important;
+  }
+  .home-materials-grid{
+    grid-template-columns:1fr !important;
+  }
+  .home-material-card{
+    min-height:auto !important;
+    padding:14px 48px 14px 14px !important;
+  }
+  .home-card-arrow{
+    right:12px !important;
+    top:50% !important;
+    bottom:auto !important;
+    transform:translateY(-50%) !important;
+  }
+  .home-update-card{
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+  }
+  .home-update-badge{
+    position:static !important;
+    width:max-content !important;
+  }
+  .home-update-icon{
+    display:none !important;
+  }
+  .home-unlock-top{
+    align-items:flex-start !important;
+  }
+  .quick-code-row.home-code-action{
+    grid-template-columns:1fr !important;
+  }
+  .mobile-nav{
+    z-index:85 !important;
+  }
+}
+@media(max-width:390px){
+  .home-greeting-card h1{
+    font-size:22px !important;
+    line-height:1.12 !important;
+  }
+  .home-community-copy h2{
+    font-size:18px !important;
+  }
+  .home-section-title h3{
+    font-size:18px !important;
+  }
+}
 </style>
 </head>
 
@@ -6487,8 +6569,8 @@
               <section class="home-community-hero">
                 <div class="home-community-copy">
                   <span class="home-community-tag">WhatsApp</span>
-                  <h2>Grupo gratuito de lojistas</h2>
-                  <p>Receba novidades, dicas rápidas e avisos importantes da Central do Lojista.</p>
+                  <h2>Grupo gratuito para lojistas</h2>
+                  <p>Receba avisos, novidades e dicas rápidas em um só lugar.</p>
                   <button class="home-whatsapp-cta" type="button" onclick="openExternal(FREE_LOJISTAS_GROUP_URL,'Grupo gratuito de lojistas')">
                     <i class="ti ti-brand-whatsapp"></i> Entrar no grupo
                   </button>
@@ -6500,20 +6582,20 @@
 
               <section class="home-materials-card">
                 <div class="home-section-title">
-                  <h3>Acesse seus materiais</h3>
-                  <p>Tudo que você precisa para vender mais e atender melhor.</p>
+                  <h3>Escolha o que deseja acessar</h3>
+                  <p>Toque em uma área para ver seus materiais.</p>
                 </div>
                 <div class="home-materials-grid">
                   <button class="home-material-card catalog" type="button" onclick="goTo('catalogos')">
                     <span><i class="ti ti-layout-grid"></i></span>
                     <strong>Catálogos</strong>
-                    <small>Modelos editáveis, Canva, materiais para loja e fornecedores.</small>
+                    <small>Catálogos editáveis, Canva e materiais para vender mais.</small>
                     <i class="ti ti-arrow-right home-card-arrow"></i>
                   </button>
                   <button class="home-material-card assist" type="button" onclick="goTo('assistencia')">
                     <span><i class="ti ti-tool"></i></span>
-                    <strong>Assistência Técnica</strong>
-                    <small>Packs, documentos, listas de películas e ferramentas para assistência.</small>
+                    <strong>Assistência</strong>
+                    <small>Artes, documentos, vídeos e lista de películas.</small>
                     <i class="ti ti-arrow-right home-card-arrow"></i>
                   </button>
                 </div>
@@ -6523,19 +6605,19 @@
                 <div class="home-update-badge">Novo</div>
                 <div class="home-update-icon"><i class="ti ti-device-mobile-check"></i></div>
                 <div class="home-update-copy">
-                  <span>Última atualização</span>
-                  <h3>Tabela de Compatibilidade de Películas</h3>
-                  <p>Consulte rapidamente quais modelos usam a mesma película e agilize seu atendimento.</p>
+                  <span>Atualização recente</span>
+                  <h3>Compatibilidade de Películas</h3>
+                  <p>Veja quais modelos usam a mesma película e atenda mais rápido.</p>
                 </div>
-                <button class="home-update-btn" type="button" onclick="goTo('bonus')">Ver atualização <i class="ti ti-chevron-right"></i></button>
+                <button class="home-update-btn" type="button" onclick="goTo('bonus')">Ver lista <i class="ti ti-chevron-right"></i></button>
               </section>
 
               <section class="home-unlock-card home-unlock-compact">
                 <div class="home-unlock-top">
                   <span class="home-code-icon"><i class="ti ti-key"></i></span>
                   <div>
-                    <h3>Liberar materiais</h3>
-                    <p>Digite seu PIN para ativar os conteúdos disponíveis na sua conta.</p>
+                    <h3>Liberar acesso</h3>
+                    <p>Use seu PIN para desbloquear os materiais da sua compra.</p>
                   </div>
                 </div>
                 <div class="quick-code-row home-code-action">
@@ -6555,7 +6637,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Catálogos</div>
-                <div class="sec-sub">Acesse seus catálogos. Caso ainda estejam bloqueados, use seu PIN para liberar.</div>
+                <div class="sec-sub">Veja seus catálogos. Se algo estiver bloqueado, libere com seu PIN.</div>
               </div>
             </div>
             <div class="grid" id="catalogGrid"></div>
@@ -6563,7 +6645,7 @@
             <div class="row-head catalog-access-head">
               <div>
                 <div class="sec-title">Acesso do catálogo</div>
-                <div class="sec-sub">Após liberar o catálogo, você terá acesso ao tutorial, grupo VIP e bônus.</div>
+                <div class="sec-sub">Depois do PIN, você acessa tutorial, grupo VIP e bônus.</div>
               </div>
             </div>
             <div class="catalog-access-grid" id="catalogAccessGrid"></div>
@@ -6574,7 +6656,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Lojas de iPhones</div>
-                <div class="sec-sub">Materiais prontos para quem vende iPhones.</div>
+                <div class="sec-sub">Materiais prontos para vender iPhones.</div>
               </div>
             </div>
             <div class="grid" id="lojaIphoneGrid"></div>
@@ -6584,7 +6666,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Assistência Técnica</div>
-                <div class="sec-sub">Documentos, vídeos e artes para usar na assistência técnica.</div>
+                <div class="sec-sub">Artes, vídeos e documentos para assistência técnica.</div>
               </div>
             </div>
             <div class="grid" id="assistenciaGrid"></div>
@@ -6594,7 +6676,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Películas 3D</div>
-                <div class="sec-sub">Pesquise um modelo e veja quais aparelhos usam a mesma película.</div>
+                <div class="sec-sub">Pesquise o modelo e veja películas compatíveis.</div>
               </div>
             </div>
             <div class="grid" id="bonusGrid"></div>
@@ -6611,27 +6693,27 @@
               <article class="support-card">
                 <div class="support-icon"><i class="ti ti-key"></i></div>
                 <h3>Como liberar seu acesso</h3>
-                <p>Digite o PIN recebido após a compra. Depois disso, seus materiais aparecem liberados automaticamente.</p>
+                <p>Digite o PIN da compra. O acesso é liberado automaticamente.</p>
                 <button class="btn gold" onclick="goTo('catalogos')"><i class="ti ti-lock-open"></i> Liberar catálogo</button>
               </article>
 
               <article class="support-card">
                 <div class="support-icon"><i class="ti ti-device-mobile"></i></div>
                 <h3>Onde encontro meus materiais?</h3>
-                <p>Entre na categoria do produto comprado. Se o acesso estiver liberado, os botões de visualizar, baixar ou editar aparecerão no card.</p>
+                <p>Entre na categoria do produto comprado. Quando estiver liberado, o botão de acesso aparece no card.</p>
                 <button class="btn ghost" onclick="goTo('inicio')"><i class="ti ti-layout-grid"></i> Ver áreas</button>
               </article>
 
               <article class="support-card support-card-whatsapp">
                 <div class="support-icon whatsapp"><i class="ti ti-brand-whatsapp"></i></div>
                 <h3>Falar no WhatsApp</h3>
-                <p>Se o PIN não funcionar ou algum material não abrir, fale no WhatsApp e informe o e-mail usado na compra.</p>
+                <p>Se o PIN não funcionar ou algum material não abrir, chame no WhatsApp e informe o e-mail da compra.</p>
                 <a class="btn whatsapp-btn" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20na%20%C3%A1rea%20de%20membros." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Chamar no WhatsApp</a>
               </article>
             </div>
 
             <div class="support-note">
-              <strong>Dica:</strong> use o mesmo e-mail da compra para evitar erro na liberação do acesso.
+              <strong>Dica:</strong> use o mesmo e-mail da compra para liberar sem erro.
             </div>
           </section>
         </div>
@@ -6930,8 +7012,8 @@
         title:'Planilha de Precificação',
         category:'bonus',
         icon:'ti-table',
-        desc:'Organize custo, margem e preço de venda.',
-        previewDescription:'Planilha para organizar custo, margem e preço de venda dos aparelhos.',
+        desc:'Calcule custo, margem e preço de venda.',
+        previewDescription:'Planilha para calcular custo, margem e preço de venda.',
         downloadUrl:'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=sharing',
         downloadLabel:'Baixar',
         lessons:[]
@@ -6943,8 +7025,8 @@
         title:'Lista de Fornecedores',
         category:'bonus',
         icon:'ti-building-store',
-        desc:'Lista de contatos para buscar melhores compras.',
-        previewDescription:'Lista de fornecedores para ajudar você a organizar contatos e compras.',
+        desc:'Contatos para comparar preços e comprar melhor.',
+        previewDescription:'Lista para organizar fornecedores e comparar compras.',
         downloadUrl:'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=sharing',
         downloadLabel:'Baixar',
         lessons:[]
@@ -7615,6 +7697,26 @@
         }
       } else {
         actionButton = `<button class="btn gold" onclick="openUnlock('${product.id}')"><i class="ti ti-lock"></i> Liberar</button>`;
+      }
+
+      if(isBonusProduct(product.id)){
+        const bonusUnlocked = hasAccess(product.id);
+        const bonusStatusClass = bonusUnlocked ? 'open' : 'preview';
+        const bonusStatusText = bonusUnlocked ? 'Liberado' : 'Bloqueado';
+        const bonusButton = bonusUnlocked
+          ? `<button class="btn green" onclick="openDownloadFile('${product.id}')"><i class="ti ti-eye"></i> Visualizar</button>`
+          : `<button class="btn ghost locked-visualize" type="button" disabled title="Libere o PIN do catálogo para visualizar."><i class="ti ti-lock"></i> Visualizar</button>`;
+
+        return `
+          <article class="${cardClass}">
+            ${renderThumb(product, bonusStatusClass, bonusStatusText)}
+            <div class="card-body">
+              <h3>${product.title}</h3>
+              <p>${product.desc}</p>
+              <div class="card-actions one-action">${bonusButton}</div>
+            </div>
+          </article>
+        `;
       }
 
       return `
