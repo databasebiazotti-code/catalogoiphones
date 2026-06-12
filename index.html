@@ -6589,13 +6589,13 @@
                   <button class="home-material-card catalog" type="button" onclick="goTo('catalogos')">
                     <span><i class="ti ti-layout-grid"></i></span>
                     <strong>Catálogos</strong>
-                    <small>Catálogos editáveis, Canva e materiais para vender mais.</small>
+                    <small>Catálogos editáveis no Canva para divulgar seus iPhones e vender mais.</small>
                     <i class="ti ti-arrow-right home-card-arrow"></i>
                   </button>
                   <button class="home-material-card assist" type="button" onclick="goTo('assistencia')">
                     <span><i class="ti ti-tool"></i></span>
                     <strong>Assistência</strong>
-                    <small>Artes, documentos, vídeos e lista de películas.</small>
+                    <small>Ordens de serviço, contratos e documentos prontos para sua assistência técnica.</small>
                     <i class="ti ti-arrow-right home-card-arrow"></i>
                   </button>
                 </div>
@@ -6605,9 +6605,9 @@
                 <div class="home-update-badge">Novo</div>
                 <div class="home-update-icon"><i class="ti ti-device-mobile-check"></i></div>
                 <div class="home-update-copy">
-                  <span>Atualização recente</span>
+                  <span>Atualização Recente</span>
                   <h3>Compatibilidade de Películas</h3>
-                  <p>Veja quais modelos usam a mesma película e atenda mais rápido.</p>
+                  <p>Descubra modelos compatíveis de películas 3D e agilize seu atendimento e venda mais.</p>
                 </div>
                 <button class="home-update-btn" type="button" onclick="goTo('bonus')">Ver lista <i class="ti ti-chevron-right"></i></button>
               </section>
@@ -6617,7 +6617,7 @@
                   <span class="home-code-icon"><i class="ti ti-key"></i></span>
                   <div>
                     <h3>Liberar acesso</h3>
-                    <p>Use seu PIN para desbloquear os materiais da sua compra.</p>
+                    <p>Desbloqueie seus materiais utilizando seu PIN.</p>
                   </div>
                 </div>
                 <div class="quick-code-row home-code-action">
@@ -6637,7 +6637,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Catálogos</div>
-                <div class="sec-sub">Veja seus catálogos. Se algo estiver bloqueado, libere com seu PIN.</div>
+                <div class="sec-sub">Acesse seus catálogos. Para editar uma versão bloqueada, informe seu PIN.</div>
               </div>
             </div>
             <div class="grid" id="catalogGrid"></div>
@@ -6645,7 +6645,7 @@
             <div class="row-head catalog-access-head">
               <div>
                 <div class="sec-title">Acesso do catálogo</div>
-                <div class="sec-sub">Depois do PIN, você acessa tutorial, grupo VIP e bônus.</div>
+                <div class="sec-sub">Depois do PIN, você acessa tutorial, Grupo VIP e bônus.</div>
               </div>
             </div>
             <div class="catalog-access-grid" id="catalogAccessGrid"></div>
@@ -6924,7 +6924,7 @@
         title:'Termo de Garantia',
         category:'lojaiPhone',
         icon:'ti-shield-check',
-        desc:'Documento pronto para vender com mais segurança.',
+        desc:'Modelo pronto de termo de garantia para vendas de iPhone.',
         previewDescription:'Termo de garantia para vender iPhones com mais segurança e evitar problemas.',
         previewUrl:'https://canva.link/vr004ry60pgxf6j',
         checkoutUrl:'https://pay.cakto.com.br/37hx97u_466558',
@@ -6961,7 +6961,7 @@
         title:'Pack de Documentos',
         category:'assistencia',
         icon:'ti-files',
-        desc:'Contratos e termos prontos para usar.',
+        desc:'Pack com 6 documentos essenciais para organizar e proteger sua assistência técnica.',
         previewDescription:'Pack com ordem de serviço, termo de garantia, contrato troca vidro, contrato tampa iPhone e contrato de compra/venda de celular usado.',
         previewUrl:'https://canva.link/myi26sxb1arffjj',
         checkoutUrl:'https://pay.cakto.com.br/7hnxsot_466448',
@@ -7843,8 +7843,8 @@
       const icon = isLessons ? 'ti-player-play' : 'ti-brand-whatsapp';
       const title = isLessons ? 'Tutorial de edição' : 'Grupo VIP no WhatsApp';
       const desc = isLessons
-        ? (unlockedCatalog ? 'Assista ao tutorial e aprenda a editar seu catálogo no Canva.' : 'Libere um catálogo com seu PIN para assistir ao tutorial.')
-        : (unlockedCatalog ? 'Entre no grupo VIP para receber avisos, novidades e orientações.' : 'Libere um catálogo com seu PIN para entrar no grupo VIP.');
+        ? (unlockedCatalog ? 'Assista ao tutorial e aprenda a editar seu catálogo no Canva.' : 'Assista aos tutoriais e aprenda como editar seu catálogo.')
+        : (unlockedCatalog ? 'Entre no grupo VIP para receber avisos, novidades e orientações.' : 'Entre em nosso grupo no WhatsApp e receba atualizações exclusivas.');
       const action = isLessons ? 'openCatalogLessons()' : 'openCatalogVipGroup()';
 
       return `
