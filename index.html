@@ -5811,6 +5811,48 @@
 
 
 
+/* Ajuste solicitado: três botões principais na tela de login, com cadastro gratuito em destaque */
+.login-action-stack{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+.login-action-stack .login-primary-action{
+  min-height:56px !important;
+  border-radius:17px !important;
+  font-size:15.5px !important;
+  font-weight:950 !important;
+  background:linear-gradient(135deg,#0a84ff,#006edb) !important;
+  color:#fff !important;
+  box-shadow:0 16px 38px rgba(10,132,255,.25) !important;
+}
+.login-action-stack .login-google-action{
+  min-height:50px !important;
+}
+.login-access-action{
+  width:100%;
+  min-height:50px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.065);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size:14px;
+  font-weight:850;
+}
+.login-access-action:hover{
+  background:rgba(255,255,255,.095);
+}
+@media(max-width:420px){
+  .login-action-stack{gap:9px;}
+  .login-action-stack .login-primary-action{min-height:54px !important;}
+  .login-access-action{min-height:48px;}
+}
+
+
 /* Lista de Fornecedores - Shopping Mundo Oriental */
 .suppliers-hero{
   background:radial-gradient(circle at 88% 0%,rgba(48,209,88,.18),transparent 36%),linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.02)),var(--panel);
@@ -5848,7 +5890,118 @@
       .supplier-note{font-size:11.5px !important;border-radius:18px !important;}
     }
 
-  </style>
+  
+    /* Popup de recuperação de senha */
+    .password-modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:rgba(0,0,0,.72);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+    }
+    .password-modal.show{display:flex}
+    .password-modal-box{
+      width:100%;
+      max-width:390px;
+      background:#111114;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      padding:20px;
+      box-shadow:0 24px 80px rgba(0,0,0,.48);
+    }
+    .password-modal-box h3{
+      font-size:20px;
+      line-height:1.15;
+      letter-spacing:-.45px;
+      margin-bottom:8px;
+      color:#fff;
+    }
+    .password-modal-box p{
+      color:#a1a1a6;
+      font-size:13px;
+      line-height:1.45;
+      margin-bottom:14px;
+    }
+    .password-modal-actions{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:9px;
+      margin-top:10px;
+    }
+    .password-close-btn{
+      background:transparent!important;
+      border:1px solid rgba(255,255,255,.12)!important;
+      color:#a1a1a6!important;
+      box-shadow:none!important;
+    }
+    .forgot-password-row{
+      text-align:center;
+      margin-top:10px;
+    }
+    .forgot-password-row button{
+      border:0;
+      background:transparent;
+      color:#fff;
+      font-weight:800;
+      text-decoration:underline;
+      font-size:13px;
+      padding:6px;
+    }
+    @media(max-width:760px){
+      .password-modal{
+        align-items:flex-end;
+        padding:0;
+      }
+      .password-modal-box{
+        max-width:none;
+        border-radius:24px 24px 0 0;
+        border-left:0;
+        border-right:0;
+        border-bottom:0;
+        padding:18px;
+        padding-bottom:calc(18px + var(--safe-bottom));
+      }
+    }
+
+  
+
+/* Ajuste final solicitado: cadastro azul em destaque, Google secundário e login menor */
+.login-action-stack .login-primary-action{
+  background:linear-gradient(135deg,#0a84ff,#006edb) !important;
+  color:#fff !important;
+  box-shadow:0 16px 38px rgba(10,132,255,.25) !important;
+}
+.login-action-stack .login-google-action{
+  background:rgba(255,255,255,.06) !important;
+  color:#fff !important;
+  border:1px solid rgba(255,255,255,.13) !important;
+  box-shadow:none !important;
+}
+.login-access-action{
+  min-height:38px !important;
+  border:0 !important;
+  background:transparent !important;
+  color:#8e8e93 !important;
+  font-size:12px !important;
+  font-weight:700 !important;
+  text-decoration:underline;
+  box-shadow:none !important;
+  margin-top:2px;
+}
+.login-access-action:hover{
+  color:#fff !important;
+  background:transparent !important;
+}
+@media(max-width:420px){
+  .login-access-action{min-height:36px !important;font-size:12px !important;}
+}
+
+</style>
 
 <style>
 .nav-item.active,
@@ -6511,6 +6664,38 @@
     font-size:18px !important;
   }
 }
+
+
+/* Ajuste finalíssimo: prioridade visual da tela de login */
+.login-action-stack .login-primary-action{
+  background:linear-gradient(135deg,#0a84ff,#006edb) !important;
+  color:#fff !important;
+  box-shadow:0 16px 38px rgba(10,132,255,.25) !important;
+}
+.login-action-stack .login-google-action{
+  background:rgba(255,255,255,.06) !important;
+  color:#fff !important;
+  border:1px solid rgba(255,255,255,.13) !important;
+  box-shadow:none !important;
+}
+.login-access-action{
+  min-height:38px !important;
+  border:0 !important;
+  background:transparent !important;
+  color:#8e8e93 !important;
+  font-size:12px !important;
+  font-weight:700 !important;
+  text-decoration:underline;
+  box-shadow:none !important;
+  margin-top:2px !important;
+}
+.login-access-action:hover{
+  color:#fff !important;
+  background:transparent !important;
+}
+@media(max-width:420px){
+  .login-access-action{min-height:36px !important;font-size:12px !important;}
+}
 </style>
 </head>
 
@@ -6526,14 +6711,20 @@
         <p>Catálogos, materiais e conteúdos<br>para lojistas e assistências técnicas.</p>
       </div>
 
-      <button class="login-btn login-primary-action" type="button" onclick="openSignupForm()">Criar acesso gratuito</button>
+      <div class="login-action-stack" aria-label="Opções de acesso">
+        <button class="login-btn login-primary-action" type="button" onclick="openSignupForm()">
+          Criar cadastro gratuito
+        </button>
 
-      <div class="login-or-google login-landing-divider">ou</div>
+        <button id="googleLoginBtn" class="google-login-btn google-login-primary google-login-secondary login-google-action" type="button">
+          <span class="google-mark">G</span>
+          Continuar com Google
+        </button>
 
-      <button id="googleLoginBtn" class="google-login-btn google-login-primary google-login-secondary login-google-action" type="button">
-        <span class="google-mark">G</span>
-        Continuar com Google
-      </button>
+        <button class="login-access-action" type="button" onclick="openLoginForm()">
+          Fazer login
+        </button>
+      </div>
 
       <div id="signupForm" class="signup-priority-form login-extra-form" style="display:none">
         <div class="login-error" id="signupError"></div>
@@ -6541,7 +6732,7 @@
         <div class="field"><label>E-mail</label><input id="signupEmail" type="email" placeholder="seu@email.com" autocomplete="email" /></div>
         <div class="field"><label>Criar senha</label><input id="signupPassword" type="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password" /></div>
         <button class="login-btn" onclick="createAccount()"><i class="ti ti-arrow-right"></i> Criar cadastro gratuito</button>
-        <div class="login-toggle login-toggle-card">Já tem cadastro? <button onclick="toggleLogin()">Entrar com e-mail e senha</button></div>
+        <div class="login-toggle login-toggle-card">Já tem cadastro? <button onclick="openLoginForm()">Entrar com e-mail e senha</button></div>
       </div>
 
       <div id="loginForm" class="login-extra-form" style="display:none">
@@ -6550,7 +6741,29 @@
         <div class="field"><label>E-mail</label><input id="loginEmail" type="email" placeholder="seu@email.com" autocomplete="email" /></div>
         <div class="field"><label>Senha</label><input id="loginPassword" type="password" placeholder="Digite sua senha" autocomplete="current-password" /></div>
         <button class="login-btn" onclick="loginAccount()"><i class="ti ti-login-2"></i> Entrar</button>
-        <div class="login-toggle login-toggle-card">Ainda não tem acesso? <button onclick="toggleLogin()">Criar cadastro gratuito</button></div>
+        <div class="forgot-password-row">
+          <button type="button" onclick="openPasswordPopup()">Esqueci a senha</button>
+        </div>
+        <div class="login-toggle login-toggle-card">Ainda não tem acesso? <button onclick="openSignupForm()">Criar cadastro gratuito</button></div>
+      </div>
+    </div>
+
+    <div class="password-modal" id="passwordModal" aria-hidden="true">
+      <div class="password-modal-box" role="dialog" aria-modal="true" aria-labelledby="passwordModalTitle">
+        <h3 id="passwordModalTitle">Recuperar senha</h3>
+        <p>Digite seu e-mail cadastrado. Você receberá um link para criar uma nova senha.</p>
+
+        <div class="login-error" id="passwordResetError"></div>
+
+        <div class="field">
+          <label>E-mail</label>
+          <input id="passwordResetEmail" type="email" placeholder="seu@email.com" autocomplete="email" />
+        </div>
+
+        <div class="password-modal-actions">
+          <button class="login-btn" type="button" onclick="sendPasswordReset()">Enviar link de recuperação</button>
+          <button class="login-btn password-close-btn" type="button" onclick="closePasswordPopup()">Cancelar</button>
+        </div>
       </div>
     </div>
   </section>
@@ -6705,16 +6918,16 @@
 
           <section class="section" id="fornecedores">
             <div class="suppliers-hero">
-              <span>Junho 2026</span>
+              <span>Lista 2026</span>
               <h1>Fornecedores de iPhone — Shopping Mundo Oriental</h1>
-              <p>Lista de contatos atualizada para você clicar e falar com as lojas facilmente.</p>
+              <p>Contatos organizados no visual da Central do Lojista, com busca rápida e botões diretos para chamar no WhatsApp.</p>
             </div>
             <div class="supplier-tools">
               <input class="supplier-search" id="supplierSearch" type="search" placeholder="Buscar fornecedor pelo nome ou número" oninput="renderSuppliers(this.value)" />
               <div class="supplier-count" id="supplierCount">52 fornecedores</div>
             </div>
             <div class="suppliers-grid" id="suppliersGrid"></div>
-            <div class="supplier-note"><strong>Observação:</strong>os dados foram extraídos das lojas. Não me responsabilizo pela procedência ou confiabilidade das informações; recomendamos que cada usuário faça sua própria verificação.</div>
+            <div class="supplier-note"><strong>Observação:</strong> os contatos foram organizados a partir do PDF de referência. Recomenda-se que cada usuário realize sua própria verificação quanto à procedência e confiabilidade dos fornecedores.</div>
           </section>
 
           <section class="section" id="assistencia">
@@ -7338,6 +7551,15 @@
       if(first) first.focus();
     }
 
+    function openLoginForm(){
+      const signup = document.getElementById('signupForm');
+      const login = document.getElementById('loginForm');
+      signup.style.display = 'none';
+      login.style.display = 'block';
+      const first = document.getElementById('loginEmail');
+      if(first) first.focus();
+    }
+
     function toggleLogin(){
       const signup = document.getElementById('signupForm');
       const login = document.getElementById('loginForm');
@@ -7371,6 +7593,87 @@
           loginError.classList.add('show');
         }
       }
+    });
+
+
+    function openPasswordPopup(){
+      const modal = document.getElementById('passwordModal');
+      const resetEmail = document.getElementById('passwordResetEmail');
+      const loginEmail = document.getElementById('loginEmail');
+      const error = document.getElementById('passwordResetError');
+
+      if(error){
+        error.classList.remove('show');
+        error.textContent = '';
+      }
+
+      if(resetEmail && loginEmail && loginEmail.value){
+        resetEmail.value = loginEmail.value.trim();
+      }
+
+      if(modal){
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      setTimeout(() => resetEmail && resetEmail.focus(), 80);
+    }
+
+    function closePasswordPopup(){
+      const modal = document.getElementById('passwordModal');
+      const error = document.getElementById('passwordResetError');
+
+      if(error){
+        error.classList.remove('show');
+        error.textContent = '';
+      }
+
+      if(modal){
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    async function sendPasswordReset(){
+      const emailInput = document.getElementById('passwordResetEmail');
+      const error = document.getElementById('passwordResetError');
+      const email = emailInput ? emailInput.value.trim() : '';
+
+      if(error){
+        error.classList.remove('show');
+        error.textContent = '';
+      }
+
+      if(!validateEmail(email)){
+        if(error){
+          error.textContent = 'Informe um e-mail válido.';
+          error.classList.add('show');
+        }
+        return;
+      }
+
+      try{
+        const { error: resetError } = await sb.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin
+        });
+
+        if(resetError) throw resetError;
+
+        if(error){
+          error.textContent = 'Enviamos o link de recuperação para seu e-mail.';
+          error.classList.add('show');
+        }
+      }catch(err){
+        console.error(err);
+        if(error){
+          error.textContent = 'Não foi possível enviar o link. Verifique o e-mail e tente novamente.';
+          error.classList.add('show');
+        }
+      }
+    }
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closePasswordPopup();
     });
 
     async function logout(){
