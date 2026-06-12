@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#050506" />
   <meta name="mobile-web-app-capable" content="yes" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
-  <title>Central do Lojista</title>
+  <title>Central do Lojista — Área de Membros</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
@@ -6776,7 +6776,7 @@
             <div class="brand-mark"><i class="ti ti-building-store"></i></div>
             <div>
               <div class="brand-name">Central do Lojista</div>
-              <span class="brand-sub">Catálogos e materiais para lojistas</span>
+              <span class="brand-sub">Materiais digitais para sua loja</span>
             </div>
           </div>
         </div>
@@ -6785,9 +6785,9 @@
           <div class="nav-label">Menu</div>
           <button class="nav-item active" data-section="inicio"><i class="ti ti-home"></i> Início</button>
           <button class="nav-item" data-section="catalogos"><i class="ti ti-device-mobile"></i> Catálogos</button>
-          <button class="nav-item" data-section="lojaiPhone"><i class="ti ti-brand-apple"></i> Lojas de iPhones</button>
+          <button class="nav-item" data-section="lojaiPhone"><i class="ti ti-brand-apple"></i> iPhone</button>
           <button class="nav-item" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button>
-          <button class="nav-item" data-section="bonus"><i class="ti ti-device-mobile-search"></i> Películas </button>
+          <button class="nav-item" data-section="bonus"><i class="ti ti-device-mobile-search"></i> Bônus</button>
         </div>
 
         <div class="side-footer">
@@ -6841,13 +6841,13 @@
                   <button class="home-material-card catalog" type="button" onclick="goTo('catalogos')">
                     <span><i class="ti ti-layout-grid"></i></span>
                     <strong>Catálogos</strong>
-                    <small>Catálogos editáveis, Canva e materiais para vender mais.</small>
+                    <small>Catálogos editáveis no Canva para vender mais.</small>
                     <i class="ti ti-arrow-right home-card-arrow"></i>
                   </button>
                   <button class="home-material-card assist" type="button" onclick="goTo('assistencia')">
                     <span><i class="ti ti-tool"></i></span>
                     <strong>Assistência</strong>
-                    <small>Artes, documentos, vídeos e lista de películas.</small>
+                    <small>Artes, documentos e vídeos para assistência.</small>
                     <i class="ti ti-arrow-right home-card-arrow"></i>
                   </button>
                 </div>
@@ -6858,10 +6858,10 @@
                 <div class="home-update-icon"><i class="ti ti-device-mobile-check"></i></div>
                 <div class="home-update-copy">
                   <span>Atualização recente</span>
-                  <h3>Compatibilidade de Películas</h3>
-                  <p>Veja quais modelos usam a mesma película e atenda mais rápido.</p>
+                  <h3>Lista de Películas 3D</h3>
+                  <p>Pesquise o modelo e veja quais aparelhos usam a mesma película.</p>
                 </div>
-                <button class="home-update-btn" type="button" onclick="goTo('bonus')">Ver lista <i class="ti ti-chevron-right"></i></button>
+                <button class="home-update-btn" type="button" onclick="goTo('bonus')">Ver bônus <i class="ti ti-chevron-right"></i></button>
               </section>
 
               <section class="home-unlock-card home-unlock-compact">
@@ -6889,7 +6889,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Catálogos</div>
-                <div class="sec-sub">Veja seus catálogos. Se algo estiver bloqueado, libere com seu PIN.</div>
+                <div class="sec-sub">Veja seus catálogos. Para editar no Canva, libere com seu PIN.</div>
               </div>
             </div>
             <div class="grid" id="catalogGrid"></div>
@@ -6907,8 +6907,8 @@
           <section class="section" id="lojaiPhone">
             <div class="row-head">
               <div>
-                <div class="sec-title">Lojas de iPhones</div>
-                <div class="sec-sub">Materiais prontos para vender iPhones.</div>
+                <div class="sec-title">Materiais para iPhone</div>
+                <div class="sec-sub">Documentos, artes e vídeos prontos para vender iPhones.</div>
               </div>
             </div>
             <div class="grid" id="lojaIphoneGrid"></div>
@@ -6919,8 +6919,8 @@
           <section class="section" id="fornecedores">
             <div class="suppliers-hero">
               <span>Lista 2026</span>
-              <h1>Fornecedores de iPhone — Shopping Mundo Oriental</h1>
-              <p>Contatos organizados no visual da Central do Lojista, com busca rápida e botões diretos para chamar no WhatsApp.</p>
+              <h1>Lista de fornecedores de iPhone</h1>
+              <p>Contatos organizados com busca rápida e botão direto para chamar no WhatsApp.</p>
             </div>
             <div class="supplier-tools">
               <input class="supplier-search" id="supplierSearch" type="search" placeholder="Buscar fornecedor pelo nome ou número" oninput="renderSuppliers(this.value)" />
@@ -6933,8 +6933,8 @@
           <section class="section" id="assistencia">
             <div class="row-head">
               <div>
-                <div class="sec-title">Assistência Técnica</div>
-                <div class="sec-sub">Artes, vídeos e documentos para assistência técnica.</div>
+                <div class="sec-title">Assistência técnica</div>
+                <div class="sec-sub">Documentos, artes e vídeos prontos para assistência técnica.</div>
               </div>
             </div>
             <div class="grid" id="assistenciaGrid"></div>
@@ -6943,8 +6943,8 @@
           <section class="section" id="bonus">
             <div class="row-head">
               <div>
-                <div class="sec-title">Películas 3D</div>
-                <div class="sec-sub">Pesquise o modelo e veja películas compatíveis.</div>
+                <div class="sec-title">Bônus</div>
+                <div class="sec-sub">Acesse a planilha, fornecedores e a lista de películas.</div>
               </div>
             </div>
             <div class="grid" id="bonusGrid"></div>
@@ -7189,11 +7189,11 @@
       termoGarantia: {
         id:'termoGarantia',
         productIcon:'data:image/webp;base64,UklGRlgDAABXRUJQVlA4IEwDAABwFACdASpkAGQAPmEsk0YkIqGhLRWY0IAMCUAanv/WM/bfHl2YA3/3j1EcaB7n/MB+yHrMaZ96AHlw+zfgID6dWURjqspwUWTCraFoE1Ynzx1Ekf/M/qg61wmNAvvIdB9cR69O6a1TybDQX357N3n5TN4AkPs0yAOPD9tbb7mFNijm1Muw9WmLCRiIuYyNL+NgpynktSNaU5XlluxO1iOO69ZXS31IZenPTnkgAP74mVv/7sn/+8Z//3Gf4if/7F5y9ftYVTHUHLQOax1PcmfwAH7UR+bQqbxsXLJRvovwRfV/ManEvlcPgd9giqMIXaAKGFznwLGayIzf1wU8a9Uokn7txaWRi1f5T/Mo+L2oprHjDniYKE0h9TZBzqPBrkvYwn8eMEyN1VB2+GcAipDa45UTAgr5wEt/OkxRrt2mUdn7obW173OXa6XDn8j0CZhoyph3CVOcSYoJh3gOZC2NXwI2Qp8RvsSot20q95/Vtself+iN1m6cfyIP8D/rIyFh3g3j344ZRuQ+DNYI0JjG7OEOIiBXsqqfu7q0FcAeiDy7U3myrmABvoKXs34K05Gq3UuJ/Kgu6EtaiNhlDfxJmAVlmf/1lLFF41CzIm5KCrMyHXm+6m/gk3MVGQTo9mz//f/Jm6SqAG+K9j8f8GPeq9sEXjWsqVqUMR8/lGH6dOcPMYDTPC0jwGoCjQ02Bb+B4OK/wy9Ij46BLjgHHK6yiz3xHTbxYjF0m8JJ9kdtcdTc+maReRrMch/GF+WonC4sUZxLCzs/GwGyOEBx8OMEDvWUV32ZG0rDGgeQ/9ngzdB3iJF6OILmLPZVmCIrMCF4K7T8worre13neVZaIzwdiwr5ImMwyRob1U1EuqkT6dxse/Yg5c9+bLnu28BtQqRlJHHAchQU/x6n7k7QFTcFmGu6z2jOZDaHM5czyecwSSdl78AsZGYz1c/whH4MZH5CKzEx1/kIrJZu4nVHk1KYUu/zUAPrvlf9HkLjCiUfo813t1kX4F7wq5+a/Tovu4dN3dnA1y/2dIliEm4mroHvxYzajC5AP+aHgLd8G+swDItauiMeY6mhrFKboZCPo5x/pZshLwDwiN7v7QwJDYhlgCzBB/k5BwAAAAAA',
-        title:'Termo de Garantia',
+        title:'Termo de Garantia iPhone',
         category:'lojaiPhone',
         icon:'ti-shield-check',
-        desc:'Documento pronto para vender com mais segurança.',
-        previewDescription:'Termo de garantia para vender iPhones com mais segurança e evitar problemas.',
+        desc:'Documento editável para vender iPhones com mais segurança.',
+        previewDescription:'Modelo de garantia para apresentar ao cliente de forma clara e profissional.',
         previewUrl:'https://canva.link/vr004ry60pgxf6j',
         canvaUrl:'https://canva.link/9au925t9rh3lb7i',
         checkoutUrl:'https://pay.cakto.com.br/37hx97u_466558',
@@ -7202,12 +7202,13 @@
       videosIphone: {
         id:'videosIphone',
         productIcon:'data:image/webp;base64,UklGRkoDAABXRUJQVlA4ID4DAAAQFACdASpkAGQAPmEsk0YkIqGhLHUZWIAMCWIAlQNPKNju4OCoITupx31Wbf3zPeeL6JvQA6RT0APLh9k/9xvSqT1MsDSazPvJK+SWNF/N558oh2QpnorkstA07i4jMqJ8UQ57yH4j7byYjQmyGYy4XT+UPFABP61WGFcTlMP+VzQ8gxFso2Qjg2x1VYsoyko0M6DAR2g3jsOnqONkGKdp8B24xg2lXjKAAP79NmhPeYszpOWcMs25P/inUgMICQ2iGVKL2SVNUlKEjoWcTdLi/fzVEeCiHj5/M99RaCpkm4cbfgMgrvRv7L2xsjSDT83tyrl7jfYA4+YBVq/PMFPXXookHf40bEJAG7f433BiO8ibawk7dFZJ/36YWwgTwV9Cqo7IG+DT3Yjdwn97Ey65F1o5BdNt4ijb0fxQfPNMCZs9OsYfGNWASfkspXR5mZCn0hMeFUga3+4Gscc/4WJ6JkMkXtvA45UTo8WxY+0NIAYD8/wQbKFWSeRCTFmxoVLC7VlyZedtPLApgnwuRDzhQrRCyRpaAAS96/sWxjebz/O2iZgEt7Kp8yOhrXW4y/0atvk9kWf/KhMf9jBehvYvXChRvYWXsbe1yTn8RK8m0zSW6AEdf6yDH0Nzrarq3DjsYzLa5rObVnxulMBihJJthd0z43UfYJC1NFMS8ukroX8TfW4E+BhCCDrmNIPvT8eCc3mfismky1bFJY5Wj6Q0v5LyvKRdJ/Cj+PtRpDXcxUJd3geAG946OX6PEZXqidSWqoyXEOJSiu3h11KeAXniY81ALixVcM60FreOSdJvATE2m15nkB/JfGI7pu/LqTY88/wXvXQ1fJDSkjHyrB68Gu284tXBhGKwRy8OJJ3gAdk4Ur/ZCxmIwLYHpUknMwJCYgQx4GnAjKFOm7iDfaD4IeocdLD6L1Gd/nf/SlZf3oO/BKxwEB8j2yRt3uAbM12xPkgpyr6WC0qjJdoIdvb9zy8OiICcX+4uGKKkNLdMNC/fVQAktDOneUdNTubqvXkO+oNg6cdCzjbkIkgt7TrqJU4YKkHBZFEfTPF4hCZodsunvO5K18jITQIIElwIeZ4UDU4Qw5JfpPIQAAAAAA==',
-        title:'Pack Reels Virais iPhone',
+        title:'Pack Reels iPhone',
         category:'lojaiPhone',
         icon:'ti-brand-tiktok',
         desc:'Vídeos prontos para atrair clientes.',
         previewDescription:'Vídeos virais para vender mais nas redes sociais sobre iPhones, Xiaomi e celulares. Inclui mais de 100 vídeos.',
-        previewUrl:'https://drive.google.com/drive/folders/1mIgJX9WLOiSfn1kI8luT9NobBp4nKVve',
+        previewUrl:'https://drive.google.com/drive/folders/1wvcwChAleU2fl_xy7Uxn6uGTCMwJTp97?usp=sharing',
+        downloadUrl:'https://drive.google.com/drive/folders/1wvcwChAleU2fl_xy7Uxn6uGTCMwJTp97?usp=sharing',
         checkoutUrl:'https://pay.cakto.com.br/36pwf3r_466556',
         lessons:[]
       },
@@ -7228,11 +7229,11 @@
         id:'documentos',
         groupType:'documentos',
         productIcon:'data:image/webp;base64,UklGRlgDAABXRUJQVlA4IEwDAABwFACdASpkAGQAPmEsk0YkIqGhLRWY0IAMCUAanv/WM/bfHl2YA3/3j1EcaB7n/MB+yHrMaZ96AHlw+zfgID6dWURjqspwUWTCraFoE1Ynzx1Ekf/M/qg61wmNAvvIdB9cR69O6a1TybDQX357N3n5TN4AkPs0yAOPD9tbb7mFNijm1Muw9WmLCRiIuYyNL+NgpynktSNaU5XlluxO1iOO69ZXS31IZenPTnkgAP74mVv/7sn/+8Z//3Gf4if/7F5y9ftYVTHUHLQOax1PcmfwAH7UR+bQqbxsXLJRvovwRfV/ManEvlcPgd9giqMIXaAKGFznwLGayIzf1wU8a9Uokn7txaWRi1f5T/Mo+L2oprHjDniYKE0h9TZBzqPBrkvYwn8eMEyN1VB2+GcAipDa45UTAgr5wEt/OkxRrt2mUdn7obW173OXa6XDn8j0CZhoyph3CVOcSYoJh3gOZC2NXwI2Qp8RvsSot20q95/Vtself+iN1m6cfyIP8D/rIyFh3g3j344ZRuQ+DNYI0JjG7OEOIiBXsqqfu7q0FcAeiDy7U3myrmABvoKXs34K05Gq3UuJ/Kgu6EtaiNhlDfxJmAVlmf/1lLFF41CzIm5KCrMyHXm+6m/gk3MVGQTo9mz//f/Jm6SqAG+K9j8f8GPeq9sEXjWsqVqUMR8/lGH6dOcPMYDTPC0jwGoCjQ02Bb+B4OK/wy9Ij46BLjgHHK6yiz3xHTbxYjF0m8JJ9kdtcdTc+maReRrMch/GF+WonC4sUZxLCzs/GwGyOEBx8OMEDvWUV32ZG0rDGgeQ/9ngzdB3iJF6OILmLPZVmCIrMCF4K7T8worre13neVZaIzwdiwr5ImMwyRob1U1EuqkT6dxse/Yg5c9+bLnu28BtQqRlJHHAchQU/x6n7k7QFTcFmGu6z2jOZDaHM5czyecwSSdl78AsZGYz1c/whH4MZH5CKzEx1/kIrJZu4nVHk1KYUu/zUAPrvlf9HkLjCiUfo813t1kX4F7wq5+a/Tovu4dN3dnA1y/2dIliEm4mroHvxYzajC5AP+aHgLd8G+swDItauiMeY6mhrFKboZCPo5x/pZshLwDwiN7v7QwJDYhlgCzBB/k5BwAAAAAA',
-        title:'Pack de Documentos',
+        title:'Pack Documentos Assistência',
         category:'assistencia',
         icon:'ti-files',
-        desc:'Contratos e termos prontos para usar.',
-        previewDescription:'Pack com ordem de serviço, termo de garantia, contrato troca vidro, contrato tampa iPhone e contrato de compra/venda de celular usado.',
+        desc:'Documentos editáveis no Canva para sua assistência técnica.',
+        previewDescription:'Pack com documentos prontos para editar e usar na assistência técnica.',
         previewUrl:'https://canva.link/myi26sxb1arffjj',
         canvaUrl:'https://canva.link/2dq4lfnls7cmkd4',
         checkoutUrl:'https://pay.cakto.com.br/7hnxsot_466448',
@@ -7244,7 +7245,7 @@
         productIcon:'data:image/webp;base64,UklGRlgDAABXRUJQVlA4IEwDAABwFACdASpkAGQAPmEsk0YkIqGhLRWY0IAMCUAanv/WM/bfHl2YA3/3j1EcaB7n/MB+yHrMaZ96AHlw+zfgID6dWURjqspwUWTCraFoE1Ynzx1Ekf/M/qg61wmNAvvIdB9cR69O6a1TybDQX357N3n5TN4AkPs0yAOPD9tbb7mFNijm1Muw9WmLCRiIuYyNL+NgpynktSNaU5XlluxO1iOO69ZXS31IZenPTnkgAP74mVv/7sn/+8Z//3Gf4if/7F5y9ftYVTHUHLQOax1PcmfwAH7UR+bQqbxsXLJRvovwRfV/ManEvlcPgd9giqMIXaAKGFznwLGayIzf1wU8a9Uokn7txaWRi1f5T/Mo+L2oprHjDniYKE0h9TZBzqPBrkvYwn8eMEyN1VB2+GcAipDa45UTAgr5wEt/OkxRrt2mUdn7obW173OXa6XDn8j0CZhoyph3CVOcSYoJh3gOZC2NXwI2Qp8RvsSot20q95/Vtself+iN1m6cfyIP8D/rIyFh3g3j344ZRuQ+DNYI0JjG7OEOIiBXsqqfu7q0FcAeiDy7U3myrmABvoKXs34K05Gq3UuJ/Kgu6EtaiNhlDfxJmAVlmf/1lLFF41CzIm5KCrMyHXm+6m/gk3MVGQTo9mz//f/Jm6SqAG+K9j8f8GPeq9sEXjWsqVqUMR8/lGH6dOcPMYDTPC0jwGoCjQ02Bb+B4OK/wy9Ij46BLjgHHK6yiz3xHTbxYjF0m8JJ9kdtcdTc+maReRrMch/GF+WonC4sUZxLCzs/GwGyOEBx8OMEDvWUV32ZG0rDGgeQ/9ngzdB3iJF6OILmLPZVmCIrMCF4K7T8worre13neVZaIzwdiwr5ImMwyRob1U1EuqkT6dxse/Yg5c9+bLnu28BtQqRlJHHAchQU/x6n7k7QFTcFmGu6z2jOZDaHM5czyecwSSdl78AsZGYz1c/whH4MZH5CKzEx1/kIrJZu4nVHk1KYUu/zUAPrvlf9HkLjCiUfo813t1kX4F7wq5+a/Tovu4dN3dnA1y/2dIliEm4mroHvxYzajC5AP+aHgLd8G+swDItauiMeY6mhrFKboZCPo5x/pZshLwDwiN7v7QwJDYhlgCzBB/k5BwAAAAAA',
         icon:'ti-file-text',
         title:'Ordem de Serviço',
-        desc:'Modelo pronto odem de serviço com checklist',
+        desc:'Modelo editável de ordem de serviço com checklist.',
         isFree:true,
         highlight:true,
         previewUrl:'https://canva.link/ycs3se3cw8tu6tw',
@@ -7255,12 +7256,13 @@
       videosAssistencia: {
         id:'videosAssistencia',
         productIcon:'data:image/webp;base64,UklGRkoDAABXRUJQVlA4ID4DAAAQFACdASpkAGQAPmEsk0YkIqGhLHUZWIAMCWIAlQNPKNju4OCoITupx31Wbf3zPeeL6JvQA6RT0APLh9k/9xvSqT1MsDSazPvJK+SWNF/N558oh2QpnorkstA07i4jMqJ8UQ57yH4j7byYjQmyGYy4XT+UPFABP61WGFcTlMP+VzQ8gxFso2Qjg2x1VYsoyko0M6DAR2g3jsOnqONkGKdp8B24xg2lXjKAAP79NmhPeYszpOWcMs25P/inUgMICQ2iGVKL2SVNUlKEjoWcTdLi/fzVEeCiHj5/M99RaCpkm4cbfgMgrvRv7L2xsjSDT83tyrl7jfYA4+YBVq/PMFPXXookHf40bEJAG7f433BiO8ibawk7dFZJ/36YWwgTwV9Cqo7IG+DT3Yjdwn97Ey65F1o5BdNt4ijb0fxQfPNMCZs9OsYfGNWASfkspXR5mZCn0hMeFUga3+4Gscc/4WJ6JkMkXtvA45UTo8WxY+0NIAYD8/wQbKFWSeRCTFmxoVLC7VlyZedtPLApgnwuRDzhQrRCyRpaAAS96/sWxjebz/O2iZgEt7Kp8yOhrXW4y/0atvk9kWf/KhMf9jBehvYvXChRvYWXsbe1yTn8RK8m0zSW6AEdf6yDH0Nzrarq3DjsYzLa5rObVnxulMBihJJthd0z43UfYJC1NFMS8ukroX8TfW4E+BhCCDrmNIPvT8eCc3mfismky1bFJY5Wj6Q0v5LyvKRdJ/Cj+PtRpDXcxUJd3geAG946OX6PEZXqidSWqoyXEOJSiu3h11KeAXniY81ALixVcM60FreOSdJvATE2m15nkB/JfGI7pu/LqTY88/wXvXQ1fJDSkjHyrB68Gu284tXBhGKwRy8OJJ3gAdk4Ur/ZCxmIwLYHpUknMwJCYgQx4GnAjKFOm7iDfaD4IeocdLD6L1Gd/nf/SlZf3oO/BKxwEB8j2yRt3uAbM12xPkgpyr6WC0qjJdoIdvb9zy8OiICcX+4uGKKkNLdMNC/fVQAktDOneUdNTubqvXkO+oNg6cdCzjbkIkgt7TrqJU4YKkHBZFEfTPF4hCZodsunvO5K18jITQIIElwIeZ4UDU4Qw5JfpPIQAAAAAA==',
-        title:'Pack Reels Virais Assistência',
+        title:'Pack Reels Assistência',
         category:'assistencia',
         icon:'ti-tools',
-        desc:'Vídeos prontos para divulgar seus serviços.',
+        desc:'Vídeos prontos para divulgar sua assistência técnica.',
         previewDescription:'Vídeos prontos para divulgar reparos e assistência técnica nas redes sociais.',
-        previewUrl:'https://drive.google.com/drive/folders/1lrldKTLhzc68wHMPzRQcQ4NNMru4g5tR',
+        previewUrl:'https://drive.google.com/drive/folders/1l2I66mRwsLhNVxGWvp5xhkEERpnYQoQ7?usp=sharing',
+        downloadUrl:'https://drive.google.com/drive/folders/1l2I66mRwsLhNVxGWvp5xhkEERpnYQoQ7?usp=sharing',
         checkoutUrl:'https://pay.cakto.com.br/33vqdye_466429',
         lessons:[]
       },
@@ -7270,7 +7272,7 @@
         title:'Pack Artes Canva Assistência',
         category:'assistencia',
         icon:'ti-brush',
-        desc:'Artes editáveis para divulgar sua assistência.',
+        desc:'Artes editáveis no Canva para divulgar sua assistência técnica.',
         previewDescription:'Artes editáveis no Canva para divulgar sua assistência técnica.',
         previewLinks:['https://www.canva.com/design/DAGshDtGqS8/-xXzE6T1PjDsZs8VlSfOhQ/view?mode=preview','https://www.canva.com/design/DAGshKaBaTM/dEz9SzPZZMBInQrv2hEseg/view?mode=preview'],
         canvaLinks:['https://www.canva.com/design/DAGshDtGqS8/-xXzE6T1PjDsZs8VlSfOhQ/view?mode=preview','https://www.canva.com/design/DAGshKaBaTM/dEz9SzPZZMBInQrv2hEseg/view?mode=preview'],
@@ -7284,7 +7286,7 @@
         title:'Planilha de Precificação',
         category:'bonus',
         icon:'ti-table',
-        desc:'Calcule custo, margem e preço de venda.',
+        desc:'Baixe a planilha para calcular custo, margem e preço de venda.',
         previewDescription:'Planilha para calcular custo, margem e preço de venda.',
         downloadUrl:'Tabela%20de%20Precifica%C3%A7%C3%A3o.xlsx',
         downloadLabel:'Baixar',
@@ -7794,13 +7796,13 @@
       }
 
       const buttons = links.map((url, index) =>
-        `<button class="btn green" onclick="openExternal('${url}','Canva ${index+1}')"><i class="ti ti-edit"></i> Editar arquivo ${index+1}</button>`
+        `<button class="btn green" onclick="openExternal('${url}','Canva ${index+1}')"><i class="ti ti-edit"></i> Abrir arquivo ${index+1}</button>`
       ).join('');
 
       setModal(
         product.icon || 'ti-edit',
         `Editar — ${product.title}`,
-        `Escolha qual arquivo deseja editar no Canva:<div class="modal-actions modal-product-actions">${buttons}</div>`,
+        `Escolha o arquivo que deseja abrir no Canva:<div class="modal-actions modal-product-actions">${buttons}</div>`,
         false
       );
     }
@@ -7849,7 +7851,7 @@
     function openUnlock(productId){
       const product = products[productId];
       selectedUnlockProduct = productId;
-      setModal('ti-lock', `Liberar ${product.title}`, 'Digite seu PIN para liberar este produto.', true, product.checkoutUrl || '');
+      setModal('ti-lock', `Liberar ${product.title}`, 'Digite o PIN recebido para liberar este produto.', true, product.checkoutUrl || '');
     }
 
     function groupButton(product){
@@ -7867,12 +7869,12 @@
     function openAccess(productId){
       const product = products[productId];
 
-      let description = 'Seu produto está liberado. Acesse os materiais disponíveis na sua conta.';
+      let description = 'Seu produto está liberado. Use o botão de acesso no card para abrir o material.';
       if(product.groupType === 'catalogos'){
-        description = 'Seu catálogo está liberado. Você também pode acessar o grupo de alunos dos catálogos.';
+        description = 'Seu catálogo está liberado. Você pode editar no Canva e acessar o grupo VIP.';
       }
       if(product.groupType === 'documentos'){
-        description = 'Seu pack de documentos está liberado. Você também pode acessar o grupo exclusivo dos documentos.';
+        description = 'Seu pack de documentos está liberado. Você pode editar no Canva e acessar o grupo de documentos.';
       }
 
       setModal(
@@ -7958,7 +7960,7 @@
         'ti-circle-check',
         'Liberado com sucesso!',
         `<div class="unlock-success-box">
-          <p>Seu acesso foi desbloqueado. Clique abaixo para abrir o arquivo correto.</p>
+          <p>Seu acesso foi liberado. Clique no botão abaixo para abrir o material correto.</p>
           <div class="modal-actions modal-product-actions">${buttons || '<button class="btn green" onclick="closeModal()">Continuar</button>'}</div>
         </div>`,
         false
@@ -8148,7 +8150,7 @@
           actionButton = `<button class="btn green" onclick="openExternal('${product.canvaUrl || '#'}','Canva')"><i class="ti ti-edit"></i> Editar no Canva</button>`;
         } else if(product.canvaLinks?.length || product.canvaUrl){
           actionButton = `<button class="btn green" onclick="openCanvaLinksPopup('${product.id}')"><i class="ti ti-edit"></i> Editar no Canva</button>`;
-        } else if(['precificacao','fornecedores'].includes(product.id)){
+        } else if(product.downloadUrl || ['precificacao','fornecedores'].includes(product.id)){
           actionButton = `<button class="btn green" onclick="openDownloadFile('${product.id}')"><i class="ti ti-external-link"></i> Acessar</button>`;
         } else {
           actionButton = `<button class="btn green" onclick="openAccess('${product.id}')"><i class="ti ti-lock-open"></i> Acessar</button>`;
@@ -8507,7 +8509,7 @@
         <div class="pixel-preview-wrap">
           <div class="pixel-hero">
             <span>Consulta rápida</span>
-            <h3>Compatibilidade de Películas 3D</h3>
+            <h3>Lista de Películas 3D 3D</h3>
             <p>Digite o modelo do aparelho para encontrar películas compatíveis. Alguns modelos ficam liberados para teste; o acesso completo mostra toda a base.</p>
           </div>
           <div class="pixel-search-box">
