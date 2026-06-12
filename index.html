@@ -7195,8 +7195,8 @@
     function openSignupForm(){
       const signup = document.getElementById('signupForm');
       const login = document.getElementById('loginForm');
-      if(signup) signup.style.display = 'block';
-      if(login) login.style.display = 'none';
+      signup.style.display = 'block';
+      login.style.display = 'none';
       const first = document.getElementById('signupName');
       if(first) first.focus();
     }
@@ -7996,6 +7996,12 @@
         catalogQuickLinks.innerHTML = catalogQuickLinksCard();
       }
 
+      // Mantém os atalhos especiais ocultos até existir acesso liberado por PIN.
+      if(typeof showCatalogShortcuts === 'function' && typeof hideCatalogShortcuts === 'function'){
+        if(hasAnyCatalogAccess()) showCatalogShortcuts();
+        else hideCatalogShortcuts();
+      }
+
       document.getElementById('catalogGrid').innerHTML = ['iphone','apple','xiaomi','realme'].map(id => productCard(products[id])).join('');
       renderCatalogAccess();
       const catalogUpgrade = document.getElementById('catalogUpgradeOffer');
@@ -8108,7 +8114,7 @@
 /* Atalhos da aba Catálogos:
    ficam ocultos até o cliente desbloquear o catálogo com PIN.
    No sistema final, chame showCatalogShortcuts() logo após validar o PIN. */
-const CATALOG_UNLOCKED = true; // preview: true. Em produção, trocar para o status real do PIN.
+const CATALOG_UNLOCKED = false; // Atalhos liberados somente após acesso válido por PIN.
 function showCatalogShortcuts(){
   const el = document.getElementById("catalogUnlockedShortcuts");
   if(el) el.style.display = "grid";
