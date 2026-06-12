@@ -7934,11 +7934,32 @@
 
     
     function showUnlockSuccessModal(unlocks){
+      const ids = Array.isArray(unlocks) ? unlocks : [];
+
+      const buttons = ids
+        .map(productId => {
+          const product = products[productId];
+          if(!product) return '';
+
+          if(product.canvaLinks?.length || product.canvaUrl){
+            return `<button class="btn green" onclick="openCanvaLinksPopup('${product.id}')"><i class="ti ti-edit"></i> Editar no Canva — ${product.title}</button>`;
+          }
+
+          if(product.downloadUrl || ['precificacao','fornecedores'].includes(product.id)){
+            return `<button class="btn green" onclick="openDownloadFile('${product.id}')"><i class="ti ti-download"></i> Acessar — ${product.title}</button>`;
+          }
+
+          return `<button class="btn green" onclick="goTo('${sectionForProduct(product.id)}'); closeModal();"><i class="ti ti-external-link"></i> Ver — ${product.title}</button>`;
+        })
+        .filter(Boolean)
+        .join('');
+
       setModal(
         'ti-circle-check',
         'Liberado com sucesso!',
         `<div class="unlock-success-box">
-          <p>Seu acesso foi desbloqueado. Você já pode acessar o conteúdo liberado.</p>
+          <p>Seu acesso foi desbloqueado. Clique abaixo para abrir o arquivo correto.</p>
+          <div class="modal-actions modal-product-actions">${buttons || '<button class="btn green" onclick="closeModal()">Continuar</button>'}</div>
         </div>`,
         false
       );
