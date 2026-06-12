@@ -5809,7 +5809,46 @@
   .login-landing-intro p{font-size:14px !important;}
 }
 
-</style>
+
+
+/* Lista de Fornecedores - Shopping Mundo Oriental */
+.suppliers-hero{
+  background:radial-gradient(circle at 88% 0%,rgba(48,209,88,.18),transparent 36%),linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.02)),var(--panel);
+  border:1px solid rgba(255,255,255,.10);border-radius:30px;padding:24px;margin:18px 0 16px;box-shadow:0 18px 60px rgba(0,0,0,.26)
+}
+.suppliers-hero span{display:inline-flex;margin-bottom:10px;padding:7px 11px;border-radius:999px;background:rgba(48,209,88,.12);border:1px solid rgba(48,209,88,.25);color:#caffd7;font-size:11px;font-weight:900;letter-spacing:.3px}
+.suppliers-hero h1{font-size:30px;line-height:1.06;letter-spacing:-.9px;margin-bottom:9px}.suppliers-hero p{color:#b0b0b7;font-size:14px;line-height:1.55;max-width:760px}
+.supplier-tools{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:14px}.supplier-search{height:48px;background:#0b0b0d;color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:15px;padding:0 14px;font-size:15px;outline:none}.supplier-search:focus{border-color:rgba(10,132,255,.75);box-shadow:0 0 0 4px rgba(10,132,255,.14)}
+.supplier-count{min-height:48px;display:flex;align-items:center;justify-content:center;border-radius:15px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.055);padding:0 14px;color:#d7d7dc;font-size:12px;font-weight:900;white-space:nowrap}
+.suppliers-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.supplier-card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--card);border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:14px;display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;min-height:110px}.supplier-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:rgba(48,209,88,.12);border:1px solid rgba(48,209,88,.28);color:#25d366;font-weight:950}.supplier-card h3{font-size:16px;letter-spacing:-.35px;margin-bottom:5px}.supplier-card p{color:#96969d;font-size:12px;margin-bottom:10px}.supplier-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.supplier-actions .btn{min-height:38px!important;font-size:11.5px!important;border-radius:12px!important}.supplier-note{margin-top:14px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);border-radius:20px;padding:14px;color:#a1a1a6;font-size:12px;line-height:1.55}
+@media(max-width:760px){.suppliers-hero{padding:20px;border-radius:24px;margin-top:12px}.suppliers-hero h1{font-size:25px}.supplier-tools{grid-template-columns:1fr}.suppliers-grid{grid-template-columns:1fr}.supplier-card{grid-template-columns:48px 1fr;padding:12px;border-radius:20px}.supplier-icon{width:48px;height:48px;border-radius:15px}.supplier-actions{grid-template-columns:1fr 1fr}}
+
+  
+    /* Ajuste solicitado: fornecedores apenas com botão WhatsApp */
+    .supplier-actions{grid-template-columns:1fr !important;}
+
+  
+
+    /* Revisão mobile: lista de fornecedores como bônus protegido */
+    .card-actions.one-action{grid-template-columns:1fr !important;}
+    .supplier-actions{grid-template-columns:1fr !important;}
+    .supplier-actions .btn{width:100%;}
+    @media(max-width:760px){
+      .suppliers-hero{padding:18px !important;border-radius:22px !important;margin:12px 0 12px !important;}
+      .suppliers-hero h1{font-size:23px !important;line-height:1.08 !important;}
+      .suppliers-hero p{font-size:12.5px !important;}
+      .supplier-search{height:46px !important;border-radius:14px !important;font-size:14px !important;}
+      .supplier-count{min-height:42px !important;border-radius:14px !important;}
+      .suppliers-grid{grid-template-columns:1fr !important;gap:10px !important;}
+      .supplier-card{grid-template-columns:46px minmax(0,1fr) !important;gap:10px !important;padding:12px !important;min-height:auto !important;border-radius:18px !important;}
+      .supplier-icon{width:46px !important;height:46px !important;border-radius:14px !important;font-size:13px !important;}
+      .supplier-card h3{font-size:15px !important;}
+      .supplier-card p{font-size:11.5px !important;word-break:break-word;}
+      .supplier-actions .btn{min-height:40px !important;font-size:12px !important;}
+      .supplier-note{font-size:11.5px !important;border-radius:18px !important;}
+    }
+
+  </style>
 
 <style>
 .nav-item.active,
@@ -6589,13 +6628,13 @@
                   <button class="home-material-card catalog" type="button" onclick="goTo('catalogos')">
                     <span><i class="ti ti-layout-grid"></i></span>
                     <strong>Catálogos</strong>
-                    <small>Catálogos editáveis no Canva para divulgar seus iPhones e vender mais.</small>
+                    <small>Catálogos editáveis, Canva e materiais para vender mais.</small>
                     <i class="ti ti-arrow-right home-card-arrow"></i>
                   </button>
                   <button class="home-material-card assist" type="button" onclick="goTo('assistencia')">
                     <span><i class="ti ti-tool"></i></span>
                     <strong>Assistência</strong>
-                    <small>Ordem de serviço, e documentos prontos para sua assistência técnica.</small>
+                    <small>Artes, documentos, vídeos e lista de películas.</small>
                     <i class="ti ti-arrow-right home-card-arrow"></i>
                   </button>
                 </div>
@@ -6605,9 +6644,9 @@
                 <div class="home-update-badge">Novo</div>
                 <div class="home-update-icon"><i class="ti ti-device-mobile-check"></i></div>
                 <div class="home-update-copy">
-                  <span>Atualização Recente</span>
+                  <span>Atualização recente</span>
                   <h3>Compatibilidade de Películas</h3>
-                  <p>Descubra modelos compatíveis de películas 3D e agilize seu atendimento e venda mais.</p>
+                  <p>Veja quais modelos usam a mesma película e atenda mais rápido.</p>
                 </div>
                 <button class="home-update-btn" type="button" onclick="goTo('bonus')">Ver lista <i class="ti ti-chevron-right"></i></button>
               </section>
@@ -6617,7 +6656,7 @@
                   <span class="home-code-icon"><i class="ti ti-key"></i></span>
                   <div>
                     <h3>Liberar acesso</h3>
-                    <p>Desbloqueie seus materiais utilizando seu PIN.</p>
+                    <p>Use seu PIN para desbloquear os materiais da sua compra.</p>
                   </div>
                 </div>
                 <div class="quick-code-row home-code-action">
@@ -6637,7 +6676,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Catálogos</div>
-                <div class="sec-sub">Acesse seus catálogos. Para editar uma versão bloqueada, informe seu PIN.</div>
+                <div class="sec-sub">Veja seus catálogos. Se algo estiver bloqueado, libere com seu PIN.</div>
               </div>
             </div>
             <div class="grid" id="catalogGrid"></div>
@@ -6645,7 +6684,7 @@
             <div class="row-head catalog-access-head">
               <div>
                 <div class="sec-title">Acesso do catálogo</div>
-                <div class="sec-sub">Depois do PIN, você acessa tutorial, Grupo VIP e bônus.</div>
+                <div class="sec-sub">Depois do PIN, você acessa tutorial, grupo VIP e bônus.</div>
               </div>
             </div>
             <div class="catalog-access-grid" id="catalogAccessGrid"></div>
@@ -6660,6 +6699,22 @@
               </div>
             </div>
             <div class="grid" id="lojaIphoneGrid"></div>
+          </section>
+
+
+
+          <section class="section" id="fornecedores">
+            <div class="suppliers-hero">
+              <span>Lista 2026</span>
+              <h1>Fornecedores de iPhone — Shopping Mundo Oriental</h1>
+              <p>Contatos organizados no visual da Central do Lojista, com busca rápida e botões diretos para chamar no WhatsApp.</p>
+            </div>
+            <div class="supplier-tools">
+              <input class="supplier-search" id="supplierSearch" type="search" placeholder="Buscar fornecedor pelo nome ou número" oninput="renderSuppliers(this.value)" />
+              <div class="supplier-count" id="supplierCount">52 fornecedores</div>
+            </div>
+            <div class="suppliers-grid" id="suppliersGrid"></div>
+            <div class="supplier-note"><strong>Observação:</strong> os contatos foram organizados a partir do PDF de referência. Recomenda-se que cada usuário realize sua própria verificação quanto à procedência e confiabilidade dos fornecedores.</div>
           </section>
 
           <section class="section" id="assistencia">
@@ -6924,7 +6979,7 @@
         title:'Termo de Garantia',
         category:'lojaiPhone',
         icon:'ti-shield-check',
-        desc:'Modelo pronto de termo de garantia para vendas de iPhone.',
+        desc:'Documento pronto para vender com mais segurança.',
         previewDescription:'Termo de garantia para vender iPhones com mais segurança e evitar problemas.',
         previewUrl:'https://canva.link/vr004ry60pgxf6j',
         checkoutUrl:'https://pay.cakto.com.br/37hx97u_466558',
@@ -6961,7 +7016,7 @@
         title:'Pack de Documentos',
         category:'assistencia',
         icon:'ti-files',
-        desc:'Pack com 6 documentos essenciais para organizar e proteger sua assistência técnica.',
+        desc:'Contratos e termos prontos para usar.',
         previewDescription:'Pack com ordem de serviço, termo de garantia, contrato troca vidro, contrato tampa iPhone e contrato de compra/venda de celular usado.',
         previewUrl:'https://canva.link/myi26sxb1arffjj',
         checkoutUrl:'https://pay.cakto.com.br/7hnxsot_466448',
@@ -7359,8 +7414,12 @@
     }
 
     function goTo(sectionId){
+      if(sectionId === 'fornecedores' && !hasSupplierListAccess()){
+        sectionId = 'catalogos';
+        setTimeout(() => openUnlock('iphone'), 80);
+      }
       document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === sectionId));
-      const titles = {inicio:'Início',catalogos:'Catálogos',lojaiPhone:'Lojas de iPhones',assistencia:'Assistência Técnica',bonus:'Películas',suporte:'Suporte'};
+      const titles = {inicio:'Início',catalogos:'Catálogos',lojaiPhone:'Lojas de iPhones',fornecedores:'Fornecedores',assistencia:'Assistência Técnica',bonus:'Películas',suporte:'Suporte'};
       document.getElementById('pageTitle').textContent = titles[sectionId] || 'Central do Lojista';
       document.querySelectorAll('[data-section]').forEach(b => b.classList.toggle('active', b.dataset.section === sectionId));
     }
@@ -7668,6 +7727,43 @@
       openExternal(url, product.title || 'Bônus');
     }
 
+    function openDownloadFile(productId){
+      const product = products[productId];
+      if(!product) return;
+
+      if(productId === 'fornecedores'){
+        openSuppliersTable();
+        return;
+      }
+
+      if(!canAccessBonus(productId)){
+        openUnlock(productId);
+        return;
+      }
+
+      const url = product.downloadUrl || product.previewUrl;
+      if(!url){
+        showToast('Arquivo indisponível no momento.');
+        return;
+      }
+
+      openExternal(url, product.title || 'Bônus');
+    }
+
+    function openSuppliersTable(){
+      if(!hasSupplierListAccess()){
+        showToast('Libere o PIN do catálogo para acessar a lista de fornecedores.');
+        openUnlock('iphone');
+        return;
+      }
+
+      goTo('fornecedores');
+      const input = document.getElementById('supplierSearch');
+      if(input) input.value = '';
+      renderSuppliers('');
+      setTimeout(() => document.getElementById('fornecedores')?.scrollIntoView({ behavior:'smooth', block:'start' }), 60);
+    }
+
     function productCard(product){
       const freeProduct = isFreeProduct(product.id);
       const unlockedProduct = freeProduct || hasAccess(product.id);
@@ -7700,12 +7796,13 @@
       }
 
       if(isBonusProduct(product.id)){
-        const bonusUnlocked = hasAccess(product.id);
+        const bonusUnlocked = product.id === 'fornecedores' ? hasSupplierListAccess() : hasAccess(product.id);
         const bonusStatusClass = bonusUnlocked ? 'open' : 'preview';
         const bonusStatusText = bonusUnlocked ? 'Liberado' : 'Bloqueado';
+        const lockedAction = product.id === 'fornecedores' ? "openUnlock('iphone')" : `openUnlock('${product.id}')`;
         const bonusButton = bonusUnlocked
           ? `<button class="btn green" onclick="openDownloadFile('${product.id}')"><i class="ti ti-eye"></i> Visualizar</button>`
-          : `<button class="btn ghost locked-visualize" type="button" disabled title="Libere o PIN do catálogo para visualizar."><i class="ti ti-lock"></i> Visualizar</button>`;
+          : `<button class="btn gold" type="button" onclick="${lockedAction}" title="Libere o PIN do catálogo para visualizar."><i class="ti ti-lock"></i> Liberar com PIN</button>`;
 
         return `
           <article class="${cardClass}">
@@ -7747,6 +7844,13 @@
 
     function hasAnyCatalogAccess(){
       return ['iphone','completo','apple','xiaomi','realme'].some(id => hasAccess(id));
+    }
+
+    // Permissão específica da Lista de Fornecedores:
+    // libera apenas para quem desbloqueou o Catálogo de iPhone ou o Catálogo Completo.
+    // Desbloqueios de Apple, Xiaomi, Realme ou outros bônus não liberam esta lista.
+    function hasSupplierListAccess(){
+      return ['iphone','completo'].some(id => hasAccess(id));
     }
 
     function catalogLessonsModule(){
@@ -7843,8 +7947,8 @@
       const icon = isLessons ? 'ti-player-play' : 'ti-brand-whatsapp';
       const title = isLessons ? 'Tutorial de edição' : 'Grupo VIP no WhatsApp';
       const desc = isLessons
-        ? (unlockedCatalog ? 'Assista ao tutorial e aprenda a editar seu catálogo no Canva.' : 'Assista aos tutoriais e aprenda como editar seu catálogo.')
-        : (unlockedCatalog ? 'Entre no grupo VIP para receber avisos, novidades e orientações.' : 'Entre em nosso grupo no WhatsApp e receba atualizações exclusivas.');
+        ? (unlockedCatalog ? 'Assista ao tutorial e aprenda a editar seu catálogo no Canva.' : 'Libere um catálogo com seu PIN para assistir ao tutorial.')
+        : (unlockedCatalog ? 'Entre no grupo VIP para receber avisos, novidades e orientações.' : 'Libere um catálogo com seu PIN para entrar no grupo VIP.');
       const action = isLessons ? 'openCatalogLessons()' : 'openCatalogVipGroup()';
 
       return `
@@ -7858,7 +7962,7 @@
             <p>${desc}</p>
             <div class="card-actions">
               <button class="btn ${unlockedCatalog ? (isLessons ? 'green' : 'whatsapp-btn') : 'gold'}" onclick="${unlockedCatalog ? action : "openUnlock('iphone')"}">
-                <i class="ti ${unlockedCatalog ? icon : 'ti-lock'}"></i> ${unlockedCatalog ? (isLessons ? 'Ver tutorial' : 'Entrar no grupo VIP') : 'Liberar'}
+                <i class="ti ${unlockedCatalog ? icon : 'ti-lock'}"></i> ${unlockedCatalog ? (isLessons ? 'Ver tutorial' : 'Entrar no grupo VIP') : 'Liberar com PIN'}
               </button>
             </div>
           </div>
@@ -8111,6 +8215,7 @@
       document.getElementById('lojaIphoneGrid').innerHTML = ['termoGarantia','videosIphone','artesIphone'].map(id => productCard(products[id])).join('');
       document.getElementById('assistenciaGrid').innerHTML = ['ordemServico','documentos','videosAssistencia','artesAssistencia'].map(id => productCard(products[id])).join('');
       document.getElementById('bonusGrid').innerHTML = pixelPeliculasPreview();
+      if(document.getElementById('suppliersGrid')) renderSuppliers(document.getElementById('supplierSearch')?.value || '');
       setTimeout(renderPixelPreviewList, 0);
     }
 
@@ -8173,6 +8278,88 @@
       if(localStorage.getItem('centralLojistaOnboardingV1') === 'done') return;
       setTimeout(openOnboarding, 450);
     }
+
+    const SUPPLIERS_IPHONE = [
+      {name:'KOIOSHOP', phone:'+5511974308780'},
+      {name:'YICELL', phone:'+5511953433716'},
+      {name:'ARMANDO IPHONES', phone:'+5511951909988'},
+      {name:'SEVENSTARS', phone:'+5511947911434'},
+      {name:'ABBAS', phone:'+5511952758933'},
+      {name:'BLACKCELL', phone:'+5511910838298'},
+      {name:'CLARICELL', phone:'+5511948165796'},
+      {name:'AN IPHONES', phone:'+5511970718770'},
+      {name:'HYH', phone:'+5511954236940'},
+      {name:'ARMANDO', phone:'+5511984798723'},
+      {name:'HAIDAR', phone:'+5511943777777'},
+      {name:'ANDRESSA', phone:'+5511933511954'},
+      {name:'IMAX HASSAN', phone:'+5511978029336'},
+      {name:'ISMART', phone:'+5511939274427'},
+      {name:'CELULARES', phone:'+5511953138304'},
+      {name:'FONIX', phone:'+5511994623278'},
+      {name:'PF', phone:'+5511976257290'},
+      {name:'PENTALFA PLAY', phone:'+5511976257290'},
+      {name:'IPHONE 1', phone:'+5511967131313'},
+      {name:'Z MOBILE', phone:'+5511978264640'},
+      {name:'BOM DIA', phone:'+5511977950740'},
+      {name:'AZF', phone:'+96181618324'},
+      {name:'IPHONE 2', phone:'+5511934319998'},
+      {name:'FACE PHONE', phone:'+5511988968322'},
+      {name:'FONE HOUSE', phone:'+5511994764714'},
+      {name:'HM', phone:'+5545998501851'},
+      {name:'MSH', phone:'+5511913335335'},
+      {name:'IPHONE 3', phone:'+5511995001745'},
+      {name:'JWA', phone:'+5511973289181'},
+      {name:'IPHONE 4', phone:'+5511956068598'},
+      {name:'IPHONE 5', phone:'+5511968496757'},
+      {name:'HAYDOURA', phone:'+5511962386230'},
+      {name:'IPHONE 5 (2)', phone:'+5511973072707'},
+      {name:'MUSTAFA', phone:'+5511979980110'},
+      {name:'MALAK', phone:'+5511962159179'},
+      {name:'NASSER', phone:'+5511991282277'},
+      {name:'A8', phone:'+5511992455858'},
+      {name:'HAMADI', phone:'+5511951942338'},
+      {name:'R PHONE', phone:'+5511959238077'},
+      {name:'RITAJ', phone:'+5511939012991'},
+      {name:'SOUNA', phone:'+5511932325558'},
+      {name:'REI CELL', phone:'+5511965627161'},
+      {name:'ZOI CELL', phone:'+5511945149959'},
+      {name:'SAM CELL', phone:'+5511944787767'},
+      {name:'ADELS', phone:'+5511962284545'},
+      {name:'ZAZA CELL', phone:'+5511952026870'},
+      {name:'ALFA CELL', phone:'+5511964472092'},
+      {name:'TIO CELL', phone:'+5511949522220'},
+      {name:'INFINIX', phone:'+5511915338452'},
+      {name:'ALI', phone:'+5511998806580'},
+      {name:'MUMBAI', phone:'+5511991111199'},
+      {name:'NEW DOSE', phone:'+5511995224825'},
+      {name:'MOZART', phone:'+5511983740228'}
+    ];
+    function supplierWhatsAppUrl(phone, name){
+      const clean = String(phone).replace(/[^0-9]/g,'');
+      const msg = encodeURIComponent('Olá, eu peguei seu contato com @oluccasiphone, pode me enviar sua lista de preços por favor.');
+      return `https://wa.me/${clean}?text=${msg}`;
+    }
+    function renderSuppliers(filter=''){
+      const grid = document.getElementById('suppliersGrid');
+      const count = document.getElementById('supplierCount');
+      if(!grid) return;
+      const term = String(filter || '').toLowerCase().trim();
+      const list = SUPPLIERS_IPHONE.filter(s => s.name.toLowerCase().includes(term) || s.phone.includes(term));
+      if(count) count.textContent = `${list.length} de ${SUPPLIERS_IPHONE.length} fornecedores`;
+      grid.innerHTML = list.map(s => `
+        <article class="supplier-card">
+          <div class="supplier-icon">${s.name.slice(0,2).replace(/[^A-Za-z0-9]/g,'').toUpperCase() || 'IP'}</div>
+          <div>
+            <h3>${s.name}</h3>
+            <p>${s.phone}</p>
+            <div class="supplier-actions">
+              <a class="btn whatsapp-btn" href="${supplierWhatsAppUrl(s.phone, s.name)}" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> WhatsApp</a>
+            </div>
+          </div>
+        </article>`).join('') || '<div class="empty"><h3>Nenhum fornecedor encontrado</h3><p>Tente buscar por outro nome ou número.</p></div>';
+    }
+    document.addEventListener('DOMContentLoaded', function(){ renderSuppliers(); });
+
 
 
 
