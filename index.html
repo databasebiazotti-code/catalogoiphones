@@ -7195,6 +7195,7 @@
         desc:'Documento pronto para vender com mais segurança.',
         previewDescription:'Termo de garantia para vender iPhones com mais segurança e evitar problemas.',
         previewUrl:'https://canva.link/vr004ry60pgxf6j',
+        canvaUrl:'https://canva.link/9au925t9rh3lb7i',
         checkoutUrl:'https://pay.cakto.com.br/37hx97u_466558',
         lessons:[]
       },
@@ -7218,7 +7219,8 @@
         icon:'ti-brush',
         desc:'Artes editáveis para vender iPhones.',
         previewDescription:'Artes editáveis no Canva para divulgar iPhones e movimentar suas redes sociais.',
-        previewLinks:['https://canva.link/25m3bychfs9mlk5','https://canva.link/1oxo3bfs06d43dr','https://canva.link/9ikdt8r4jyz2sv4','https://canva.link/gw40neul4uvje8c'],
+        previewLinks:['https://www.canva.com/design/DAG6NKocm5A/FHQgGwf2SdFtxfh3oYI-5g/view?mode=preview','https://www.canva.com/design/DAG6NLGWVHM/mIfkqOXKirCvuu5HyvFacA/view?mode=preview','https://www.canva.com/design/DAG6NEYC6jA/N7A2oWrKWYiEhXgFhDy7uA/view?mode=preview','https://www.canva.com/design/DAG6NBuNPGE/AL-Zh1vu9Ag-YhRAQ3Tpgg/view?mode=preview','https://www.canva.com/design/DAG6NFvMoCo/Z9Sr_k91kSbveuN8axJuRw/view?mode=preview'],
+        canvaLinks:['https://www.canva.com/design/DAG6NKocm5A/FHQgGwf2SdFtxfh3oYI-5g/view?mode=preview','https://www.canva.com/design/DAG6NLGWVHM/mIfkqOXKirCvuu5HyvFacA/view?mode=preview','https://www.canva.com/design/DAG6NEYC6jA/N7A2oWrKWYiEhXgFhDy7uA/view?mode=preview','https://www.canva.com/design/DAG6NBuNPGE/AL-Zh1vu9Ag-YhRAQ3Tpgg/view?mode=preview','https://www.canva.com/design/DAG6NFvMoCo/Z9Sr_k91kSbveuN8axJuRw/view?mode=preview'],
         checkoutUrl:'https://pay.cakto.com.br/ofq9oum_466554',
         lessons:[]
       },
@@ -7232,6 +7234,7 @@
         desc:'Contratos e termos prontos para usar.',
         previewDescription:'Pack com ordem de serviço, termo de garantia, contrato troca vidro, contrato tampa iPhone e contrato de compra/venda de celular usado.',
         previewUrl:'https://canva.link/myi26sxb1arffjj',
+        canvaUrl:'https://canva.link/2dq4lfnls7cmkd4',
         checkoutUrl:'https://pay.cakto.com.br/7hnxsot_466448',
         lessons:[]
       },
@@ -7245,7 +7248,7 @@
         isFree:true,
         highlight:true,
         previewUrl:'https://canva.link/ycs3se3cw8tu6tw',
-        canvaUrl:'https://canva.link/ycs3se3cw8tu6tw',
+        canvaUrl:'https://canva.link/ntunsdngvqadppx',
         checkoutUrl:'https://canva.link/ycs3se3cw8tu6tw'
       },
 
@@ -7269,7 +7272,8 @@
         icon:'ti-brush',
         desc:'Artes editáveis para divulgar sua assistência.',
         previewDescription:'Artes editáveis no Canva para divulgar sua assistência técnica.',
-        previewLinks:['https://canva.link/25m3bychfs9mlk5','https://canva.link/1oxo3bfs06d43dr','https://canva.link/9ikdt8r4jyz2sv4','https://canva.link/gw40neul4uvje8c'],
+        previewLinks:['https://www.canva.com/design/DAGshDtGqS8/-xXzE6T1PjDsZs8VlSfOhQ/view?mode=preview','https://www.canva.com/design/DAGshKaBaTM/dEz9SzPZZMBInQrv2hEseg/view?mode=preview'],
+        canvaLinks:['https://www.canva.com/design/DAGshDtGqS8/-xXzE6T1PjDsZs8VlSfOhQ/view?mode=preview','https://www.canva.com/design/DAGshKaBaTM/dEz9SzPZZMBInQrv2hEseg/view?mode=preview'],
         checkoutUrl:'https://pay.cakto.com.br/djoincj_466428',
         lessons:[]
       },
@@ -7282,7 +7286,7 @@
         icon:'ti-table',
         desc:'Calcule custo, margem e preço de venda.',
         previewDescription:'Planilha para calcular custo, margem e preço de venda.',
-        downloadUrl:'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=sharing',
+        downloadUrl:'Tabela%20de%20Precifica%C3%A7%C3%A3o.xlsx',
         downloadLabel:'Baixar',
         lessons:[]
       },
@@ -7773,6 +7777,34 @@
       );
     }
 
+
+    function openCanvaLinksPopup(productId){
+      const product = products[productId];
+      if(!product) return;
+
+      const links = product.canvaLinks?.length ? product.canvaLinks : (product.canvaUrl ? [product.canvaUrl] : []);
+      if(!links.length){
+        showToast('Link do Canva ainda não configurado.');
+        return;
+      }
+
+      if(links.length === 1){
+        openExternal(links[0], 'Canva');
+        return;
+      }
+
+      const buttons = links.map((url, index) =>
+        `<button class="btn green" onclick="openExternal('${url}','Canva ${index+1}')"><i class="ti ti-edit"></i> Editar arquivo ${index+1}</button>`
+      ).join('');
+
+      setModal(
+        product.icon || 'ti-edit',
+        `Editar — ${product.title}`,
+        `Escolha qual arquivo deseja editar no Canva:<div class="modal-actions modal-product-actions">${buttons}</div>`,
+        false
+      );
+    }
+
     function setModal(icon, title, text, showCode=false, checkoutUrl=''){
       document.getElementById('modal')?.classList.remove('free-trial-modal');
       document.getElementById('modalIcon').className = `ti ${icon}`;
@@ -8085,10 +8117,16 @@
       let actionButton = '';
 
       if(freeProduct){
-        actionButton = `<button class="btn green" onclick="openExternal('${product.canvaUrl || product.previewUrl || '#'}','Editar Ordem de Serviço')"><i class="ti ti-edit"></i> Editar no Canva</button>`;
+        if(product.canvaLinks?.length || product.canvaUrl){
+          actionButton = `<button class="btn green" onclick="openCanvaLinksPopup('${product.id}')"><i class="ti ti-edit"></i> Editar no Canva</button>`;
+        } else {
+          actionButton = `<button class="btn green" onclick="openExternal('${product.previewUrl || '#'}','Acessar')"><i class="ti ti-external-link"></i> Acessar</button>`;
+        }
       } else if(unlockedProduct){
         if(isCatalogProduct(product)){
-          actionButton = `<button class="btn green" onclick="openExternal('${product.canvaUrl || '#'}','Canva')"><i class="ti ti-download"></i> Editar no Canva</button>`;
+          actionButton = `<button class="btn green" onclick="openExternal('${product.canvaUrl || '#'}','Canva')"><i class="ti ti-edit"></i> Editar no Canva</button>`;
+        } else if(product.canvaLinks?.length || product.canvaUrl){
+          actionButton = `<button class="btn green" onclick="openCanvaLinksPopup('${product.id}')"><i class="ti ti-edit"></i> Editar no Canva</button>`;
         } else if(['precificacao','fornecedores'].includes(product.id)){
           actionButton = `<button class="btn green" onclick="openDownloadFile('${product.id}')"><i class="ti ti-external-link"></i> Acessar</button>`;
         } else {
