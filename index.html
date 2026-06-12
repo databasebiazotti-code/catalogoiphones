@@ -5126,6 +5126,42 @@
       .pixel-pill{justify-self:start;grid-column:2 / -1}
       .pixel-compat,.pixel-locked-msg{grid-column:1 / -1}
     }
+
+
+    /* Ajustes finais: atalhos do catálogo + suporte */
+    .catalog-quick-link{cursor:pointer;min-height:50px}
+    .catalog-quick-link:active{transform:scale(.99)}
+    .catalog-footer-title{scroll-margin-top:92px}
+
+    .support-hero{
+      background:radial-gradient(circle at 88% 0%,rgba(37,211,102,.18),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      margin:14px 0;
+      box-shadow:0 14px 42px rgba(0,0,0,.22);
+    }
+    .support-hero span{display:inline-flex;align-items:center;gap:7px;margin-bottom:10px;padding:7px 10px;border-radius:999px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.26);color:#7dffab;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.45px}
+    .support-hero h1{font-size:28px;line-height:1.08;letter-spacing:-.8px;margin-bottom:7px}
+    .support-hero p{max-width:720px;color:var(--muted);font-size:13px;line-height:1.5}
+    .support-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+    .support-card{display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(0,0,0,.18)}
+    .support-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:rgba(10,132,255,.12);border:1px solid rgba(10,132,255,.26);color:#8ec5ff;font-size:24px}
+    .support-icon.whatsapp{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.28);color:#25d366}
+    .support-card h3{font-size:17px;letter-spacing:-.35px}
+    .support-card p{color:var(--muted);font-size:12.5px;line-height:1.48;flex:1}
+    .support-card .btn{width:100%;margin-top:auto}
+    .support-note{background:rgba(255,255,255,.055);border:1px solid var(--line);border-radius:18px;padding:13px 14px;color:#d7d7dc;font-size:12.5px;line-height:1.45;margin-bottom:14px}
+    @media(max-width:900px){.support-grid{grid-template-columns:1fr}}
+    @media(max-width:760px){
+      .support-hero{padding:17px;border-radius:22px;margin-top:12px}
+      .support-hero h1{font-size:24px}
+      .support-grid{gap:10px}
+      .support-card{padding:14px;border-radius:20px}
+      .support-card p{font-size:12px}
+      .mobile-nav .mnav{font-size:8.8px !important}
+    }
+
 </style>
 
 <style>
@@ -5180,6 +5216,42 @@
     font-size:19px;
   }
 }
+
+
+    /* Ajustes finais: atalhos do catálogo + suporte */
+    .catalog-quick-link{cursor:pointer;min-height:50px}
+    .catalog-quick-link:active{transform:scale(.99)}
+    .catalog-footer-title{scroll-margin-top:92px}
+
+    .support-hero{
+      background:radial-gradient(circle at 88% 0%,rgba(37,211,102,.18),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      margin:14px 0;
+      box-shadow:0 14px 42px rgba(0,0,0,.22);
+    }
+    .support-hero span{display:inline-flex;align-items:center;gap:7px;margin-bottom:10px;padding:7px 10px;border-radius:999px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.26);color:#7dffab;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.45px}
+    .support-hero h1{font-size:28px;line-height:1.08;letter-spacing:-.8px;margin-bottom:7px}
+    .support-hero p{max-width:720px;color:var(--muted);font-size:13px;line-height:1.5}
+    .support-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+    .support-card{display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(0,0,0,.18)}
+    .support-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:rgba(10,132,255,.12);border:1px solid rgba(10,132,255,.26);color:#8ec5ff;font-size:24px}
+    .support-icon.whatsapp{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.28);color:#25d366}
+    .support-card h3{font-size:17px;letter-spacing:-.35px}
+    .support-card p{color:var(--muted);font-size:12.5px;line-height:1.48;flex:1}
+    .support-card .btn{width:100%;margin-top:auto}
+    .support-note{background:rgba(255,255,255,.055);border:1px solid var(--line);border-radius:18px;padding:13px 14px;color:#d7d7dc;font-size:12.5px;line-height:1.45;margin-bottom:14px}
+    @media(max-width:900px){.support-grid{grid-template-columns:1fr}}
+    @media(max-width:760px){
+      .support-hero{padding:17px;border-radius:22px;margin-top:12px}
+      .support-hero h1{font-size:24px}
+      .support-grid{gap:10px}
+      .support-card{padding:14px;border-radius:20px}
+      .support-card p{font-size:12px}
+      .mobile-nav .mnav{font-size:8.8px !important}
+    }
+
 </style>
 
 
@@ -5257,6 +5329,42 @@
   }
   .anchor-target{scroll-margin-top:86px !important;}
 }
+
+
+    /* Ajustes finais: atalhos do catálogo + suporte */
+    .catalog-quick-link{cursor:pointer;min-height:50px}
+    .catalog-quick-link:active{transform:scale(.99)}
+    .catalog-footer-title{scroll-margin-top:92px}
+
+    .support-hero{
+      background:radial-gradient(circle at 88% 0%,rgba(37,211,102,.18),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      margin:14px 0;
+      box-shadow:0 14px 42px rgba(0,0,0,.22);
+    }
+    .support-hero span{display:inline-flex;align-items:center;gap:7px;margin-bottom:10px;padding:7px 10px;border-radius:999px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.26);color:#7dffab;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.45px}
+    .support-hero h1{font-size:28px;line-height:1.08;letter-spacing:-.8px;margin-bottom:7px}
+    .support-hero p{max-width:720px;color:var(--muted);font-size:13px;line-height:1.5}
+    .support-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+    .support-card{display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(0,0,0,.18)}
+    .support-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:rgba(10,132,255,.12);border:1px solid rgba(10,132,255,.26);color:#8ec5ff;font-size:24px}
+    .support-icon.whatsapp{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.28);color:#25d366}
+    .support-card h3{font-size:17px;letter-spacing:-.35px}
+    .support-card p{color:var(--muted);font-size:12.5px;line-height:1.48;flex:1}
+    .support-card .btn{width:100%;margin-top:auto}
+    .support-note{background:rgba(255,255,255,.055);border:1px solid var(--line);border-radius:18px;padding:13px 14px;color:#d7d7dc;font-size:12.5px;line-height:1.45;margin-bottom:14px}
+    @media(max-width:900px){.support-grid{grid-template-columns:1fr}}
+    @media(max-width:760px){
+      .support-hero{padding:17px;border-radius:22px;margin-top:12px}
+      .support-hero h1{font-size:24px}
+      .support-grid{gap:10px}
+      .support-card{padding:14px;border-radius:20px}
+      .support-card p{font-size:12px}
+      .mobile-nav .mnav{font-size:8.8px !important}
+    }
+
 </style>
 
 </head>
@@ -5303,7 +5411,7 @@
             <div class="brand-mark"><i class="ti ti-building-store"></i></div>
             <div>
               <div class="brand-name">Central do Lojista</div>
-              <span class="brand-sub">Catálogos, documentos e materiais</span>
+              <span class="brand-sub">Catálogos, materiais e suporte</span>
             </div>
           </div>
         </div>
@@ -5352,7 +5460,7 @@
               <div class="home-welcome-clean">
                 <span class="home-badge"><i class="ti ti-sparkles"></i> Área de membros</span>
                 <h1 id="welcomeMessage">Olá, Luccas. Bem-vindo à Central do Lojista.</h1>
-                <p>Libere seu acesso e encontre rapidamente o conteúdo que você comprou.</p>
+                <p>Digite seu PIN e acesse seus materiais em poucos cliques.</p>
               </div>
 
               <div class="home-path-grid">
@@ -5360,7 +5468,7 @@
                   <span class="home-path-icon"><i class="ti ti-device-mobile"></i></span>
                   <span class="home-path-text">
                     <strong>Comprei o Catálogo</strong>
-                    <small>Acesse catálogos, bônus e grupo vip.</small>
+                    <small>Veja catálogos, bônus e grupo VIP.</small>
                   </span>
                   <i class="ti ti-chevron-right"></i>
                 </button>
@@ -5369,7 +5477,7 @@
                   <span class="home-path-icon"><i class="ti ti-file-text"></i></span>
                   <span class="home-path-text">
                     <strong>Comprei o Pack de Documentos</strong>
-                    <small>Acesse seus documentos e materiais para assistência.</small>
+                    <small>Veja documentos e materiais para assistência.</small>
                   </span>
                   <i class="ti ti-chevron-right"></i>
                 </button>
@@ -5392,7 +5500,7 @@
               <div class="home-section-head">
                 <div>
                   <div class="sec-title">Outras áreas</div>
-                  <div class="sec-sub">Veja todos os conteúdos disponíveis.</div>
+                  <div class="sec-sub">Acesse os materiais disponíveis para você.</div>
                 </div>
               </div>
               <div class="home-vector-grid" id="homeGrid"></div>
@@ -5406,7 +5514,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Catálogos</div>
-                <div class="sec-sub">Visualize e libere o acesso.</div>
+                <div class="sec-sub">Veja seus catálogos e desbloqueie com seu PIN.</div>
               </div>
             </div>
             <div class="grid" id="catalogGrid"></div>
@@ -5414,7 +5522,7 @@
             <div class="row-head catalog-access-head">
               <div>
                 <div class="sec-title">Acesso do catálogo</div>
-                <div class="sec-sub">Desbloqueie seu catálogo com o PIN para assistir às aulas, editar corretamente e entrar no grupo VIP do WhatsApp.</div>
+                <div class="sec-sub">Depois de liberar o catálogo, acesse tutoriais, grupo VIP e bônus.</div>
               </div>
             </div>
             <div class="catalog-access-grid" id="catalogAccessGrid"></div>
@@ -5425,7 +5533,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Lojas de iPhones</div>
-                <div class="sec-sub">Materiais para lojas que vendem iPhones.</div>
+                <div class="sec-sub">Materiais prontos para lojas que vendem iPhones.</div>
               </div>
             </div>
             <div class="grid" id="lojaIphoneGrid"></div>
@@ -5435,7 +5543,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Assistência Técnica</div>
-                <div class="sec-sub">Materiais para assistência técnica.</div>
+                <div class="sec-sub">Documentos, vídeos e artes para assistência técnica.</div>
               </div>
             </div>
             <div class="grid" id="assistenciaGrid"></div>
@@ -5445,23 +5553,44 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Tabela de Películas 3D</div>
-                <div class="sec-sub">Preview da tabela de compatibilidade de películas.</div>
+                <div class="sec-sub">Consulte modelos compatíveis de películas 3D.</div>
               </div>
             </div>
             <div class="grid" id="bonusGrid"></div>
           </section>
 
           <section class="section" id="suporte">
-            <div class="row-head">
-              <div>
-                <div class="sec-title">Suporte</div>
-                <div class="sec-sub">Como liberar um produto?</div>
-              </div>
+            <div class="support-hero">
+              <span><i class="ti ti-headset"></i> Central de suporte</span>
+              <h1>Precisa de ajuda?</h1>
+              <p>Veja como liberar seu acesso, encontrar seus materiais e falar com o suporte pelo WhatsApp.</p>
             </div>
-            <div class="panel">
-              <h3>Como liberar um produto?</h3>
-              <p>Entre em uma categoria, clique em <strong>Liberar</strong> no produto desejado e informe o código recebido. Você também pode usar o botão do checkout quando ele estiver disponível.</p>
-              <div class="card-actions"><button class="btn gold" onclick="goTo('catalogos')"><i class="ti ti-lock"></i> Ver produtos</button></div>
+
+            <div class="support-grid">
+              <article class="support-card">
+                <div class="support-icon"><i class="ti ti-key"></i></div>
+                <h3>Como liberar o acesso</h3>
+                <p>Digite o PIN recebido após a compra. O conteúdo será liberado automaticamente na sua área de membros.</p>
+                <button class="btn gold" onclick="goTo('catalogos')"><i class="ti ti-lock-open"></i> Liberar catálogo</button>
+              </article>
+
+              <article class="support-card">
+                <div class="support-icon"><i class="ti ti-device-mobile"></i></div>
+                <h3>Onde encontro meus materiais?</h3>
+                <p>Entre na categoria do produto comprado. Quando o acesso estiver liberado, os botões de visualizar, baixar ou editar aparecerão no card.</p>
+                <button class="btn ghost" onclick="goTo('inicio')"><i class="ti ti-layout-grid"></i> Ver áreas</button>
+              </article>
+
+              <article class="support-card support-card-whatsapp">
+                <div class="support-icon whatsapp"><i class="ti ti-brand-whatsapp"></i></div>
+                <h3>Falar com suporte</h3>
+                <p>Se o PIN não funcionar ou algum material não abrir, chame o suporte e informe o e-mail usado na compra.</p>
+                <a class="btn whatsapp-btn" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20na%20%C3%A1rea%20de%20membros." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Chamar no WhatsApp</a>
+              </article>
+            </div>
+
+            <div class="support-note">
+              <strong>Dica:</strong> use sempre o mesmo e-mail da compra para evitar erro na liberação do acesso.
             </div>
           </section>
         </div>
@@ -5473,7 +5602,8 @@
       <button class="mnav" data-section="catalogos"><i class="ti ti-device-mobile"></i> Catálogos</button>
       <button class="mnav" data-section="lojaiPhone"><i class="ti ti-brand-apple"></i> iPhones</button>
       <button class="mnav" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button>
-      <button class="mnav" data-section="bonus"><i class="ti ti-device-mobile-search"></i> Películas </button>
+      <button class="mnav" data-section="bonus"><i class="ti ti-device-mobile-search"></i> Películas</button>
+      <button class="mnav" data-section="suporte"><i class="ti ti-headset"></i> Suporte</button>
     </nav>
   </section>
 
@@ -5544,7 +5674,7 @@
         category:'catalogos',
         brandSymbol:'',
         icon:'ti-brand-apple',
-        desc:'Venda iPhones com vitrine profissional.',
+        desc:'Catálogo pronto para divulgar e vender iPhones.',
         previewUrl:'https://decolesolucoes.my.canva.site/catalogoiphone',
         canvaUrl:'https://canva.link/4f61h8i9pzacfek',
         checkoutUrl:'https://pay.cakto.com.br/3dgcgd9_466546',
@@ -5558,7 +5688,7 @@
         category:'catalogos',
         brandSymbol:'',
         icon:'ti-brand-apple',
-        desc:'Linha Apple completa: iPad, Watch, MacBook e acessórios.',
+        desc:'Catálogo para iPad, Apple Watch, MacBook e acessórios.',
         previewUrl:'https://decolesolucoes.my.canva.site/catalogoapple',
         canvaUrl:'https://canva.link/4mdi3usxohzvcng',
         checkoutUrl:'https://pay.cakto.com.br/388aq4g_466549',
@@ -5573,7 +5703,7 @@
         brandSymbol:'mi',
         brandClass:'xiaomi-logo',
         icon:'ti-device-mobile',
-        desc:'Redmi, Mi e Poco em um catálogo completo.',
+        desc:'Catálogo completo para Redmi, Mi e Poco.',
         previewUrl:'https://decolesolucoes.my.canva.site/catalogoxiaomi',
         canvaUrl:'https://canva.link/a680ptv67sau3nc',
         checkoutUrl:'https://pay.cakto.com.br/388aq4g_466549',
@@ -5588,7 +5718,7 @@
         brandSymbol:'R',
         brandClass:'realme-logo',
         icon:'ti-device-mobile',
-        desc:'Todos os modelos Realme em um catálogo completo.',
+        desc:'Catálogo completo para modelos Realme.',
         previewUrl:'https://decolesolucoes.my.canva.site/catalogorealme',
         canvaUrl:'https://canva.link/6b1thxnwvzwsk17',
         checkoutUrl:'https://pay.cakto.com.br/388aq4g_466549',
@@ -5602,7 +5732,7 @@
         category:'catalogos',
         brandSymbol:'',
         icon:'ti-crown',
-        desc:'Todos os catálogos em um só acesso.',
+        desc:'Todos os catálogos reunidos em um único acesso.',
         previewUrl:'https://decolesolucoes.my.canva.site/catalogoiphone',
         canvaUrl:'https://canva.link/4f61h8i9pzacfek',
         checkoutUrl:'https://pay.cakto.com.br/388aq4g_466549',
@@ -5615,8 +5745,8 @@
         title:'Termo de Garantia',
         category:'lojaiPhone',
         icon:'ti-shield-check',
-        desc:'Venda com segurança e confiança.',
-        previewDescription:'Termo de garantia para vender iPhones com mais segurança e evitar dor de cabeça.',
+        desc:'Documento pronto para vender com mais segurança.',
+        previewDescription:'Termo de garantia para vender iPhones com mais segurança e evitar problemas.',
         previewUrl:'https://canva.link/vr004ry60pgxf6j',
         checkoutUrl:'https://pay.cakto.com.br/37hx97u_466558',
         lessons:[]
@@ -5678,8 +5808,8 @@
         title:'Pack Reels Virais Assistência',
         category:'assistencia',
         icon:'ti-tools',
-        desc:'Vídeos para divulgar seus reparos.',
-        previewDescription:'Vídeos virais para vender mais nas redes sociais com conteúdo de reparos e assistência técnica.',
+        desc:'Vídeos prontos para divulgar seus serviços.',
+        previewDescription:'Vídeos prontos para divulgar reparos e assistência técnica nas redes sociais.',
         previewUrl:'https://drive.google.com/drive/folders/1lrldKTLhzc68wHMPzRQcQ4NNMru4g5tR',
         checkoutUrl:'https://pay.cakto.com.br/33vqdye_466429',
         lessons:[]
@@ -5690,8 +5820,8 @@
         title:'Pack Artes Canva Assistência',
         category:'assistencia',
         icon:'ti-brush',
-        desc:'Artes prontas para sua assistência.',
-        previewDescription:'Artes editáveis no Canva para divulgar serviços de assistência técnica.',
+        desc:'Artes editáveis para divulgar sua assistência.',
+        previewDescription:'Artes editáveis no Canva para divulgar sua assistência técnica.',
         previewLinks:['https://canva.link/25m3bychfs9mlk5','https://canva.link/1oxo3bfs06d43dr','https://canva.link/9ikdt8r4jyz2sv4','https://canva.link/gw40neul4uvje8c'],
         checkoutUrl:'https://pay.cakto.com.br/djoincj_466428',
         lessons:[]
@@ -5703,8 +5833,8 @@
         title:'Planilha de Precificação',
         category:'bonus',
         icon:'ti-table',
-        desc:'Calcule custo, margem e venda.',
-        previewDescription:'Planilha para organizar valores dos aparelhos, custo, margem e preço de venda.',
+        desc:'Organize custo, margem e preço de venda.',
+        previewDescription:'Planilha para organizar custo, margem e preço de venda dos aparelhos.',
         downloadUrl:'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=sharing',
         downloadLabel:'Baixar',
         lessons:[]
@@ -5716,8 +5846,8 @@
         title:'Lista de Fornecedores',
         category:'bonus',
         icon:'ti-building-store',
-        desc:'Contatos para comprar melhor.',
-        previewDescription:'Lista de fornecedores do Shopping Oriental para ajudar na organização dos seus contatos.',
+        desc:'Lista de contatos para buscar melhores compras.',
+        previewDescription:'Lista de fornecedores para ajudar você a organizar contatos e compras.',
         downloadUrl:'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=sharing',
         downloadLabel:'Baixar',
         lessons:[]
@@ -6504,16 +6634,16 @@
       if(!hasAnyCatalogAccess()) return '';
       return `
         <div class="catalog-quick-links">
-          <button class="catalog-quick-link" onclick="scrollToCatalogFooter('catalogLessonsFooter')"><span>Tutorial</span><i class="ti ti-player-play"></i></button>
-          <button class="catalog-quick-link" onclick="scrollToCatalogFooter('catalogGroupFooter')"><span>Grupo</span><i class="ti ti-brand-whatsapp"></i></button>
-          <button class="catalog-quick-link" onclick="scrollToCatalogFooter('catalogBonusFooter')"><span>Bônus</span><i class="ti ti-gift"></i></button>
+          <button class="catalog-quick-link" type="button" onclick="scrollToCatalogFooter('catalogLessonsFooter')"><span>Tutorial</span><i class="ti ti-player-play"></i></button>
+          <button class="catalog-quick-link" type="button" onclick="scrollToCatalogFooter('catalogGroupFooter')"><span>Grupo</span><i class="ti ti-brand-whatsapp"></i></button>
+          <button class="catalog-quick-link" type="button" onclick="scrollToCatalogFooter('catalogBonusFooter')"><span>Bônus</span><i class="ti ti-gift"></i></button>
         </div>
       `;
     }
 
     function scrollToCatalogFooter(id){
       const el = document.getElementById(id);
-      if(el){ el.scrollIntoView({ behavior:'smooth', block:'start' }); }
+      if(el){ goTo('catalogos'); setTimeout(() => el.scrollIntoView({ behavior:'smooth', block:'start' }), 60); }
     }
 
     function renderCatalogAccess(){
@@ -6521,12 +6651,12 @@
       if(!grid) return;
 
       grid.innerHTML = [
-        `<div class="catalog-footer-anchor" id="catalogBonusFooter"></div><div class="catalog-footer-title">Bônus do catálogo</div>`,
+        `<div class="catalog-footer-title" id="catalogBonusFooter">Bônus do catálogo</div>`,
         productCard(products.precificacao),
         productCard(products.fornecedores),
-        `<div class="catalog-footer-anchor" id="catalogGroupFooter"></div><div class="catalog-footer-title">Assistência</div>`,
+        `<div class="catalog-footer-title" id="catalogGroupFooter">Grupo VIP</div>`,
         catalogAccessCard('group'),
-        `<div class="catalog-footer-anchor" id="catalogLessonsFooter"></div><div class="catalog-footer-title">Vídeo aulas</div>`,
+        `<div class="catalog-footer-title" id="catalogLessonsFooter">Tutorial</div>`,
         catalogAccessCard('lessons')
       ].join('');
     }
