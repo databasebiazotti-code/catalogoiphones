@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#050506" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Central do Lojista" />
-  <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <title>Central do Lojista</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
@@ -5262,6 +5258,38 @@
 
     .install-app-main i{color:#fff !important}
 
+
+    .community-lead-card{
+      border-color:rgba(37,211,102,.34) !important;
+      background:
+        radial-gradient(circle at 100% 0%,rgba(37,211,102,.20),transparent 34%),
+        linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.020)),
+        var(--panel) !important;
+      box-shadow:0 18px 48px rgba(37,211,102,.10),0 14px 42px rgba(0,0,0,.22) !important;
+    }
+
+    .community-lead-icon{
+      background:rgba(37,211,102,.14) !important;
+      border-color:rgba(37,211,102,.30) !important;
+      color:#25d366 !important;
+    }
+
+    .community-lead-card .app-install-copy span{
+      color:#25d366 !important;
+    }
+
+    .community-lead-btn{
+      min-width:150px;
+      background:linear-gradient(135deg,#25d366,#19b957) !important;
+      color:#061108 !important;
+      border:0 !important;
+      box-shadow:0 14px 34px rgba(37,211,102,.22);
+      font-weight:950 !important;
+      white-space:nowrap;
+    }
+
+    .community-lead-btn i{color:#061108 !important}
+
     .pwa-installed .app-install-card,
     .pwa-installed #installAppTopBtn{
       display:none !important;
@@ -5295,7 +5323,493 @@
       .install-app-top span{display:none !important}
     }
 
-  </style>
+  
+
+    /* Onboarding PWA — apresentação leve da plataforma */
+    .onboarding-modal{
+      position:fixed;
+      inset:0;
+      z-index:160;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:rgba(0,0,0,.78);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+
+    .onboarding-modal.show{display:flex}
+
+    .onboarding-box{
+      width:min(520px,100%);
+      background:
+        radial-gradient(circle at 90% 0%,rgba(10,132,255,.22),transparent 36%),
+        linear-gradient(180deg,rgba(255,255,255,.070),rgba(255,255,255,.020)),
+        var(--panel);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:0 32px 110px rgba(0,0,0,.64);
+    }
+
+    .onboarding-progress{
+      height:4px;
+      background:rgba(255,255,255,.08);
+    }
+
+    .onboarding-progress span{
+      display:block;
+      height:100%;
+      width:25%;
+      border-radius:999px;
+      background:linear-gradient(135deg,#0a84ff,#30d158);
+      transition:width .22s ease;
+    }
+
+    .onboarding-content{padding:24px}
+
+    .onboarding-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      margin-bottom:14px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(10,132,255,.13);
+      border:1px solid rgba(10,132,255,.26);
+      color:#8ec5ff;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+
+    .onboarding-step{display:none}
+    .onboarding-step.active{display:block}
+
+    .onboarding-icon{
+      width:64px;
+      height:64px;
+      border-radius:21px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:16px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+    }
+
+    .onboarding-icon i{font-size:32px}
+
+    .onboarding-step h2{
+      font-size:27px;
+      line-height:1.06;
+      letter-spacing:-.9px;
+      margin-bottom:10px;
+    }
+
+    .onboarding-step p{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      margin-bottom:14px;
+    }
+
+    .onboarding-list{
+      display:grid;
+      gap:8px;
+      margin-top:12px;
+    }
+
+    .onboarding-list span{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#d7d7dc;
+      font-size:12.5px;
+      font-weight:750;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      padding:10px 11px;
+    }
+
+    .onboarding-list i{color:#30d158;font-size:16px}
+
+    .onboarding-actions{
+      display:flex;
+      gap:9px;
+      padding:0 24px 24px;
+    }
+
+    .onboarding-actions .btn{flex:1}
+
+    .onboarding-skip{
+      background:rgba(255,255,255,.055) !important;
+      border:1px solid rgba(255,255,255,.10) !important;
+      color:#d7d7dc !important;
+    }
+
+    .onboarding-install{
+      background:linear-gradient(135deg,#0a84ff,#006edb) !important;
+      color:#fff !important;
+      border:0 !important;
+      box-shadow:0 14px 34px rgba(10,132,255,.24);
+    }
+
+    @media(max-width:760px){
+      .onboarding-modal{align-items:flex-end;padding:0}
+      .onboarding-box{border-radius:28px 28px 0 0;border-left:0;border-right:0;border-bottom:0}
+      .onboarding-content{padding:20px}
+      .onboarding-step h2{font-size:24px}
+      .onboarding-step p{font-size:13px}
+      .onboarding-actions{padding:0 20px calc(20px + var(--safe-bottom));flex-direction:column-reverse}
+    }
+
+
+/* HOME MOBILE LIMPA — COMUNIDADE + PWA */
+.home-mobile-clean{display:grid;gap:14px;max-width:820px;margin:0 auto;padding-bottom:8px}
+.home-greeting-card{padding:10px 2px 0}.home-mini-label{display:inline-flex;padding:6px 10px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.06);border-radius:999px;color:#a1a1a6;font-size:11px;font-weight:800;margin-bottom:10px}.home-greeting-card h1{font-size:28px;line-height:1.06;letter-spacing:-.9px;margin-bottom:6px}.home-greeting-card p{font-size:14px;line-height:1.45;color:#a1a1a6;max-width:560px}
+.home-community-hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:14px;align-items:center;padding:28px;border-radius:26px;border:1px solid rgba(48,209,88,.22);background:radial-gradient(circle at 85% 42%,rgba(48,209,88,.34),transparent 25%),linear-gradient(135deg,rgba(48,209,88,.16),rgba(255,255,255,.025)),#07110b;box-shadow:0 18px 54px rgba(0,0,0,.30)}
+.home-community-hero:before{content:"";position:absolute;right:-50px;bottom:-70px;width:260px;height:260px;border-radius:999px;background:rgba(48,209,88,.10)}.home-community-copy{position:relative;z-index:1}.home-community-tag{display:inline-flex;background:rgba(48,209,88,.18);border:1px solid rgba(48,209,88,.28);color:#bfffd0;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900;margin-bottom:14px}.home-community-copy h2{font-size:36px;line-height:1.02;letter-spacing:-1.2px;margin-bottom:14px}.home-community-copy h2 strong{color:#30d158}.home-community-copy p{font-size:15px;color:#e7f8ea;line-height:1.48;max-width:430px;margin-bottom:18px}.home-whatsapp-cta{min-height:52px;border:0;border-radius:15px;background:linear-gradient(135deg,#30d158,#18b653);color:#061108;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:950;box-shadow:0 14px 34px rgba(48,209,88,.24)}.home-whatsapp-cta i{font-size:22px}.home-community-copy small{display:flex;align-items:center;gap:7px;color:#d4ead8;font-size:12px;margin-top:12px}.home-community-art{position:relative;z-index:1;display:grid;place-items:center;min-height:200px}.home-community-art i{font-size:112px;color:#30d158;filter:drop-shadow(0 0 28px rgba(48,209,88,.55))}
+.home-instagram-card,.home-install-card,.home-update-card,.home-materials-card{border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),#111114;border-radius:22px;box-shadow:0 14px 42px rgba(0,0,0,.22)}
+.home-instagram-card{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:center;padding:16px;background:radial-gradient(circle at 100% 0%,rgba(191,90,242,.16),transparent 38%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),#111114}.home-instagram-icon{width:72px;height:72px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(135deg,#ff2d55,#bf5af2,#ff9f0a);box-shadow:0 12px 30px rgba(191,90,242,.25)}.home-instagram-icon i{font-size:38px;color:#fff}.home-instagram-copy h3{font-size:19px;letter-spacing:-.4px;margin-bottom:4px}.home-instagram-copy p{font-size:13px;line-height:1.42;color:#b6b6bd}.home-instagram-copy strong{color:#ff7ad9}.home-instagram-action{min-height:42px;border-radius:999px;border:1px solid rgba(255,45,85,.45);padding:0 18px;display:flex;align-items:center;justify-content:center;color:#ff7ad9;font-weight:900;background:rgba(255,45,85,.06)}
+.home-materials-card{padding:18px}.home-section-title h3{font-size:20px;letter-spacing:-.5px;margin-bottom:4px}.home-section-title p{font-size:13px;color:#a1a1a6;margin-bottom:14px}.home-materials-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.home-material-card{position:relative;text-align:left;border-radius:18px;border:1px solid rgba(255,255,255,.10);padding:16px;min-height:156px;color:#fff;overflow:hidden}.home-material-card.catalog{background:radial-gradient(circle at 100% 100%,rgba(10,132,255,.24),transparent 42%),linear-gradient(135deg,rgba(10,132,255,.22),rgba(10,132,255,.06)),#0b1724}.home-material-card.assist{background:radial-gradient(circle at 100% 100%,rgba(191,90,242,.24),transparent 42%),linear-gradient(135deg,rgba(191,90,242,.22),rgba(191,90,242,.06)),#1a1028}.home-material-card span{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:rgba(255,255,255,.12);margin-bottom:12px}.home-material-card span i{font-size:28px}.home-material-card strong{display:block;font-size:18px;letter-spacing:-.35px;margin-bottom:7px}.home-material-card small{display:block;color:#d6d6dc;font-size:12.5px;line-height:1.35;max-width:220px}.home-card-arrow{position:absolute;right:14px;bottom:14px;width:34px;height:34px;border-radius:999px;display:grid!important;place-items:center;background:rgba(255,255,255,.12);font-size:18px!important}
+.home-install-card{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:center;padding:16px;background:radial-gradient(circle at 0% 0%,rgba(255,204,0,.16),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),#111114}.home-install-icon{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;background:rgba(255,204,0,.16);border:1px solid rgba(255,204,0,.22);color:#ffd60a}.home-install-icon i{font-size:32px}.home-install-copy h3{font-size:18px;letter-spacing:-.35px;margin-bottom:4px}.home-install-copy p{font-size:13px;color:#b6b6bd;line-height:1.42}.home-install-btn{min-height:44px;border-radius:14px;border:1px solid rgba(255,214,10,.58);background:rgba(255,214,10,.06);color:#ffd60a;font-size:14px;font-weight:950;padding:0 16px;display:flex;align-items:center;gap:8px;white-space:nowrap}.home-install-btn i{font-size:19px}
+.home-update-card{position:relative;display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:14px;align-items:center;padding:16px;border-color:rgba(48,209,88,.22);background:radial-gradient(circle at 100% 0%,rgba(48,209,88,.14),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),#0b120d}.home-update-badge{position:absolute;top:13px;left:13px;background:#30d158;color:#061108;border-radius:8px;padding:5px 8px;font-size:10px;font-weight:950;text-transform:uppercase}.home-update-icon{width:76px;height:76px;border-radius:20px;display:grid;place-items:center;background:rgba(255,255,255,.08);margin-top:18px}.home-update-icon i{font-size:38px;color:#30d158}.home-update-copy span{display:block;color:#30d158;font-size:12px;font-weight:900;margin-bottom:5px}.home-update-copy h3{font-size:18px;line-height:1.15;letter-spacing:-.4px;margin-bottom:7px}.home-update-copy p{font-size:12.5px;color:#b6b6bd;line-height:1.35}.home-update-btn{min-height:42px;border-radius:14px;border:1px solid rgba(48,209,88,.35);background:rgba(48,209,88,.07);color:#30d158;font-size:13px;font-weight:900;padding:0 14px;display:flex;align-items:center;gap:6px;white-space:nowrap}.home-unlock-compact{margin-top:0!important}
+@media(max-width:760px){.home-mobile-clean{gap:12px}.home-greeting-card{padding:4px 2px 0}.home-mini-label{display:none}.home-greeting-card h1{font-size:26px}.home-greeting-card p{font-size:13px}.home-community-hero{grid-template-columns:1fr;padding:22px;border-radius:22px}.home-community-copy h2{font-size:34px}.home-community-copy p{font-size:14px}.home-community-art{position:absolute;right:-8px;bottom:18px;min-height:auto;opacity:.22}.home-community-art i{font-size:150px}.home-whatsapp-cta{width:100%;min-height:52px}.home-instagram-card{grid-template-columns:62px minmax(0,1fr);padding:14px;border-radius:20px}.home-instagram-icon{width:62px;height:62px;border-radius:18px}.home-instagram-icon i{font-size:34px}.home-instagram-action{grid-column:1 / -1;width:100%;min-height:40px}.home-materials-card{padding:15px;border-radius:20px}.home-materials-grid{grid-template-columns:1fr 1fr;gap:10px}.home-material-card{padding:14px;min-height:158px;border-radius:17px}.home-material-card span{width:46px;height:46px;border-radius:14px}.home-material-card strong{font-size:16px}.home-material-card small{font-size:11.5px}.home-install-card{grid-template-columns:54px minmax(0,1fr);padding:14px;border-radius:20px}.home-install-icon{width:54px;height:54px;border-radius:16px}.home-install-btn{grid-column:1 / -1;width:100%;justify-content:center}.home-update-card{grid-template-columns:62px minmax(0,1fr);padding:14px;border-radius:20px}.home-update-icon{width:62px;height:62px;border-radius:18px}.home-update-btn{grid-column:1 / -1;width:100%;justify-content:center}.home-update-copy h3{font-size:17px}}
+@media(max-width:390px){.home-community-copy h2{font-size:30px}.home-materials-grid{grid-template-columns:1fr}.home-material-card{min-height:132px}.home-instagram-card,.home-install-card,.home-update-card{gap:12px}.home-greeting-card h1{font-size:24px}}
+
+  
+
+    /* Home final enxuta — foco em materiais e comunidade */
+    .home-greeting-card{padding:2px 2px 0 !important}
+    .home-greeting-card h1{font-size:24px !important;line-height:1.18 !important;margin:0 !important}
+    .home-greeting-card p{display:none !important}
+    .home-mobile-clean{gap:12px !important}
+    .home-community-hero{border-color:rgba(37,211,102,.22) !important;background:linear-gradient(180deg,rgba(37,211,102,.08),rgba(255,255,255,.018)),#111114 !important;box-shadow:0 14px 42px rgba(0,0,0,.22) !important}
+    .home-community-copy h2{font-size:27px !important;line-height:1.08 !important;letter-spacing:-.75px !important}
+    .home-community-copy h2 strong{color:#30d158 !important}
+    .home-community-copy p{max-width:560px !important;color:#b6b6bd !important}
+    .home-community-art{opacity:.16 !important}
+    .home-materials-card{padding:18px !important;border-color:rgba(255,255,255,.12) !important;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)),#111114 !important}
+    .home-section-title h3{font-size:21px !important}
+    .home-section-title p{color:#b6b6bd !important}
+    .home-material-card.catalog,.home-material-card.assist{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)),#17171a !important;border-color:rgba(255,255,255,.12) !important}
+    .home-material-card.catalog{box-shadow:inset 0 0 0 1px rgba(10,132,255,.10)}
+    .home-material-card.assist{box-shadow:inset 0 0 0 1px rgba(142,142,147,.10)}
+    .home-material-card span{background:rgba(255,255,255,.08) !important;color:#f5f5f7 !important}
+    .home-material-card small{color:#a1a1a6 !important}
+    .home-card-arrow{background:rgba(255,255,255,.08) !important}
+    .home-instagram-card{grid-template-columns:42px minmax(0,1fr) auto !important;padding:12px 14px !important;border-radius:18px !important;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.014)),#111114 !important;border-color:rgba(255,255,255,.08) !important;box-shadow:none !important}
+    .home-instagram-icon{width:42px !important;height:42px !important;border-radius:14px !important;background:rgba(255,255,255,.07) !important;box-shadow:none !important}
+    .home-instagram-icon i{font-size:24px !important;color:#d1d1d6 !important}
+    .home-instagram-copy h3{font-size:15px !important;margin-bottom:2px !important}
+    .home-instagram-copy p{font-size:12px !important;color:#8e8e93 !important}
+    .home-instagram-copy strong{color:#d1d1d6 !important}
+    .home-instagram-action{min-height:36px !important;padding:0 13px !important;border-color:rgba(255,255,255,.12) !important;background:rgba(255,255,255,.04) !important;color:#d1d1d6 !important;font-size:12px !important}
+    #appInstallCard,.install-app-top{display:none !important}
+    @media(max-width:760px){
+      .home-greeting-card h1{font-size:22px !important}
+      .home-community-hero{padding:18px !important;border-radius:22px !important}
+      .home-community-copy h2{font-size:26px !important}
+      .home-community-copy p{font-size:13px !important}
+      .home-materials-card{padding:15px !important}
+      .home-materials-grid{grid-template-columns:1fr !important}
+      .home-material-card{min-height:126px !important}
+      .home-instagram-card{grid-template-columns:38px minmax(0,1fr) auto !important;gap:10px !important}
+      .home-instagram-icon{width:38px !important;height:38px !important}
+      .home-instagram-action{grid-column:auto !important;width:auto !important;min-height:34px !important}
+    }
+
+
+
+/* Login com Google — ajuste final */
+.login-intro{
+  margin:-2px 0 18px;
+}
+.login-intro h1{
+  font-size:22px;
+  line-height:1.12;
+  letter-spacing:-.65px;
+  margin-bottom:6px;
+}
+.login-intro p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+}
+.google-login-btn{
+  width:100%;
+  min-height:48px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:#f5f5f7;
+  color:#111114;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:14px;
+  font-weight:850;
+  box-shadow:0 14px 32px rgba(255,255,255,.08);
+  margin-bottom:14px;
+}
+.google-login-btn:hover{filter:brightness(1.03)}
+.google-mark{
+  width:22px;
+  height:22px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background:#fff;
+  color:#111;
+  font-size:14px;
+  font-weight:900;
+  font-family:Arial,sans-serif;
+}
+.login-divider{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:14px 0 16px;
+  color:var(--muted2);
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+}
+.login-divider::before,
+.login-divider::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:rgba(255,255,255,.10);
+}
+.login-note{
+  color:var(--muted2);
+  font-size:11px;
+  line-height:1.45;
+  text-align:center;
+  margin-top:14px;
+}
+@media(max-width:760px){
+  .login-intro h1{font-size:21px}
+  .login-intro p{font-size:12.5px}
+  .google-login-btn{min-height:50px}
+}
+
+
+
+/* Login simples — cadastro gratuito em destaque */
+.login-card-simple{
+  max-width:400px !important;
+  padding:22px !important;
+}
+.login-card-simple .login-brand{
+  margin-bottom:18px !important;
+}
+.login-intro-simple{
+  margin:0 0 16px !important;
+}
+.free-badge{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(48,209,88,.10);
+  border:1px solid rgba(48,209,88,.24);
+  color:#caffd7;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.2px;
+  margin-bottom:12px;
+}
+.login-intro-simple h1{
+  font-size:24px !important;
+  line-height:1.08 !important;
+  letter-spacing:-.75px !important;
+  margin-bottom:8px !important;
+}
+.login-intro-simple p{
+  color:#a1a1a6 !important;
+  font-size:13px !important;
+  line-height:1.48 !important;
+}
+.google-login-btn{
+  min-height:50px !important;
+  border-radius:15px !important;
+  margin-bottom:9px !important;
+}
+.login-helper-text{
+  color:var(--muted2);
+  font-size:11.5px;
+  text-align:center;
+  line-height:1.4;
+  margin-bottom:12px;
+}
+.login-divider{
+  margin:12px 0 14px !important;
+}
+.login-card-simple .field{
+  margin-bottom:10px !important;
+}
+.login-card-simple .field input{
+  height:47px !important;
+  border-radius:14px !important;
+}
+.login-card-simple .login-btn{
+  height:48px !important;
+  border-radius:14px !important;
+}
+.login-toggle-card{
+  margin-top:13px !important;
+  padding:11px 12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.09);
+}
+.login-toggle-card button{
+  color:#fff !important;
+}
+.signup-callout{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  padding:12px;
+  border-radius:15px;
+  background:rgba(48,209,88,.08);
+  border:1px solid rgba(48,209,88,.18);
+  margin-bottom:12px;
+}
+.signup-callout strong{
+  font-size:13px;
+  color:#fff;
+}
+.signup-callout span{
+  color:#a1a1a6;
+  font-size:11.5px;
+}
+@media(max-width:760px){
+  .login-page{padding:16px !important;padding-top:calc(16px + var(--safe-top)) !important;}
+  .login-card-simple{padding:20px !important;border-radius:26px !important;}
+  .login-intro-simple h1{font-size:23px !important;}
+}
+
+/* Login prioridade: Google + cadastro gratuito */
+.login-priority-intro{text-align:left !important;margin-bottom:14px !important;}
+.login-priority-intro h1{font-size:25px !important;}
+.login-priority-intro p{max-width:340px;}
+.google-login-primary{
+  width:100% !important;
+  min-height:52px !important;
+  background:#f5f5f7 !important;
+  color:#111114 !important;
+  border:0 !important;
+  box-shadow:0 14px 34px rgba(255,255,255,.08) !important;
+  font-weight:900 !important;
+}
+.google-login-primary .google-mark{
+  background:#fff !important;
+  color:#111114 !important;
+  border:1px solid rgba(0,0,0,.08) !important;
+}
+.signup-priority-form{
+  margin-top:12px !important;
+}
+.signup-callout-soft{
+  background:rgba(10,132,255,.08) !important;
+  border-color:rgba(10,132,255,.18) !important;
+}
+.signup-callout-soft strong{font-size:14px !important;}
+.login-card-simple .login-divider{
+  color:var(--muted2) !important;
+  font-size:10.5px !important;
+  letter-spacing:.9px !important;
+  text-transform:uppercase !important;
+}
+.login-toggle-card{
+  background:rgba(255,255,255,.035) !important;
+}
+
+
+/* Tela de login enxuta — Central do Lojista */
+.login-landing-card{
+  max-width:390px !important;
+  padding:32px 24px 26px !important;
+  text-align:center !important;
+}
+.login-landing-logo{
+  width:96px;
+  height:96px;
+  margin:0 auto 18px;
+  border-radius:50%;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 18px 42px rgba(0,0,0,.28);
+}
+.login-landing-logo .brand-photo,
+.login-landing-logo img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  display:block !important;
+}
+.login-landing-intro{
+  margin:0 0 22px !important;
+  text-align:center !important;
+}
+.login-landing-intro h1{
+  font-size:28px !important;
+  line-height:1.08 !important;
+  letter-spacing:-.8px !important;
+  margin:0 0 10px !important;
+}
+.login-landing-intro p{
+  color:#a1a1a6 !important;
+  font-size:15px !important;
+  line-height:1.45 !important;
+  margin:0 !important;
+}
+.login-primary-action,
+.login-google-action{
+  min-height:52px !important;
+  border-radius:16px !important;
+  font-size:15px !important;
+  font-weight:850 !important;
+}
+.login-primary-action{
+  margin:0 !important;
+}
+.login-landing-divider{
+  margin:18px 0 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+}
+.login-google-action{
+  margin:0 !important;
+}
+.login-extra-form{
+  text-align:left !important;
+  margin-top:18px !important;
+  padding-top:18px !important;
+  border-top:1px solid rgba(255,255,255,.10) !important;
+}
+@media(max-width:420px){
+  .login-landing-card{padding:28px 20px 24px !important;}
+  .login-landing-logo{width:86px;height:86px;}
+  .login-landing-intro h1{font-size:25px !important;}
+  .login-landing-intro p{font-size:14px !important;}
+}
+
+</style>
 
 <style>
 .nav-item.active,
@@ -5384,6 +5898,82 @@
       .support-card p{font-size:12px}
       .mobile-nav .mnav{font-size:8.8px !important}
     }
+
+
+
+/* Tela de login enxuta — Central do Lojista */
+.login-landing-card{
+  max-width:390px !important;
+  padding:32px 24px 26px !important;
+  text-align:center !important;
+}
+.login-landing-logo{
+  width:96px;
+  height:96px;
+  margin:0 auto 18px;
+  border-radius:50%;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 18px 42px rgba(0,0,0,.28);
+}
+.login-landing-logo .brand-photo,
+.login-landing-logo img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  display:block !important;
+}
+.login-landing-intro{
+  margin:0 0 22px !important;
+  text-align:center !important;
+}
+.login-landing-intro h1{
+  font-size:28px !important;
+  line-height:1.08 !important;
+  letter-spacing:-.8px !important;
+  margin:0 0 10px !important;
+}
+.login-landing-intro p{
+  color:#a1a1a6 !important;
+  font-size:15px !important;
+  line-height:1.45 !important;
+  margin:0 !important;
+}
+.login-primary-action,
+.login-google-action{
+  min-height:52px !important;
+  border-radius:16px !important;
+  font-size:15px !important;
+  font-weight:850 !important;
+}
+.login-primary-action{
+  margin:0 !important;
+}
+.login-landing-divider{
+  margin:18px 0 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+}
+.login-google-action{
+  margin:0 !important;
+}
+.login-extra-form{
+  text-align:left !important;
+  margin-top:18px !important;
+  padding-top:18px !important;
+  border-top:1px solid rgba(255,255,255,.10) !important;
+}
+@media(max-width:420px){
+  .login-landing-card{padding:28px 20px 24px !important;}
+  .login-landing-logo{width:86px;height:86px;}
+  .login-landing-intro h1{font-size:25px !important;}
+  .login-landing-intro p{font-size:14px !important;}
+}
 
 </style>
 
@@ -5498,40 +6088,348 @@
       .mobile-nav .mnav{font-size:8.8px !important}
     }
 
+
+
+/* Tela de login enxuta — Central do Lojista */
+.login-landing-card{
+  max-width:390px !important;
+  padding:32px 24px 26px !important;
+  text-align:center !important;
+}
+.login-landing-logo{
+  width:96px;
+  height:96px;
+  margin:0 auto 18px;
+  border-radius:50%;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 18px 42px rgba(0,0,0,.28);
+}
+.login-landing-logo .brand-photo,
+.login-landing-logo img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  display:block !important;
+}
+.login-landing-intro{
+  margin:0 0 22px !important;
+  text-align:center !important;
+}
+.login-landing-intro h1{
+  font-size:28px !important;
+  line-height:1.08 !important;
+  letter-spacing:-.8px !important;
+  margin:0 0 10px !important;
+}
+.login-landing-intro p{
+  color:#a1a1a6 !important;
+  font-size:15px !important;
+  line-height:1.45 !important;
+  margin:0 !important;
+}
+.login-primary-action,
+.login-google-action{
+  min-height:52px !important;
+  border-radius:16px !important;
+  font-size:15px !important;
+  font-weight:850 !important;
+}
+.login-primary-action{
+  margin:0 !important;
+}
+.login-landing-divider{
+  margin:18px 0 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+}
+.login-google-action{
+  margin:0 !important;
+}
+.login-extra-form{
+  text-align:left !important;
+  margin-top:18px !important;
+  padding-top:18px !important;
+  border-top:1px solid rgba(255,255,255,.10) !important;
+}
+@media(max-width:420px){
+  .login-landing-card{padding:28px 20px 24px !important;}
+  .login-landing-logo{width:86px;height:86px;}
+  .login-landing-intro h1{font-size:25px !important;}
+  .login-landing-intro p{font-size:14px !important;}
+}
+
 </style>
 
+<style>
+
+/* Home final enxuta — WhatsApp discreto, materiais em destaque */
+.home-mobile-clean{
+  gap:12px !important;
+}
+.home-greeting-card{
+  padding:4px 2px 0 !important;
+}
+.home-community-hero{
+  grid-template-columns:1fr auto !important;
+  align-items:center !important;
+  gap:14px !important;
+  padding:16px !important;
+  border-radius:20px !important;
+  border-color:rgba(37,211,102,.18) !important;
+  background:linear-gradient(180deg,rgba(37,211,102,.06),rgba(255,255,255,.018)),var(--panel) !important;
+  box-shadow:0 10px 30px rgba(0,0,0,.16) !important;
+}
+.home-community-hero:before{display:none !important;}
+.home-community-tag{
+  margin-bottom:8px !important;
+  padding:5px 8px !important;
+  font-size:10px !important;
+  background:rgba(37,211,102,.10) !important;
+  border-color:rgba(37,211,102,.20) !important;
+  color:#aef5c3 !important;
+}
+.home-community-copy h2{
+  font-size:20px !important;
+  line-height:1.15 !important;
+  letter-spacing:-.45px !important;
+  margin-bottom:6px !important;
+}
+.home-community-copy h2 strong{color:inherit !important;}
+.home-community-copy p{
+  max-width:520px !important;
+  margin-bottom:12px !important;
+  font-size:12.5px !important;
+  line-height:1.42 !important;
+  color:var(--muted) !important;
+}
+.home-whatsapp-cta{
+  min-height:40px !important;
+  border-radius:13px !important;
+  padding:0 13px !important;
+  font-size:12.5px !important;
+  box-shadow:none !important;
+}
+.home-whatsapp-cta i{font-size:17px !important;}
+.home-community-copy small{display:none !important;}
+.home-community-art{
+  min-height:auto !important;
+  width:46px !important;
+  height:46px !important;
+  border-radius:15px !important;
+  background:rgba(37,211,102,.10) !important;
+  border:1px solid rgba(37,211,102,.18) !important;
+}
+.home-community-art i{
+  font-size:25px !important;
+  color:#30d158 !important;
+  filter:none !important;
+}
+.home-instagram-card{display:none !important;}
+.home-materials-card{
+  padding:18px !important;
+  border-radius:22px !important;
+  border-color:rgba(255,255,255,.11) !important;
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel) !important;
+  box-shadow:0 12px 34px rgba(0,0,0,.18) !important;
+}
+.home-section-title h3{font-size:21px !important;}
+.home-section-title p{font-size:13px !important;color:var(--muted) !important;}
+.home-material-card{
+  min-height:150px !important;
+  border-color:rgba(255,255,255,.11) !important;
+}
+.home-material-card.catalog{
+  background:linear-gradient(180deg,rgba(10,132,255,.11),rgba(255,255,255,.02)),#111114 !important;
+}
+.home-material-card.assist{
+  background:linear-gradient(180deg,rgba(142,142,147,.11),rgba(255,255,255,.02)),#111114 !important;
+}
+.home-material-card span{
+  background:rgba(255,255,255,.075) !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+}
+.home-material-card small{color:#b6b6bd !important;}
+.home-card-arrow{background:rgba(255,255,255,.08) !important;}
+@media(max-width:760px){
+  .home-community-hero{
+    grid-template-columns:1fr 44px !important;
+    padding:14px !important;
+  }
+  .home-community-copy h2{font-size:18px !important;}
+  .home-community-copy p{font-size:12px !important;margin-bottom:10px !important;}
+  .home-whatsapp-cta{width:auto !important;min-height:38px !important;}
+  .home-community-art{position:static !important;opacity:1 !important;width:44px !important;height:44px !important;}
+  .home-community-art i{font-size:24px !important;}
+  .home-materials-card{padding:15px !important;}
+  .home-materials-grid{grid-template-columns:1fr 1fr !important;gap:9px !important;}
+  .home-material-card{min-height:146px !important;padding:14px !important;}
+}
+@media(max-width:390px){
+  .home-materials-grid{grid-template-columns:1fr !important;}
+  .home-material-card{min-height:124px !important;}
+}
+
+/* Ajuste final: cadastro gratuito primeiro, Google como alternativa */
+.login-priority-intro{margin-bottom:12px !important;}
+.login-priority-intro h1{font-size:24px !important;line-height:1.08 !important;}
+.login-priority-intro p{max-width:350px !important;color:#a1a1a6 !important;}
+.signup-priority-form{margin-top:0 !important;}
+.login-or-google{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:14px 0 10px;
+  color:var(--muted2);
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+}
+.login-or-google::before,
+.login-or-google::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:rgba(255,255,255,.10);
+}
+.google-login-secondary{
+  min-height:48px !important;
+  background:rgba(255,255,255,.06) !important;
+  color:#fff !important;
+  border:1px solid rgba(255,255,255,.13) !important;
+  box-shadow:none !important;
+}
+.google-login-secondary .google-mark{
+  background:#f5f5f7 !important;
+  color:#111114 !important;
+}
+@media(max-width:760px){
+  .login-priority-intro h1{font-size:23px !important;}
+  .google-login-secondary{min-height:46px !important;}
+}
+
+
+
+/* Tela de login enxuta — Central do Lojista */
+.login-landing-card{
+  max-width:390px !important;
+  padding:32px 24px 26px !important;
+  text-align:center !important;
+}
+.login-landing-logo{
+  width:96px;
+  height:96px;
+  margin:0 auto 18px;
+  border-radius:50%;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 18px 42px rgba(0,0,0,.28);
+}
+.login-landing-logo .brand-photo,
+.login-landing-logo img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  display:block !important;
+}
+.login-landing-intro{
+  margin:0 0 22px !important;
+  text-align:center !important;
+}
+.login-landing-intro h1{
+  font-size:28px !important;
+  line-height:1.08 !important;
+  letter-spacing:-.8px !important;
+  margin:0 0 10px !important;
+}
+.login-landing-intro p{
+  color:#a1a1a6 !important;
+  font-size:15px !important;
+  line-height:1.45 !important;
+  margin:0 !important;
+}
+.login-primary-action,
+.login-google-action{
+  min-height:52px !important;
+  border-radius:16px !important;
+  font-size:15px !important;
+  font-weight:850 !important;
+}
+.login-primary-action{
+  margin:0 !important;
+}
+.login-landing-divider{
+  margin:18px 0 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+}
+.login-google-action{
+  margin:0 !important;
+}
+.login-extra-form{
+  text-align:left !important;
+  margin-top:18px !important;
+  padding-top:18px !important;
+  border-top:1px solid rgba(255,255,255,.10) !important;
+}
+@media(max-width:420px){
+  .login-landing-card{padding:28px 20px 24px !important;}
+  .login-landing-logo{width:86px;height:86px;}
+  .login-landing-intro h1{font-size:25px !important;}
+  .login-landing-intro p{font-size:14px !important;}
+}
+
+</style>
 </head>
 
 <body>
   <section class="page login-page active" id="loginPage">
-    <div class="login-card">
-      <div class="login-brand login-brand-photo login-brand-circle">
-        <div class="login-photo-wrap">
-          <img class="brand-photo" src="data:image/webp;base64,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" alt="O Luccas iPhone">
-        </div>
-        <div>
-          <div class="login-title">Central do Lojista</div>
-          <span class="login-sub">por Luccas Biazotti</span>
-        </div>
+    <div class="login-card login-card-simple login-landing-card">
+      <div class="login-landing-logo" aria-label="Logo">
+        <img class="brand-photo" src="data:image/webp;base64,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" alt="O Luccas iPhone">
       </div>
 
-      <div id="signupForm">
-        <div class="form-title">Criar login gratuito</div>
+      <div class="login-intro login-intro-simple login-priority-intro login-landing-intro">
+        <h1>Central do Lojista</h1>
+        <p>Catálogos, materiais e conteúdos<br>para lojistas e assistências técnicas.</p>
+      </div>
+
+      <button class="login-btn login-primary-action" type="button" onclick="openSignupForm()">Criar acesso gratuito</button>
+
+      <div class="login-or-google login-landing-divider">ou</div>
+
+      <button id="googleLoginBtn" class="google-login-btn google-login-primary google-login-secondary login-google-action" type="button">
+        <span class="google-mark">G</span>
+        Continuar com Google
+      </button>
+
+      <div id="signupForm" class="signup-priority-form login-extra-form" style="display:none">
         <div class="login-error" id="signupError"></div>
         <div class="field"><label>Nome</label><input id="signupName" type="text" placeholder="Seu nome" autocomplete="name" /></div>
         <div class="field"><label>E-mail</label><input id="signupEmail" type="email" placeholder="seu@email.com" autocomplete="email" /></div>
         <div class="field"><label>Criar senha</label><input id="signupPassword" type="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password" /></div>
-        <button class="login-btn" onclick="createAccount()"><i class="ti ti-arrow-right"></i> Criar login gratuito</button>
-        <div class="login-toggle">Já tem conta? <button onclick="toggleLogin()">Fazer login</button></div>
+        <button class="login-btn" onclick="createAccount()"><i class="ti ti-arrow-right"></i> Criar cadastro gratuito</button>
+        <div class="login-toggle login-toggle-card">Já tem cadastro? <button onclick="toggleLogin()">Entrar com e-mail e senha</button></div>
       </div>
 
-      <div id="loginForm" style="display:none">
-        <div class="form-title">Entrar na minha conta</div>
+      <div id="loginForm" class="login-extra-form" style="display:none">
+        <div class="login-divider">login com e-mail</div>
         <div class="login-error" id="loginError"></div>
         <div class="field"><label>E-mail</label><input id="loginEmail" type="email" placeholder="seu@email.com" autocomplete="email" /></div>
-        <div class="field"><label>Senha</label><input id="loginPassword" type="password" placeholder="Sua senha" autocomplete="current-password" /></div>
+        <div class="field"><label>Senha</label><input id="loginPassword" type="password" placeholder="Digite sua senha" autocomplete="current-password" /></div>
         <button class="login-btn" onclick="loginAccount()"><i class="ti ti-login-2"></i> Entrar</button>
-        <div class="login-toggle">Ainda não tem conta? <button onclick="toggleLogin()">Criar login gratuito</button></div>
+        <div class="login-toggle login-toggle-card">Ainda não tem acesso? <button onclick="toggleLogin()">Criar cadastro gratuito</button></div>
       </div>
     </div>
   </section>
@@ -5574,79 +6472,79 @@
         <header class="topbar">
           <div class="page-title" id="pageTitle">Início</div>
           <div class="top-actions">
-            <button class="top-btn install-app-top" id="installAppTopBtn" type="button" onclick="installPWA()"><i class="ti ti-download"></i><span>Instalar app</span></button>
             <a class="top-btn support-top" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20eu%20vim%20da%20%C3%A1rea%20de%20membros%20e%20tenho%20d%C3%BAvidas." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i><span>Suporte</span></a>
           </div>
         </header>
 
         <div class="content">
           <section class="section active" id="inicio">
-            <div class="home-redesign home-focused">
-              <div class="home-instagram-bar">
-                <div class="home-instagram-profile instagram-simple">
-                  <span>Siga meu instagram</span>
+            <div class="home-mobile-clean">
+              <section class="home-greeting-card">
+                <span class="home-mini-label">Área de membros</span>
+                <h1 id="welcomeMessage">Olá, admbiazotti. Bem-vindo à Central do Lojista.</h1>
+              </section>
+
+              <section class="home-community-hero">
+                <div class="home-community-copy">
+                  <span class="home-community-tag">WhatsApp</span>
+                  <h2>Grupo gratuito de lojistas</h2>
+                  <p>Receba novidades, dicas rápidas e avisos importantes da Central do Lojista.</p>
+                  <button class="home-whatsapp-cta" type="button" onclick="openExternal(FREE_LOJISTAS_GROUP_URL,'Grupo gratuito de lojistas')">
+                    <i class="ti ti-brand-whatsapp"></i> Entrar no grupo
+                  </button>
                 </div>
-                <a href="https://www.instagram.com/oluccasiphone" target="_blank" rel="noopener" class="home-instagram-btn">
-                  <i class="ti ti-brand-instagram"></i> @oluccasiphone</a>
-              </div>
-
-              <div class="home-welcome-clean">
-                <span class="home-badge"><i class="ti ti-sparkles"></i> Área de membros</span>
-                <h1 id="welcomeMessage">Olá, Luccas. Bem-vindo à sua área de membros.</h1>
-                <p>Use seu PIN para liberar e acessar seus materiais rapidamente.</p>
-              </div>
-
-              <div class="app-install-card" id="appInstallCard">
-                <div class="app-install-icon"><i class="ti ti-device-mobile-down"></i></div>
-                <div class="app-install-copy">
-                  <span>Comunidade no seu bolso</span>
-                  <h3>Instale o app da área de membros</h3>
-                  <p>Acesse catálogos, bônus, grupo VIP e suporte com mais rapidez direto pela tela inicial do celular.</p>
+                <div class="home-community-art" aria-hidden="true">
+                  <i class="ti ti-brand-whatsapp"></i>
                 </div>
-                <button class="btn install-app-main" type="button" onclick="installPWA()"><i class="ti ti-download"></i> Instalar app</button>
-              </div>
+              </section>
 
-              <div class="home-path-grid">
-                <button class="home-path-card" type="button" onclick="goTo('catalogos')">
-                  <span class="home-path-icon"><i class="ti ti-device-mobile"></i></span>
-                  <span class="home-path-text">
-                    <strong>Acessar Catálogos</strong>
-                    <small>Consulte seus catálogos, bônus e grupo VIP.</small>
-                  </span>
-                  <i class="ti ti-chevron-right"></i>
-                </button>
+              <section class="home-materials-card">
+                <div class="home-section-title">
+                  <h3>Acesse seus materiais</h3>
+                  <p>Tudo que você precisa para vender mais e atender melhor.</p>
+                </div>
+                <div class="home-materials-grid">
+                  <button class="home-material-card catalog" type="button" onclick="goTo('catalogos')">
+                    <span><i class="ti ti-layout-grid"></i></span>
+                    <strong>Catálogos</strong>
+                    <small>Modelos editáveis, Canva, materiais para loja e fornecedores.</small>
+                    <i class="ti ti-arrow-right home-card-arrow"></i>
+                  </button>
+                  <button class="home-material-card assist" type="button" onclick="goTo('assistencia')">
+                    <span><i class="ti ti-tool"></i></span>
+                    <strong>Assistência Técnica</strong>
+                    <small>Packs, documentos, listas de películas e ferramentas para assistência.</small>
+                    <i class="ti ti-arrow-right home-card-arrow"></i>
+                  </button>
+                </div>
+              </section>
 
-                <button class="home-path-card" type="button" onclick="goTo('assistencia')">
-                  <span class="home-path-icon"><i class="ti ti-file-text"></i></span>
-                  <span class="home-path-text">
-                    <strong>Acessar Documentos</strong>
-                    <small>Abra documentos, vídeos e artes para assistência.</small>
-                  </span>
-                  <i class="ti ti-chevron-right"></i>
-                </button>
-              </div>
+              <section class="home-update-card">
+                <div class="home-update-badge">Novo</div>
+                <div class="home-update-icon"><i class="ti ti-device-mobile-check"></i></div>
+                <div class="home-update-copy">
+                  <span>Última atualização</span>
+                  <h3>Tabela de Compatibilidade de Películas</h3>
+                  <p>Consulte rapidamente quais modelos usam a mesma película e agilize seu atendimento.</p>
+                </div>
+                <button class="home-update-btn" type="button" onclick="goTo('bonus')">Ver atualização <i class="ti ti-chevron-right"></i></button>
+              </section>
 
-              <div class="home-unlock-card">
+              <section class="home-unlock-card home-unlock-compact">
                 <div class="home-unlock-top">
                   <span class="home-code-icon"><i class="ti ti-key"></i></span>
                   <div>
-                    <h3>Liberar acesso</h3>
-                    <p>Digite o PIN recebido após a compra para liberar seus materiais.</p>
+                    <h3>Liberar materiais</h3>
+                    <p>Digite seu PIN para ativar os conteúdos disponíveis na sua conta.</p>
                   </div>
                 </div>
                 <div class="quick-code-row home-code-action">
                   <input id="quickCodeInput" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="Digite seu PIN" autocomplete="off" />
                   <button class="btn gold" onclick="redeemQuickCode()"><i class="ti ti-lock-open"></i> Liberar</button>
                 </div>
-              </div>
+              </section>
 
-              <div class="home-section-head">
-                <div>
-                  <div class="sec-title">Áreas disponíveis</div>
-                  <div class="sec-sub">Escolha abaixo o material que deseja acessar.</div>
-                </div>
-              </div>
-              <div class="home-vector-grid" id="homeGrid"></div>
+              <div class="home-vector-grid" id="homeGrid" style="display:none"></div>
             </div>
           </section>
 
@@ -5706,7 +6604,7 @@
             <div class="support-hero">
               <span><i class="ti ti-headset"></i> Ajuda rápida</span>
               <h1>Precisa de ajuda?</h1>
-              <p>Confira as orientações principais para acessar seus materiais sem dificuldade.</p>
+              <p>Confira orientações rápidas para liberar acesso, encontrar materiais ou falar com o suporte.</p>
             </div>
 
             <div class="support-grid">
@@ -5750,6 +6648,61 @@
     </nav>
   </section>
 
+
+  <div class="onboarding-modal" id="onboardingModal" aria-hidden="true">
+    <div class="onboarding-box" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
+      <div class="onboarding-progress"><span id="onboardingProgress"></span></div>
+      <div class="onboarding-content">
+        <span class="onboarding-badge"><i class="ti ti-sparkles"></i> Comece por aqui</span>
+
+        <div class="onboarding-step active" data-onboard-step="0">
+          <div class="onboarding-icon"><i class="ti ti-layout-dashboard"></i></div>
+          <h2 id="onboardingTitle">Bem-vindo à Central do Lojista</h2>
+          <p>Esse espaço foi feito para facilitar sua rotina. Aqui você encontra os materiais principais, primeiros passos e novidades em um só lugar.</p>
+          <div class="onboarding-list">
+            <span><i class="ti ti-check"></i> Acesso simples pelo celular ou computador</span>
+            <span><i class="ti ti-check"></i> Conteúdos organizados por categoria</span>
+          </div>
+        </div>
+
+        <div class="onboarding-step" data-onboard-step="1">
+          <div class="onboarding-icon"><i class="ti ti-device-mobile"></i></div>
+          <h2>Materiais para lojas de iPhone</h2>
+          <p>Você vai encontrar catálogos editáveis no Canva, materiais para divulgação, listas de fornecedores e conteúdos para usar no atendimento da sua loja.</p>
+          <div class="onboarding-list">
+            <span><i class="ti ti-check"></i> Catálogos prontos para adaptar e compartilhar</span>
+            <span><i class="ti ti-check"></i> Materiais pensados para lojistas</span>
+          </div>
+        </div>
+
+        <div class="onboarding-step" data-onboard-step="2">
+          <div class="onboarding-icon"><i class="ti ti-tools"></i></div>
+          <h2>Conteúdo para assistência técnica</h2>
+          <p>Também tem uma área focada em assistência, com packs, documentos, listas úteis e a tabela de compatibilidade de películas para agilizar consultas.</p>
+          <div class="onboarding-list">
+            <span><i class="ti ti-check"></i> Documentos, packs e materiais de apoio</span>
+            <span><i class="ti ti-check"></i> Compatibilidade de películas atualizada</span>
+          </div>
+        </div>
+
+        <div class="onboarding-step" data-onboard-step="3">
+          <div class="onboarding-icon"><i class="ti ti-brand-instagram"></i></div>
+          <h2>Acompanhe as novidades</h2>
+          <p>A Central do Lojista vai receber novos materiais e atualizações. Para ficar por dentro, acompanhe também no Instagram.</p>
+          <div class="onboarding-list">
+            <span><i class="ti ti-check"></i> Siga @oluccasiphone</span>
+            <span><i class="ti ti-check"></i> Depois é só entrar e começar pelos primeiros passos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="onboarding-actions">
+        <button class="btn onboarding-skip" type="button" onclick="finishOnboarding()">Pular</button>
+        <button class="btn gold" id="onboardingNextBtn" type="button" onclick="nextOnboardingStep()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
   <div class="modal" id="modal">
     <div class="modal-box">
       <div class="modal-cover"><i id="modalIcon" class="ti ti-lock"></i></div>
@@ -5787,6 +6740,7 @@
 
     const GRUPO_CATALOGOS_URL = "https://chat.whatsapp.com/FROgxjKeafKAtGrSJpykXv?mode=gi_t";
     const GRUPO_DOCUMENTOS_URL = "https://chat.whatsapp.com/FyDDMFtZ4hmCCh5HZodLo7?mode=gi_t";
+    const FREE_LOJISTAS_GROUP_URL = "https://chat.whatsapp.com/CPH8IhbzUSyIHcqlycnaZ3?mode=gi_t";
 
     const catalogLessons = [
       {
@@ -6237,6 +7191,16 @@
       return 'Não foi possível continuar agora. Tente novamente.';
     }
 
+
+    function openSignupForm(){
+      const signup = document.getElementById('signupForm');
+      const login = document.getElementById('loginForm');
+      if(signup) signup.style.display = 'block';
+      if(login) login.style.display = 'none';
+      const first = document.getElementById('signupName');
+      if(first) first.focus();
+    }
+
     function toggleLogin(){
       const signup = document.getElementById('signupForm');
       const login = document.getElementById('loginForm');
@@ -6244,6 +7208,33 @@
       signup.style.display = showingSignup ? 'none' : 'block';
       login.style.display = showingSignup ? 'block' : 'none';
     }
+
+
+
+    document.getElementById("googleLoginBtn").addEventListener("click", async () => {
+      const btn = document.getElementById("googleLoginBtn");
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<span class="google-mark">G</span> Abrindo Google...';
+
+      const { error } = await sb.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: window.location.origin
+        }
+      });
+
+      if(error){
+        console.error(error);
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        const loginError = document.getElementById('loginError');
+        if(loginError){
+          loginError.textContent = 'Não foi possível abrir o login com Google. Verifique a configuração no Supabase.';
+          loginError.classList.add('show');
+        }
+      }
+    });
 
     async function logout(){
       await sb.auth.signOut();
@@ -6271,6 +7262,7 @@
       updateCustomerUI();
       render();
       scheduleFreeTrialPopup();
+      maybeShowOnboarding();
     }
 
     function showLogin(){
@@ -7024,71 +8016,60 @@
       }
     });
 
+    let onboardingStepIndex = 0;
+    const onboardingTotalSteps = 4;
 
-
-    let deferredPWAInstallPrompt = null;
-
-    function isStandalonePWA(){
-      return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-    }
-
-    function updatePWAInstallUI(){
-      document.body.classList.toggle('pwa-installed', isStandalonePWA());
-    }
-
-    function showPWAInstructions(){
-      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      const text = isIOS
-        ? 'No iPhone, toque no botão de compartilhar do Safari e escolha “Adicionar à Tela de Início”. Assim a Central abre como aplicativo.'
-        : 'Se o aviso de instalação não aparecer, abra o menu do navegador e toque em “Instalar app” ou “Adicionar à tela inicial”.';
-      if(typeof setModal === 'function'){
-        setModal('ti-download','Instalar aplicativo', text, false);
-      }else{
-        alert(text);
-      }
-    }
-
-    async function installPWA(){
-      if(isStandalonePWA()){
-        showToast('O app já está instalado neste dispositivo.');
-        updatePWAInstallUI();
-        return;
-      }
-      if(deferredPWAInstallPrompt){
-        deferredPWAInstallPrompt.prompt();
-        const choice = await deferredPWAInstallPrompt.userChoice;
-        deferredPWAInstallPrompt = null;
-        if(choice?.outcome === 'accepted'){
-          showToast('App instalado com sucesso.');
-          updatePWAInstallUI();
-        }
-        return;
-      }
-      showPWAInstructions();
-    }
-
-    window.addEventListener('beforeinstallprompt', function(event){
-      event.preventDefault();
-      deferredPWAInstallPrompt = event;
-      updatePWAInstallUI();
-    });
-
-    window.addEventListener('appinstalled', function(){
-      deferredPWAInstallPrompt = null;
-      updatePWAInstallUI();
-      showToast('App instalado com sucesso.');
-    });
-
-    if('serviceWorker' in navigator){
-      window.addEventListener('load', function(){
-        navigator.serviceWorker.register('./sw.js').catch(function(error){
-          console.warn('Service Worker não registrado:', error);
-        });
+    function updateOnboardingUI(){
+      document.querySelectorAll('[data-onboard-step]').forEach(function(step){
+        step.classList.toggle('active', Number(step.dataset.onboardStep) === onboardingStepIndex);
       });
+      const progress = document.getElementById('onboardingProgress');
+      if(progress) progress.style.width = (((onboardingStepIndex + 1) / onboardingTotalSteps) * 100) + '%';
+      const nextBtn = document.getElementById('onboardingNextBtn');
+      if(nextBtn){
+        nextBtn.innerHTML = onboardingStepIndex === onboardingTotalSteps - 1
+          ? '<i class="ti ti-check"></i> Entrar na plataforma'
+          : 'Continuar';
+      }
     }
+
+    function openOnboarding(){
+      onboardingStepIndex = 0;
+      updateOnboardingUI();
+      const modal = document.getElementById('onboardingModal');
+      if(modal){
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden','false');
+      }
+    }
+
+    function finishOnboarding(){
+      localStorage.setItem('centralLojistaOnboardingV1','done');
+      const modal = document.getElementById('onboardingModal');
+      if(modal){
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden','true');
+      }
+    }
+
+    function nextOnboardingStep(){
+      if(onboardingStepIndex < onboardingTotalSteps - 1){
+        onboardingStepIndex += 1;
+        updateOnboardingUI();
+        return;
+      }
+      finishOnboarding();
+    }
+
+    function maybeShowOnboarding(){
+      if(localStorage.getItem('centralLojistaOnboardingV1') === 'done') return;
+      setTimeout(openOnboarding, 450);
+    }
+
+
+
 
     window.addEventListener('DOMContentLoaded', async function(){
-      updatePWAInstallUI();
       try{
         const { data:{ session } } = await sb.auth.getSession();
 
