@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#050506" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Central do Lojista" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <title>Central do Lojista</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -5090,6 +5096,7 @@
     .pixel-search-box input{min-width:0;height:44px;background:#0b0b0d;color:#fff;border:1px solid var(--line2);border-radius:14px;padding:0 13px;font-size:14px;outline:none}
     .pixel-search-box input:focus{border-color:rgba(10,132,255,.75);box-shadow:0 0 0 4px rgba(10,132,255,.14)}
     .pixel-search-box button{border:0;background:linear-gradient(135deg,#0a84ff,#006edb);color:#fff;border-radius:14px;padding:0 14px;font-size:12px;font-weight:900}
+    .pixel-clear-btn{height:44px;min-width:104px;padding:0 18px!important;display:inline-flex;align-items:center;justify-content:center;border-radius:14px!important;white-space:nowrap}
     .pixel-brand-buttons{display:flex;gap:7px;overflow:auto;padding:2px 0 4px;-webkit-overflow-scrolling:touch}
     .pixel-brand-btn{border:1px solid var(--line);background:rgba(255,255,255,.06);color:#d7d7dc;border-radius:999px;padding:8px 11px;font-size:11px;font-weight:850;white-space:nowrap}
     .pixel-brand-btn.active{background:rgba(10,132,255,.16);border-color:rgba(10,132,255,.38);color:#fff}
@@ -5120,13 +5127,175 @@
     @media(max-width:760px){
       .catalog-quick-links{grid-template-columns:1fr;gap:8px}
       .pixel-search-box{grid-template-columns:1fr}
+      .pixel-clear-btn{width:100%;height:44px;min-width:0}
       .pixel-card{grid-template-columns:44px 1fr;gap:10px}
       .pixel-icon{width:44px;height:44px;border-radius:15px;font-size:20px}
       .pixel-card h3{font-size:15px}
       .pixel-pill{justify-self:start;grid-column:2 / -1}
       .pixel-compat,.pixel-locked-msg{grid-column:1 / -1}
     }
-</style>
+
+
+    /* Ajustes finais: atalhos do catálogo + suporte */
+    .catalog-quick-link{cursor:pointer;min-height:50px}
+    .catalog-quick-link:active{transform:scale(.99)}
+    .catalog-footer-title{scroll-margin-top:92px}
+
+    .support-hero{
+      background:radial-gradient(circle at 88% 0%,rgba(37,211,102,.18),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      margin:14px 0;
+      box-shadow:0 14px 42px rgba(0,0,0,.22);
+    }
+    .support-hero span{display:inline-flex;align-items:center;gap:7px;margin-bottom:10px;padding:7px 10px;border-radius:999px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.26);color:#7dffab;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.45px}
+    .support-hero h1{font-size:28px;line-height:1.08;letter-spacing:-.8px;margin-bottom:7px}
+    .support-hero p{max-width:720px;color:var(--muted);font-size:13px;line-height:1.5}
+    .support-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+    .support-card{display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(0,0,0,.18)}
+    .support-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:rgba(10,132,255,.12);border:1px solid rgba(10,132,255,.26);color:#8ec5ff;font-size:24px}
+    .support-icon.whatsapp{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.28);color:#25d366}
+    .support-card h3{font-size:17px;letter-spacing:-.35px}
+    .support-card p{color:var(--muted);font-size:12.5px;line-height:1.48;flex:1}
+    .support-card .btn{width:100%;margin-top:auto}
+    .support-note{background:rgba(255,255,255,.055);border:1px solid var(--line);border-radius:18px;padding:13px 14px;color:#d7d7dc;font-size:12.5px;line-height:1.45;margin-bottom:14px}
+    @media(max-width:900px){.support-grid{grid-template-columns:1fr}}
+    @media(max-width:760px){
+      .support-hero{padding:17px;border-radius:22px;margin-top:12px}
+      .support-hero h1{font-size:24px}
+      .support-grid{gap:10px}
+      .support-card{padding:14px;border-radius:20px}
+      .support-card p{font-size:12px}
+      .mobile-nav .mnav{font-size:8.8px !important}
+    }
+
+
+
+    /* Ajuste final solicitado: menu sem Suporte + textos revisados */
+    .mobile-nav{justify-content:space-around !important;}
+    .mobile-nav .mnav{min-width:0 !important;}
+    .support-grid{align-items:stretch !important;}
+    .support-card{min-height:100% !important;}
+    @media(max-width:760px){
+      .mobile-nav .mnav{font-size:9.8px !important;}
+      .support-hero p{font-size:13px !important;}
+    }
+
+  
+
+    /* PWA — destaque para instalação do aplicativo */
+    .install-app-top{
+      background:linear-gradient(135deg,#0a84ff,#006edb) !important;
+      border:0 !important;
+      color:#fff !important;
+      box-shadow:0 12px 30px rgba(10,132,255,.22);
+      font-weight:900 !important;
+    }
+
+    .install-app-top i{color:#fff !important}
+
+    .app-install-card{
+      display:grid;
+      grid-template-columns:58px minmax(0,1fr) auto;
+      align-items:center;
+      gap:14px;
+      margin:12px 0 14px;
+      padding:16px;
+      border-radius:22px;
+      border:1px solid rgba(10,132,255,.30);
+      background:
+        radial-gradient(circle at 100% 0%,rgba(10,132,255,.24),transparent 34%),
+        linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.020)),
+        var(--panel);
+      box-shadow:0 18px 48px rgba(10,132,255,.12),0 14px 42px rgba(0,0,0,.22);
+    }
+
+    .app-install-icon{
+      width:58px;
+      height:58px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(10,132,255,.14);
+      border:1px solid rgba(10,132,255,.28);
+      color:#8ec5ff;
+    }
+
+    .app-install-icon i{font-size:30px}
+
+    .app-install-copy span{
+      display:inline-flex;
+      margin-bottom:4px;
+      color:#8ec5ff;
+      font-size:10.5px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.55px;
+    }
+
+    .app-install-copy h3{
+      font-size:18px;
+      line-height:1.15;
+      letter-spacing:-.4px;
+      margin-bottom:4px;
+      color:#fff;
+    }
+
+    .app-install-copy p{
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.45;
+      margin:0;
+    }
+
+    .install-app-main{
+      min-width:150px;
+      background:linear-gradient(135deg,#0a84ff,#006edb) !important;
+      color:#fff !important;
+      border:0 !important;
+      box-shadow:0 14px 34px rgba(10,132,255,.24);
+      font-weight:950 !important;
+      white-space:nowrap;
+    }
+
+    .install-app-main i{color:#fff !important}
+
+    .pwa-installed .app-install-card,
+    .pwa-installed #installAppTopBtn{
+      display:none !important;
+    }
+
+    @media(max-width:760px){
+      .app-install-card{
+        grid-template-columns:48px minmax(0,1fr);
+        gap:12px;
+        padding:14px;
+        border-radius:20px;
+      }
+
+      .app-install-icon{
+        width:48px;
+        height:48px;
+        border-radius:16px;
+      }
+
+      .app-install-icon i{font-size:26px}
+
+      .app-install-copy h3{font-size:16px}
+      .app-install-copy p{font-size:12px}
+
+      .install-app-main{
+        grid-column:1 / -1;
+        width:100%;
+        min-height:44px !important;
+      }
+
+      .install-app-top span{display:none !important}
+    }
+
+  </style>
 
 <style>
 .nav-item.active,
@@ -5180,6 +5349,42 @@
     font-size:19px;
   }
 }
+
+
+    /* Ajustes finais: atalhos do catálogo + suporte */
+    .catalog-quick-link{cursor:pointer;min-height:50px}
+    .catalog-quick-link:active{transform:scale(.99)}
+    .catalog-footer-title{scroll-margin-top:92px}
+
+    .support-hero{
+      background:radial-gradient(circle at 88% 0%,rgba(37,211,102,.18),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      margin:14px 0;
+      box-shadow:0 14px 42px rgba(0,0,0,.22);
+    }
+    .support-hero span{display:inline-flex;align-items:center;gap:7px;margin-bottom:10px;padding:7px 10px;border-radius:999px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.26);color:#7dffab;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.45px}
+    .support-hero h1{font-size:28px;line-height:1.08;letter-spacing:-.8px;margin-bottom:7px}
+    .support-hero p{max-width:720px;color:var(--muted);font-size:13px;line-height:1.5}
+    .support-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+    .support-card{display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(0,0,0,.18)}
+    .support-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:rgba(10,132,255,.12);border:1px solid rgba(10,132,255,.26);color:#8ec5ff;font-size:24px}
+    .support-icon.whatsapp{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.28);color:#25d366}
+    .support-card h3{font-size:17px;letter-spacing:-.35px}
+    .support-card p{color:var(--muted);font-size:12.5px;line-height:1.48;flex:1}
+    .support-card .btn{width:100%;margin-top:auto}
+    .support-note{background:rgba(255,255,255,.055);border:1px solid var(--line);border-radius:18px;padding:13px 14px;color:#d7d7dc;font-size:12.5px;line-height:1.45;margin-bottom:14px}
+    @media(max-width:900px){.support-grid{grid-template-columns:1fr}}
+    @media(max-width:760px){
+      .support-hero{padding:17px;border-radius:22px;margin-top:12px}
+      .support-hero h1{font-size:24px}
+      .support-grid{gap:10px}
+      .support-card{padding:14px;border-radius:20px}
+      .support-card p{font-size:12px}
+      .mobile-nav .mnav{font-size:8.8px !important}
+    }
+
 </style>
 
 
@@ -5257,219 +5462,42 @@
   }
   .anchor-target{scroll-margin-top:86px !important;}
 }
-</style>
 
 
-<style>
-/* =========================================================
-   MENU REDESENHADO — revisão final
-   Mantém a identidade escura/azul, melhora toque no mobile,
-   padroniza espaçamentos e deixa a navegação mais premium.
-========================================================= */
-:root{
-  --menu-glass:rgba(15,15,18,.78);
-  --menu-glass-strong:rgba(18,18,22,.92);
-  --menu-border:rgba(255,255,255,.105);
-  --menu-border-active:rgba(10,132,255,.48);
-  --menu-muted:#9b9ba3;
-  --menu-icon-bg:rgba(255,255,255,.065);
-  --menu-active-bg:linear-gradient(135deg,rgba(10,132,255,.26),rgba(255,255,255,.08));
-  --menu-shadow:0 22px 70px rgba(0,0,0,.34);
-}
+    /* Ajustes finais: atalhos do catálogo + suporte */
+    .catalog-quick-link{cursor:pointer;min-height:50px}
+    .catalog-quick-link:active{transform:scale(.99)}
+    .catalog-footer-title{scroll-margin-top:92px}
 
-/* Sidebar desktop */
-.sidebar{
-  width:268px !important;
-  flex-basis:268px !important;
-  padding:14px 12px !important;
-  background:
-    radial-gradient(circle at 100% 0%,rgba(10,132,255,.13),transparent 32%),
-    linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.018)),
-    var(--menu-glass) !important;
-  border-right:1px solid var(--menu-border) !important;
-  box-shadow:18px 0 60px rgba(0,0,0,.22) !important;
-}
+    .support-hero{
+      background:radial-gradient(circle at 88% 0%,rgba(37,211,102,.18),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      margin:14px 0;
+      box-shadow:0 14px 42px rgba(0,0,0,.22);
+    }
+    .support-hero span{display:inline-flex;align-items:center;gap:7px;margin-bottom:10px;padding:7px 10px;border-radius:999px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.26);color:#7dffab;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.45px}
+    .support-hero h1{font-size:28px;line-height:1.08;letter-spacing:-.8px;margin-bottom:7px}
+    .support-hero p{max-width:720px;color:var(--muted);font-size:13px;line-height:1.5}
+    .support-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+    .support-card{display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(0,0,0,.18)}
+    .support-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:rgba(10,132,255,.12);border:1px solid rgba(10,132,255,.26);color:#8ec5ff;font-size:24px}
+    .support-icon.whatsapp{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.28);color:#25d366}
+    .support-card h3{font-size:17px;letter-spacing:-.35px}
+    .support-card p{color:var(--muted);font-size:12.5px;line-height:1.48;flex:1}
+    .support-card .btn{width:100%;margin-top:auto}
+    .support-note{background:rgba(255,255,255,.055);border:1px solid var(--line);border-radius:18px;padding:13px 14px;color:#d7d7dc;font-size:12.5px;line-height:1.45;margin-bottom:14px}
+    @media(max-width:900px){.support-grid{grid-template-columns:1fr}}
+    @media(max-width:760px){
+      .support-hero{padding:17px;border-radius:22px;margin-top:12px}
+      .support-hero h1{font-size:24px}
+      .support-grid{gap:10px}
+      .support-card{padding:14px;border-radius:20px}
+      .support-card p{font-size:12px}
+      .mobile-nav .mnav{font-size:8.8px !important}
+    }
 
-.brand{
-  margin:0 0 12px !important;
-  padding:12px !important;
-  border:1px solid var(--menu-border) !important;
-  border-radius:24px !important;
-  background:rgba(255,255,255,.045) !important;
-}
-.brand-row{gap:12px !important}
-.brand-mark{
-  width:44px !important;
-  height:44px !important;
-  border-radius:16px !important;
-  box-shadow:0 14px 34px rgba(255,255,255,.06), inset 0 1px 0 rgba(255,255,255,.55) !important;
-}
-.brand-name{font-size:15px !important;font-weight:900 !important}
-.brand-sub{font-size:10.8px !important;line-height:1.35 !important;max-width:170px !important}
-
-.nav-wrap{
-  padding:4px 0 10px !important;
-  display:grid !important;
-  gap:6px !important;
-}
-.nav-label{
-  margin:8px 10px 6px !important;
-  color:#777780 !important;
-  font-size:10px !important;
-}
-.nav-item{
-  min-height:48px !important;
-  padding:8px 10px !important;
-  border-radius:18px !important;
-  border:1px solid transparent !important;
-  color:var(--menu-muted) !important;
-  gap:10px !important;
-  position:relative !important;
-  overflow:hidden !important;
-}
-.nav-item::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:12px;
-  bottom:12px;
-  width:3px;
-  border-radius:0 999px 999px 0;
-  background:transparent;
-}
-.nav-item i{
-  width:32px !important;
-  height:32px !important;
-  min-width:32px !important;
-  border-radius:13px !important;
-  display:grid !important;
-  place-items:center !important;
-  background:var(--menu-icon-bg) !important;
-  color:inherit !important;
-  font-size:18px !important;
-}
-.nav-item:hover{
-  background:rgba(255,255,255,.055) !important;
-  color:#fff !important;
-  border-color:rgba(255,255,255,.08) !important;
-}
-.nav-item.active{
-  background:var(--menu-active-bg) !important;
-  color:#fff !important;
-  border-color:var(--menu-border-active) !important;
-  box-shadow:0 14px 34px rgba(10,132,255,.18) !important;
-}
-.nav-item.active::before{background:#0a84ff !important}
-.nav-item.active i{
-  background:rgba(10,132,255,.22) !important;
-  color:#d7ecff !important;
-}
-
-.side-footer{
-  margin-top:auto !important;
-  padding:12px !important;
-  border:1px solid var(--menu-border) !important;
-  border-radius:24px !important;
-  background:rgba(255,255,255,.04) !important;
-}
-.customer-mini{margin-bottom:10px !important}
-.customer-avatar{
-  width:38px !important;
-  height:38px !important;
-  border-radius:15px !important;
-  background:rgba(10,132,255,.12) !important;
-  border-color:rgba(10,132,255,.26) !important;
-  color:#d7ecff !important;
-}
-.logout-btn{padding:7px 0 !important;color:#b6b6bd !important}
-
-/* Topbar alinhada ao novo menu */
-.topbar{
-  background:rgba(5,5,7,.76) !important;
-  border-bottom:1px solid var(--menu-border) !important;
-}
-
-/* Bottom navigation mobile */
-@media(max-width:760px){
-  .content{
-    padding-bottom:calc(112px + var(--safe-bottom)) !important;
-  }
-  .mobile-nav{
-    left:10px !important;
-    right:10px !important;
-    bottom:10px !important;
-    width:auto !important;
-    border:1px solid var(--menu-border) !important;
-    border-radius:26px !important;
-    padding:8px !important;
-    padding-bottom:calc(8px + var(--safe-bottom)) !important;
-    gap:4px !important;
-    background:
-      radial-gradient(circle at 50% 0%,rgba(10,132,255,.15),transparent 48%),
-      linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.026)),
-      var(--menu-glass-strong) !important;
-    box-shadow:0 18px 60px rgba(0,0,0,.48) !important;
-    overflow-x:auto !important;
-    scrollbar-width:none !important;
-    -webkit-overflow-scrolling:touch !important;
-  }
-  .mobile-nav::-webkit-scrollbar{display:none !important}
-  .mnav{
-    flex:1 0 68px !important;
-    min-width:68px !important;
-    min-height:58px !important;
-    padding:8px 4px !important;
-    border-radius:19px !important;
-    border:1px solid transparent !important;
-    color:#8f8f98 !important;
-    font-size:9.8px !important;
-    line-height:1 !important;
-    letter-spacing:.15px !important;
-    text-transform:none !important;
-  }
-  .mnav i{
-    width:28px !important;
-    height:28px !important;
-    margin:0 0 4px !important;
-    border-radius:12px !important;
-    display:grid !important;
-    place-items:center !important;
-    background:rgba(255,255,255,.065) !important;
-    font-size:17px !important;
-  }
-  .mnav.active{
-    background:var(--menu-active-bg) !important;
-    border-color:var(--menu-border-active) !important;
-    color:#fff !important;
-    box-shadow:0 10px 26px rgba(10,132,255,.18) !important;
-  }
-  .mnav.active i{
-    background:rgba(10,132,255,.23) !important;
-    color:#d7ecff !important;
-  }
-}
-
-@media(max-width:390px){
-  .mobile-nav{
-    left:8px !important;
-    right:8px !important;
-    bottom:8px !important;
-    border-radius:24px !important;
-    padding:7px !important;
-    padding-bottom:calc(7px + var(--safe-bottom)) !important;
-  }
-  .mnav{
-    flex-basis:62px !important;
-    min-width:62px !important;
-    min-height:56px !important;
-    font-size:9.3px !important;
-  }
-  .mnav i{
-    width:27px !important;
-    height:27px !important;
-    font-size:16px !important;
-  }
-}
 </style>
 
 </head>
@@ -5516,7 +5544,7 @@
             <div class="brand-mark"><i class="ti ti-building-store"></i></div>
             <div>
               <div class="brand-name">Central do Lojista</div>
-              <span class="brand-sub">Catálogos, documentos e materiais</span>
+              <span class="brand-sub">Catálogos e materiais para lojistas</span>
             </div>
           </div>
         </div>
@@ -5528,7 +5556,6 @@
           <button class="nav-item" data-section="lojaiPhone"><i class="ti ti-brand-apple"></i> Lojas de iPhones</button>
           <button class="nav-item" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button>
           <button class="nav-item" data-section="bonus"><i class="ti ti-device-mobile-search"></i> Películas </button>
-          <button class="nav-item" data-section="suporte"><i class="ti ti-headset"></i> Suporte</button>
         </div>
 
         <div class="side-footer">
@@ -5547,6 +5574,7 @@
         <header class="topbar">
           <div class="page-title" id="pageTitle">Início</div>
           <div class="top-actions">
+            <button class="top-btn install-app-top" id="installAppTopBtn" type="button" onclick="installPWA()"><i class="ti ti-download"></i><span>Instalar app</span></button>
             <a class="top-btn support-top" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20eu%20vim%20da%20%C3%A1rea%20de%20membros%20e%20tenho%20d%C3%BAvidas." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i><span>Suporte</span></a>
           </div>
         </header>
@@ -5564,16 +5592,26 @@
 
               <div class="home-welcome-clean">
                 <span class="home-badge"><i class="ti ti-sparkles"></i> Área de membros</span>
-                <h1 id="welcomeMessage">Olá, Luccas. Bem-vindo à Central do Lojista.</h1>
-                <p>Libere seu acesso e encontre rapidamente o conteúdo que você comprou.</p>
+                <h1 id="welcomeMessage">Olá, Luccas. Bem-vindo à sua área de membros.</h1>
+                <p>Use seu PIN para liberar e acessar seus materiais rapidamente.</p>
+              </div>
+
+              <div class="app-install-card" id="appInstallCard">
+                <div class="app-install-icon"><i class="ti ti-device-mobile-down"></i></div>
+                <div class="app-install-copy">
+                  <span>Comunidade no seu bolso</span>
+                  <h3>Instale o app da área de membros</h3>
+                  <p>Acesse catálogos, bônus, grupo VIP e suporte com mais rapidez direto pela tela inicial do celular.</p>
+                </div>
+                <button class="btn install-app-main" type="button" onclick="installPWA()"><i class="ti ti-download"></i> Instalar app</button>
               </div>
 
               <div class="home-path-grid">
                 <button class="home-path-card" type="button" onclick="goTo('catalogos')">
                   <span class="home-path-icon"><i class="ti ti-device-mobile"></i></span>
                   <span class="home-path-text">
-                    <strong>Comprei o Catálogo</strong>
-                    <small>Acesse catálogos, bônus e grupo vip.</small>
+                    <strong>Acessar Catálogos</strong>
+                    <small>Consulte seus catálogos, bônus e grupo VIP.</small>
                   </span>
                   <i class="ti ti-chevron-right"></i>
                 </button>
@@ -5581,8 +5619,8 @@
                 <button class="home-path-card" type="button" onclick="goTo('assistencia')">
                   <span class="home-path-icon"><i class="ti ti-file-text"></i></span>
                   <span class="home-path-text">
-                    <strong>Comprei o Pack de Documentos</strong>
-                    <small>Acesse seus documentos e materiais para assistência.</small>
+                    <strong>Acessar Documentos</strong>
+                    <small>Abra documentos, vídeos e artes para assistência.</small>
                   </span>
                   <i class="ti ti-chevron-right"></i>
                 </button>
@@ -5592,8 +5630,8 @@
                 <div class="home-unlock-top">
                   <span class="home-code-icon"><i class="ti ti-key"></i></span>
                   <div>
-                    <h3>Desbloqueie seu acesso</h3>
-                    <p>Digite o PIN recebido após a compra.</p>
+                    <h3>Liberar acesso</h3>
+                    <p>Digite o PIN recebido após a compra para liberar seus materiais.</p>
                   </div>
                 </div>
                 <div class="quick-code-row home-code-action">
@@ -5604,8 +5642,8 @@
 
               <div class="home-section-head">
                 <div>
-                  <div class="sec-title">Outras áreas</div>
-                  <div class="sec-sub">Veja todos os conteúdos disponíveis.</div>
+                  <div class="sec-title">Áreas disponíveis</div>
+                  <div class="sec-sub">Escolha abaixo o material que deseja acessar.</div>
                 </div>
               </div>
               <div class="home-vector-grid" id="homeGrid"></div>
@@ -5619,7 +5657,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Catálogos</div>
-                <div class="sec-sub">Visualize e libere o acesso.</div>
+                <div class="sec-sub">Acesse seus catálogos. Caso ainda estejam bloqueados, use seu PIN para liberar.</div>
               </div>
             </div>
             <div class="grid" id="catalogGrid"></div>
@@ -5627,7 +5665,7 @@
             <div class="row-head catalog-access-head">
               <div>
                 <div class="sec-title">Acesso do catálogo</div>
-                <div class="sec-sub">Desbloqueie seu catálogo com o PIN para assistir às aulas, editar corretamente e entrar no grupo VIP do WhatsApp.</div>
+                <div class="sec-sub">Após liberar o catálogo, você terá acesso ao tutorial, grupo VIP e bônus.</div>
               </div>
             </div>
             <div class="catalog-access-grid" id="catalogAccessGrid"></div>
@@ -5638,7 +5676,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Lojas de iPhones</div>
-                <div class="sec-sub">Materiais para lojas que vendem iPhones.</div>
+                <div class="sec-sub">Materiais prontos para quem vende iPhones.</div>
               </div>
             </div>
             <div class="grid" id="lojaIphoneGrid"></div>
@@ -5648,7 +5686,7 @@
             <div class="row-head">
               <div>
                 <div class="sec-title">Assistência Técnica</div>
-                <div class="sec-sub">Materiais para assistência técnica.</div>
+                <div class="sec-sub">Documentos, vídeos e artes para usar na assistência técnica.</div>
               </div>
             </div>
             <div class="grid" id="assistenciaGrid"></div>
@@ -5657,24 +5695,45 @@
           <section class="section" id="bonus">
             <div class="row-head">
               <div>
-                <div class="sec-title">Tabela de Películas 3D</div>
-                <div class="sec-sub">Preview da tabela de compatibilidade de películas.</div>
+                <div class="sec-title">Películas 3D</div>
+                <div class="sec-sub">Pesquise um modelo e veja quais aparelhos usam a mesma película.</div>
               </div>
             </div>
             <div class="grid" id="bonusGrid"></div>
           </section>
 
           <section class="section" id="suporte">
-            <div class="row-head">
-              <div>
-                <div class="sec-title">Suporte</div>
-                <div class="sec-sub">Como liberar um produto?</div>
-              </div>
+            <div class="support-hero">
+              <span><i class="ti ti-headset"></i> Ajuda rápida</span>
+              <h1>Precisa de ajuda?</h1>
+              <p>Confira as orientações principais para acessar seus materiais sem dificuldade.</p>
             </div>
-            <div class="panel">
-              <h3>Como liberar um produto?</h3>
-              <p>Entre em uma categoria, clique em <strong>Liberar</strong> no produto desejado e informe o código recebido. Você também pode usar o botão do checkout quando ele estiver disponível.</p>
-              <div class="card-actions"><button class="btn gold" onclick="goTo('catalogos')"><i class="ti ti-lock"></i> Ver produtos</button></div>
+
+            <div class="support-grid">
+              <article class="support-card">
+                <div class="support-icon"><i class="ti ti-key"></i></div>
+                <h3>Como liberar seu acesso</h3>
+                <p>Digite o PIN recebido após a compra. Depois disso, seus materiais aparecem liberados automaticamente.</p>
+                <button class="btn gold" onclick="goTo('catalogos')"><i class="ti ti-lock-open"></i> Liberar catálogo</button>
+              </article>
+
+              <article class="support-card">
+                <div class="support-icon"><i class="ti ti-device-mobile"></i></div>
+                <h3>Onde encontro meus materiais?</h3>
+                <p>Entre na categoria do produto comprado. Se o acesso estiver liberado, os botões de visualizar, baixar ou editar aparecerão no card.</p>
+                <button class="btn ghost" onclick="goTo('inicio')"><i class="ti ti-layout-grid"></i> Ver áreas</button>
+              </article>
+
+              <article class="support-card support-card-whatsapp">
+                <div class="support-icon whatsapp"><i class="ti ti-brand-whatsapp"></i></div>
+                <h3>Falar no WhatsApp</h3>
+                <p>Se o PIN não funcionar ou algum material não abrir, fale no WhatsApp e informe o e-mail usado na compra.</p>
+                <a class="btn whatsapp-btn" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20na%20%C3%A1rea%20de%20membros." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Chamar no WhatsApp</a>
+              </article>
+            </div>
+
+            <div class="support-note">
+              <strong>Dica:</strong> use o mesmo e-mail da compra para evitar erro na liberação do acesso.
             </div>
           </section>
         </div>
@@ -5686,8 +5745,8 @@
       <button class="mnav" data-section="catalogos"><i class="ti ti-device-mobile"></i> Catálogos</button>
       <button class="mnav" data-section="lojaiPhone"><i class="ti ti-brand-apple"></i> iPhones</button>
       <button class="mnav" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button>
-      <button class="mnav" data-section="bonus"><i class="ti ti-device-mobile-search"></i> Películas </button>
-      <button class="mnav" data-section="suporte"><i class="ti ti-headset"></i> Suporte</button>
+      <button class="mnav" data-section="bonus"><i class="ti ti-device-mobile-search"></i> Películas</button>
+      
     </nav>
   </section>
 
@@ -5700,10 +5759,10 @@
 
         <div class="modal-code" id="modalCodeArea">
           <div class="code-row">
-            <input id="modalCodeInput" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="Digite seu código de acesso" autocomplete="off" />
+            <input id="modalCodeInput" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="Digite seu PIN" autocomplete="off" />
             <button class="btn gold" onclick="redeemCodeFromModal()"><i class="ti ti-lock"></i> Liberar</button>
           </div>
-          <div class="code-help">Digite o código recebido após a compra.</div>
+          <div class="code-help">Digite o PIN recebido após a compra.</div>
           <div id="checkoutArea" style="display:none;margin-top:10px"></div>
         </div>
 
@@ -5758,7 +5817,7 @@
         category:'catalogos',
         brandSymbol:'',
         icon:'ti-brand-apple',
-        desc:'Venda iPhones com vitrine profissional.',
+        desc:'Catálogo pronto para divulgar e vender iPhones.',
         previewUrl:'https://decolesolucoes.my.canva.site/catalogoiphone',
         canvaUrl:'https://canva.link/4f61h8i9pzacfek',
         checkoutUrl:'https://pay.cakto.com.br/3dgcgd9_466546',
@@ -5772,7 +5831,7 @@
         category:'catalogos',
         brandSymbol:'',
         icon:'ti-brand-apple',
-        desc:'Linha Apple completa: iPad, Watch, MacBook e acessórios.',
+        desc:'Catálogo para iPad, Apple Watch, MacBook e acessórios.',
         previewUrl:'https://decolesolucoes.my.canva.site/catalogoapple',
         canvaUrl:'https://canva.link/4mdi3usxohzvcng',
         checkoutUrl:'https://pay.cakto.com.br/388aq4g_466549',
@@ -5787,7 +5846,7 @@
         brandSymbol:'mi',
         brandClass:'xiaomi-logo',
         icon:'ti-device-mobile',
-        desc:'Redmi, Mi e Poco em um catálogo completo.',
+        desc:'Catálogo completo para Redmi, Mi e Poco.',
         previewUrl:'https://decolesolucoes.my.canva.site/catalogoxiaomi',
         canvaUrl:'https://canva.link/a680ptv67sau3nc',
         checkoutUrl:'https://pay.cakto.com.br/388aq4g_466549',
@@ -5802,7 +5861,7 @@
         brandSymbol:'R',
         brandClass:'realme-logo',
         icon:'ti-device-mobile',
-        desc:'Todos os modelos Realme em um catálogo completo.',
+        desc:'Catálogo completo para modelos Realme.',
         previewUrl:'https://decolesolucoes.my.canva.site/catalogorealme',
         canvaUrl:'https://canva.link/6b1thxnwvzwsk17',
         checkoutUrl:'https://pay.cakto.com.br/388aq4g_466549',
@@ -5816,7 +5875,7 @@
         category:'catalogos',
         brandSymbol:'',
         icon:'ti-crown',
-        desc:'Todos os catálogos em um só acesso.',
+        desc:'Todos os catálogos reunidos em um único acesso.',
         previewUrl:'https://decolesolucoes.my.canva.site/catalogoiphone',
         canvaUrl:'https://canva.link/4f61h8i9pzacfek',
         checkoutUrl:'https://pay.cakto.com.br/388aq4g_466549',
@@ -5829,8 +5888,8 @@
         title:'Termo de Garantia',
         category:'lojaiPhone',
         icon:'ti-shield-check',
-        desc:'Venda com segurança e confiança.',
-        previewDescription:'Termo de garantia para vender iPhones com mais segurança e evitar dor de cabeça.',
+        desc:'Documento pronto para vender com mais segurança.',
+        previewDescription:'Termo de garantia para vender iPhones com mais segurança e evitar problemas.',
         previewUrl:'https://canva.link/vr004ry60pgxf6j',
         checkoutUrl:'https://pay.cakto.com.br/37hx97u_466558',
         lessons:[]
@@ -5892,8 +5951,8 @@
         title:'Pack Reels Virais Assistência',
         category:'assistencia',
         icon:'ti-tools',
-        desc:'Vídeos para divulgar seus reparos.',
-        previewDescription:'Vídeos virais para vender mais nas redes sociais com conteúdo de reparos e assistência técnica.',
+        desc:'Vídeos prontos para divulgar seus serviços.',
+        previewDescription:'Vídeos prontos para divulgar reparos e assistência técnica nas redes sociais.',
         previewUrl:'https://drive.google.com/drive/folders/1lrldKTLhzc68wHMPzRQcQ4NNMru4g5tR',
         checkoutUrl:'https://pay.cakto.com.br/33vqdye_466429',
         lessons:[]
@@ -5904,8 +5963,8 @@
         title:'Pack Artes Canva Assistência',
         category:'assistencia',
         icon:'ti-brush',
-        desc:'Artes prontas para sua assistência.',
-        previewDescription:'Artes editáveis no Canva para divulgar serviços de assistência técnica.',
+        desc:'Artes editáveis para divulgar sua assistência.',
+        previewDescription:'Artes editáveis no Canva para divulgar sua assistência técnica.',
         previewLinks:['https://canva.link/25m3bychfs9mlk5','https://canva.link/1oxo3bfs06d43dr','https://canva.link/9ikdt8r4jyz2sv4','https://canva.link/gw40neul4uvje8c'],
         checkoutUrl:'https://pay.cakto.com.br/djoincj_466428',
         lessons:[]
@@ -5917,8 +5976,8 @@
         title:'Planilha de Precificação',
         category:'bonus',
         icon:'ti-table',
-        desc:'Calcule custo, margem e venda.',
-        previewDescription:'Planilha para organizar valores dos aparelhos, custo, margem e preço de venda.',
+        desc:'Organize custo, margem e preço de venda.',
+        previewDescription:'Planilha para organizar custo, margem e preço de venda dos aparelhos.',
         downloadUrl:'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=sharing',
         downloadLabel:'Baixar',
         lessons:[]
@@ -5930,8 +5989,8 @@
         title:'Lista de Fornecedores',
         category:'bonus',
         icon:'ti-building-store',
-        desc:'Contatos para comprar melhor.',
-        previewDescription:'Lista de fornecedores do Shopping Oriental para ajudar na organização dos seus contatos.',
+        desc:'Lista de contatos para buscar melhores compras.',
+        previewDescription:'Lista de fornecedores para ajudar você a organizar contatos e compras.',
         downloadUrl:'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=sharing',
         downloadLabel:'Baixar',
         lessons:[]
@@ -6044,18 +6103,17 @@
             <span class="free-trial-badge">TESTE GRATUITO</span>
 
             <p>
-              Você está no teste gratuito. Para liberar todos os recursos da Central do Lojista,
-              fale comigo no WhatsApp e garanta uma condição especial.
+              Você está no teste gratuito. Para liberar todos os recursos, fale comigo no WhatsApp e veja a condição especial.
             </p>
 
             <div class="free-trial-list">
-              <span>Atendimento direto pelo WhatsApp</span>
-              <span>Condição especial para quem está testando</span>
+              <span>Atendimento pelo WhatsApp</span>
+              <span>Condição especial para novos lojistas</span>
             </div>
 
             <button class="btn free-trial-whatsapp-btn" onclick="openExternal('${FREE_TRIAL_WHATSAPP_URL}', 'WhatsApp teste gratuito')">
               <i class="ti ti-brand-whatsapp"></i>
-              Assistência</button>
+              Falar no WhatsApp</button>
           </div>
         `,
         false
@@ -6228,7 +6286,7 @@
 
     function goTo(sectionId){
       document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === sectionId));
-      const titles = {inicio:'Início',catalogos:'Catálogos',lojaiPhone:'Lojas de iPhones',assistencia:'Assistência Técnica',bonus:'Bônus',suporte:'Suporte'};
+      const titles = {inicio:'Início',catalogos:'Catálogos',lojaiPhone:'Lojas de iPhones',assistencia:'Assistência Técnica',bonus:'Películas',suporte:'Suporte'};
       document.getElementById('pageTitle').textContent = titles[sectionId] || 'Central do Lojista';
       document.querySelectorAll('[data-section]').forEach(b => b.classList.toggle('active', b.dataset.section === sectionId));
     }
@@ -6323,12 +6381,12 @@
     function openUnlock(productId){
       const product = products[productId];
       selectedUnlockProduct = productId;
-      setModal('ti-lock', `Liberar ${product.title}`, 'Digite o código de acesso recebido para liberar este produto.', true, product.checkoutUrl || '');
+      setModal('ti-lock', `Liberar ${product.title}`, 'Digite seu PIN para liberar este produto.', true, product.checkoutUrl || '');
     }
 
     function groupButton(product){
       if(product.groupType === 'catalogos'){
-        return `<br><br><button class="btn gold" style="width:100%" onclick="openExternal(GRUPO_CATALOGOS_URL,'Grupo Catálogos')">Entrar no Grupo de Alunos</button>`;
+        return `<br><br><button class="btn gold" style="width:100%" onclick="openExternal(GRUPO_CATALOGOS_URL,'Grupo Catálogos')">Entrar no Grupo VIP</button>`;
       }
 
       if(product.groupType === 'documentos'){
@@ -6387,13 +6445,13 @@
       const raw = String(error?.message || error?.details || error?.hint || '').trim();
       const msg = raw.toLowerCase();
 
-      if(msg.includes('invalid_pin') || msg.includes('invalid pin')) return 'Código inválido. Confira o PIN recebido e tente novamente.';
+      if(msg.includes('invalid_pin') || msg.includes('invalid pin')) return 'PIN inválido. Confira o código recebido e tente novamente.';
       if(msg.includes('not_authenticated') || msg.includes('jwt') || msg.includes('auth')) return 'Faça login novamente antes de liberar o produto.';
       if(msg.includes('pin_usage_limit_reached')) return 'Esse código atingiu o limite de uso.';
       if(msg.includes('redeem_product_pin') || msg.includes('function') || msg.includes('does not exist') || msg.includes('schema cache')) return 'A função de PIN ainda não está ativa no Supabase. Rode o SQL atualizado.';
       if(msg.includes('access_pins') || msg.includes('relation')) return 'As tabelas de PIN ainda não estão criadas. Rode o SQL atualizado.';
       if(msg.includes('permission denied') || msg.includes('row-level security')) return 'Permissão do banco bloqueando a liberação. Rode o SQL atualizado.';
-      return raw ? `Erro do banco: ${raw}` : 'Não foi possível liberar esse código agora.';
+      return raw ? `Erro do banco: ${raw}` : 'Não foi possível liberar esse PIN agora.';
     }
 
     
@@ -6428,7 +6486,7 @@
       code = String(code || '').trim();
 
       if(!code){
-        showToast('Digite o código de acesso.');
+        showToast('Digite seu PIN.');
         return { ok:false, unlocks:[] };
       }
 
@@ -6689,10 +6747,10 @@
       const isLessons = type === 'lessons';
 
       const icon = isLessons ? 'ti-player-play' : 'ti-brand-whatsapp';
-      const title = isLessons ? 'Vídeo aulas: como editar' : 'Entrar no grupo VIP WhatsApp';
+      const title = isLessons ? 'Tutorial de edição' : 'Grupo VIP no WhatsApp';
       const desc = isLessons
-        ? (unlockedCatalog ? 'Assista aos tutoriais e aprenda a editar seu catálogo passo a passo.' : 'Desbloqueie um catálogo com PIN para assistir aos tutoriais de edição.')
-        : (unlockedCatalog ? 'Entre no grupo VIP para receber avisos, suporte e novidades.' : 'Desbloqueie um catálogo com PIN para entrar no grupo VIP.');
+        ? (unlockedCatalog ? 'Assista ao tutorial e aprenda a editar seu catálogo no Canva.' : 'Libere um catálogo com seu PIN para assistir ao tutorial.')
+        : (unlockedCatalog ? 'Entre no grupo VIP para receber avisos, novidades e orientações.' : 'Libere um catálogo com seu PIN para entrar no grupo VIP.');
       const action = isLessons ? 'openCatalogLessons()' : 'openCatalogVipGroup()';
 
       return `
@@ -6706,7 +6764,7 @@
             <p>${desc}</p>
             <div class="card-actions">
               <button class="btn ${unlockedCatalog ? (isLessons ? 'green' : 'whatsapp-btn') : 'gold'}" onclick="${unlockedCatalog ? action : "openUnlock('iphone')"}">
-                <i class="ti ${unlockedCatalog ? icon : 'ti-lock'}"></i> ${unlockedCatalog ? (isLessons ? 'Assistir tutoriais' : 'Entrar no grupo VIP') : 'Liberar com PIN'}
+                <i class="ti ${unlockedCatalog ? icon : 'ti-lock'}"></i> ${unlockedCatalog ? (isLessons ? 'Ver tutorial' : 'Entrar no grupo VIP') : 'Liberar com PIN'}
               </button>
             </div>
           </div>
@@ -6718,16 +6776,16 @@
       if(!hasAnyCatalogAccess()) return '';
       return `
         <div class="catalog-quick-links">
-          <button class="catalog-quick-link" onclick="scrollToCatalogFooter('catalogLessonsFooter')"><span>Tutorial</span><i class="ti ti-player-play"></i></button>
-          <button class="catalog-quick-link" onclick="scrollToCatalogFooter('catalogGroupFooter')"><span>Grupo</span><i class="ti ti-brand-whatsapp"></i></button>
-          <button class="catalog-quick-link" onclick="scrollToCatalogFooter('catalogBonusFooter')"><span>Bônus</span><i class="ti ti-gift"></i></button>
+          <button class="catalog-quick-link" type="button" onclick="scrollToCatalogFooter('catalogLessonsFooter')"><span>Tutorial</span><i class="ti ti-player-play"></i></button>
+          <button class="catalog-quick-link" type="button" onclick="scrollToCatalogFooter('catalogGroupFooter')"><span>Grupo</span><i class="ti ti-brand-whatsapp"></i></button>
+          <button class="catalog-quick-link" type="button" onclick="scrollToCatalogFooter('catalogBonusFooter')"><span>Bônus</span><i class="ti ti-gift"></i></button>
         </div>
       `;
     }
 
     function scrollToCatalogFooter(id){
       const el = document.getElementById(id);
-      if(el){ el.scrollIntoView({ behavior:'smooth', block:'start' }); }
+      if(el){ goTo('catalogos'); setTimeout(() => el.scrollIntoView({ behavior:'smooth', block:'start' }), 60); }
     }
 
     function renderCatalogAccess(){
@@ -6735,12 +6793,12 @@
       if(!grid) return;
 
       grid.innerHTML = [
-        `<div class="catalog-footer-anchor" id="catalogBonusFooter"></div><div class="catalog-footer-title">Bônus do catálogo</div>`,
+        `<div class="catalog-footer-title" id="catalogBonusFooter">Bônus do catálogo</div>`,
         productCard(products.precificacao),
         productCard(products.fornecedores),
-        `<div class="catalog-footer-anchor" id="catalogGroupFooter"></div><div class="catalog-footer-title">Assistência</div>`,
+        `<div class="catalog-footer-title" id="catalogGroupFooter">Grupo VIP</div>`,
         catalogAccessCard('group'),
-        `<div class="catalog-footer-anchor" id="catalogLessonsFooter"></div><div class="catalog-footer-title">Vídeo aulas</div>`,
+        `<div class="catalog-footer-title" id="catalogLessonsFooter">Tutorial</div>`,
         catalogAccessCard('lessons')
       ].join('');
     }
@@ -6846,7 +6904,7 @@
         return `
           <article class="pixel-card">
             <div class="pixel-icon"><i class="ti ti-device-mobile"></i></div>
-            <div><h3>${item.modelo_principal}</h3><p>${item.marca} • modelo liberado no teste gratuito</p></div>
+            <div><h3>${item.modelo_principal}</h3><p>${item.marca} • compatibilidade liberada para teste</p></div>
             <span class="pixel-pill">${(item.modelos_compativeis || []).length} compatíveis</span>
             <div class="pixel-compat">${chips || '<span class="pixel-chip">Nenhum compatível cadastrado</span>'}</div>
           </article>
@@ -6856,9 +6914,9 @@
       return `
         <article class="pixel-card locked">
           <div class="pixel-icon"><i class="ti ti-lock"></i></div>
-          <div><h3>${item.modelo_principal}</h3><p>${item.marca} • disponível no plano completo</p></div>
+          <div><h3>${item.modelo_principal}</h3><p>${item.marca} • disponível no acesso completo</p></div>
           <span class="pixel-pill lock">Bloqueado</span>
-          <div class="pixel-locked-msg">Este modelo está cadastrado na tabela. Desbloqueie o acesso completo para visualizar as películas compatíveis.</div>
+          <div class="pixel-locked-msg">Este modelo está na base. Libere o acesso completo para ver as compatibilidades.</div>
         </article>
       `;
     }
@@ -6879,7 +6937,7 @@
       }).sort(pixelSort);
 
       brandsEl.innerHTML = renderPixelBrandButtons();
-      countEl.textContent = `${filtered.length} modelos visíveis`;
+      countEl.textContent = `${filtered.length} resultados`;
       list.innerHTML = filtered.map(pixelCard).join('');
     }
 
@@ -6888,20 +6946,20 @@
       return `
         <div class="pixel-preview-wrap">
           <div class="pixel-hero">
-            <span>Novo produto em destaque</span>
-            <h3>Tabela de Películas 3D</h3>
-            <p>Todos os modelos aparecem para o cliente visualizar o tamanho da base. No teste gratuito, somente ${freeCount} modelos revelam as compatibilidades; os demais ficam com cadeado.</p>
+            <span>Consulta rápida</span>
+            <h3>Compatibilidade de Películas 3D</h3>
+            <p>Digite o modelo do aparelho para encontrar películas compatíveis. Alguns modelos ficam liberados para teste; o acesso completo mostra toda a base.</p>
           </div>
           <div class="pixel-search-box">
-            <input id="pixelSearchInput" type="search" placeholder="Pesquisar modelo. Ex: Samsung A03, Redmi 13C" oninput="renderPixelPreviewList()" autocomplete="off">
-            <button onclick="clearPixelSearch()">Limpar</button>
+            <input id="pixelSearchInput" type="search" placeholder="Digite o modelo. Ex: Samsung A03 ou Redmi 13C" oninput="renderPixelPreviewList()" autocomplete="off">
+            <button class="pixel-clear-btn" type="button" onclick="clearPixelSearch()">Limpar</button>
           </div>
           <div class="pixel-brand-buttons" id="pixelBrandButtons"></div>
           <div class="pixel-stats">
-            <span class="pixel-stat">${PIXEL_PELICULAS_DATA.length} modelos cadastrados</span>
+            <span class="pixel-stat">${PIXEL_PELICULAS_DATA.length} modelos na base</span>
             <span class="pixel-stat">${getPixelBrands().length} marcas</span>
-            <span class="pixel-stat">${freeCount} liberados no teste</span>
-            <span class="pixel-stat" id="pixelVisibleCount">0 modelos visíveis</span>
+            <span class="pixel-stat">${freeCount} liberados para teste</span>
+            <span class="pixel-stat" id="pixelVisibleCount">0 resultados</span>
           </div>
           <div class="pixel-list" id="pixelPreviewList"></div>
         </div>
@@ -6918,7 +6976,7 @@
             <p>Oferecemos o serviço de configuração e entregamos o catálogo pronto para você. Fale comigo no WhatsApp e receba ajuda para deixar tudo pronto.</p>
           </div>
           <button class="btn catalog-setup-btn" onclick="openExternal('https://wa.me/5511949185861?text=Ol%C3%A1%2C%20eu%20vim%20da%20%C3%A1rea%20de%20membros%20e%20tenho%20dificuldade%20para%20configurar%20o%20cat%C3%A1logo.%20Quero%20contratar%20o%20servi%C3%A7o%20para%20receber%20o%20cat%C3%A1logo%20pronto.','Ajuda para configurar catálogo')">
-            <i class="ti ti-brand-whatsapp"></i> Assistência</button>
+            <i class="ti ti-brand-whatsapp"></i> Falar no WhatsApp</button>
         </div>
       `;
     }
@@ -6928,7 +6986,7 @@
         homeCategoryCard('Catálogos','Veja os modelos disponíveis.','iphone','catalogos'),
         homeCategoryCard('Lojas de iPhones','Pack e documentos para sua loja de iPhones.','termoGarantia','lojaiPhone'),
         homeCategoryCard('Assistência Técnica','Documentos e materiais para sua assistência.','documentos','assistencia'),
-        homeCategoryCard('Tabela de Películas 3D','Preview da tabela de compatibilidade','precificacao','bonus')
+        homeCategoryCard('Películas 3D','Consulte compatibilidade por modelo.','precificacao','bonus')
       ].join('');
 
       const catalogUpgradeTopOffer = document.getElementById('catalogUpgradeTopOffer');
@@ -6966,7 +7024,71 @@
       }
     });
 
+
+
+    let deferredPWAInstallPrompt = null;
+
+    function isStandalonePWA(){
+      return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    }
+
+    function updatePWAInstallUI(){
+      document.body.classList.toggle('pwa-installed', isStandalonePWA());
+    }
+
+    function showPWAInstructions(){
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const text = isIOS
+        ? 'No iPhone, toque no botão de compartilhar do Safari e escolha “Adicionar à Tela de Início”. Assim a Central abre como aplicativo.'
+        : 'Se o aviso de instalação não aparecer, abra o menu do navegador e toque em “Instalar app” ou “Adicionar à tela inicial”.';
+      if(typeof setModal === 'function'){
+        setModal('ti-download','Instalar aplicativo', text, false);
+      }else{
+        alert(text);
+      }
+    }
+
+    async function installPWA(){
+      if(isStandalonePWA()){
+        showToast('O app já está instalado neste dispositivo.');
+        updatePWAInstallUI();
+        return;
+      }
+      if(deferredPWAInstallPrompt){
+        deferredPWAInstallPrompt.prompt();
+        const choice = await deferredPWAInstallPrompt.userChoice;
+        deferredPWAInstallPrompt = null;
+        if(choice?.outcome === 'accepted'){
+          showToast('App instalado com sucesso.');
+          updatePWAInstallUI();
+        }
+        return;
+      }
+      showPWAInstructions();
+    }
+
+    window.addEventListener('beforeinstallprompt', function(event){
+      event.preventDefault();
+      deferredPWAInstallPrompt = event;
+      updatePWAInstallUI();
+    });
+
+    window.addEventListener('appinstalled', function(){
+      deferredPWAInstallPrompt = null;
+      updatePWAInstallUI();
+      showToast('App instalado com sucesso.');
+    });
+
+    if('serviceWorker' in navigator){
+      window.addEventListener('load', function(){
+        navigator.serviceWorker.register('./sw.js').catch(function(error){
+          console.warn('Service Worker não registrado:', error);
+        });
+      });
+    }
+
     window.addEventListener('DOMContentLoaded', async function(){
+      updatePWAInstallUI();
       try{
         const { data:{ session } } = await sb.auth.getSession();
 
