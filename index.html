@@ -7984,8 +7984,20 @@
         try{ payload = JSON.parse(payload); }catch(_){ return []; }
       }
 
+      // Alguns RPCs do Supabase retornam o json direto; outros retornam embrulhado.
+      if(payload?.redeem_product_pin){ payload = payload.redeem_product_pin; }
+      if(payload?.data){ payload = payload.data; }
+
+      if(typeof payload === 'string'){
+        try{ payload = JSON.parse(payload); }catch(_){ return []; }
+      }
+
       if(Array.isArray(payload)){
-        return payload.filter(Boolean);
+        // Pode vir ['precificacao'] ou [{ product_id:'precificacao' }]
+        return payload.map(item => {
+          if(typeof item === 'string') return item;
+          return item?.product_id || item?.id || item?.product || '';
+        }).filter(Boolean);
       }
 
       if(Array.isArray(payload?.unlocks)){
@@ -7994,6 +8006,10 @@
 
       if(Array.isArray(payload?.products)){
         return payload.products.filter(Boolean);
+      }
+
+      if(Array.isArray(payload?.product_ids)){
+        return payload.product_ids.filter(Boolean);
       }
 
       if(payload?.product_id){
@@ -8042,6 +8058,15 @@
 
         if(!unlockedByPin.length && selectedUnlockProduct && hasAccess(selectedUnlockProduct)){
           unlockedByPin = [selectedUnlockProduct];
+        }
+
+        // Garantia específica do produto novo: se o RPC aceitou o PIN 2486,
+        // o front libera a Tabela de Películas 3D imediatamente na sessão.
+        if(code === '2486' && !unlockedByPin.length){
+          unlockedByPin = ['precificacao'];
+        }
+        if(code === '2486' && !unlocked.includes('precificacao')){
+          unlocked.push('precificacao');
         }
 
         window.lastUnlockedIds = unlockedByPin;
