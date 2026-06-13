@@ -7977,8 +7977,34 @@
       document.getElementById('modal')?.classList.remove('success-modal');
     }
 
+    function normalizeUnlocksFromRedeemResponse(data){
+      let payload = data;
+
+      if(typeof payload === 'string'){
+        try{ payload = JSON.parse(payload); }catch(_){ return []; }
+      }
+
+      if(Array.isArray(payload)){
+        return payload.filter(Boolean);
+      }
+
+      if(Array.isArray(payload?.unlocks)){
+        return payload.unlocks.filter(Boolean);
+      }
+
+      if(Array.isArray(payload?.products)){
+        return payload.products.filter(Boolean);
+      }
+
+      if(payload?.product_id){
+        return [payload.product_id];
+      }
+
+      return [];
+    }
+
     async function redeemAccessCode(code){
-      code = String(code || '').trim();
+      code = String(code || '').replace(/\D/g, '').trim();
 
       if(!code){
         showToast('Digite seu PIN.');
@@ -7990,6 +8016,8 @@
         return { ok:false, unlocks:[] };
       }
 
+      const unlockedBefore = Array.isArray(unlocked) ? [...unlocked] : [];
+
       try{
         const { data, error } = await sb.rpc('redeem_product_pin', { p_pin: code });
 
@@ -7999,18 +8027,24 @@
           return { ok:false, unlocks:[] };
         }
 
-        const unlockedByPin = Array.isArray(data?.unlocks) ? data.unlocks : [];
-        window.lastUnlockedIds = unlockedByPin;
+        let unlockedByPin = normalizeUnlocksFromRedeemResponse(data);
 
         await consultarAcessosAtuais();
 
-        if(Array.isArray(unlocked) && unlocked.length > 0){
-          cancelFreeTrialPopup();
+        const newAccessFromDatabase = unlocked.filter(productId => !unlockedBefore.includes(productId));
+        if(!unlockedByPin.length && newAccessFromDatabase.length){
+          unlockedByPin = newAccessFromDatabase;
         }
 
         unlockedByPin.forEach(productId => {
           if(productId && !unlocked.includes(productId)) unlocked.push(productId);
         });
+
+        if(!unlockedByPin.length && selectedUnlockProduct && hasAccess(selectedUnlockProduct)){
+          unlockedByPin = [selectedUnlockProduct];
+        }
+
+        window.lastUnlockedIds = unlockedByPin;
 
         if(Array.isArray(unlocked) && unlocked.length > 0){
           cancelFreeTrialPopup();
