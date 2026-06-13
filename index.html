@@ -7919,7 +7919,7 @@
       if(msg.includes('not_authenticated') || msg.includes('jwt') || msg.includes('auth')) return 'Faça login novamente antes de liberar o produto.';
       if(msg.includes('pin_usage_limit_reached')) return 'Esse código atingiu o limite de uso.';
       if(msg.includes('redeem_product_pin') || msg.includes('function') || msg.includes('does not exist') || msg.includes('schema cache')) return 'A função de PIN ainda não está ativa no Supabase. Rode o SQL atualizado.';
-      if(msg.includes('access_pins') || msg.includes('relation')) return 'As tabelas de PIN ainda não estão criadas. Rode o SQL atualizado.';
+      if(msg.includes('product_pins') || msg.includes('user_product_access') || msg.includes('access_pins') || msg.includes('relation')) return 'As tabelas de PIN ainda não estão criadas. Rode o SQL atualizado.';
       if(msg.includes('permission denied') || msg.includes('row-level security')) return 'Permissão do banco bloqueando a liberação. Rode o SQL atualizado.';
       return raw ? `Erro do banco: ${raw}` : 'Não foi possível liberar esse PIN agora.';
     }
@@ -7943,11 +7943,15 @@
           const product = products[productId];
           if(!product) return '';
 
+          if(product.id === 'precificacao'){
+            return `<button class="btn green" onclick="openDownloadFile('precificacao'); closeModal();"><i class="ti ti-table"></i> Abrir tabela completa de películas</button>`;
+          }
+
           if(product.canvaLinks?.length || product.canvaUrl){
             return `<button class="btn green" onclick="openCanvaLinksPopup('${product.id}')"><i class="ti ti-edit"></i> Editar no Canva — ${product.title}</button>`;
           }
 
-          if(product.downloadUrl || ['precificacao','fornecedores'].includes(product.id)){
+          if(product.downloadUrl || ['fornecedores'].includes(product.id)){
             return `<button class="btn green" onclick="openDownloadFile('${product.id}')"><i class="ti ti-download"></i> Acessar — ${product.title}</button>`;
           }
 
@@ -8094,13 +8098,24 @@
         return;
       }
 
+      if(productId === 'precificacao'){
+        if(!hasAccess('precificacao')){
+          openUnlock('precificacao');
+          return;
+        }
+        goTo('bonus');
+        renderPixelPreviewList();
+        setTimeout(() => document.getElementById('pixelPreviewList')?.scrollIntoView({ behavior:'smooth', block:'start' }), 80);
+        return;
+      }
+
       if(!canAccessBonus(productId)){
         openUnlock(productId);
         return;
       }
 
       const url = product.downloadUrl || product.previewUrl;
-      if(!url){
+      if(!url || url === '#'){
         showToast('Arquivo indisponível no momento.');
         return;
       }
