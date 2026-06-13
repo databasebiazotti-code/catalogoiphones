@@ -7281,15 +7281,15 @@
       },
       precificacao: {
         id:'precificacao',
-        previewUrl:'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=sharing',
+        previewUrl:'#',
+        checkoutUrl:'https://pay.cakto.com.br/faiw8vb_923965',
         productIcon:'data:image/webp;base64,UklGRlADAABXRUJQVlA4IEQDAAAQFACdASpkAGQAPmEsk0YkIqGhLRZo0IAMCUAan5c5hi7g5NgPUbywHqX8xXnKaal6AH6zem37OXlYuGS6jflaYNp4f0TUn5KE09v2mNktlP/6M5OEwtYo+RQSeRIlfzQALrrz8J1FzFU+bHhbJrkN9zbZAcn/d5qbCB7wC2l9OxJtkCTvkLG8AGRZ8bYCLCl8i1K/dfywF5oVODp7AHqJEPc6mlxrDscAAP7w+ivikhjX/+jD/87/533iAeM7qqtln5Ob6Qe5IVI3Z3fkowyGBzU5Avt/MMlM0jOH0YxB9wkeY2i02P4R2n8U39gjHKmalFvJhKPBUbILkD2rJNwmD/nya/Uo6l9tC98WsAM1tGySMFJtzrtdVYbC3FDOwegGs+o+T9VawnNNwy/pbdzb1oMGQaKt2uJjneT3ZBGLrqHOVWC2CYLQLae/AQtWrzDqpf1Opg/+aU/+JEqaY3IDLL50fvJAJHfj8w1LfU8zfX3oOcooZdj+XZ6gnQ74csqkyJxKXY9V6KHXbm15xM58+wvXr5ikJGurkN/5bs9E6lWVDvH94cteQOzcXEgH9gMb9/BdCpKaX7iyg3H6YofM81KV3vdYTWweUpNj8qSF51v+nTyrrt/9vT9rWM4rbxc6cfXLZCCuDIXGpGK8b99yF58W1tu/LA8jdf3hLputUv+ZYEXxX2YCfrQoT+Rz9RZe2s4EQGw4sHCrOFdJO77CPSm83ph+IDzVxG/SK+rn8piI1pyP/1hDdz2Y93cexcZp1WmPCYqkjvFOlH3s/MajI1/ml7DERT3Y79qlxSraXIB5Kbds80zLAA2WyUfk8L6753pPceHQ8SI9h8cZ8PwJ2H4UYr8/z/zUKXUyCLCexwHwlvOCohIfWW+wRjdVHZeiLWOZXu1F1enS9SfE0VJQKQfN+W7ptgWGG+WJaOrZvhwBw8qE19Yr9LBVhfYK/+rdXpneNgpgYm5t79oL2yfW2IJM8ZE7XbLc7HXCZrWj+rD2TeQTSsqZ5pbxRra3UvQnFr9pd4k7a0C7tVQQijDSNt/sA3jyjaAaGPqtaLbdmiHEYlqVxMNFN906xvlgVxC2tQ9YItGCAex0rd5FIAAAAAAAAA==',
-        title:'Planilha de Precificação',
+        title:'Tabela de Películas 3D',
         category:'bonus',
         icon:'ti-table',
-        desc:'Baixe a planilha para calcular custo, margem e preço de venda.',
-        previewDescription:'Planilha para calcular custo, margem e preço de venda.',
-        downloadUrl:'Tabela%20de%20Precifica%C3%A7%C3%A3o.xlsx',
-        downloadLabel:'Baixar',
+        desc:'Consulte a compatibilidade completa das películas por modelo.',
+        previewDescription:'Tabela de compatibilidade de películas 3D por aparelho.',
+        downloadLabel:'Acessar',
         lessons:[]
       },
       fornecedores: {
@@ -8450,7 +8450,7 @@
     }
 
     function isPixelUnlocked(item){
-      return PIXEL_FREE_MODELS.has(item.modelo_principal);
+      return PIXEL_FREE_MODELS.has(item.modelo_principal) || hasAccess('precificacao');
     }
 
     function pixelSort(a,b){
@@ -8466,7 +8466,7 @@
         return `
           <article class="pixel-card">
             <div class="pixel-icon"><i class="ti ti-device-mobile"></i></div>
-            <div><h3>${item.modelo_principal}</h3><p>${item.marca} • compatibilidade liberada para teste</p></div>
+            <div><h3>${item.modelo_principal}</h3><p>${item.marca} • compatibilidade liberada</p></div>
             <span class="pixel-pill">${(item.modelos_compativeis || []).length} compatíveis</span>
             <div class="pixel-compat">${chips || '<span class="pixel-chip">Nenhum compatível cadastrado</span>'}</div>
           </article>
@@ -8478,7 +8478,12 @@
           <div class="pixel-icon"><i class="ti ti-lock"></i></div>
           <div><h3>${item.modelo_principal}</h3><p>${item.marca} • disponível no acesso completo</p></div>
           <span class="pixel-pill lock">Bloqueado</span>
-          <div class="pixel-locked-msg">Este modelo está na base. Libere o acesso completo para ver as compatibilidades.</div>
+          <div class="pixel-locked-msg">
+            Este modelo está na base. Compre a tabela completa ou digite o PIN recebido para liberar todas as compatibilidades.
+            <button class="btn gold" style="width:100%;margin-top:10px" onclick="openUnlock('precificacao')">
+              <i class="ti ti-lock-open"></i> Comprar ou liberar com PIN
+            </button>
+          </div>
         </article>
       `;
     }
@@ -8509,7 +8514,7 @@
         <div class="pixel-preview-wrap">
           <div class="pixel-hero">
             <span>Consulta rápida</span>
-            <h3>Lista de Películas 3D 3D</h3>
+            <h3>Lista de Películas 3D</h3>
             <p>Digite o modelo do aparelho para encontrar películas compatíveis. Alguns modelos ficam liberados para teste; o acesso completo mostra toda a base.</p>
           </div>
           <div class="pixel-search-box">
