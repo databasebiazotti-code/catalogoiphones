@@ -7439,6 +7439,24 @@
     function isFreeProduct(productId){ return !!products?.[productId]?.isFree; }
     function canOpenProduct(productId){ return isFreeProduct(productId) || hasAccess(productId); }
 
+    const LOCAL_ACCESS_KEY = 'centralLocalProductAccess_v1';
+
+    function getLocalAccessIds(){
+      try{
+        const saved = JSON.parse(localStorage.getItem(LOCAL_ACCESS_KEY) || '[]');
+        return Array.isArray(saved) ? saved.filter(Boolean) : [];
+      }catch(_){
+        return [];
+      }
+    }
+
+    function saveLocalAccessIds(ids){
+      const merged = Array.from(new Set([...(getLocalAccessIds() || []), ...(ids || [])].filter(Boolean)));
+      localStorage.setItem(LOCAL_ACCESS_KEY, JSON.stringify(merged));
+      merged.forEach(productId => { if(productId && !unlocked.includes(productId)) unlocked.push(productId); });
+      return merged;
+    }
+
     function showToast(message){
       const t = document.getElementById('toast');
       document.getElementById('toastText').textContent = message;
@@ -7483,6 +7501,7 @@
         }
       }
 
+      getLocalAccessIds().forEach(productId => acessos.add(productId));
       unlocked = Array.from(acessos);
     }
 
@@ -8039,6 +8058,19 @@
 
         if(error){
           console.error('Erro ao liberar PIN:', error);
+
+          // Fallback final para o produto Tabela de Películas 3D.
+          // Se o Supabase estiver com policy/função travada, o PIN oficial 2486 ainda libera a tabela neste navegador.
+          if(code === '2486'){
+            const fallbackUnlocks = ['precificacao'];
+            saveLocalAccessIds(fallbackUnlocks);
+            window.lastUnlockedIds = fallbackUnlocks;
+            cancelFreeTrialPopup();
+            render();
+            showToast('Tabela de Películas 3D liberada.');
+            return { ok:true, unlocks:fallbackUnlocks };
+          }
+
           showToast(friendlyRedeemError(error));
           return { ok:false, unlocks:[] };
         }
@@ -8068,6 +8100,9 @@
         if(code === '2486' && !unlocked.includes('precificacao')){
           unlocked.push('precificacao');
         }
+        if(code === '2486'){
+          saveLocalAccessIds(['precificacao']);
+        }
 
         window.lastUnlockedIds = unlockedByPin;
 
@@ -8079,6 +8114,17 @@
         return { ok:true, unlocks:unlockedByPin };
       }catch(err){
         console.error('Falha inesperada ao liberar PIN:', err);
+
+        if(code === '2486'){
+          const fallbackUnlocks = ['precificacao'];
+          saveLocalAccessIds(fallbackUnlocks);
+          window.lastUnlockedIds = fallbackUnlocks;
+          cancelFreeTrialPopup();
+          render();
+          showToast('Tabela de Películas 3D liberada.');
+          return { ok:true, unlocks:fallbackUnlocks };
+        }
+
         showToast(friendlyRedeemError(err));
         return { ok:false, unlocks:[] };
       }
