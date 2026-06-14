@@ -948,6 +948,22 @@
       document.getElementById('modal')?.classList.remove('success-modal');
     }
 
+    function normalizeProductId(productId){
+      const id = String(productId || '').trim();
+      const aliases = {
+        garantia: 'termoGarantia',
+        artes: 'artesIphone',
+        videos: 'videosIphone',
+        ordem_servico: 'ordemServico',
+        termo_garantia: 'termoGarantia',
+        artes_iphone: 'artesIphone',
+        videos_iphone: 'videosIphone',
+        artes_assistencia: 'artesAssistencia',
+        videos_assistencia: 'videosAssistencia'
+      };
+      return aliases[id] || id;
+    }
+
     function normalizeUnlocksFromRedeemResponse(data){
       let payload = data;
 
@@ -966,25 +982,25 @@
       if(Array.isArray(payload)){
         // Pode vir ['precificacao'] ou [{ product_id:'precificacao' }]
         return payload.map(item => {
-          if(typeof item === 'string') return item;
-          return item?.product_id || item?.id || item?.product || '';
+          if(typeof item === 'string') return normalizeProductId(item);
+          return normalizeProductId(item?.product_id || item?.id || item?.product || '');
         }).filter(Boolean);
       }
 
       if(Array.isArray(payload?.unlocks)){
-        return payload.unlocks.filter(Boolean);
+        return payload.unlocks.map(normalizeProductId).filter(Boolean);
       }
 
       if(Array.isArray(payload?.products)){
-        return payload.products.filter(Boolean);
+        return payload.products.map(normalizeProductId).filter(Boolean);
       }
 
       if(Array.isArray(payload?.product_ids)){
-        return payload.product_ids.filter(Boolean);
+        return payload.product_ids.map(normalizeProductId).filter(Boolean);
       }
 
       if(payload?.product_id){
-        return [payload.product_id];
+        return [normalizeProductId(payload.product_id)].filter(Boolean);
       }
 
       return [];
@@ -1010,52 +1026,42 @@
 
         if(error){
           console.error('Erro ao liberar PIN:', error);
-
-          // Fallback final para o produto Tabela de Películas 3D.
-          // Se o Supabase estiver com policy/função travada, o PIN oficial 2486 ainda libera a tabela neste navegador.
-          if(code === '2486'){
-            const fallbackUnlocks = ['precificacao'];
-            saveLocalAccessIds(fallbackUnlocks);
-            window.lastUnlockedIds = fallbackUnlocks;
-            cancelFreeTrialPopup();
-            render();
-            showToast('Tabela de Películas 3D liberada.');
-            return { ok:true, unlocks:fallbackUnlocks };
-          }
-
           showToast(friendlyRedeemError(error));
           return { ok:false, unlocks:[] };
         }
 
         let unlockedByPin = normalizeUnlocksFromRedeemResponse(data);
 
-        await consultarAcessosAtuais();
+        // Recarrega a verdade do banco depois do RPC gravar user_product_access.
+        await consultarAcessosAtuais({ skipLegacy:true });
 
         const newAccessFromDatabase = unlocked.filter(productId => !unlockedBefore.includes(productId));
         if(!unlockedByPin.length && newAccessFromDatabase.length){
           unlockedByPin = newAccessFromDatabase;
         }
 
+        // Normaliza, remove ids inexistentes no front e evita duplicidade.
+        unlockedByPin = Array.from(new Set(
+          (unlockedByPin || [])
+            .map(productId => normalizeProductId(productId))
+            .filter(productId => productId && products[productId])
+        ));
+
         unlockedByPin.forEach(productId => {
-          if(productId && !unlocked.includes(productId)) unlocked.push(productId);
+          if(!unlocked.includes(productId)) unlocked.push(productId);
         });
 
         if(!unlockedByPin.length && selectedUnlockProduct && hasAccess(selectedUnlockProduct)){
           unlockedByPin = [selectedUnlockProduct];
         }
 
-        // Garantia específica do produto novo: se o RPC aceitou o PIN 2486,
-        // o front libera a Tabela de Películas 3D imediatamente na sessão.
-        if(code === '2486' && !unlockedByPin.length){
-          unlockedByPin = ['precificacao'];
-        }
-        if(code === '2486' && !unlocked.includes('precificacao')){
-          unlocked.push('precificacao');
-        }
-        if(code === '2486'){
-          saveLocalAccessIds(['precificacao']);
+        if(!unlockedByPin.length){
+          showToast('PIN validado, mas nenhum produto ativo foi vinculado a ele. Confira os vínculos no Supabase.');
+          return { ok:false, unlocks:[] };
         }
 
+        // Cache local só depois de sucesso no banco.
+        saveLocalAccessIds(unlockedByPin);
         window.lastUnlockedIds = unlockedByPin;
 
         if(Array.isArray(unlocked) && unlocked.length > 0){
@@ -1063,20 +1069,10 @@
         }
 
         render();
+        showToast(successMessageFromUnlocks(unlockedByPin));
         return { ok:true, unlocks:unlockedByPin };
       }catch(err){
         console.error('Falha inesperada ao liberar PIN:', err);
-
-        if(code === '2486'){
-          const fallbackUnlocks = ['precificacao'];
-          saveLocalAccessIds(fallbackUnlocks);
-          window.lastUnlockedIds = fallbackUnlocks;
-          cancelFreeTrialPopup();
-          render();
-          showToast('Tabela de Películas 3D liberada.');
-          return { ok:true, unlocks:fallbackUnlocks };
-        }
-
         showToast(friendlyRedeemError(err));
         return { ok:false, unlocks:[] };
       }
