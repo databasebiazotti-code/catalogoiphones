@@ -185,83 +185,44 @@ fbq('track', 'PageView');
     .catalog-quick-links-highlight .catalog-quick-link i{width:30px !important;height:30px !important;font-size:17px !important;border-radius:11px !important;}
     .catalog-extra-divider{border-radius:16px !important;padding:13px 14px !important;}
   }
-</style>
-<style id="catalog-quick-clean-final">
-  .catalog-quick-links-highlight{
-    display:grid !important;
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    gap:8px !important;
-    margin:0 0 12px !important;
-  }
-  .catalog-quick-links-highlight .catalog-quick-link,
-  .catalog-quick-links-highlight .quick-tutorial,
-  .catalog-quick-links-highlight .quick-whatsapp,
-  .catalog-quick-links-highlight .quick-warranty,
-  .catalog-quick-links-highlight .quick-extra{
-    min-height:42px !important;
-    border-radius:12px !important;
-    padding:8px 10px !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:space-between !important;
-    gap:8px !important;
-    text-align:left !important;
-    color:#f5f5f7 !important;
-    background:rgba(255,255,255,.055) !important;
-    border:1px solid rgba(255,255,255,.10) !important;
-    box-shadow:none !important;
-  }
-  .catalog-quick-links-highlight .catalog-quick-link span{
-    font-size:12.5px !important;
-    font-weight:850 !important;
-    letter-spacing:-.15px !important;
-    line-height:1 !important;
-  }
-  .catalog-quick-links-highlight .catalog-quick-link i{
-    width:24px !important;
-    height:24px !important;
-    border-radius:8px !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    background:rgba(255,255,255,.07) !important;
-    color:#d7d7dc !important;
-    font-size:14px !important;
-    flex:0 0 auto !important;
-  }
-  .catalog-extra-head{
-    grid-column:1 / -1 !important;
-    width:100% !important;
-    margin:16px 0 2px !important;
-    padding:0 !important;
-    background:transparent !important;
-    border:0 !important;
-    box-shadow:none !important;
-  }
-  .catalog-extra-divider{
-    background:transparent !important;
-    border:0 !important;
-    box-shadow:none !important;
-    padding:0 !important;
-    margin:16px 0 2px !important;
-  }
-  @media(max-width:760px){
-    .catalog-quick-links-highlight{gap:7px !important;margin-bottom:10px !important;}
-    .catalog-quick-links-highlight .catalog-quick-link,
-    .catalog-quick-links-highlight .quick-tutorial,
-    .catalog-quick-links-highlight .quick-whatsapp,
-    .catalog-quick-links-highlight .quick-warranty,
-    .catalog-quick-links-highlight .quick-extra{
-      min-height:40px !important;
-      border-radius:11px !important;
-      padding:8px 9px !important;
-    }
-    .catalog-quick-links-highlight .catalog-quick-link span{font-size:12px !important;}
-    .catalog-quick-links-highlight .catalog-quick-link i{width:22px !important;height:22px !important;font-size:13px !important;border-radius:7px !important;}
-    .catalog-extra-head{margin:14px 0 1px !important;}
-  }
-</style>
-</head><body>
+
+
+/* Home premium: mais impacto visual sem sobrecarregar */
+.home-premium{gap:14px!important;}
+.home-hero-premium{grid-template-columns:minmax(0,1fr) 190px!important;align-items:stretch!important;padding:20px!important;border-radius:26px!important;background:radial-gradient(circle at 94% 0%,rgba(10,132,255,.26),transparent 38%),radial-gradient(circle at 15% 100%,rgba(48,209,88,.10),transparent 30%),linear-gradient(180deg,rgba(255,255,255,.070),rgba(255,255,255,.020)),var(--panel)!important;}
+.home-hero-premium h1{font-size:28px!important;line-height:1.04!important;max-width:640px!important;margin-bottom:8px!important;}
+.home-hero-premium p{font-size:13.5px!important;max-width:560px!important;color:#b7b7bd!important;}
+.home-hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px;}
+.home-hero-actions .btn{min-height:40px!important;min-width:132px;}
+.home-social-card{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-height:142px;border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:16px;background:linear-gradient(180deg,rgba(255,255,255,.080),rgba(255,255,255,.024));box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
+.home-social-card span{display:block;font-size:38px;line-height:.92;font-weight:950;letter-spacing:-1.8px;color:#fff;margin-bottom:5px;}
+.home-social-card strong{display:block;font-size:13px;color:#9ed0ff;text-transform:uppercase;letter-spacing:.7px;margin-bottom:7px;}
+.home-social-card small{display:block;color:var(--muted);font-size:11.5px;line-height:1.35;}
+.home-journey-premium{padding:17px!important;border-radius:24px!important;}
+.journey-premium-grid{gap:9px!important;}
+.journey-premium-grid .journey-compact-step{border-radius:17px!important;padding:11px!important;grid-template-columns:38px minmax(0,1fr)!important;gap:9px 10px!important;background:rgba(255,255,255,.032)!important;}
+.journey-premium-grid .journey-compact-step.primary{background:linear-gradient(180deg,rgba(10,132,255,.105),rgba(255,255,255,.024))!important;}
+.journey-premium-grid .journey-number{width:38px!important;height:38px!important;border-radius:13px!important;font-size:12px!important;}
+.journey-premium-grid .journey-text h3{font-size:14px!important;margin-bottom:2px!important;}
+.journey-premium-grid .journey-text p{font-size:11.2px!important;line-height:1.28!important;}
+.journey-premium-grid .btn{min-height:37px!important;font-size:11.8px!important;}
+@media(max-width:760px){
+  .home-premium{gap:10px!important;}
+  .home-hero-premium{grid-template-columns:1fr!important;padding:16px!important;border-radius:22px!important;}
+  .home-hero-premium h1{font-size:24px!important;}
+  .home-hero-premium p{font-size:12.5px!important;}
+  .home-hero-actions{margin-top:12px;}
+  .home-hero-actions .btn{flex:1 1 130px;min-width:0;}
+  .home-social-card{min-height:auto;padding:13px;border-radius:18px;display:grid;grid-template-columns:auto 1fr;gap:2px 9px;align-items:center;}
+  .home-social-card span{font-size:30px;margin:0;grid-row:1 / span 2;}
+  .home-social-card strong{font-size:11px;margin:0;}
+  .home-social-card small{font-size:10.8px;}
+  .home-journey-premium{padding:14px!important;border-radius:21px!important;}
+  .journey-premium-grid{grid-template-columns:1fr!important;gap:8px!important;}
+  .journey-premium-grid .journey-compact-step{grid-template-columns:36px minmax(0,1fr)!important;}
+  .journey-premium-grid .journey-number{width:36px!important;height:36px!important;}
+}
+</style></head><body>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
 /></noscript>
@@ -272,23 +233,30 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
         </button><button class="login-access-action" type="button" onclick="openLoginForm()">
           Fazer login
         </button></div><div id="signupForm" class="signup-priority-form login-extra-form" style="display:none"><div class="login-error" id="signupError"></div><div class="field"><label>Nome</label><input id="signupName" type="text" placeholder="Seu nome" autocomplete="name" /></div><div class="field"><label>E-mail</label><input id="signupEmail" type="email" placeholder="seu@email.com" autocomplete="email" /></div><div class="field"><label>Criar senha</label><input id="signupPassword" type="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password" /></div><button class="login-btn" onclick="createAccount()"><i class="ti ti-arrow-right"></i> Criar cadastro gratuito</button><div class="login-toggle login-toggle-card">Já tem cadastro? <button onclick="openLoginForm()">Entrar com e-mail e senha</button></div></div><div id="loginForm" class="login-extra-form" style="display:none"><div class="login-divider">login com e-mail</div><div class="login-error" id="loginError"></div><div class="field"><label>E-mail</label><input id="loginEmail" type="email" placeholder="seu@email.com" autocomplete="email" /></div><div class="field"><label>Senha</label><input id="loginPassword" type="password" placeholder="Digite sua senha" autocomplete="current-password" /></div><button class="login-btn" onclick="loginAccount()"><i class="ti ti-login-2"></i> Entrar</button><div class="forgot-password-row"><button type="button" onclick="openPasswordPopup()">Esqueci a senha</button></div><div class="login-toggle login-toggle-card">Ainda não tem acesso? <button onclick="openSignupForm()">Criar cadastro gratuito</button></div></div></div><div class="password-modal" id="passwordModal" aria-hidden="true"><div class="password-modal-box" role="dialog" aria-modal="true" aria-labelledby="passwordModalTitle"><h3 id="passwordModalTitle">Recuperar senha</h3><p>Digite seu e-mail cadastrado. Você receberá um link para criar uma nova senha.</p><div class="login-error" id="passwordResetError"></div><div class="field"><label>E-mail</label><input id="passwordResetEmail" type="email" placeholder="seu@email.com" autocomplete="email" /></div><div class="password-modal-actions"><button class="login-btn" type="button" onclick="sendPasswordReset()">Enviar link de recuperação</button><button class="login-btn password-close-btn" type="button" onclick="closePasswordPopup()">Cancelar</button></div></div></div></section><section class="page app-page" id="appPage"><div class="app"><aside class="sidebar"><div class="brand"><div class="brand-row"><div class="brand-mark"><i class="ti ti-building-store"></i></div><div><div class="brand-name">Central do Lojista</div><span class="brand-sub">Materiais digitais para sua loja</span></div></div></div><div class="nav-wrap"><div class="nav-label">Menu</div><button class="nav-item active" data-section="inicio"><i class="ti ti-home"></i> Início</button><button class="nav-item" data-section="catalogos"><i class="ti ti-device-mobile"></i> Catálogos</button><button class="nav-item" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button><button class="nav-item" data-section="bonus"><i class="ti ti-folder-star"></i> Bônus</button></div><div class="side-footer"><div class="customer-mini"><div class="customer-avatar" id="customerAvatar">L</div><div><div class="customer-name" id="sidebarName">Lojista</div><div class="customer-email" id="sidebarEmail">—</div></div></div><button class="logout-btn" onclick="logout()">Sair da conta</button></div></aside><main class="main"><header class="topbar"><div class="page-title" id="pageTitle">Início</div><div class="top-actions"><a class="top-btn support-top" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20eu%20vim%20da%20%C3%A1rea%20de%20membros%20e%20tenho%20d%C3%BAvidas." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i><span>WhatsApp</span></a></div></header><div class="content"><section class="section active" id="inicio">
-  <div class="home-first-access">
-    <section class="home-focus-card">
+  <div class="home-first-access home-premium">
+    <section class="home-focus-card home-hero-premium">
       <div class="home-focus-copy">
         <span class="home-mini-label">Área de membros</span>
-        <h1 id="welcomeMessage">Bem-vindo à Central do Lojista</h1>
-        <p>Seu catálogo já está pronto. Siga os passos abaixo para personalizar, divulgar e começar a vender.</p>
-        <div class="home-social-proof"><i class="ti ti-users"></i> Mais de 500 lojistas já utilizam nossos catálogos e ferramentas.</div>
+        <h1 id="welcomeMessage">Seu catálogo está pronto para vender</h1>
+        <p>Personalize, compartilhe e comece a receber pedidos com mais praticidade.</p>
+        <div class="home-hero-actions">
+          <button class="btn gold" type="button" onclick="goTo('catalogos')"><i class="ti ti-player-play"></i> Começar agora</button>
+          <button class="btn ghost" type="button" onclick="goTo('bonus')"><i class="ti ti-gift"></i> Ver bônus</button>
+        </div>
       </div>
-      <button class="btn green home-focus-btn" type="button" onclick="goTo('catalogos')"><i class="ti ti-arrow-right"></i> Ver catálogos</button>
+      <aside class="home-social-card" aria-label="Prova social">
+        <span>+500</span>
+        <strong>lojistas</strong>
+        <small>já utilizam nossos catálogos e ferramentas.</small>
+      </aside>
     </section>
 
-    <section class="home-journey-card">
+    <section class="home-journey-card home-journey-premium">
       <div class="home-journey-head">
         <div>
           <span class="home-mini-label">Primeiros passos</span>
           <h2>Sua jornada</h2>
-          <p>Complete as etapas principais para usar melhor seus materiais.</p>
+          <p>Quatro ações simples para começar com segurança.</p>
         </div>
         <div class="journey-progress-mini" aria-label="Progresso da jornada">
           <span class="active"></span><span></span><span></span><span></span>
@@ -296,48 +264,49 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <div class="journey-compact-grid">
+      <div class="journey-compact-grid journey-premium-grid">
         <article class="journey-compact-step primary">
-          <div class="journey-number">1</div>
+          <div class="journey-number">01</div>
           <div class="journey-text">
             <h3>Comece por aqui</h3>
-            <p>Veja em 30 segundos como editar seu catálogo.</p>
+            <p>Veja o vídeo rápido.</p>
           </div>
-          <button class="btn gold" type="button" onclick="goTo('catalogos')"><i class="ti ti-player-play"></i> Assistir vídeo</button>
+          <button class="btn gold" type="button" onclick="goTo('catalogos')"><i class="ti ti-player-play"></i> Assistir</button>
         </article>
 
         <article class="journey-compact-step">
-          <div class="journey-number">2</div>
+          <div class="journey-number">02</div>
           <div class="journey-text">
-            <h3>Personalize seu catálogo</h3>
-            <p>Adicione sua logo, preços e WhatsApp.</p>
+            <h3>Personalize</h3>
+            <p>Edite logo, preços e WhatsApp.</p>
           </div>
-          <button class="btn ghost" type="button" onclick="openUnlock('iphone')"><i class="ti ti-edit"></i> Editar catálogo</button>
+          <button class="btn ghost" type="button" onclick="openUnlock('iphone')"><i class="ti ti-edit"></i> Editar</button>
         </article>
 
         <article class="journey-compact-step">
-          <div class="journey-number">3</div>
+          <div class="journey-number">03</div>
           <div class="journey-text">
-            <h3>Compartilhe seu catálogo</h3>
-            <p>Envie para clientes, grupos e redes sociais.</p>
+            <h3>Compartilhe</h3>
+            <p>Divulgue nas redes e grupos.</p>
           </div>
           <button class="btn ghost" type="button" onclick="openUnlock('iphone')"><i class="ti ti-share"></i> Compartilhar</button>
         </article>
 
         <article class="journey-compact-step">
-          <div class="journey-number">4</div>
+          <div class="journey-number">04</div>
           <div class="journey-text">
             <h3>Use os bônus</h3>
-            <p>Acesse fornecedores, preços, películas e grupo VIP.</p>
+            <p>Acesse fornecedores e materiais.</p>
           </div>
-          <button class="btn ghost" type="button" onclick="goTo('bonus')"><i class="ti ti-gift"></i> Ver bônus</button>
+          <button class="btn ghost" type="button" onclick="goTo('bonus')"><i class="ti ti-gift"></i> Abrir bônus</button>
         </article>
       </div>
     </section>
 
     <div class="home-vector-grid" id="homeGrid" style="display:none"></div>
   </div>
-</section><section class="section" id="catalogos"><div id="catalogUpgradeTopOffer"></div><div id="catalogSetupHelp"></div><div id="catalogQuickLinks"></div><div class="row-head"><div><div class="sec-title">Catálogos e materiais</div><div class="sec-sub">Acesse todos os catálogos, vídeo tutorial, contrato de garantia e packs extras.</div></div></div><div class="grid" id="catalogGrid"></div><div class="catalog-access-grid" id="catalogAccessGrid"></div><div id="catalogUpgradeOffer"></div></section><section class="section" id="lojaiPhone"><div class="row-head"><div><div class="sec-title">Materiais para iPhone</div><div class="sec-sub">Documentos, artes e vídeos prontos para vender iPhones.</div></div></div><div class="grid" id="lojaIphoneGrid"></div></section><section class="section" id="fornecedores"><div class="suppliers-hero"><span>Lista 2026</span><h1>Lista de fornecedores de iPhone</h1><p>Contatos organizados com busca rápida e botão direto para chamar no WhatsApp.</p></div><div class="supplier-tools"><input class="supplier-search" id="supplierSearch" type="search" placeholder="Buscar fornecedor pelo nome ou número" oninput="renderSuppliers(this.value)" /><div class="supplier-count" id="supplierCount">52 fornecedores</div></div><div class="suppliers-grid" id="suppliersGrid"></div><div class="supplier-note"><strong>Observação:</strong> os contatos foram organizados a partir do PDF de referência. Recomenda-se que cada usuário realize sua própria verificação quanto à procedência e confiabilidade dos fornecedores.</div></section><section class="section" id="assistencia"><div class="row-head"><div><div class="sec-title">Assistência técnica</div><div class="sec-sub">Documentos, artes e vídeos prontos para assistência técnica.</div></div></div><div class="grid" id="assistenciaGrid"></div></section><section class="section" id="bonus"><div class="row-head"><div><div class="sec-title">Bônus</div><div class="sec-sub">Lista de fornecedores, tabela de precificação, películas 3D e grupo VIP.</div></div></div><section class="pwa-save-card pwa-save-card-compact" id="pwaSavePeliculas"><span class="pwa-badge"><i class="ti ti-device-mobile-search"></i> Atalho</span><h3>Salve a Central no celular</h3><p>Use o botão <b>Instalar</b> no topo para abrir a tabela de películas direto pela tela inicial.</p><div class="pwa-actions"><button class="btn ghost" type="button" onclick="openPwaHelp()"><i class="ti ti-info-circle"></i> Como salvar no Android/iPhone</button></div></section><div class="grid" id="bonusGrid"></div></section><section class="section" id="suporte"><div class="support-hero"><span><i class="ti ti-headset"></i> Ajuda rápida</span><h1>Precisa de ajuda?</h1><p>Confira orientações rápidas para liberar acesso, encontrar materiais ou falar com o suporte.</p></div><div class="support-grid"><article class="support-card"><div class="support-icon"><i class="ti ti-key"></i></div><h3>Como liberar seu acesso</h3><p>Digite o PIN da compra. O acesso é liberado automaticamente.</p><button class="btn gold" onclick="goTo('catalogos')"><i class="ti ti-lock-open"></i> Liberar catálogo</button></article><article class="support-card"><div class="support-icon"><i class="ti ti-device-mobile"></i></div><h3>Onde encontro meus materiais?</h3><p>Entre na categoria do produto comprado. Quando estiver liberado, o botão de acesso aparece no card.</p><button class="btn ghost" onclick="goTo('inicio')"><i class="ti ti-layout-grid"></i> Ver áreas</button></article><article class="support-card support-card-whatsapp"><div class="support-icon whatsapp"><i class="ti ti-brand-whatsapp"></i></div><h3>Falar no WhatsApp</h3><p>Se o PIN não funcionar ou algum material não abrir, chame no WhatsApp e informe o e-mail da compra.</p><a class="btn whatsapp-btn" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20na%20%C3%A1rea%20de%20membros." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Chamar no WhatsApp</a></article></div><div class="support-note"><strong>Dica:</strong> use o mesmo e-mail da compra para liberar sem erro.
+</section>
+<section class="section" id="catalogos"><div id="catalogUpgradeTopOffer"></div><div id="catalogSetupHelp"></div><div id="catalogQuickLinks"></div><div class="row-head"><div><div class="sec-title">Catálogos e materiais</div><div class="sec-sub">Acesse todos os catálogos, vídeo tutorial, contrato de garantia e packs extras.</div></div></div><div class="grid" id="catalogGrid"></div><div class="catalog-access-grid" id="catalogAccessGrid"></div><div id="catalogUpgradeOffer"></div></section><section class="section" id="lojaiPhone"><div class="row-head"><div><div class="sec-title">Materiais para iPhone</div><div class="sec-sub">Documentos, artes e vídeos prontos para vender iPhones.</div></div></div><div class="grid" id="lojaIphoneGrid"></div></section><section class="section" id="fornecedores"><div class="suppliers-hero"><span>Lista 2026</span><h1>Lista de fornecedores de iPhone</h1><p>Contatos organizados com busca rápida e botão direto para chamar no WhatsApp.</p></div><div class="supplier-tools"><input class="supplier-search" id="supplierSearch" type="search" placeholder="Buscar fornecedor pelo nome ou número" oninput="renderSuppliers(this.value)" /><div class="supplier-count" id="supplierCount">52 fornecedores</div></div><div class="suppliers-grid" id="suppliersGrid"></div><div class="supplier-note"><strong>Observação:</strong> os contatos foram organizados a partir do PDF de referência. Recomenda-se que cada usuário realize sua própria verificação quanto à procedência e confiabilidade dos fornecedores.</div></section><section class="section" id="assistencia"><div class="row-head"><div><div class="sec-title">Assistência técnica</div><div class="sec-sub">Documentos, artes e vídeos prontos para assistência técnica.</div></div></div><div class="grid" id="assistenciaGrid"></div></section><section class="section" id="bonus"><div class="row-head"><div><div class="sec-title">Bônus</div><div class="sec-sub">Lista de fornecedores, tabela de precificação, películas 3D e grupo VIP.</div></div></div><section class="pwa-save-card pwa-save-card-compact" id="pwaSavePeliculas"><span class="pwa-badge"><i class="ti ti-device-mobile-search"></i> Atalho</span><h3>Salve a Central no celular</h3><p>Use o botão <b>Instalar</b> no topo para abrir a tabela de películas direto pela tela inicial.</p><div class="pwa-actions"><button class="btn ghost" type="button" onclick="openPwaHelp()"><i class="ti ti-info-circle"></i> Como salvar no Android/iPhone</button></div></section><div class="grid" id="bonusGrid"></div></section><section class="section" id="suporte"><div class="support-hero"><span><i class="ti ti-headset"></i> Ajuda rápida</span><h1>Precisa de ajuda?</h1><p>Confira orientações rápidas para liberar acesso, encontrar materiais ou falar com o suporte.</p></div><div class="support-grid"><article class="support-card"><div class="support-icon"><i class="ti ti-key"></i></div><h3>Como liberar seu acesso</h3><p>Digite o PIN da compra. O acesso é liberado automaticamente.</p><button class="btn gold" onclick="goTo('catalogos')"><i class="ti ti-lock-open"></i> Liberar catálogo</button></article><article class="support-card"><div class="support-icon"><i class="ti ti-device-mobile"></i></div><h3>Onde encontro meus materiais?</h3><p>Entre na categoria do produto comprado. Quando estiver liberado, o botão de acesso aparece no card.</p><button class="btn ghost" onclick="goTo('inicio')"><i class="ti ti-layout-grid"></i> Ver áreas</button></article><article class="support-card support-card-whatsapp"><div class="support-icon whatsapp"><i class="ti ti-brand-whatsapp"></i></div><h3>Falar no WhatsApp</h3><p>Se o PIN não funcionar ou algum material não abrir, chame no WhatsApp e informe o e-mail da compra.</p><a class="btn whatsapp-btn" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20na%20%C3%A1rea%20de%20membros." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Chamar no WhatsApp</a></article></div><div class="support-note"><strong>Dica:</strong> use o mesmo e-mail da compra para liberar sem erro.
             </div></section></div></main></div><nav class="mobile-nav"><button class="mnav active" data-section="inicio"><i class="ti ti-home"></i> Início</button><button class="mnav" data-section="catalogos"><i class="ti ti-device-mobile"></i> Catálogos</button><button class="mnav" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button><button class="mnav" data-section="bonus"><i class="ti ti-folder-star"></i> Bônus</button></nav></section><div class="modal" id="modal"><div class="modal-box"><div class="modal-cover"><i id="modalIcon" class="ti ti-lock"></i></div><div class="modal-content"><h3 id="modalTitle">Produto</h3><p id="modalText">Descrição</p><div class="modal-code" id="modalCodeArea"><div class="code-row"><input id="modalCodeInput" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="Digite seu PIN" autocomplete="off" /><button class="btn gold" onclick="redeemCodeFromModal()"><i class="ti ti-lock"></i> Liberar</button></div><div class="code-help">Digite o PIN recebido após a compra.</div><div id="checkoutArea" style="display:none;margin-top:10px"></div></div><div class="modal-actions"><button class="btn dark" onclick="closeModal()">Fechar</button></div></div></div></div><div class="toast" id="toast"><i class="ti ti-check"></i><span id="toastText">Pronto.</span></div><script>
     const SB_URL = "https://lvumvnybggqudgccscvm.supabase.co";
     const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx2dW12bnliZ2dxdWRnY2NzY3ZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0ODIzMTAsImV4cCI6MjA5NTA1ODMxMH0.q7hnXLG5NpWC_k0LjZBVPtH63eC-95Ug8lCvV9RmVHo";
@@ -1692,7 +1661,7 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
 
 
     function catalogExtraDivider(){
-      return `<div class="row-head compact-head catalog-extra-head"><div><div class="sec-title">Extras</div><div class="sec-sub">Vídeos, artes e materiais complementares.</div></div></div>`;
+      return `<div class="catalog-extra-divider"><span>Extras</span><p>Vídeos, artes e materiais complementares.</p></div>`;
     }
 
     function bonusWhatsappCard(){
