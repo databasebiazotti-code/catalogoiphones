@@ -313,6 +313,21 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
       </aside>
     </section>
 
+
+    <section class="home-code-card home-pin-card" aria-label="Liberar acesso por PIN">
+      <div class="home-code-copy">
+        <div class="home-code-icon"><i class="ti ti-key"></i></div>
+        <div>
+          <h3>Liberar acesso</h3>
+          <p>Digite o PIN recebido após a compra para liberar seus materiais.</p>
+        </div>
+      </div>
+      <div class="quick-code-row home-code-action">
+        <input id="quickCodeInput" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="Digite seu PIN" autocomplete="off" />
+        <button class="btn gold" type="button" onclick="redeemQuickCode()"><i class="ti ti-lock-open"></i> Liberar</button>
+      </div>
+    </section>
+
     <section class="home-journey-card home-journey-premium">
       <div class="home-journey-head">
         <div>
@@ -368,7 +383,7 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
     <div class="home-vector-grid" id="homeGrid" style="display:none"></div>
   </div>
 </section>
-<section class="section" id="catalogos"><div id="catalogUpgradeTopOffer"></div><div id="catalogSetupHelp"></div><div id="catalogQuickLinks"></div><div class="row-head"><div><div class="sec-title">Catálogos e materiais</div><div class="sec-sub">Acesse todos os catálogos, vídeo tutorial, contrato de garantia e packs extras.</div></div></div><div class="grid" id="catalogGrid"></div><div class="catalog-access-grid" id="catalogAccessGrid"></div><div id="catalogUpgradeOffer"></div></section><section class="section" id="lojaiPhone"><div class="row-head"><div><div class="sec-title">Materiais para iPhone</div><div class="sec-sub">Documentos, artes e vídeos prontos para vender iPhones.</div></div></div><div class="grid" id="lojaIphoneGrid"></div></section><section class="section" id="fornecedores"><div class="suppliers-hero"><span>Lista 2026</span><h1>Lista de fornecedores de iPhone</h1><p>Contatos organizados com busca rápida e botão direto para chamar no WhatsApp.</p></div><div class="supplier-tools"><input class="supplier-search" id="supplierSearch" type="search" placeholder="Buscar fornecedor pelo nome ou número" oninput="renderSuppliers(this.value)" /><div class="supplier-count" id="supplierCount">52 fornecedores</div></div><div class="suppliers-grid" id="suppliersGrid"></div><div class="supplier-note"><strong>Observação:</strong> os contatos foram organizados a partir do PDF de referência. Recomenda-se que cada usuário realize sua própria verificação quanto à procedência e confiabilidade dos fornecedores.</div></section><section class="section" id="assistencia"><div class="row-head"><div><div class="sec-title">Assistência técnica</div><div class="sec-sub">Documentos, artes e vídeos prontos para assistência técnica.</div></div></div><div class="grid" id="assistenciaGrid"></div></section><section class="section" id="bonus"><div class="row-head"><div><div class="sec-title">Bônus</div><div class="sec-sub">Lista de fornecedores, tabela de precificação, películas 3D e grupo VIP.</div></div></div><div class="grid" id="bonusGrid"></div></section><section class="section" id="suporte"><div class="support-hero"><span><i class="ti ti-headset"></i> Ajuda rápida</span><h1>Precisa de ajuda?</h1><p>Confira orientações rápidas para liberar acesso, encontrar materiais ou falar com o suporte.</p></div><div class="support-grid"><article class="support-card"><div class="support-icon"><i class="ti ti-key"></i></div><h3>Como liberar seu acesso</h3><p>Digite o PIN da compra. O acesso é liberado automaticamente.</p><button class="btn gold" onclick="goTo('catalogos')"><i class="ti ti-lock-open"></i> Liberar catálogo</button></article><article class="support-card"><div class="support-icon"><i class="ti ti-device-mobile"></i></div><h3>Onde encontro meus materiais?</h3><p>Entre na categoria do produto comprado. Quando estiver liberado, o botão de acesso aparece no card.</p><button class="btn ghost" onclick="goTo('inicio')"><i class="ti ti-layout-grid"></i> Ver áreas</button></article><article class="support-card support-card-whatsapp"><div class="support-icon whatsapp"><i class="ti ti-brand-whatsapp"></i></div><h3>Falar no WhatsApp</h3><p>Se o PIN não funcionar ou algum material não abrir, chame no WhatsApp e informe o e-mail da compra.</p><a class="btn whatsapp-btn" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20na%20%C3%A1rea%20de%20membros." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Chamar no WhatsApp</a></article></div><div class="support-note"><strong>Dica:</strong> use o mesmo e-mail da compra para liberar sem erro.
+<section class="section" id="catalogos"><div id="catalogUpgradeTopOffer"></div><div id="catalogSetupHelp"></div><div id="catalogQuickLinks"></div><div class="row-head"><div><div class="sec-title">Catálogos e materiais</div><div class="sec-sub">Acesse todos os catálogos, vídeo tutorial, contrato de garantia e packs extras.</div></div></div><div class="grid" id="catalogGrid"></div><div class="catalog-access-grid" id="catalogAccessGrid"></div><div id="catalogUpgradeOffer"></div></section><section class="section" id="lojaiPhone"><div class="row-head"><div><div class="sec-title">Materiais para iPhone</div><div class="sec-sub">Documentos, artes e vídeos prontos para vender iPhones.</div></div></div><div class="grid" id="lojaIphoneGrid"></div></section><section class="section" id="fornecedores"><div class="suppliers-hero"><span>Lista 2026</span><h1>Lista de fornecedores de iPhone</h1><p>Contatos organizados com busca rápida e botão direto para chamar no WhatsApp.</p></div><div class="supplier-tools"><input class="supplier-search" id="supplierSearch" type="search" placeholder="Buscar fornecedor pelo nome ou número" oninput="renderSuppliers(this.value)" /><div class="supplier-count" id="supplierCount">52 fornecedores</div></div><div class="suppliers-grid" id="suppliersGrid"></div><div class="supplier-note"><strong>Observação:</strong> os contatos foram organizados a partir do PDF de referência. Recomenda-se que cada usuário realize sua própria verificação quanto à procedência e confiabilidade dos fornecedores.</div></section><section class="section" id="assistencia"><div class="row-head"><div><div class="sec-title">Assistência técnica</div><div class="sec-sub">Documentos, artes e vídeos prontos para assistência técnica.</div></div></div><div class="grid" id="assistenciaGrid"></div></section><section class="section" id="bonus"><div class="row-head"><div><div class="sec-title">Bônus</div><div class="sec-sub">Acesse fornecedores, precificação e ferramentas de apoio para vender melhor.</div></div></div><div class="grid" id="bonusGrid"></div></section><section class="section" id="suporte"><div class="support-hero"><span><i class="ti ti-headset"></i> Ajuda rápida</span><h1>Precisa de ajuda?</h1><p>Confira orientações rápidas para liberar acesso, encontrar materiais ou falar com o suporte.</p></div><div class="support-grid"><article class="support-card"><div class="support-icon"><i class="ti ti-key"></i></div><h3>Como liberar seu acesso</h3><p>Digite o PIN da compra. O acesso é liberado automaticamente.</p><button class="btn gold" onclick="goTo('catalogos')"><i class="ti ti-lock-open"></i> Liberar catálogo</button></article><article class="support-card"><div class="support-icon"><i class="ti ti-device-mobile"></i></div><h3>Onde encontro meus materiais?</h3><p>Entre na categoria do produto comprado. Quando estiver liberado, o botão de acesso aparece no card.</p><button class="btn ghost" onclick="goTo('inicio')"><i class="ti ti-layout-grid"></i> Ver áreas</button></article><article class="support-card support-card-whatsapp"><div class="support-icon whatsapp"><i class="ti ti-brand-whatsapp"></i></div><h3>Falar no WhatsApp</h3><p>Se o PIN não funcionar ou algum material não abrir, chame no WhatsApp e informe o e-mail da compra.</p><a class="btn whatsapp-btn" href="https://wa.me/5511949185861?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20na%20%C3%A1rea%20de%20membros." target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Chamar no WhatsApp</a></article></div><div class="support-note"><strong>Dica:</strong> use o mesmo e-mail da compra para liberar sem erro.
             </div></section></div></main></div><nav class="mobile-nav"><button class="mnav active" data-section="inicio"><i class="ti ti-home"></i> Início</button><button class="mnav" data-section="catalogos"><i class="ti ti-device-mobile"></i> Catálogos</button><button class="mnav" data-section="assistencia"><i class="ti ti-tools"></i> Assistência</button><button class="mnav" data-section="bonus"><i class="ti ti-folder-star"></i> Bônus</button></nav></section><div class="modal" id="modal"><div class="modal-box"><div class="modal-cover"><i id="modalIcon" class="ti ti-lock"></i></div><div class="modal-content"><h3 id="modalTitle">Produto</h3><p id="modalText">Descrição</p><div class="modal-code" id="modalCodeArea"><div class="code-row"><input id="modalCodeInput" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="Digite seu PIN" autocomplete="off" /><button class="btn gold" onclick="redeemCodeFromModal()"><i class="ti ti-lock"></i> Liberar</button></div><div class="code-help">Digite o PIN recebido após a compra.</div><div id="checkoutArea" style="display:none;margin-top:10px"></div></div><div class="modal-actions"><button class="btn dark" onclick="closeModal()">Fechar</button></div></div></div></div><div class="toast" id="toast"><i class="ti ti-check"></i><span id="toastText">Pronto.</span></div><script>
     const SB_URL = "https://lvumvnybggqudgccscvm.supabase.co";
     const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx2dW12bnliZ2dxdWRnY2NzY3ZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0ODIzMTAsImV4cCI6MjA5NTA1ODMxMH0.q7hnXLG5NpWC_k0LjZBVPtH63eC-95Ug8lCvV9RmVHo";
@@ -571,7 +586,8 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
       },
       precificacao: {
         id:'precificacao',
-        previewUrl:'#',
+        previewUrl:'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=drive_link',
+        downloadUrl:'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=drive_link',
         productIcon:'data:image/webp;base64,UklGRlADAABXRUJQVlA4IEQDAAAQFACdASpkAGQAPmEsk0YkIqGhLRZo0IAMCUAan5c5hi7g5NgPUbywHqX8xXnKaal6AH6zem37OXlYuGS6jflaYNp4f0TUn5KE09v2mNktlP/6M5OEwtYo+RQSeRIlfzQALrrz8J1FzFU+bHhbJrkN9zbZAcn/d5qbCB7wC2l9OxJtkCTvkLG8AGRZ8bYCLCl8i1K/dfywF5oVODp7AHqJEPc6mlxrDscAAP7w+ivikhjX/+jD/87/533iAeM7qqtln5Ob6Qe5IVI3Z3fkowyGBzU5Avt/MMlM0jOH0YxB9wkeY2i02P4R2n8U39gjHKmalFvJhKPBUbILkD2rJNwmD/nya/Uo6l9tC98WsAM1tGySMFJtzrtdVYbC3FDOwegGs+o+T9VawnNNwy/pbdzb1oMGQaKt2uJjneT3ZBGLrqHOVWC2CYLQLae/AQtWrzDqpf1Opg/+aU/+JEqaY3IDLL50fvJAJHfj8w1LfU8zfX3oOcooZdj+XZ6gnQ74csqkyJxKXY9V6KHXbm15xM58+wvXr5ikJGurkN/5bs9E6lWVDvH94cteQOzcXEgH9gMb9/BdCpKaX7iyg3H6YofM81KV3vdYTWweUpNj8qSF51v+nTyrrt/9vT9rWM4rbxc6cfXLZCCuDIXGpGK8b99yF58W1tu/LA8jdf3hLputUv+ZYEXxX2YCfrQoT+Rz9RZe2s4EQGw4sHCrOFdJO77CPSm83ph+IDzVxG/SK+rn8piI1pyP/1hDdz2Y93cexcZp1WmPCYqkjvFOlH3s/MajI1/ml7DERT3Y79qlxSraXIB5Kbds80zLAA2WyUfk8L6753pPceHQ8SI9h8cZ8PwJ2H4UYr8/z/zUKXUyCLCexwHwlvOCohIfWW+wRjdVHZeiLWOZXu1F1enS9SfE0VJQKQfN+W7ptgWGG+WJaOrZvhwBw8qE19Yr9LBVhfYK/+rdXpneNgpgYm5t79oL2yfW2IJM8ZE7XbLc7HXCZrWj+rD2TeQTSsqZ5pbxRra3UvQnFr9pd4k7a0C7tVQQijDSNt/sA3jyjaAaGPqtaLbdmiHEYlqVxMNFN906xvlgVxC2tQ9YItGCAex0rd5FIAAAAAAAAA==',
         title:'Tabela de Precificação',
         category:'bonus',
@@ -579,6 +595,18 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
         desc:'Planilha de apoio para calcular preço de venda, custo e margem de lucro.',
         previewDescription:'Tabela de precificação para organizar custos e definir preços de venda.',
         downloadLabel:'Acessar',
+        lessons:[]
+      },
+      tabelaTroca: {
+        id:'tabelaTroca',
+        productIcon:'data:image/webp;base64,UklGRlADAABXRUJQVlA4IEQDAAAQFACdASpkAGQAPmEsk0YkIqGhLRZo0IAMCUAan5c5hi7g5NgPUbywHqX8xXnKaal6AH6zem37OXlYuGS6jflaYNp4f0TUn5KE09v2mNktlP/6M5OEwtYo+RQSeRIlfzQALrrz8J1FzFU+bHhbJrkN9zbZAcn/d5qbCB7wC2l9OxJtkCTvkLG8AGRZ8bYCLCl8i1K/dfywF5oVODp7AHqJEPc6mlxrDscAAP7w+ivikhjX/+jD/87/533iAeM7qqtln5Ob6Qe5IVI3Z3fkowyGBzU5Avt/MMlM0jOH0YxB9wkeY2i02P4R2n8U39gjHKmalFvJhKPBUbILkD2rJNwmD/nya/Uo6l9tC98WsAM1tGySMFJtzrtdVYbC3FDOwegGs+o+T9VawnNNwy/pbdzb1oMGQaKt2uJjneT3ZBGLrqHOVWC2CYLQLae/AQtWrzDqpf1Opg/+aU/+JEqaY3IDLL50fvJAJHfj8w1LfU8zfX3oOcooZdj+XZ6gnQ74csqkyJxKXY9V6KHXbm15xM58+wvXr5ikJGurkN/5bs9E6lWVDvH94cteQOzcXEgH9gMb9/BdCpKaX7iyg3H6YofM81KV3vdYTWweUpNj8qSF51v+nTyrrt/9vT9rWM4rbxc6cfXLZCCuDIXGpGK8b99yF58W1tu/LA8jdf3hLputUv+ZYEXxX2YCfrQoT+Rz9RZe2s4EQGw4sHCrOFdJO77CPSm83ph+IDzVxG/SK+rn8piI1pyP/1hDdz2Y93cexcZp1WmPCYqkjvFOlH3s/MajI1/ml7DERT3Y79qlxSraXIB5Kbds80zLAA2WyUfk8L6753pPceHQ8SI9h8cZ8PwJ2H4UYr8/z/zUKXUyCLCexwHwlvOCohIfWW+wRjdVHZeiLWOZXu1F1enS9SfE0VJQKQfN+W7ptgWGG+WJaOrZvhwBw8qE19Yr9LBVhfYK/+rdXpneNgpgYm5t79oL2yfW2IJM8ZE7XbLc7HXCZrWj+rD2TeQTSsqZ5pbxRra3UvQnFr9pd4k7a0C7tVQQijDSNt/sA3jyjaAaGPqtaLbdmiHEYlqVxMNFN906xvlgVxC2tQ9YItGCAex0rd5FIAAAAAAAAA==',
+        previewUrl:'/tabela-troca/',
+        title:'Tabela de Troca de iPhone',
+        category:'bonus',
+        icon:'ti-calculator',
+        desc:'Calcule rapidamente quanto pagar no aparelho usado e a diferença que o cliente precisa completar.',
+        previewDescription:'Calculadora de troca para negociação de iPhones.',
+        downloadLabel:'Visualizar',
         lessons:[]
       },
       peliculas3d: {
@@ -1441,7 +1469,7 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
     }
 
     function isBonusProduct(productId){
-      return ['fornecedores','precificacao','peliculas3d'].includes(productId);
+      return ['fornecedores','precificacao','tabelaTroca','peliculas3d'].includes(productId);
     }
 
     function canAccessBonus(productId){
@@ -1470,27 +1498,32 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
       const product = products[productId];
       if(!product) return;
 
-      if(productId === 'fornecedores'){
-        openSuppliersTable();
+      if(productId === 'tabelaTroca'){
+        openExternal('/tabela-troca/', 'Tabela de Troca de iPhone');
         return;
       }
 
       if(productId === 'peliculas3d'){
-        if(!hasCatalogBonusAccess() && !hasAccess('peliculas3d')){
-          openUnlock('peliculas3d');
+        openExternal('/pelicula-3d/', 'Tabela de Película 3D');
+        return;
+      }
+
+      if(productId === 'fornecedores'){
+        if(!hasCatalogBonusAccess() && !hasAccess('fornecedores')){
+          openUnlock('iphone');
           return;
         }
-        goTo('bonus');
-        renderPixelPreviewList();
-        setTimeout(() => document.getElementById('pixelPreviewList')?.scrollIntoView({ behavior:'smooth', block:'start' }), 80);
+        openExternal('/fornecedores/', 'Lista de Fornecedores');
         return;
       }
 
       if(productId === 'precificacao'){
         if(!hasCatalogBonusAccess() && !hasAccess('precificacao')){
-          openUnlock('precificacao');
+          openUnlock('iphone');
           return;
         }
+        openExternal('https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=drive_link', 'Tabela de Precificação');
+        return;
       }
 
       if(!canAccessBonus(productId)){
@@ -1559,13 +1592,26 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
       }
 
       if(isBonusProduct(product.id)){
-        const bonusUnlocked = hasCatalogBonusAccess() || hasAccess(product.id);
+        const visualProducts = ['tabelaTroca','peliculas3d'];
+        const isVisualProduct = visualProducts.includes(product.id);
+        const bonusUnlocked = isVisualProduct || hasCatalogBonusAccess() || hasAccess(product.id);
         const bonusStatusClass = bonusUnlocked ? 'open' : 'preview';
-        const bonusStatusText = bonusUnlocked ? 'Liberado' : 'Bloqueado';
-        const lockedAction = "openUnlock('iphone')";
-        const bonusButton = bonusUnlocked
-          ? `<button class="btn green" onclick="openDownloadFile('${product.id}')"><i class="ti ti-eye"></i> Visualizar</button>`
-          : `<button class="btn gold" type="button" onclick="${lockedAction}" title="Libere o PIN do catálogo para visualizar."><i class="ti ti-lock"></i> Liberar</button>`;
+        const bonusStatusText = isVisualProduct ? 'Visualizar' : (bonusUnlocked ? 'Liberado' : 'Bloqueado');
+        const targetMap = {
+          fornecedores: '/fornecedores/',
+          precificacao: 'https://drive.google.com/drive/folders/1Hg6tWOo42HVitHD8wwTcTJnDTXrVjGIz?usp=drive_link',
+          tabelaTroca: '/tabela-troca/',
+          peliculas3d: '/pelicula-3d/'
+        };
+
+        let bonusButton = '';
+        if(isVisualProduct){
+          bonusButton = `<button class="btn ghost" type="button" onclick="openExternal('${targetMap[product.id]}','${product.title}')"><i class="ti ti-eye"></i> Visualizar</button>`;
+        } else if(bonusUnlocked){
+          bonusButton = `<button class="btn green" onclick="openDownloadFile('${product.id}')"><i class="ti ti-eye"></i> Visualizar</button>`;
+        } else {
+          bonusButton = `<button class="btn gold" type="button" onclick="openUnlock('iphone')" title="Libere o PIN do catálogo para acessar."><i class="ti ti-lock"></i> Liberar</button>`;
+        }
 
         return `
           <article class="${cardClass}" id="product-${product.id}">
@@ -1594,7 +1640,7 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
     }
 
     function hasCatalogBonusAccess(){
-      return hasAnyCatalogAccess() || ['fornecedores','precificacao','peliculas3d'].some(id => hasAccess(id));
+      return hasAnyCatalogAccess() || ['fornecedores','precificacao'].some(id => hasAccess(id));
     }
 
     // Bônus do catálogo: libera para quem desbloqueou qualquer catálogo ou o bônus individual.
@@ -1883,7 +1929,7 @@ src="https://www.facebook.com/tr?id=607918638874459&ev=PageView&noscript=1"
       if(catalogUpgrade){ catalogUpgrade.innerHTML = ''; }
       document.getElementById('lojaIphoneGrid').innerHTML = ''; // Conteúdos de iPhone movidos para Catálogos
       document.getElementById('assistenciaGrid').innerHTML = ['ordemServico','documentos','videosAssistencia','artesAssistencia'].map(id => productCard(products[id])).join('');
-      document.getElementById('bonusGrid').innerHTML = [productCard(products.fornecedores), productCard(products.precificacao), productCard(products.peliculas3d), pixelPeliculasPreview(), bonusWhatsappCard()].join('');
+      document.getElementById('bonusGrid').innerHTML = [productCard(products.fornecedores), productCard(products.precificacao), productCard(products.tabelaTroca), productCard(products.peliculas3d)].join('');
       if(document.getElementById('suppliersGrid')) renderSuppliers(document.getElementById('supplierSearch')?.value || '');
       setTimeout(renderPixelPreviewList, 0);
     }
