@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#050506" />
+  <title>Tabela de Troca — iPhones</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    :root{--bg:#050506;--panel:#111114;--card:#17171b;--soft:#0b0b0d;--line:rgba(255,255,255,.10);--line2:rgba(255,255,255,.15);--text:#f5f5f7;--muted:#a1a1a6;--muted2:#85858c;--blue:#0a84ff;--green:#30d158;--danger:#ff453a;--safe:env(safe-area-inset-bottom)}
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}body{min-height:100vh;background:radial-gradient(circle at 95% -8%,rgba(10,132,255,.12),transparent 34%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}button,input,select{font-family:inherit}button{cursor:pointer}.app{min-height:100vh}.top{position:sticky;top:0;z-index:20;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px;background:rgba(5,5,6,.84);border-bottom:1px solid var(--line);backdrop-filter:blur(24px)}.brand{display:flex;align-items:center;gap:10px;min-width:0}.mark{width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,#fff,#d7d7dc);color:#050506;display:grid;place-items:center;font-weight:950;font-size:13px}.brand strong{display:block;font-size:17px;letter-spacing:-.45px;white-space:nowrap}.brand span{display:block;color:var(--muted2);font-size:11px;margin-top:2px;white-space:nowrap}.btn{min-height:40px;border-radius:14px;border:1px solid var(--line2);background:rgba(255,255,255,.065);color:#fff;padding:8px 12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:12.5px;font-weight:850;white-space:nowrap}.btn.primary{background:linear-gradient(135deg,#0a84ff,#006edb);border:0;box-shadow:0 12px 28px rgba(10,132,255,.18)}.btn.green{background:linear-gradient(135deg,#25d366,#19b957);color:#061108;border:0;box-shadow:0 12px 28px rgba(37,211,102,.16)}.btn.danger{background:rgba(255,69,58,.10);border-color:rgba(255,69,58,.25);color:#ffd6d2}.btn.icon{width:38px;padding:0}.wrap{width:100%;max-width:1120px;margin:0 auto;padding:16px 16px 42px}.hero{border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 94% 0%,rgba(10,132,255,.18),transparent 36%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);padding:16px;margin-bottom:12px;box-shadow:0 14px 42px rgba(0,0,0,.22)}.hero small{display:inline-flex;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);border-radius:999px;color:#d7d7dc;font-size:11px;font-weight:850;padding:6px 10px;margin-bottom:10px}.hero h1{font-size:23px;line-height:1.1;letter-spacing:-.7px;margin-bottom:6px}.hero p{color:var(--muted);font-size:12.8px;line-height:1.45;max-width:690px}.bar{display:grid;grid-template-columns:1fr auto;gap:9px;margin-bottom:12px}.search{height:44px;border:1px solid var(--line2);background:var(--soft);border-radius:14px;display:flex;align-items:center;gap:8px;padding:0 12px}.search i{color:var(--muted2);font-size:19px}.search input{width:100%;height:100%;border:0;outline:0;background:transparent;color:#fff;font-size:15px}.panel{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.052),rgba(255,255,255,.018)),var(--panel);box-shadow:0 14px 42px rgba(0,0,0,.22);overflow:hidden}.quick-panel{margin-bottom:12px}.quick-grid{display:grid;grid-template-columns:1fr 1.1fr 1.25fr 1fr 1fr 1.25fr;gap:10px;padding:13px 15px;align-items:end}.quick-result{min-height:52px;border:1px solid rgba(10,132,255,.22);background:rgba(10,132,255,.08);border-radius:15px;padding:9px 10px}.quick-result.green{border-color:rgba(48,209,88,.24);background:rgba(48,209,88,.08)}.quick-result span{display:block;color:#8ec8ff;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}.quick-result.green span{color:#caffd7}.quick-result strong{font-size:15px;letter-spacing:-.25px}.panel-head{padding:13px 15px;border-bottom:1px solid var(--line);display:flex;align-items:end;justify-content:space-between;gap:12px}.title{font-size:11px;color:var(--muted2);font-weight:900;letter-spacing:1.6px;text-transform:uppercase}.sub{font-size:11.5px;color:var(--muted2);margin-top:4px;line-height:1.35}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:1060px}.table th{background:rgba(255,255,255,.025);color:var(--muted2);font-size:10.5px;text-transform:uppercase;letter-spacing:.75px;text-align:left;padding:11px 10px;border-bottom:1px solid var(--line)}.table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:middle}.table tr:last-child td{border-bottom:0}.model{min-width:136px}.model strong{display:block;font-size:14px;letter-spacing:-.25px}.input,.select{width:100%;height:38px;border-radius:13px;background:var(--soft);border:1px solid var(--line2);color:#fff;padding:0 10px;font-size:13.5px;outline:0}.input:focus,.select:focus{border-color:rgba(10,132,255,.72);box-shadow:0 0 0 3px rgba(10,132,255,.12)}.gb{max-width:92px}.money{max-width:112px}.pct{max-width:62px;text-align:center}.range{display:flex;align-items:center;gap:6px}.range span{font-size:11px;color:var(--muted2)}.result{min-width:154px}.result strong{display:block;font-size:14px;color:#fff}.result small{display:block;font-size:10.5px;color:var(--muted2);margin-top:2px}.difference strong{font-size:15px}.difference.ok strong{color:#caffd7}.difference.wait strong{color:#fff}.actions{display:flex;justify-content:flex-end}.cards{display:none;padding:10px;gap:10px}.card{border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:18px;padding:12px}.card-top{display:flex;justify-content:space-between;gap:8px;margin-bottom:10px}.card h3{font-size:16px;letter-spacing:-.35px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.field label{display:block;color:var(--muted2);font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.55px;margin-bottom:5px}.full{grid-column:1/-1}.trade{grid-column:1/-1;border:1px solid rgba(10,132,255,.22);background:rgba(10,132,255,.08);border-radius:15px;padding:10px}.trade.green{border-color:rgba(48,209,88,.24);background:rgba(48,209,88,.08)}.trade span{display:block;color:#8ec8ff;font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px}.trade.green span{color:#caffd7}.trade strong{font-size:18px;letter-spacing:-.35px}.note{color:var(--muted2);font-size:11.5px;line-height:1.4;margin-top:10px;padding:0 2px}.empty{display:none;padding:24px;text-align:center;color:var(--muted2)}.modal{display:none;position:fixed;inset:0;z-index:80;align-items:center;justify-content:center;background:rgba(0,0,0,.78);backdrop-filter:blur(10px);padding:18px}.modal.show{display:flex}.box{width:min(470px,100%);border:1px solid var(--line2);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.018)),var(--panel);box-shadow:0 30px 100px rgba(0,0,0,.62);overflow:hidden}.box-top{height:58px;background:radial-gradient(circle at 50% -20%,rgba(10,132,255,.36),transparent 58%),rgba(255,255,255,.025);display:grid;place-items:center;border-bottom:1px solid var(--line)}.box-top:after{content:"";width:46px;height:4px;border-radius:999px;background:rgba(255,255,255,.22)}.box-content{padding:17px}.box h2{font-size:21px;letter-spacing:-.55px;margin-bottom:7px}.box p{color:var(--muted);font-size:12.8px;line-height:1.45;margin-bottom:13px}.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.toast{display:none;position:fixed;right:16px;bottom:16px;z-index:120;background:#111114;border:1px solid rgba(10,132,255,.35);border-radius:16px;padding:12px 13px;box-shadow:0 18px 60px rgba(0,0,0,.55);font-size:13px;font-weight:850;gap:8px;align-items:center}.toast.show{display:flex}@media(max-width:760px){.quick-grid{grid-template-columns:1fr 1fr;padding:12px}.quick-result{grid-column:1/-1}.top{height:59px;padding:0 12px}.brand span{display:none}.brand strong{font-size:15px}.mark{width:36px;height:36px}.top .btn span{display:none}.wrap{padding:12px;padding-bottom:calc(26px + var(--safe))}.hero{padding:14px;border-radius:20px}.hero h1{font-size:20.5px}.bar{grid-template-columns:1fr auto}.table{display:none}.cards{display:grid}.panel-head{padding:12px}.modal{align-items:flex-end;padding:0}.box{width:100%;max-width:none;border-left:0;border-right:0;border-bottom:0;border-radius:24px 24px 0 0;max-height:92vh;overflow:auto}.box-content{padding:16px;padding-bottom:calc(18px + var(--safe))}.modal-grid,.modal-actions{grid-template-columns:1fr}.toast{left:12px;right:12px;bottom:calc(12px + var(--safe))}}
+
+    .tutorial-actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}.video-modal{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(10px)}.video-modal.show{display:flex}.video-shell{width:min(920px,100%);position:relative}.video-frame{width:100%;aspect-ratio:16/9;background:#000;border:1px solid var(--line2);border-radius:22px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.65)}.video-frame iframe{width:100%;height:100%;border:0;display:block}.video-close{position:absolute;right:-10px;top:-54px;width:42px;height:42px;border:0;border-radius:999px;background:#f5f5f7;color:#050506;font-size:20px;font-weight:900;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.35)}.video-help{display:none;color:var(--muted);font-size:13px;line-height:1.45;text-align:center;padding:28px 18px}.video-frame.no-video{display:flex;align-items:center;justify-content:center}.video-frame.no-video .video-help{display:block}@media(max-width:760px){.tutorial-actions .btn{width:100%}.video-modal{padding:12px}.video-frame{border-radius:18px}.video-close{right:0;top:-52px}}
+
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand"><div class="mark">CL</div><div><strong>Tabela de Troca</strong><span>Central do Lojista</span></div></div>
+      <button class="btn primary" id="addBtn"><i class="ti ti-plus"></i><span>Adicionar</span></button>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <small>Ferramenta de negociação</small>
+        <h1>Calcule rápido quanto pagar na troca</h1>
+        <p>Use esta tabela para analisar o aparelho que o cliente vai deixar na troca. Ajuste a referência, escolha quanto vai pagar, informe o valor do novo aparelho e veja automaticamente a diferença que o cliente precisa completar.</p>
+        <div class="tutorial-actions">
+          <button class="btn green" id="openTutorial" type="button"><i class="ti ti-player-play"></i><span>Como usar esta tabela</span></button>
+        </div>
+      </section>
+
+      <div class="bar">
+        <div class="search"><i class="ti ti-search"></i><input id="search" placeholder="Buscar modelo..." /></div>
+        <button class="btn" id="resetBtn"><i class="ti ti-refresh"></i><span>Restaurar</span></button>
+      </div>
+
+      <section class="panel quick-panel">
+        <div class="panel-head"><div><div class="title">Cálculo rápido</div><div class="sub">Use quando o aparelho não estiver na lista. Preencha a referência, escolha quanto vai pagar e informe o valor do novo produto.</div></div></div>
+        <div class="quick-grid">
+          <div class="field"><label>Referência</label><input class="input" id="quickRef" inputmode="numeric" placeholder="0"></div>
+          <div class="field"><label>Desvalorização %</label><div class="range"><input class="input pct" id="quickMin" inputmode="numeric" value="20"><span>a</span><input class="input pct" id="quickMax" inputmode="numeric" value="25"></div></div>
+          <div class="quick-result"><span>Faixa de troca</span><strong id="quickRange">—</strong></div>
+          <div class="field"><label>Vou pagar</label><input class="input" id="quickPay" inputmode="numeric" placeholder="0"></div>
+          <div class="field"><label>Valor do novo produto</label><input class="input" id="quickTarget" inputmode="numeric" placeholder="0"></div>
+          <div class="quick-result green"><span>Cliente paga</span><strong id="quickDiff">Preencher</strong></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><div><div class="title">Troca de iPhone</div><div class="sub">Modelos em 256GB por padrão. Use a linha rápida acima para calcular qualquer outro aparelho.</div></div></div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Modelo</th><th>GB</th><th>Referência</th><th>Desvalorização %</th><th>Faixa de troca</th><th>Vou pagar</th><th>Valor novo</th><th>Cliente paga</th><th></th></tr></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+          <div class="cards" id="cards"></div>
+          <div class="empty" id="empty">Nenhum modelo encontrado.</div>
+        </div>
+      </section>
+      <p class="note">Dica: clique no campo e digite direto. Exemplo: para R$ 4.500, digite 4500.</p>
+    </main>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="box">
+      <div class="box-top"></div>
+      <div class="box-content">
+        <h2>Adicionar produto</h2>
+        <p>Inclua um novo modelo na tabela. O padrão inicial será 256GB e desvalorização de 20% a 25%.</p>
+        <div class="modal-grid">
+          <div class="field full"><label>Modelo</label><input class="input" id="newModel" placeholder="Ex: iPhone 15 Plus" /></div>
+          <div class="field"><label>GB</label><select class="select" id="newStorage"><option>64GB</option><option>128GB</option><option selected>256GB</option><option>512GB</option><option>1TB</option><option>2TB</option></select></div>
+          <div class="field"><label>Referência</label><input class="input" id="newRef" inputmode="numeric" placeholder="0" /></div>
+          <div class="field"><label>Desvalorização mín %</label><input class="input" id="newMin" inputmode="numeric" value="20" /></div>
+          <div class="field"><label>Desvalorização máx %</label><input class="input" id="newMax" inputmode="numeric" value="25" /></div>
+          <div class="field"><label>Valor novo</label><input class="input" id="newTarget" inputmode="numeric" placeholder="0" /></div>
+        </div>
+        <div class="modal-actions"><button class="btn" id="closeModal">Cancelar</button><button class="btn green" id="saveProduct">Adicionar</button></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="video-modal" id="videoModal" aria-hidden="true">
+    <div class="video-shell">
+      <button class="video-close" id="closeVideo" type="button" aria-label="Fechar vídeo">×</button>
+      <div class="video-frame" id="videoFrameBox">
+        <iframe id="tutorialFrame" src="" title="Como usar a tabela" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        <div class="video-help">Cole o ID do vídeo do YouTube na variável <strong>YOUTUBE_VIDEO_ID</strong> dentro do código.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><i class="ti ti-check"></i><span>Atualizado</span></div>
+
+<script>
+
+const YOUTUBE_VIDEO_ID = ''; // Cole aqui o ID do vídeo. Ex: T21p4FB51zY
+const videoModal = document.getElementById('videoModal');
+const tutorialFrame = document.getElementById('tutorialFrame');
+const videoFrameBox = document.getElementById('videoFrameBox');
+function openTutorialVideo(){
+  videoModal.classList.add('show');
+  videoModal.setAttribute('aria-hidden','false');
+  if(YOUTUBE_VIDEO_ID){
+    videoFrameBox.classList.remove('no-video');
+    tutorialFrame.style.display = 'block';
+    tutorialFrame.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&playsinline=1`;
+  }else{
+    tutorialFrame.style.display = 'none';
+    videoFrameBox.classList.add('no-video');
+  }
+}
+function closeTutorialVideo(){
+  videoModal.classList.remove('show');
+  videoModal.setAttribute('aria-hidden','true');
+  tutorialFrame.src = '';
+}
+document.getElementById('openTutorial').addEventListener('click', openTutorialVideo);
+document.getElementById('closeVideo').addEventListener('click', closeTutorialVideo);
+videoModal.addEventListener('click', e=>{ if(e.target===videoModal) closeTutorialVideo(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && videoModal.classList.contains('show')) closeTutorialVideo(); });
+const storageByModel={
+  'iPhone 17 Pro Max':['256GB','512GB','1TB','2TB'],
+  'iPhone 17 Pro':['256GB','512GB','1TB'],
+  'iPhone 17':['128GB','256GB','512GB'],
+  'iPhone 16 Pro Max':['256GB','512GB','1TB'],
+  'iPhone 16 Pro':['128GB','256GB','512GB','1TB'],
+  'iPhone 16':['128GB','256GB','512GB'],
+  'iPhone 15 Pro Max':['256GB','512GB','1TB'],
+  'iPhone 15 Pro':['128GB','256GB','512GB','1TB'],
+  'iPhone 15':['128GB','256GB','512GB'],
+  'iPhone 14 Pro Max':['128GB','256GB','512GB','1TB'],
+  'iPhone 14 Pro':['128GB','256GB','512GB','1TB'],
+  'iPhone 14':['128GB','256GB','512GB'],
+  'iPhone 13 Pro Max':['128GB','256GB','512GB','1TB'],
+  'iPhone 13 Pro':['128GB','256GB','512GB','1TB'],
+  'iPhone 13':['128GB','256GB','512GB']
+};
+const baseRows=[
+  {model:'iPhone 17 Pro Max',storage:'256GB',ref:6900,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 17 Pro',storage:'256GB',ref:6500,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 17',storage:'256GB',ref:5200,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 16 Pro Max',storage:'256GB',ref:4950,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 16 Pro',storage:'256GB',ref:4500,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 16',storage:'256GB',ref:3900,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 15 Pro Max',storage:'256GB',ref:3900,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 15 Pro',storage:'256GB',ref:3500,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 15',storage:'256GB',ref:3100,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 14 Pro Max',storage:'256GB',ref:3300,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 14 Pro',storage:'256GB',ref:3000,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 14',storage:'256GB',ref:2200,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 13 Pro Max',storage:'256GB',ref:2800,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 13 Pro',storage:'256GB',ref:2400,min:20,max:25,pay:'',target:''},
+  {model:'iPhone 13',storage:'256GB',ref:1900,min:20,max:25,pay:'',target:''}
+].map((r,i)=>({...r,id:Date.now()+i}));
+let rows=JSON.parse(localStorage.getItem('troca_rows_v5')||'null')||baseRows;
+const tbody=document.getElementById('tbody'),cards=document.getElementById('cards'),empty=document.getElementById('empty'),search=document.getElementById('search'),modal=document.getElementById('modal'),toast=document.getElementById('toast');
+function onlyNumber(v){return String(v??'').replace(/\D/g,'')}
+function toNum(v){return Number(onlyNumber(v)||0)}
+function money(v){return v>0?v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}):'—'}
+function save(){localStorage.setItem('troca_rows_v5',JSON.stringify(rows))}
+function showToast(){toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1100)}
+function opts(model,selected){const list=storageByModel[model]||['64GB','128GB','256GB','512GB','1TB','2TB'];return list.map(g=>`<option ${g===selected?'selected':''}>${g}</option>`).join('')}
+function calc(row){const ref=toNum(row.ref),min=Number(row.min)||20,max=Number(row.max)||25;const high=Math.round(ref*(1-min/100));const low=Math.round(ref*(1-max/100));const pay=toNum(row.pay),target=toNum(row.target);const diff=(pay>0&&target>0)?Math.max(target-pay,0):0;return{low,high,pay,target,diff}}
+function diffText(c){return c.diff>0?money(c.diff):'Preencher'}
+function updateVisuals(id){
+  const row=rows.find(r=>r.id===id); if(!row) return;
+  const c=calc(row);
+  document.querySelectorAll(`[data-id="${id}"]`).forEach(holder=>{
+    const range=holder.querySelector('[data-role="range"]');
+    if(range) range.innerHTML = `<span>Faixa de troca</span><strong>${money(c.low)} – ${money(c.high)}</strong>${range.tagName==='TD'?'<small>base segura de compra</small>':''}`;
+    const diff=holder.querySelector('[data-role="diff"]');
+    if(diff){ diff.classList.toggle('ok', !!c.diff); diff.classList.toggle('wait', !c.diff); diff.innerHTML = diff.tagName==='TD' ? `<strong>${diffText(c)}</strong><small>diferença a receber</small>` : `<span>Cliente paga</span><strong>${diffText(c)}</strong>`; }
+  });
+}
+function calcQuick(){
+  const ref=toNum(document.getElementById('quickRef').value), min=Number(onlyNumber(document.getElementById('quickMin').value)||20), max=Number(onlyNumber(document.getElementById('quickMax').value)||25);
+  const low=Math.round(ref*(1-max/100)), high=Math.round(ref*(1-min/100));
+  document.getElementById('quickRange').textContent = ref>0 ? `${money(low)} – ${money(high)}` : '—';
+  const pay=toNum(document.getElementById('quickPay').value), target=toNum(document.getElementById('quickTarget').value);
+  document.getElementById('quickDiff').textContent = (pay>0&&target>0) ? money(Math.max(target-pay,0)) : 'Preencher';
+}
+function render(){const q=search.value.trim().toLowerCase();const filtered=rows.filter(r=>r.model.toLowerCase().includes(q));tbody.innerHTML='';cards.innerHTML='';empty.style.display=filtered.length?'none':'block';filtered.forEach(row=>{const c=calc(row);tbody.insertAdjacentHTML('beforeend',`<tr data-id="${row.id}"><td class="model"><strong>${row.model}</strong></td><td><select class="select gb" data-k="storage">${opts(row.model,row.storage)}</select></td><td><input class="input money" inputmode="numeric" data-k="ref" value="${onlyNumber(row.ref)}" placeholder="0"></td><td><div class="range"><input class="input pct" inputmode="numeric" data-k="min" value="${onlyNumber(row.min)||20}"><span>a</span><input class="input pct" inputmode="numeric" data-k="max" value="${onlyNumber(row.max)||25}"></div></td><td class="result" data-role="range"><strong>${money(c.low)} – ${money(c.high)}</strong><small>base segura de compra</small></td><td><input class="input money" inputmode="numeric" data-k="pay" value="${onlyNumber(row.pay)}" placeholder="0"></td><td><input class="input money" inputmode="numeric" data-k="target" value="${onlyNumber(row.target)}" placeholder="0"></td><td class="result difference ${c.diff?'ok':'wait'}" data-role="diff"><strong>${diffText(c)}</strong><small>diferença a receber</small></td><td class="actions"><button class="btn icon danger" data-act="del"><i class="ti ti-trash"></i></button></td></tr>`);
+    cards.insertAdjacentHTML('beforeend',`<div class="card" data-id="${row.id}"><div class="card-top"><h3>${row.model}</h3><button class="btn icon danger" data-act="del"><i class="ti ti-trash"></i></button></div><div class="grid"><div class="field"><label>GB</label><select class="select" data-k="storage">${opts(row.model,row.storage)}</select></div><div class="field"><label>Referência</label><input class="input" inputmode="numeric" data-k="ref" value="${onlyNumber(row.ref)}" placeholder="0"></div><div class="field"><label>Desvalorização mín %</label><input class="input" inputmode="numeric" data-k="min" value="${onlyNumber(row.min)||20}"></div><div class="field"><label>Desvalorização máx %</label><input class="input" inputmode="numeric" data-k="max" value="${onlyNumber(row.max)||25}"></div><div class="trade" data-role="range"><span>Faixa de troca</span><strong>${money(c.low)} – ${money(c.high)}</strong></div><div class="field"><label>Vou pagar</label><input class="input" inputmode="numeric" data-k="pay" value="${onlyNumber(row.pay)}" placeholder="0"></div><div class="field"><label>Valor novo</label><input class="input" inputmode="numeric" data-k="target" value="${onlyNumber(row.target)}" placeholder="0"></div><div class="trade green" data-role="diff"><span>Cliente paga</span><strong>${diffText(c)}</strong></div></div></div>`)
+  })}
+function updateFrom(el, shouldRender=false){const holder=el.closest('[data-id]');if(!holder)return;const id=Number(holder.dataset.id),key=el.dataset.k;const row=rows.find(r=>r.id===id);if(!row||!key)return;let val=el.value;if(['ref','min','max','pay','target'].includes(key)){val=onlyNumber(val);el.value=val;if(key==='min'&&val!==''&&Number(val)<20){val='20';el.value='20'}if(key==='max'&&val!==''&&Number(val)<20){val='25';el.value='25'}}row[key]=val;save();shouldRender?render():updateVisuals(id)}
+document.addEventListener('input',e=>{if(e.target.matches('[data-k]'))updateFrom(e.target,false)});
+document.addEventListener('change',e=>{if(e.target.matches('[data-k]'))updateFrom(e.target,false)});
+document.querySelectorAll('#quickRef,#quickMin,#quickMax,#quickPay,#quickTarget').forEach(el=>el.addEventListener('input',()=>{el.value=onlyNumber(el.value); if(el.id==='quickMin'&&el.value!==''&&Number(el.value)<20)el.value='20'; if(el.id==='quickMax'&&el.value!==''&&Number(el.value)<20)el.value='25'; calcQuick()}));
+document.addEventListener('click',e=>{const del=e.target.closest('[data-act="del"]');if(del){const id=Number(del.closest('[data-id]').dataset.id);rows=rows.filter(r=>r.id!==id);save();render();showToast()}});
+search.addEventListener('input',render);
+document.getElementById('resetBtn').onclick=()=>{if(confirm('Restaurar tabela padrão?')){rows=baseRows.map((r,i)=>({...r,id:Date.now()+i}));save();render();showToast()}};
+document.getElementById('addBtn').onclick=()=>modal.classList.add('show');document.getElementById('closeModal').onclick=()=>modal.classList.remove('show');modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show')});
+document.getElementById('saveProduct').onclick=()=>{const model=document.getElementById('newModel').value.trim();if(!model)return alert('Informe o modelo.');rows.unshift({id:Date.now(),model,storage:document.getElementById('newStorage').value,ref:onlyNumber(document.getElementById('newRef').value),min:onlyNumber(document.getElementById('newMin').value)||20,max:onlyNumber(document.getElementById('newMax').value)||25,pay:'',target:onlyNumber(document.getElementById('newTarget').value)});['newModel','newRef','newTarget'].forEach(id=>document.getElementById(id).value='');document.getElementById('newMin').value='20';document.getElementById('newMax').value='25';document.getElementById('newStorage').value='256GB';modal.classList.remove('show');save();render();showToast()};
+calcQuick();
+render();
+</script>
+</body>
+</html>
