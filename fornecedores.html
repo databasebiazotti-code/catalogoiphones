@@ -15,4 +15,4 @@ function wa(phone,name){ const clean=phone.replace(/\D/g,''); return `https://wa
 function initials(name){ return name.slice(0,2).replace(/[^A-Za-z0-9]/g,'').toUpperCase() || 'IP'; }
 function render(){ const q=document.getElementById('search').value.toLowerCase().trim(); const list=suppliers.filter(s=>s.name.toLowerCase().includes(q)||s.phone.includes(q)); document.getElementById('count').textContent=`${list.length} de ${suppliers.length} fornecedores`; document.getElementById('grid').innerHTML=list.map(s=>`<article class="supplier-card"><div class="supplier-icon">${initials(s.name)}</div><div><h3>${s.name}</h3><p>${s.phone}</p><a class="btn green" href="${wa(s.phone,s.name)}" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> WhatsApp</a></div></article>`).join('') || '<div class="panel">Nenhum fornecedor encontrado.</div>'; }
 document.getElementById('search').addEventListener('input',render); render();
-</script></body></html>
+</script></body></html> 
