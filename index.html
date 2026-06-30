@@ -1847,7 +1847,11 @@ html,body{background:var(--app-bg)!important;color:var(--app-text)!important;}
       const unlockedBefore = Array.isArray(unlocked) ? [...unlocked] : [];
 
       try{
-        const { data, error } = await sb.rpc('redeem_product_pin', { p_pin: code });
+        const rpcPayload = selectedUnlockProduct
+          ? { p_pin: code, p_product_id: selectedUnlockProduct }
+          : { p_pin: code };
+
+        const { data, error } = await sb.rpc('redeem_product_pin', rpcPayload);
 
         if(error){
           console.error('Erro ao liberar PIN:', error);
