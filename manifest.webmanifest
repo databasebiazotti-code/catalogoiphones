@@ -1,7 +1,7 @@
 {
   "name": "Central do Lojista",
   "short_name": "Central do Lojista",
-  "description": "Aplicativo PWA da Central do Lojista para acessar rapidamente a tabela de compatibilidade de Películas 3D e materiais da área de membros.",
+  "description": "Área de membros da Central do Lojista.",
   "start_url": "./index.html?source=pwa",
   "scope": "./",
   "display": "standalone",

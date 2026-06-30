@@ -1,0 +1,21 @@
+CENTRAL DO LOJISTA - ARQUIVOS CORRIGIDOS
+
+Suba TODOS os arquivos e pastas no GitHub.
+Não envie apenas o index.html.
+
+Estrutura importante:
+- index.html
+- css/style.css
+- js/app.js
+- js/pixel.js
+- icons/
+- img/logo.webp
+- manifest.webmanifest
+- service-worker.js
+
+Correções feitas:
+1. CSS e JavaScript foram colocados nas pastas corretas.
+2. A logo em Base64 foi transformada em arquivo img/logo.webp.
+3. Ícones PWA foram gerados na pasta icons.
+4. Service Worker atualizado para cachear CSS, JS, logo e ícones.
+5. Manifest corrigido para apontar para arquivos existentes.
